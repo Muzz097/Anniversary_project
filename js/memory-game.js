@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "peony",
             pair: "nature",
             type: "image",
-            image: "assets/images/game/peony.png",
+            image: "assets/images/game/bunga.jpg",
             alt: "Peony"
         },
 
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "leaf",
             pair: "nature",
             type: "image",
-            image: "assets/images/game/leaf.webp",
+            image: "assets/images/game/daun.jpg",
             alt: "Leaf"
         },
 
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "rose",
             pair: "sweet",
             type: "image",
-            image: "assets/images/game/rose.png",
+            image: "assets/images/game/rose.jpeg",
             alt: "Rose"
         },
 
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "chocolate",
             pair: "sweet",
             type: "image",
-            image: "assets/images/game/chocolate.png",
+            image: "assets/images/game/silverqueen.jpg",
             alt: "Chocolate"
         },
 

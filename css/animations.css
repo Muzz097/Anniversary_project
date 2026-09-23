@@ -1039,3 +1039,129 @@
 .adventure-button {
     animation-delay: 2.6s !important;
 }
+
+/* ==========================================
+   SECRET ENTRANCE — MODERN TOUCHES
+========================================== */
+
+@keyframes petalDrift {
+
+    from {
+        transform:
+            translateY(-20px)
+            translateX(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.55;
+    }
+
+    90% {
+        opacity: 0.55;
+    }
+
+    to {
+        transform:
+            translateY(100vh)
+            translateX(30px)
+            rotate(180deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* ==========================================
+   CODE MODALS — CHARACTER & CONFETTI
+========================================== */
+
+@keyframes characterShake {
+
+    0%, 100% {
+        transform:
+            translateX(0)
+            rotate(0deg);
+    }
+
+    20% {
+        transform:
+            translateX(-8px)
+            rotate(-6deg);
+    }
+
+    40% {
+        transform:
+            translateX(8px)
+            rotate(6deg);
+    }
+
+    60% {
+        transform:
+            translateX(-6px)
+            rotate(-4deg);
+    }
+
+    80% {
+        transform:
+            translateX(6px)
+            rotate(4deg);
+    }
+
+}
+
+.character-shake {
+    animation:
+        characterShake
+        0.6s
+        ease-in-out;
+}
+
+
+@keyframes characterBounce {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            scale(1.05);
+    }
+
+}
+
+.character-bounce {
+    animation:
+        characterBounce
+        1.1s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes confettiFall {
+
+    from {
+        transform:
+            translateY(-20px)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    to {
+        transform:
+            translateY(340px)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}

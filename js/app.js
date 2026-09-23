@@ -204,11 +204,9 @@ secretMessage.textContent = "";
  */
 
 const wrongCodeMessages = [
-    "Hmm, bukan itu... coba ingat lagi ya ❤️",
-    "Belum tepat, tapi aku suka kamu terus mencoba 🌸",
-    "Bukan yang itu... coba ingat momen kita lagi",
-    "Salah kode, tapi tidak salah orang kok 😉",
-    "Coba lagi, aku yakin kamu ingat kok 🌿"
+    "Ciee salah, bukan ituu coba lagi yaa cantikk ❤️",
+    "Salah kode, tapi ga salah orang kok 😉",
+    "Coba lagi ay, aku yakin kamu pasti inget kok 🥰"
 ];
 
 

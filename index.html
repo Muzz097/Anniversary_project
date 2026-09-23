@@ -466,42 +466,64 @@
      PHASE 04 — KETEMU KAMU
 ========================================== -->
 
-<section
-    class="ketemu-section hidden-section"
-    id="ketemuSection"
->
+<section class="ketemu-section hidden-section" id="ketemuSection">
 
     <div class="ketemu-background"></div>
     <div class="ketemu-overlay"></div>
 
+    <!-- Ambient romantic atmosphere -->
+    <div class="ketemu-ambience" aria-hidden="true">
+
+        <span class="bokeh" style="--x:8%; --y:15%; --size:170px; --delay:0s; --duration:11s;"></span>
+        <span class="bokeh" style="--x:70%; --y:10%; --size:130px; --delay:2s; --duration:9s;"></span>
+        <span class="bokeh" style="--x:15%; --y:70%; --size:150px; --delay:1s; --duration:13s;"></span>
+        <span class="bokeh" style="--x:75%; --y:65%; --size:190px; --delay:3s; --duration:10s;"></span>
+
+        <span class="glitter" style="--x:20%; --y:25%; --delay:.2s;"></span>
+        <span class="glitter" style="--x:80%; --y:20%; --delay:1.1s;"></span>
+        <span class="glitter" style="--x:30%; --y:60%; --delay:.6s;"></span>
+        <span class="glitter" style="--x:65%; --y:55%; --delay:1.8s;"></span>
+        <span class="glitter" style="--x:50%; --y:80%; --delay:2.4s;"></span>
+        <span class="glitter" style="--x:10%; --y:45%; --delay:.9s;"></span>
+
+        <span class="petal" style="--x:12%; --size:14px; --delay:0s; --duration:15s;"></span>
+        <span class="petal" style="--x:35%; --size:11px; --delay:3s; --duration:13s;"></span>
+        <span class="petal" style="--x:60%; --size:16px; --delay:6s; --duration:17s;"></span>
+        <span class="petal" style="--x:80%; --size:12px; --delay:1.5s; --duration:14s;"></span>
+        <span class="petal" style="--x:45%; --size:13px; --delay:8s; --duration:16s;"></span>
+
+        <span class="mini-heart" style="--x:18%; --delay:0s; --duration:9s;"></span>
+        <span class="mini-heart" style="--x:55%; --delay:3s; --duration:10s;"></span>
+        <span class="mini-heart" style="--x:78%; --delay:5.5s; --duration:8.5s;"></span>
+
+    </div>
+
+    <!-- Soft flash when this scene begins -->
+    <div class="ketemu-flash" aria-hidden="true"></div>
+
+    <!-- Heart + petal confetti, filled by JS on victory -->
+    <div class="ketemu-confetti" id="ketemuConfetti" aria-hidden="true"></div>
+
     <div class="ketemu-content">
+
+        <p class="ketemu-chapter-label">
+            YOU FIND IT MY SWEETY, LIKE ME TO YOU
+        </p>
 
         <!-- BOTANICAL -->
         <div class="ketemu-bouquet">
 
-            <img
-                src="assets/images/botanical/leaf-left.png"
-                class="ketemu-leaf ketemu-leaf-left"
-                alt=""
-            >
+            <span class="burst-heart"></span>
+            <span class="burst-heart"></span>
+            <span class="burst-heart"></span>
+            <span class="burst-heart"></span>
+            <span class="burst-heart"></span>
+            <span class="burst-heart"></span>
 
-            <img
-                src="assets/images/botanical/leaf-right.png"
-                class="ketemu-leaf ketemu-leaf-right"
-                alt=""
-            >
-
-            <img
-                src="assets/images/botanical/peony.png"
-                class="ketemu-flower ketemu-peony"
-                alt=""
-            >
-
-            <img
-                src="assets/images/botanical/rose.png"
-                class="ketemu-flower ketemu-rose"
-                alt=""
-            >
+            <img src="assets/images/botanical/leaves.webp" class="ketemu-leaf ketemu-leaf-left" alt="">
+            <img src="assets/images/botanical/daun kecill.png" class="ketemu-leaf ketemu-leaf-right" alt="">
+            <img src="assets/images/botanical/peony.png" class="ketemu-flower ketemu-peony" alt="">
+            <img src="assets/images/botanical/Kupu.png" class="ketemu-flower ketemu-rose" alt="">
 
         </div>
 

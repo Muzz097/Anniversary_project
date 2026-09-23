@@ -1165,3 +1165,192 @@
     }
 
 }
+
+/* ==========================================
+   ANIMASI LOVE BERDETAK (SECRET CODE)
+========================================== */
+@keyframes heartPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.12);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Terapkan animasi ke code-dot */
+.code-dot {
+    animation: heartPulse 2.5s infinite ease-in-out;
+}
+
+/* Beri jeda waktu agar love berdetak bergantian dari kiri ke kanan */
+.code-dot:nth-child(1) { animation-delay: 0s; }
+.code-dot:nth-child(2) { animation-delay: 0.6s; }
+.code-dot:nth-child(3) { animation-delay: 1.2s; }
+.code-dot:nth-child(4) { animation-delay: 1.8s; }
+
+/* ==========================================
+   PHASE 04 — KETEMU KAMU — ROMANTIC REDESIGN
+   (all animation logic lives here)
+========================================== */
+
+/* Ambient bokeh drifting slowly */
+@keyframes ketemuBokehDrift {
+    from { transform: translate(0, 0) scale(1); opacity: 0.35; }
+    to   { transform: translate(18px, -24px) scale(1.08); opacity: 0.55; }
+}
+.bokeh {
+    animation: ketemuBokehDrift var(--duration, 12s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+
+/* Glitter twinkle */
+@keyframes ketemuGlitterTwinkle {
+    0%, 100% { opacity: 0; transform: scale(0.6); }
+    50%      { opacity: 0.9; transform: scale(1.3); }
+}
+.glitter {
+    animation: ketemuGlitterTwinkle 3.4s ease-in-out var(--delay, 0s) infinite;
+}
+
+/* Petals falling slowly through the whole scene */
+@keyframes ketemuPetalFall {
+    0%   { transform: translateY(-10%) translateX(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.85; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(120vh) translateX(40px) rotate(200deg); opacity: 0; }
+}
+.ketemu-ambience .petal {
+    animation: ketemuPetalFall var(--duration, 14s) linear var(--delay, 0s) infinite;
+}
+
+/* Ambient hearts floating upward */
+@keyframes ketemuHeartFloat {
+    0%   { transform: rotate(45deg) translateY(0); opacity: 0; }
+    15%  { opacity: 0.55; }
+    85%  { opacity: 0.3; }
+    100% { transform: rotate(45deg) translateY(-70vh); opacity: 0; }
+}
+.ketemu-ambience .mini-heart {
+    animation: ketemuHeartFloat var(--duration, 9s) ease-in-out var(--delay, 0s) infinite;
+}
+
+/* Soft glow pulse behind the bouquet */
+@keyframes ketemuGlowPulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50%      { transform: scale(1.12); opacity: 0.8; }
+}
+.ketemu-bouquet::before {
+    animation: ketemuGlowPulse 4.5s ease-in-out infinite;
+}
+
+/* Center-screen flash, plays once when the scene opens */
+@keyframes ketemuFlashPulse {
+    0%   { opacity: 0; }
+    30%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+.ketemu-start .ketemu-flash {
+    animation: ketemuFlashPulse 1.1s ease-out forwards;
+}
+
+/* Chapter label reveal */
+@keyframes ketemuLabelReveal {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.ketemu-start .ketemu-chapter-label {
+    animation: ketemuLabelReveal 0.9s ease 0.15s forwards;
+}
+
+/* Six hearts bursting outward from the bouquet, once, after the flowers bloom */
+@keyframes burstHeart1 {
+    0%   { transform: translate(-50%, -50%) rotate(45deg) scale(0.3); opacity: 0; }
+    25%  { opacity: 1; }
+    100% { transform: translate(-50%, -50%) rotate(45deg) translate(-90px, -75px) scale(0.9); opacity: 0; }
+}
+@keyframes burstHeart2 {
+    0%   { transform: translate(-50%, -50%) rotate(45deg) scale(0.3); opacity: 0; }
+    25%  { opacity: 1; }
+    100% { transform: translate(-50%, -50%) rotate(45deg) translate(90px, -75px) scale(0.9); opacity: 0; }
+}
+@keyframes burstHeart3 {
+    0%   { transform: translate(-50%, -50%) rotate(45deg) scale(0.3); opacity: 0; }
+    25%  { opacity: 1; }
+    100% { transform: translate(-50%, -50%) rotate(45deg) translate(-115px, 15px) scale(0.9); opacity: 0; }
+}
+@keyframes burstHeart4 {
+    0%   { transform: translate(-50%, -50%) rotate(45deg) scale(0.3); opacity: 0; }
+    25%  { opacity: 1; }
+    100% { transform: translate(-50%, -50%) rotate(45deg) translate(115px, 15px) scale(0.9); opacity: 0; }
+}
+@keyframes burstHeart5 {
+    0%   { transform: translate(-50%, -50%) rotate(45deg) scale(0.3); opacity: 0; }
+    25%  { opacity: 1; }
+    100% { transform: translate(-50%, -50%) rotate(45deg) translate(-60px, 95px) scale(0.9); opacity: 0; }
+}
+@keyframes burstHeart6 {
+    0%   { transform: translate(-50%, -50%) rotate(45deg) scale(0.3); opacity: 0; }
+    25%  { opacity: 1; }
+    100% { transform: translate(-50%, -50%) rotate(45deg) translate(60px, 95px) scale(0.9); opacity: 0; }
+}
+
+.ketemu-start .burst-heart:nth-child(1) { animation: burstHeart1 1.4s cubic-bezier(.22,1,.36,1) 1.3s forwards; }
+.ketemu-start .burst-heart:nth-child(2) { animation: burstHeart2 1.4s cubic-bezier(.22,1,.36,1) 1.38s forwards; }
+.ketemu-start .burst-heart:nth-child(3) { animation: burstHeart3 1.4s cubic-bezier(.22,1,.36,1) 1.46s forwards; }
+.ketemu-start .burst-heart:nth-child(4) { animation: burstHeart4 1.4s cubic-bezier(.22,1,.36,1) 1.54s forwards; }
+.ketemu-start .burst-heart:nth-child(5) { animation: burstHeart5 1.4s cubic-bezier(.22,1,.36,1) 1.62s forwards; }
+.ketemu-start .burst-heart:nth-child(6) { animation: burstHeart6 1.4s cubic-bezier(.22,1,.36,1) 1.70s forwards; }
+
+/* Confetti (hearts + petals), spawned once by JS at the moment of victory */
+@keyframes ketemuConfettiFall {
+    from { transform: translateY(-10%) rotate(0deg); opacity: 1; }
+    to   { transform: translateY(340px) rotate(360deg); opacity: 0; }
+}
+.confetti-heart,
+.confetti-petal {
+    animation-name: ketemuConfettiFall;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+/* Matched cards dissolve into soft pink light instead of just vanishing */
+@keyframes cardDissolve {
+    0%   { transform: scale(1); opacity: 1; filter: saturate(1); }
+    40%  { transform: scale(1.08); filter: saturate(1.4); }
+    100% { transform: scale(0.4) translateY(-10px); opacity: 0; filter: saturate(1.6) brightness(1.3); }
+}
+.memory-game-board.dissolve .memory-card {
+    animation: cardDissolve 0.7s ease forwards;
+}
+.memory-game-board.dissolve .memory-card:nth-child(1) { animation-delay: 0s; }
+.memory-game-board.dissolve .memory-card:nth-child(2) { animation-delay: 0.05s; }
+.memory-game-board.dissolve .memory-card:nth-child(3) { animation-delay: 0.1s; }
+.memory-game-board.dissolve .memory-card:nth-child(4) { animation-delay: 0.15s; }
+.memory-game-board.dissolve .memory-card:nth-child(5) { animation-delay: 0.2s; }
+.memory-game-board.dissolve .memory-card:nth-child(6) { animation-delay: 0.25s; }
+
+
+/* ==========================================
+   ACCESSIBILITY — prefers-reduced-motion
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ketemu-section *,
+    .ketemu-section *::before,
+    .ketemu-section *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .ketemu-ambience,
+    .ketemu-confetti,
+    .burst-heart {
+        display: none !important;
+    }
+
+}

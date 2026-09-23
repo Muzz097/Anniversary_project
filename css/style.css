@@ -319,28 +319,60 @@ button {
     margin-bottom: 24px;
 }
 
+/* ==========================================
+   SECRET CODE DISPLAY — PINK LOVE WITH MOON
+========================================== */
+.code-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    min-height: 30px;
+    margin-bottom: 24px;
+}
+
 .code-dot {
-    width: 9px;
-    height: 9px;
+    display: inline-block;
+    width: 34px;
+    height: 34px;
 
-    border: 1px solid rgba(217, 141, 165, 0.7);
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d98da5"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') center/contain no-repeat;
+    position: relative;
+    
+
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 10px rgba(217, 141, 165, 0.2);
+}
+
+.code-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 11px;
+    height: 11px;
+    background: #ffffff; /* Warna bulan (putih) */
     border-radius: 50%;
-
-    background: transparent;
-
-    transition:
-        background 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+   
+    box-shadow: 4px 0 0 0 #d98da5; 
+    transition: all 0.3s ease;
 }
 
 .code-dot.active {
-    background: var(--color-peony);
-
+    background-color: transparent;
     transform: scale(1.15);
+    box-shadow: 0 0 16px rgba(217, 141, 165, 0.6);
+    animation: none; 
+}
 
-    box-shadow:
-        0 0 12px rgba(217, 141, 165, 0.45);
+
+.code-dot.active::after {
+    display: none;
 }
 
 
@@ -1874,31 +1906,6 @@ button {
     left: -16px;
 }
 
-/* ==========================================
-   SECRET ENTRANCE — MODERN GLASS CARD
-========================================== */
-
-.secret-content {
-    padding: 44px 28px 38px;
-
-    border-radius: 32px;
-
-    background:
-        linear-gradient(
-            165deg,
-            rgba(255, 255, 255, 0.06),
-            rgba(255, 255, 255, 0.015)
-        );
-
-    border: 1px solid rgba(255, 255, 255, 0.09);
-
-    box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.35);
-
-    backdrop-filter: blur(16px);
-}
-
-
 /* Refined keypad — more depth, softer press */
 
 .key {
@@ -2113,4 +2120,215 @@ button {
     animation-name: confettiFall;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
+}
+
+/* ==========================================
+   PHASE 04 — KETEMU KAMU — ROMANTIC REDESIGN
+   (static styling only — animasi ada di animations.css)
+========================================== */
+
+/* New romantic palette + tunable tokens, scoped to this page only */
+.ketemu-section {
+    --ketemu-plum: #2b1625;
+    --ketemu-mauve: #4a2440;
+    --ketemu-rose: #e07a95;
+    --ketemu-peach: #f3b6a0;
+    --ketemu-heart: #e88ba3;
+    --ketemu-glow-shadow: 0 20px 45px rgba(20, 8, 20, 0.45);
+}
+
+/* Living gradient background instead of flat dark */
+.ketemu-background {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(224, 122, 149, 0.28), transparent 55%),
+        radial-gradient(circle at 80% 75%, rgba(243, 182, 160, 0.22), transparent 60%),
+        linear-gradient(160deg, var(--ketemu-plum), var(--ketemu-mauve) 55%, #1c0f1a 100%);
+    z-index: -4;
+}
+
+.ketemu-overlay {
+    background: linear-gradient(rgba(20, 10, 18, 0.35), rgba(12, 6, 12, 0.6));
+    z-index: -3;
+}
+
+
+/* Ambience container */
+.ketemu-ambience {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.bokeh {
+    position: absolute;
+    left: var(--x, 10%);
+    top: var(--y, 20%);
+    width: var(--size, 160px);
+    height: var(--size, 160px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(224, 122, 149, 0.35), transparent 70%);
+    filter: blur(2px);
+}
+
+.glitter {
+    position: absolute;
+    left: var(--x, 20%);
+    top: var(--y, 30%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-warm-white);
+}
+
+.petal {
+    position: absolute;
+    top: -6%;
+    left: var(--x, 10%);
+    width: var(--size, 14px);
+    height: calc(var(--size, 14px) * 0.8);
+    background: linear-gradient(135deg, var(--ketemu-rose), var(--ketemu-peach));
+    border-radius: 50% 0 50% 50%;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+}
+
+.mini-heart {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: var(--ketemu-heart);
+    transform: rotate(45deg);
+}
+
+.mini-heart::before,
+.mini-heart::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.mini-heart::before { top: -7px; left: 0; }
+.mini-heart::after  { top: 0; left: 7px; }
+
+
+/* Soft flash overlay, plays once when the scene opens */
+.ketemu-flash {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: radial-gradient(circle at 50% 42%, rgba(255, 220, 230, 0.55), transparent 60%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Confetti container (filled by JS on victory) */
+.ketemu-confetti {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.confetti-heart,
+.confetti-petal {
+    position: absolute;
+    top: -5%;
+    opacity: 0;
+}
+
+.confetti-heart {
+    width: 12px;
+    height: 12px;
+    background: var(--ketemu-heart);
+    transform: rotate(45deg);
+}
+
+.confetti-heart::before,
+.confetti-heart::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.confetti-heart::before { top: -6px; left: 0; }
+.confetti-heart::after  { top: 0; left: 6px; }
+
+.confetti-petal {
+    width: 12px;
+    height: 10px;
+    background: linear-gradient(135deg, var(--ketemu-rose), var(--ketemu-peach));
+    border-radius: 50% 0 50% 50%;
+}
+
+
+/* Chapter label */
+.ketemu-chapter-label {
+    margin-bottom: 22px;
+    color: var(--color-peony);
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    opacity: 0;
+}
+
+
+/* Glow aura behind the bouquet */
+.ketemu-bouquet {
+    position: relative;
+}
+
+.ketemu-bouquet::before {
+    content: "";
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(circle, rgba(232, 139, 163, 0.45), transparent 70%);
+    filter: blur(20px);
+    z-index: -1;
+    opacity: 0.55;
+    box-shadow: var(--ketemu-glow-shadow);
+}
+
+
+/* Hearts that burst outward from the bouquet once, on victory */
+.burst-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: var(--ketemu-heart);
+    transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    opacity: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.burst-heart::before,
+.burst-heart::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.burst-heart::before { top: -6px; left: 0; }
+.burst-heart::after  { top: 0; left: 6px; }
+
+
+/* Slightly softer blur cost on small screens */
+@media (max-width: 480px) {
+    .bokeh {
+        filter: blur(1px);
+    }
 }

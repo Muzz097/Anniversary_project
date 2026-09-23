@@ -151,9 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ==========================================
     */
 
-    function createGame() {
+   function createGame() {
 
-        gameBoard.innerHTML = "";
+    gameBoard.innerHTML = "";
+    gameBoard.classList.remove("dissolve");
 
         firstCard = null;
         secondCard = null;
@@ -494,16 +495,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function finishGame() {
 
-        lockBoard = true;
+    lockBoard = true;
+
+   
+    gameBoard.classList.add("dissolve");
 
 
-        setTimeout(() => {
+    setTimeout(() => {
 
-            transitionToKetemu();
+        transitionToKetemu();
 
-        }, 1800);
+    }, 1800);
 
-    }
+}
 
 
     /*
@@ -565,11 +569,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startKetemuAnimation() {
 
-        ketemuSection.classList.add(
-            "ketemu-start"
-        );
+    ketemuSection.classList.add(
+        "ketemu-start"
+    );
+
+    spawnKetemuConfetti();
+
+}
+
+
+function spawnKetemuConfetti() {
+
+    const container =
+        document.getElementById("ketemuConfetti");
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = "";
+
+    const total = 18;
+
+    for (let i = 0; i < total; i++) {
+
+        const piece =
+            document.createElement("span");
+
+        const isHeart = i % 2 === 0;
+
+        piece.className =
+            isHeart ? "confetti-heart" : "confetti-petal";
+
+        piece.style.left =
+            Math.random() * 100 + "%";
+
+        piece.style.animationDelay =
+            (Math.random() * 1.2) + "s";
+
+        piece.style.animationDuration =
+            (2.2 + Math.random() * 1.6) + "s";
+
+        container.appendChild(piece);
 
     }
+
+}
 
 
     /*

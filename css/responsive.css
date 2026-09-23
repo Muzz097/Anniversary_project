@@ -1,0 +1,313 @@
+/* ==========================================
+TABLET
+========================================== */
+
+@media (max-width: 768px) {
+
+
+.secret-content h1 {
+    font-size: clamp(2.6rem, 10vw, 4rem);
+}
+
+.secret-description {
+    padding: 0 10px;
+}
+
+
+}
+
+/* ==========================================
+MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+
+.secret-content {
+    width: min(88%, 360px);
+}
+
+.secret-content h1 {
+    font-size: 2.7rem;
+}
+
+.secret-description {
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.secret-form input,
+.secret-form button {
+    padding: 14px 18px;
+}
+
+
+}
+
+/* ==========================================
+   MEMORY GAME — MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+
+    .memory-game-content {
+        padding:
+            55px
+            14px
+            70px;
+    }
+
+
+    .memory-game-intro {
+        margin-bottom: 28px;
+    }
+
+
+    .memory-game-intro h2 {
+        font-size: 2.15rem;
+    }
+
+
+    .memory-description {
+        font-size: .85rem;
+
+        max-width: 300px;
+    }
+
+
+    .memory-game-board {
+        width: min(100%, 340px);
+
+        gap: 9px;
+    }
+
+
+    .memory-card-front,
+    .memory-card-back {
+        border-radius: 14px;
+    }
+
+
+    .memory-card-back {
+        padding: 6px;
+    }
+
+
+    .card-question {
+        font-size: 1.6rem;
+    }
+
+
+    .ketemu-bouquet {
+        width: 200px;
+        height: 200px;
+    }
+
+
+    .ketemu-line {
+        font-size: 1rem;
+    }
+
+
+    .ketemu-final {
+        font-size: 2.3rem;
+    }
+
+
+    .ketemu-continue {
+        font-size: .78rem;
+
+        padding:
+            12px
+            20px;
+    }
+
+}
+
+
+/* ==========================================
+   PHASE 05 — CHOOSE YOUR SURPRISE — TABLET
+========================================== */
+
+@media (max-width: 768px) {
+
+    .surprise-hub-content {
+        padding:
+            60px
+            18px
+            50px;
+    }
+
+
+    .surprise-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+
+    .surprise-grid {
+        width: min(100%, 380px);
+    }
+
+}
+
+
+/* ==========================================
+   PHASE 05 — CHOOSE YOUR SURPRISE — MOBILE
+   (Android phones, primary target)
+========================================== */
+
+@media (max-width: 480px) {
+
+    .surprise-hub-content {
+        padding:
+            50px
+            16px
+            46px;
+    }
+
+
+    .surprise-eyebrow {
+        font-size: .64rem;
+
+        letter-spacing: .2em;
+    }
+
+
+    .surprise-title {
+        font-size: 2.05rem;
+    }
+
+
+    .surprise-description {
+        font-size: .85rem;
+
+        max-width: 280px;
+
+        margin-bottom: 30px;
+    }
+
+
+    /*
+       Keep the 2x2 grid (not 1 column) —
+       on a phone this still fits the
+       thumb comfortably, and matches the
+       "four little doors" mental model.
+    */
+
+    .surprise-grid {
+        width: 100%;
+
+        max-width: 340px;
+
+        gap: 10px;
+    }
+
+
+    .surprise-card {
+        padding: 22px 10px;
+
+        border-radius: 16px;
+    }
+
+
+    .surprise-icon {
+        font-size: 1.6rem;
+    }
+
+
+    .surprise-label {
+        font-size: .92rem;
+    }
+
+
+    .surprise-sub {
+        font-size: .66rem;
+    }
+
+
+    .surprise-tracker {
+        margin-top: 26px;
+    }
+
+
+    .surprise-continue {
+        font-size: .76rem;
+
+        padding:
+            12px
+            20px;
+
+        text-align: center;
+    }
+
+
+    .surprise-hint {
+        font-size: .72rem;
+
+        padding: 0 10px;
+    }
+
+
+    /* Botanicals shrink so they never
+       crowd the grid on small screens */
+
+    .surprise-botanical-leaf {
+        width: 120px;
+    }
+
+
+    .surprise-botanical-peony {
+        width: 100px;
+    }
+
+}
+
+
+/* ==========================================
+   PHASE 05 — VERY SMALL / NARROW ANDROID
+   (e.g. 360px and under)
+========================================== */
+
+@media (max-width: 360px) {
+
+    .surprise-grid {
+        max-width: 300px;
+
+        gap: 8px;
+    }
+
+
+    .surprise-card {
+        padding: 18px 8px;
+    }
+
+
+    .surprise-sub {
+        display: none;
+    }
+
+}
+
+
+/* ==========================================
+   SHORT VIEWPORTS
+   (landscape phones / small notches)
+========================================== */
+
+@media (max-height: 700px) and (max-width: 480px) {
+
+    .surprise-hub-content {
+        padding-top: 34px;
+        padding-bottom: 30px;
+    }
+
+
+    .surprise-description {
+        margin-bottom: 20px;
+    }
+
+
+    .surprise-card {
+        padding: 16px 10px;
+    }
+
+}

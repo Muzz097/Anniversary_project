@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<!-- Cute Display Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<title>Our Little Story</title>
+
+<!-- Main Styles -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Responsive Styles -->
+<link rel="stylesheet" href="css/responsive.css">
+
+<!-- Animation Styles -->
+<link rel="stylesheet" href="css/animations.css">
+
+
+</head>
+
+<body>
+
+
+<main id="app">
+
+    <!-- ==========================================
+         SECRET ENTRANCE
+    =========================================== -->
+
+   <section
+    id="secret-entrance"
+    class="secret-entrance active-section"
+>
+
+        <!-- Background -->
+        <div class="secret-background"></div>
+
+     <!-- Soft overlay -->
+        <div class="anniversary-overlay"></div>
+
+
+        <!-- Decorative Elements -->
+
+        <div class="decor decor-leaf decor-leaf-left"></div>
+
+        <div class="decor decor-leaf decor-leaf-right"></div>
+
+        <div class="decor decor-peony decor-peony-top"></div>
+
+        <div class="decor decor-peony decor-peony-bottom"></div>
+
+
+        <!-- Main Content -->
+
+        <div class="secret-content">
+
+            <p class="eyebrow">
+                A little something for you
+            </p>
+
+            <h1>
+                Our Little Story
+            </h1>
+
+            <p class="secret-description">
+                Some stories are too special
+                to be told in just one day.
+            </p>
+
+
+            <!-- Secret Code -->
+
+            <div class="secret-form">
+
+
+<p class="secret-label">
+    Our secret code
+</p>
+
+<!-- Code Display -->
+<div
+    id="code-display"
+    class="code-display"
+    aria-label="Secret code"
+>
+    <span class="code-dot"></span>
+    <span class="code-dot"></span>
+    <span class="code-dot"></span>
+    <span class="code-dot"></span>
+</div>
+
+
+<!-- Number Keypad -->
+<div class="keypad">
+
+    <button type="button" class="key" data-number="1">
+        1
+    </button>
+
+    <button type="button" class="key" data-number="2">
+        2
+    </button>
+
+    <button type="button" class="key" data-number="3">
+        3
+    </button>
+
+    <button type="button" class="key" data-number="4">
+        4
+    </button>
+
+    <button type="button" class="key" data-number="5">
+        5
+    </button>
+
+    <button type="button" class="key" data-number="6">
+        6
+    </button>
+
+    <button type="button" class="key" data-number="7">
+        7
+    </button>
+
+    <button type="button" class="key" data-number="8">
+        8
+    </button>
+
+    <button type="button" class="key" data-number="9">
+        9
+    </button>
+
+    <button
+        type="button"
+        class="key key-action"
+        id="delete-code"
+    >
+        ←
+    </button>
+
+    <button type="button" class="key" data-number="0">
+        0
+    </button>
+
+    <button
+        type="button"
+        class="key key-action"
+        id="submit-code"
+    >
+        Enter
+    </button>
+
+</div>
+
+<p
+    id="secret-message"
+    class="secret-message"
+    aria-live="polite"
+></p>
+
+
+</div>
+
+
+        </div>
+
+        </section>
+
+<!-- ==========================================
+     WRONG CODE MODAL
+========================================== -->
+
+<div class="code-modal code-modal-wrong" id="wrongCodeModal">
+
+    <div class="code-modal-backdrop"></div>
+
+    <div class="code-modal-card">
+
+        <div class="code-modal-character">
+            <img
+                class="character-img character-shake"
+                src="assets/images/characters/melody-sad.png"
+                alt="Melody"
+            >
+        </div>
+
+        <p class="code-modal-title">
+            Belum tepat, sayang...
+        </p>
+
+        <p
+            class="code-modal-text"
+            id="wrongCodeText"
+        ></p>
+
+        <button
+            type="button"
+            class="code-modal-close"
+            id="wrongCodeClose"
+        >
+            Coba Lagi
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     SUCCESS CODE MODAL
+========================================== -->
+
+<div class="code-modal code-modal-success" id="successCodeModal">
+
+    <div class="code-modal-backdrop"></div>
+
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <div class="code-modal-card">
+
+        <div class="code-modal-character">
+            <img
+                class="character-img character-bounce"
+                src="assets/images/characters/melody-happy.png"
+                alt="Melody"
+            >
+        </div>
+
+        <p class="code-modal-title">
+            Yeay, benar! 🎉
+        </p>
+
+        <p class="code-modal-text">
+            Selamat datang ke dunia kecil kita.
+            Yuk, lanjut ke cerita selanjutnya...
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     HAPPY ANNIVERSARY
+=========================================== -->
+
+<section
+    id="happy-anniversary"
+    class="happy-anniversary hidden-section"
+>
+
+    <!-- Background Photo -->
+    <div class="anniversary-background"></div>
+
+    <!-- Atmospheric Overlay -->
+    <div class="anniversary-overlay"></div>
+
+    <!-- Botanical Decorations -->
+<img
+    class="botanical botanical-peony-top"
+    src="assets/images/botanical/peony.png"
+    alt=""
+>
+
+<img
+    class="botanical botanical-leaves-left"
+    src="assets/images/botanical/leaves.webp"
+    alt=""
+>
+
+
+   <!-- 
+    <div class="anniversary-decor peony peony-top-left"></div>
+    <div class="anniversary-decor peony peony-top-right"></div>
+
+    <div class="anniversary-decor leaf leaf-left"></div>
+    <div class="anniversary-decor leaf leaf-right"></div>
+-->
+
+    <!-- Floating Photos -->
+    <div class="floating-photos">
+
+    <div class="memory-photo photo-one">
+        <div class="photo-inner">
+            <img src="assets/images/couple/photo-01.jpeg" alt="Our memory">
+        </div>
+        <img class="photo-botanical photo-botanical-peony" src="assets/images/botanical/Kupu.png" alt="">
+    </div>
+
+    <div class="memory-photo photo-two">
+        <div class="photo-inner">
+            <img src="assets/images/couple/photo-02.jpeg" alt="Our memory">
+        </div>
+        <img class="photo-botanical photo-botanical-leaf" src="assets/images/botanical/daun kecill.png" alt="">
+    </div>
+
+    <div class="memory-photo photo-three">
+        <div class="photo-inner">
+            <img src="assets/images/couple/photo-03.jpeg" alt="Our memory">
+        </div>
+        <img class="photo-botanical photo-botanical-leaf" src="assets/images/botanical/daun kecill.png" alt="">
+    </div>
+
+    <div class="memory-photo photo-four">
+        <div class="photo-inner">
+            <img src="assets/images/couple/photo-04.jpeg" alt="Our memory">
+        </div>
+        <img class="photo-botanical photo-botanical-peony" src="assets/images/botanical/lop_kecil.png" alt="">
+    </div>
+
+</div>
+
+
+    <!-- Main Content -->
+    <div class="anniversary-content">
+
+        <p
+            id="anniversary-prelude"
+            class="anniversary-prelude"
+        >
+            Our story started with two people...
+        </p>
+
+
+        <div
+            id="anniversary-title"
+            class="anniversary-title"
+        >
+            <span>Happy</span>
+            <span>Anniversary</span>
+        </div>
+
+        <p class="anniversary-years"> 
+        1 Tahun Bersama <span class="years-heart">❤</span>
+        </p>
+
+        <p
+            id="anniversary-name"
+            class="anniversary-name"
+        >
+            Ailsa
+        </p>
+
+
+        <div
+            id="anniversary-message"
+            class="anniversary-message"
+        >
+
+            <p>
+                Thank you for becoming
+                one of the most beautiful
+                parts of my life.
+            </p>
+
+            <p>
+                Here's to everything
+                we've been through,
+                everything we've become,
+                and everything that's
+                still waiting for us.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            id="start-adventure"
+            class="adventure-button"
+        >
+            <Link></Link>Let's Continue Our Story →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     PHASE 03 — MEMORY MATCH GAME
+========================================== -->
+
+<section
+    class="memory-game-section hidden-section"
+    id="memoryGame"
+>
+
+    <div class="memory-game-background"></div>
+    <div class="memory-game-overlay"></div>
+
+    <div class="memory-game-content">
+
+        <div class="memory-game-intro">
+
+            <p class="memory-eyebrow">
+                OUR LITTLE STORY
+            </p>
+
+            <h2>
+                But before we continue...
+            </h2>
+
+            <p class="memory-description">
+                Let's see if you still remember
+                some little things about us.
+            </p>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="memory-progress">
+
+            <div class="memory-progress-dots">
+
+                <span class="progress-dot" data-progress="1"></span>
+                <span class="progress-dot" data-progress="2"></span>
+                <span class="progress-dot" data-progress="3"></span>
+
+            </div>
+
+            <p class="memory-progress-text">
+                <span id="memoryPairsFound">0</span> / 3 pairs
+            </p>
+
+        </div>
+
+
+        <!-- GAME BOARD -->
+
+        <div
+            class="memory-game-board"
+            id="memoryGameBoard"
+        >
+            <!-- Cards generated by JavaScript -->
+        </div>
+
+
+        <!-- MATCH MESSAGE -->
+
+        <div
+            class="memory-match-message"
+            id="memoryMatchMessage"
+        >
+            <p id="memoryMatchText"></p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================================
+     PHASE 04 — KETEMU KAMU
+========================================== -->
+
+<section
+    class="ketemu-section hidden-section"
+    id="ketemuSection"
+>
+
+    <div class="ketemu-background"></div>
+    <div class="ketemu-overlay"></div>
+
+    <div class="ketemu-content">
+
+        <!-- BOTANICAL -->
+        <div class="ketemu-bouquet">
+
+            <img
+                src="assets/images/botanical/leaf-left.png"
+                class="ketemu-leaf ketemu-leaf-left"
+                alt=""
+            >
+
+            <img
+                src="assets/images/botanical/leaf-right.png"
+                class="ketemu-leaf ketemu-leaf-right"
+                alt=""
+            >
+
+            <img
+                src="assets/images/botanical/peony.png"
+                class="ketemu-flower ketemu-peony"
+                alt=""
+            >
+
+            <img
+                src="assets/images/botanical/rose.png"
+                class="ketemu-flower ketemu-rose"
+                alt=""
+            >
+
+        </div>
+
+
+        <!-- TEXT -->
+
+        <div class="ketemu-text">
+
+            <p
+                class="ketemu-line ketemu-line-one"
+            >
+                Dari sekian banyak kemungkinan...
+            </p>
+
+            <p
+                class="ketemu-line ketemu-line-two"
+            >
+                ...aku akhirnya ketemu kamu.
+            </p>
+
+            <div class="ketemu-heart"></div>
+
+            <h2 class="ketemu-final">
+                And I'm glad I did.
+            </h2>
+
+        </div>
+
+
+        <!-- CONTINUE -->
+
+        <button
+            class="ketemu-continue"
+            id="ketemuContinue"
+            type="button"
+        >
+            There's more to our story →
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     PHASE 05 — CHOOSE YOUR SURPRISE
+========================================== -->
+
+<section
+    class="surprise-hub-section hidden-section"
+    id="surpriseHub"
+>
+
+    <div class="surprise-hub-background"></div>
+    <div class="surprise-hub-overlay"></div>
+
+    <!-- Botanical Decorations -->
+    <img
+        class="botanical surprise-botanical-leaf"
+        src="assets/images/botanical/leaves.webp"
+        alt=""
+    >
+
+    <img
+        class="botanical surprise-botanical-peony"
+        src="assets/images/botanical/peony.png"
+        alt=""
+    >
+
+    <div class="surprise-hub-content">
+
+        <p class="surprise-eyebrow">
+            A LITTLE WORLD MADE JUST FOR YOU
+        </p>
+
+        <h2 class="surprise-title">
+            Choose Your Surprise
+        </h2>
+
+        <p class="surprise-description">
+            There are still a few things
+            I want to show you...
+        </p>
+
+        <!-- SURPRISE GRID -->
+
+        <div
+            class="surprise-grid"
+            id="surpriseGrid"
+        >
+
+            <button
+                type="button"
+                class="surprise-card"
+                data-target="message"
+            >
+                <span class="surprise-icon">💌</span>
+                <span class="surprise-label">Message</span>
+                <span class="surprise-sub">A letter for you</span>
+            </button>
+
+            <button
+                type="button"
+                class="surprise-card"
+                data-target="memories"
+            >
+                <span class="surprise-icon">📸</span>
+                <span class="surprise-label">Memories</span>
+                <span class="surprise-sub">Our little timeline</span>
+            </button>
+
+            <button
+                type="button"
+                class="surprise-card"
+                data-target="journey"
+            >
+                <span class="surprise-icon">🌱</span>
+                <span class="surprise-label">Journey</span>
+                <span class="surprise-sub">How far you've grown</span>
+            </button>
+
+            <button
+                type="button"
+                class="surprise-card"
+                data-target="playlist"
+            >
+                <span class="surprise-icon">🎵</span>
+                <span class="surprise-label">Playlist</span>
+                <span class="surprise-sub">Three songs, us</span>
+            </button>
+
+        </div>
+
+        <!-- VISITED TRACKER -->
+
+        <div
+            class="surprise-tracker"
+            id="surpriseTracker"
+        >
+
+            <span
+                class="tracker-dot"
+                data-tracker="message"
+            ></span>
+
+            <span
+                class="tracker-dot"
+                data-tracker="memories"
+            ></span>
+
+            <span
+                class="tracker-dot"
+                data-tracker="journey"
+            ></span>
+
+            <span
+                class="tracker-dot"
+                data-tracker="playlist"
+            ></span>
+
+        </div>
+
+        <!-- CONTINUE (appears once all 4 visited) -->
+
+        <button
+            type="button"
+            class="surprise-continue"
+            id="surpriseContinue"
+        >
+            But our story doesn't end here →
+        </button>
+
+        <!-- SOFT NOTICE -->
+
+        <p
+            class="surprise-hint"
+            id="surpriseHint"
+            aria-live="polite"
+        ></p>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- JavaScript -->
+
+<script src="js/app.js"></script>
+<script src="js/music.js"></script>
+<script src="js/memory-game.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/reasons.js"></script>
+<script src="js/journey.js"></script>
+
+
+</body>
+</html>

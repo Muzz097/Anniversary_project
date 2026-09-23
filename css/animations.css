@@ -1,0 +1,1041 @@
+/* ==========================================
+   SECRET ENTRANCE ANIMATIONS
+========================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes gentleFloat {
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-8px);
+    }
+}
+
+
+/* ==========================================
+   CONTENT INTRO
+========================================== */
+
+.secret-content {
+    animation:
+        slideUp
+        1s
+        ease-out
+        both;
+}
+
+
+/* ==========================================
+   DECORATIVE AMBIENCE
+========================================== */
+
+.decor {
+    animation:
+        fadeIn
+        1.5s
+        ease-out
+        both;
+}
+
+
+/* ==========================================
+   KEYPAD ERROR
+========================================== */
+
+@keyframes keypadShake {
+    0%,
+    100% {
+        transform:
+            translateX(0);
+    }
+
+    25% {
+        transform:
+            translateX(-6px);
+    }
+
+    50% {
+        transform:
+            translateX(6px);
+    }
+
+    75% {
+        transform:
+            translateX(-4px);
+    }
+}
+
+
+.keypad.shake {
+    animation:
+        keypadShake
+        0.4s
+        ease;
+}
+
+
+/* ==========================================
+   SECTION TRANSITION
+========================================== */
+
+@keyframes sectionFadeOut {
+    from {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+
+    to {
+        opacity: 0;
+
+        transform:
+            scale(1.03);
+    }
+}
+
+
+.section-exit {
+    animation:
+        sectionFadeOut
+        1s
+        ease
+        forwards;
+}
+
+
+/* ==========================================
+   ANNIVERSARY REVEAL
+========================================== */
+
+@keyframes anniversaryReveal {
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.98)
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+.anniversary-reveal {
+    animation:
+        anniversaryReveal
+        1.4s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        both;
+}
+
+
+/* ==========================================
+   ANNIVERSARY BACKGROUND
+========================================== */
+
+.anniversary-background {
+    animation:
+        backgroundBreathing
+        12s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+@keyframes backgroundBreathing {
+    from {
+        transform:
+            scale(1.03);
+    }
+
+    to {
+        transform:
+            scale(1.08);
+    }
+}
+
+
+/* ==========================================
+   MEMORY PHOTO REVEAL
+========================================== */
+
+@keyframes photoReveal {
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.7);
+    }
+
+    to {
+        opacity: 0.92;
+    }
+}
+
+
+@keyframes photoFloat {
+    0%,
+    100% {
+        margin-top: 0;
+    }
+
+    50% {
+        margin-top: -10px;
+    }
+}
+
+
+.memory-photo {
+    animation:
+        photoReveal
+        1.2s
+        ease
+        forwards,
+
+        photoFloat
+        7s
+        ease-in-out
+        infinite;
+}
+
+
+.photo-one {
+    animation-delay:
+        0.3s,
+        1.5s;
+}
+
+
+.photo-two {
+    animation-delay:
+        0.6s,
+        1.8s;
+}
+
+
+.photo-three {
+    animation-delay:
+        0.9s,
+        2.1s;
+}
+
+
+.photo-four {
+    animation-delay:
+        1.2s,
+        2.4s;
+}
+
+
+/* ==========================================
+   BOTANICAL ANIMATION
+========================================== */
+
+@keyframes botanicalSway {
+    0%,
+    100% {
+        transform:
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            rotate(3deg)
+            translateY(-5px);
+    }
+}
+
+
+.botanical-peony-top {
+    animation:
+        botanicalSway
+        8s
+        ease-in-out
+        infinite;
+}
+
+
+.botanical-leaves-left {
+    animation:
+        botanicalSway
+        9s
+        ease-in-out
+        infinite
+        reverse;
+}
+
+
+/* ==========================================
+   ANNIVERSARY TEXT REVEAL
+========================================== */
+
+@keyframes textReveal {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes titleReveal {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* ==========================================
+   ANNIVERSARY CONTENT SEQUENCE
+========================================== */
+
+.anniversary-prelude {
+    animation:
+        textReveal
+        1s
+        ease
+        both;
+
+    animation-delay:
+        0.3s;
+}
+
+
+.anniversary-title {
+    animation:
+        titleReveal
+        1.3s
+        ease
+        both;
+
+    animation-delay:
+        0.7s;
+}
+
+
+.anniversary-name {
+    animation:
+        textReveal
+        1s
+        ease
+        both;
+
+    animation-delay:
+        1.2s;
+}
+
+
+.anniversary-message {
+    animation:
+        textReveal
+        1s
+        ease
+        both;
+
+    animation-delay:
+        1.6s;
+}
+
+
+.adventure-button {
+    animation:
+        textReveal
+        1s
+        ease
+        both;
+
+    animation-delay:
+        2.2s;
+}
+
+/* ==========================================
+   PHASE 03 — MEMORY GAME ANIMATIONS
+========================================== */
+
+
+/* CARD MATCH */
+
+@keyframes cardMatch {
+
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.08);
+    }
+
+    65% {
+        transform: scale(.98);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+.memory-card.match-animation {
+    animation:
+        cardMatch
+        .7s
+        cubic-bezier(.22, 1, .36, 1);
+}
+
+
+/* CARD MISMATCH */
+
+@keyframes cardMismatch {
+
+    0%,
+    100% {
+        transform:
+            translateX(0);
+    }
+
+    20% {
+        transform:
+            translateX(-6px);
+    }
+
+    40% {
+        transform:
+            translateX(6px);
+    }
+
+    60% {
+        transform:
+            translateX(-4px);
+    }
+
+    80% {
+        transform:
+            translateX(4px);
+    }
+
+}
+
+
+.memory-card.mismatch-animation {
+    animation:
+        cardMismatch
+        .45s
+        ease;
+}
+
+
+/* ==========================================
+   PHASE 04 — KETEMU KAMU
+========================================== */
+
+
+/* BOUQUET */
+
+@keyframes ketemuLeafReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(70px)
+            rotate(-20deg)
+            scale(.85);
+    }
+
+    to {
+        opacity: .9;
+
+        transform:
+            translateY(0)
+            rotate(-8deg)
+            scale(1);
+    }
+
+}
+
+
+@keyframes ketemuLeafRightReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(70px)
+            rotate(20deg)
+            scale(.85);
+    }
+
+    to {
+        opacity: .9;
+
+        transform:
+            translateY(0)
+            rotate(8deg)
+            scale(1);
+    }
+
+}
+
+
+@keyframes ketemuFlowerReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -40px)
+            scale(.65);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, 0)
+            scale(1);
+    }
+
+}
+
+
+@keyframes ketemuRoseReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translate(-50%, 35px)
+            scale(.65);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translate(-50%, 0)
+            scale(1);
+    }
+
+}
+
+
+/* TEXT */
+
+@keyframes ketemuTextReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes ketemuHeartReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            rotate(45deg)
+            scale(.3);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            rotate(45deg)
+            scale(1);
+    }
+
+}
+
+
+@keyframes ketemuFinalReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+@keyframes ketemuButtonReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* ==========================================
+   KETEMU SEQUENCE
+========================================== */
+
+.ketemu-start .ketemu-leaf-left {
+
+    animation:
+        ketemuLeafReveal
+        1.2s
+        cubic-bezier(.22, 1, .36, 1)
+        .2s
+        forwards;
+
+}
+
+
+.ketemu-start .ketemu-leaf-right {
+
+    animation:
+        ketemuLeafRightReveal
+        1.2s
+        cubic-bezier(.22, 1, .36, 1)
+        .4s
+        forwards;
+
+}
+
+
+.ketemu-start .ketemu-peony {
+
+    animation:
+        ketemuFlowerReveal
+        1.1s
+        cubic-bezier(.22, 1, .36, 1)
+        .8s
+        forwards;
+
+}
+
+
+.ketemu-start .ketemu-rose {
+
+    animation:
+        ketemuRoseReveal
+        1s
+        cubic-bezier(.22, 1, .36, 1)
+        1.15s
+        forwards;
+
+}
+
+
+.ketemu-start .ketemu-line-one {
+
+    animation:
+        ketemuTextReveal
+        1s
+        ease
+        2s
+        forwards;
+
+}
+
+
+.ketemu-start .ketemu-line-two {
+
+    animation:
+        ketemuTextReveal
+        1s
+        ease
+        3.6s
+        forwards;
+
+}
+
+
+.ketemu-start .ketemu-heart {
+
+    animation:
+        ketemuHeartReveal
+        .8s
+        cubic-bezier(.22, 1, .36, 1)
+        5s
+        forwards;
+
+}
+
+
+.ketemu-start .ketemu-final {
+
+    animation:
+        ketemuFinalReveal
+        1.2s
+        cubic-bezier(.22, 1, .36, 1)
+        5.7s
+        forwards;
+
+}
+
+
+.ketemu-start .ketemu-continue {
+
+    animation:
+        ketemuButtonReveal
+        1s
+        ease
+        7.2s
+        forwards;
+
+}
+
+
+/* ==========================================
+   PHASE 05 — CHOOSE YOUR SURPRISE
+========================================== */
+
+@keyframes surpriseHeaderReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes surpriseCardReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(24px)
+            scale(.94);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+.surprise-eyebrow {
+    animation:
+        surpriseHeaderReveal
+        .9s
+        ease
+        both;
+
+    animation-delay:
+        .1s;
+}
+
+
+.surprise-title {
+    animation:
+        surpriseHeaderReveal
+        1s
+        ease
+        both;
+
+    animation-delay:
+        .25s;
+}
+
+
+.surprise-description {
+    animation:
+        surpriseHeaderReveal
+        .9s
+        ease
+        both;
+
+    animation-delay:
+        .45s;
+}
+
+
+/*
+   Each card reveals slightly after
+   the last, left-to-right / top-to-bottom.
+   Order matches DOM order:
+   Message, Memories, Journey, Playlist.
+*/
+
+.surprise-card {
+    animation:
+        surpriseCardReveal
+        .8s
+        cubic-bezier(.22, 1, .36, 1)
+        both;
+}
+
+.surprise-card:nth-child(1) {
+    animation-delay: .6s;
+}
+
+.surprise-card:nth-child(2) {
+    animation-delay: .72s;
+}
+
+.surprise-card:nth-child(3) {
+    animation-delay: .84s;
+}
+
+.surprise-card:nth-child(4) {
+    animation-delay: .96s;
+}
+
+
+.surprise-tracker,
+.surprise-hint {
+    animation:
+        surpriseHeaderReveal
+        .9s
+        ease
+        both;
+
+    animation-delay:
+        1.15s;
+}
+
+
+/*
+   Gentle "tap me" pulse on a card the
+   first time it becomes visited —
+   answers the person's own tap, not
+   an idle loop, so it plays once.
+*/
+
+@keyframes surpriseVisitedPulse {
+
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+.surprise-card.visited-animation {
+    animation:
+        surpriseVisitedPulse
+        .5s
+        ease;
+}
+
+/* ==========================================
+   HAPPY ANNIVERSARY — LIVELY MOTION
+========================================== */
+
+@keyframes photoFloatOne {
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50%      { transform: rotate(-10deg) translateY(-9px); }
+}
+
+@keyframes photoFloatTwo {
+    0%, 100% { transform: rotate(7deg) translateY(0); }
+    50%      { transform: rotate(9deg) translateY(-11px); }
+}
+
+@keyframes photoFloatThree {
+    0%, 100% { transform: rotate(6deg) translateY(0); }
+    50%      { transform: rotate(4deg) translateY(-8px); }
+}
+
+@keyframes photoFloatFour {
+    0%, 100% { transform: rotate(-7deg) translateY(0); }
+    50%      { transform: rotate(-5deg) translateY(-10px); }
+}
+
+.photo-one {
+    animation:
+        photoReveal 1.2s ease 0.3s forwards,
+        photoFloatOne 7.5s ease-in-out 1.5s infinite;
+}
+
+.photo-two {
+    animation:
+        photoReveal 1.2s ease 0.6s forwards,
+        photoFloatTwo 8.2s ease-in-out 1.8s infinite;
+}
+
+.photo-three {
+    animation:
+        photoReveal 1.2s ease 0.9s forwards,
+        photoFloatThree 7.8s ease-in-out 2.1s infinite;
+}
+
+.photo-four {
+    animation:
+        photoReveal 1.2s ease 1.2s forwards,
+        photoFloatFour 8.5s ease-in-out 2.4s infinite;
+}
+
+
+/* Mini botanical accents sway gently, offset from their photo */
+
+@keyframes miniBotanicalSway {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50%      { transform: rotate(-6deg) scale(1.04); }
+}
+
+.photo-botanical {
+    animation: miniBotanicalSway 6s ease-in-out infinite;
+}
+
+.photo-two .photo-botanical,
+.photo-four .photo-botanical {
+    animation-direction: reverse;
+    animation-duration: 6.6s;
+}
+
+
+/* Years badge: soft reveal + slow breathing pulse */
+
+@keyframes yearsBadgeReveal {
+    from { opacity: 0; transform: translateY(12px) scale(0.94); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes yearsHeartPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.18); }
+}
+
+.anniversary-years {
+    animation: yearsBadgeReveal 0.9s ease both;
+    animation-delay: 1.4s;
+}
+
+.years-heart {
+    animation: yearsHeartPulse 1.6s ease-in-out infinite;
+    animation-delay: 2.3s;
+}
+
+
+/* Push back the elements that come after the new badge
+   so the reveal sequence still reads top-to-bottom */
+
+.anniversary-name {
+    animation-delay: 1.75s !important;
+}
+
+.anniversary-message {
+    animation-delay: 2.1s !important;
+}
+
+.adventure-button {
+    animation-delay: 2.6s !important;
+}

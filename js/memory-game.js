@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "you",
             pair: "us",
             type: "image",
-            image: "assets/images/game/you.png",
+            image: "assets/images/game/aku.jpeg",
             alt: "You"
         },
 
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
             id: "ailsa",
             pair: "us",
             type: "image",
-            image: "assets/images/game/ailsa.png",
+            image: "assets/images/game/ailsa.jpeg",
             alt: "Ailsa"
         }
 

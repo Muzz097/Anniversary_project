@@ -2675,8 +2675,16 @@ button {
 .transition-overlay-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(160deg, #2b1625, #4a2440 60%, #1c0f1a 100%);
+    background: linear-gradient(160deg, #3a1c2d, #5c2c50 55%, #200f1c 100%);
     opacity: 0;
+}
+
+.transition-flash {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 45%, rgba(255, 240, 235, .8), transparent 55%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .transition-particles {

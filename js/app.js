@@ -210,7 +210,7 @@ function playHeartCurtainTransition() {
     }, 750);
 
 
-    /* Fase 3 */
+        /* Fase 3 */
 
     setTimeout(() => {
 
@@ -218,7 +218,7 @@ function playHeartCurtainTransition() {
             overlay.classList.add("is-exiting");
         }
 
-    }, 900);
+    }, 1050);
 
 
     setTimeout(() => {
@@ -239,7 +239,7 @@ function playHeartCurtainTransition() {
             "is-transitioning"
         );
 
-    }, 1700);
+    }, 1850);
 
 }
 

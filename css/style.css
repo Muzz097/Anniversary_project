@@ -2326,13 +2326,6 @@ button {
 .burst-heart::after  { top: 0; left: 6px; }
 
 
-/* Slightly softer blur cost on small screens */
-@media (max-width: 480px) {
-    .bokeh {
-        filter: blur(1px);
-    }
-}
-
 /* ==========================================
    PHASE 03 — MEMORY GAME — ROMANTIC REDESIGN
    (static styling only — animasi ada di animations.css)

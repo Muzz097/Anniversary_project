@@ -1641,3 +1641,86 @@
 .memory-game-intro h2  { animation: memoryIntroReveal .9s ease .22s backwards; }
 .memory-description    { animation: memoryIntroReveal .8s ease .36s backwards; }
 .memory-progress       { animation: memoryIntroReveal .8s ease .5s backwards; }
+
+/* Button response */
+
+@keyframes buttonPressGlow {
+    0%   { transform: scale(1); box-shadow: 0 0 0 rgba(224, 122, 149, 0); }
+    30%  { transform: scale(0.94); box-shadow: 0 0 26px rgba(232, 139, 163, .7); }
+    100% { transform: scale(1); box-shadow: 0 0 14px rgba(232, 139, 163, .4); }
+}
+.adventure-button.is-transitioning {
+    animation: buttonPressGlow .5s ease forwards;
+    pointer-events: none;
+}
+
+.button-heart {
+    animation: matchParticleBurst .9s ease-out forwards;
+}
+
+
+/* Old page exit — fade + blur */
+
+@keyframes pageExitBlur {
+    from { opacity: 1; filter: blur(0); transform: scale(1); }
+    to   { opacity: 0; filter: blur(6px); transform: scale(1.03); }
+}
+.happy-anniversary.page-transition-exit {
+    animation: pageExitBlur .6s ease forwards;
+}
+
+
+/* Curtain cover / open */
+
+@keyframes curtainCoverIn {
+    from { opacity: 0; transform: scale(1.05); }
+    to   { opacity: 1; transform: scale(1); }
+}
+@keyframes curtainCoverOut {
+    from { opacity: 1; transform: scale(1); }
+    to   { opacity: 0; transform: scale(0.97); }
+}
+.transition-overlay.is-active .transition-overlay-bg {
+    animation: curtainCoverIn .5s ease forwards;
+}
+.transition-overlay.is-exiting .transition-overlay-bg {
+    animation: curtainCoverOut .6s ease forwards;
+}
+
+
+/* Particles flying in from the edges, converging inward */
+
+@keyframes curtainParticleFly {
+    0%   { opacity: 0; transform: translate(0, 0) scale(.5) rotate(0deg); }
+    25%  { opacity: 1; }
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc(var(--target-x, 50%) - var(--start-x, 50%)),
+                calc(var(--target-y, 50%) - var(--start-y, 50%))
+            )
+            scale(1)
+            rotate(var(--rot, 0deg));
+    }
+}
+.transition-particle {
+    animation: curtainParticleFly 1s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .transition-particles,
+    .button-heart-burst {
+        display: none !important;
+    }
+
+    .happy-anniversary.page-transition-exit,
+    .adventure-button.is-transitioning {
+        animation: none !important;
+    }
+
+}

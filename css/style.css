@@ -2661,3 +2661,78 @@ button {
     opacity: 0;
     pointer-events: none;
 }
+
+/* ==========================================
+   HEART CURTAIN TRANSITION
+========================================== */
+
+.transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    pointer-events: none;
+    opacity: 1;
+    visibility: hidden;
+}
+
+.transition-overlay.is-active {
+    visibility: visible;
+}
+
+.transition-overlay-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #2b1625, #4a2440 60%, #1c0f1a 100%);
+    opacity: 0;
+}
+
+.transition-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.transition-particle {
+    position: absolute;
+    left: var(--start-x, 50%);
+    top: var(--start-y, 50%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.curtain-bokeh-shape {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(230, 164, 180, .5), transparent 70%);
+    filter: blur(1px);
+}
+
+.curtain-paper-shape {
+    width: 26px;
+    height: 34px;
+    background: linear-gradient(160deg, #f7f1ec, #c98fa0);
+    border-radius: 3px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, .25);
+}
+
+.curtain-ribbon-shape {
+    width: 34px;
+    height: 12px;
+    background: linear-gradient(90deg, #6b2c4a, #e07a95);
+    border-radius: 2px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
+}
+
+.button-heart-burst {
+    position: fixed;
+    inset: 0;
+    z-index: 600;
+    pointer-events: none;
+}
+
+.button-heart {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

@@ -48,6 +48,8 @@ const memoryGame =
 Add number to code
 */
 
+let isAdventureTransitioning = false;
+
 if (
     adventureButton &&
     happyAnniversary &&
@@ -58,60 +60,311 @@ if (
         "click",
         () => {
 
-            happyAnniversary.classList.add(
-                "section-exit"
-            );
+            if (isAdventureTransitioning) {
+                return;
+            }
 
+            isAdventureTransitioning = true;
+            adventureButton.disabled = true;
 
-            setTimeout(() => {
-
-                happyAnniversary.classList.remove(
-                    "active-section"
-                );
-
-                happyAnniversary.classList.add(
-                    "hidden-section"
-                );
-
-
-                happyAnniversary.classList.remove(
-                    "section-exit"
-                );
-
-
-                memoryGame.classList.remove(
-                    "hidden-section"
-                );
-
-                memoryGame.classList.add(
-                    "active-section"
-                );
-
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "instant"
-                });
-
-
-                /*
-                Reset game setiap kali
-                Phase 03 dibuka.
-                */
-
-                if (
-                    typeof window.initializeMemoryGame
-                    === "function"
-                ) {
-
-                    window.initializeMemoryGame();
-
-                }
-
-            }, 1000);
+            playHeartCurtainTransition();
 
         }
     );
+
+}
+
+
+/*
+==========================================
+HEART CURTAIN + LOVE LETTER REVEAL
+==========================================
+
+Fase 1: tombol memberi respon (glow + hati).
+Fase 2: curtain + partikel menutup layar.
+Fase 3: memory game terungkap, kartu &
+        teks masuk bertahap.
+*/
+
+function playHeartCurtainTransition() {
+
+    const reduceMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+    /* Simple fade fallback, no decoration */
+
+    if (reduceMotion) {
+
+        happyAnniversary.classList.add("section-exit");
+
+        setTimeout(() => {
+
+            happyAnniversary.classList.remove(
+                "active-section", "section-exit"
+            );
+
+            happyAnniversary.classList.add(
+                "hidden-section"
+            );
+
+            memoryGame.classList.remove(
+                "hidden-section"
+            );
+
+            memoryGame.classList.add(
+                "active-section"
+            );
+
+            window.scrollTo({
+                top: 0,
+                behavior: "instant"
+            });
+
+            if (
+                typeof window.initializeMemoryGame
+                === "function"
+            ) {
+
+                window.initializeMemoryGame();
+
+            }
+
+            adventureButton.classList.remove(
+                "is-transitioning"
+            );
+
+        }, 600);
+
+        return;
+
+    }
+
+
+    const overlay =
+        document.getElementById("transitionOverlay");
+
+    const particleLayer =
+        document.getElementById("transitionParticles");
+
+
+    /* Fase 1 */
+
+    adventureButton.classList.add("is-transitioning");
+
+    spawnButtonHearts(adventureButton);
+
+    happyAnniversary.classList.add(
+        "page-transition-exit"
+    );
+
+
+    /* Fase 2 */
+
+    setTimeout(() => {
+
+        if (overlay) {
+            overlay.classList.add("is-active");
+        }
+
+        spawnCurtainParticles(particleLayer);
+
+    }, 150);
+
+
+    setTimeout(() => {
+
+        happyAnniversary.classList.remove(
+            "active-section",
+            "page-transition-exit"
+        );
+
+        happyAnniversary.classList.add(
+            "hidden-section"
+        );
+
+        memoryGame.classList.remove(
+            "hidden-section"
+        );
+
+        memoryGame.classList.add(
+            "active-section"
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
+
+        if (
+            typeof window.initializeMemoryGame
+            === "function"
+        ) {
+
+            window.initializeMemoryGame();
+
+        }
+
+    }, 750);
+
+
+    /* Fase 3 */
+
+    setTimeout(() => {
+
+        if (overlay) {
+            overlay.classList.add("is-exiting");
+        }
+
+    }, 900);
+
+
+    setTimeout(() => {
+
+        if (overlay) {
+
+            overlay.classList.remove(
+                "is-active", "is-exiting"
+            );
+
+        }
+
+        if (particleLayer) {
+            particleLayer.innerHTML = "";
+        }
+
+        adventureButton.classList.remove(
+            "is-transitioning"
+        );
+
+    }, 1700);
+
+}
+
+
+function spawnButtonHearts(button) {
+
+    const rect = button.getBoundingClientRect();
+
+    const container =
+        document.createElement("div");
+
+    container.className = "button-heart-burst";
+
+    document.body.appendChild(container);
+
+    for (let i = 0; i < 6; i++) {
+
+        const heart =
+            document.createElement("span");
+
+        heart.className = "floating-heart heart-particle button-heart";
+
+        const angle = (i / 6) * 360 + Math.random() * 20;
+        const spread = 40 + Math.random() * 30;
+
+        heart.style.left =
+            (rect.left + rect.width / 2) + "px";
+
+        heart.style.top =
+            (rect.top + rect.height / 2) + "px";
+
+        heart.style.setProperty(
+            "--tx",
+            Math.cos(angle * Math.PI / 180) * spread + "px"
+        );
+
+        heart.style.setProperty(
+            "--ty",
+            Math.sin(angle * Math.PI / 180) * spread + "px"
+        );
+
+        heart.style.animationDelay =
+            (Math.random() * 0.15) + "s";
+
+        container.appendChild(heart);
+
+    }
+
+    setTimeout(() => {
+        container.remove();
+    }, 1200);
+
+}
+
+
+function spawnCurtainParticles(container) {
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML = "";
+
+    const kinds = [
+        "heart-particle",
+        "mini-petal",
+        "sparkle-particle",
+        "curtain-bokeh-shape",
+        "curtain-paper-shape",
+        "curtain-ribbon-shape"
+    ];
+
+    const total = 22;
+
+    for (let i = 0; i < total; i++) {
+
+        const piece =
+            document.createElement("span");
+
+        const kind =
+            kinds[i % kinds.length];
+
+        piece.className =
+            "transition-particle " + kind;
+
+        const edge = i % 4;
+
+        let startX;
+        let startY;
+
+        if (edge === 0) {
+            startX = Math.random() * 100;
+            startY = -10;
+        } else if (edge === 1) {
+            startX = 110;
+            startY = Math.random() * 100;
+        } else if (edge === 2) {
+            startX = Math.random() * 100;
+            startY = 110;
+        } else {
+            startX = -10;
+            startY = Math.random() * 100;
+        }
+
+        piece.style.setProperty("--start-x", startX + "%");
+        piece.style.setProperty("--start-y", startY + "%");
+
+        piece.style.setProperty(
+            "--target-x", (40 + Math.random() * 20) + "%"
+        );
+
+        piece.style.setProperty(
+            "--target-y", (40 + Math.random() * 20) + "%"
+        );
+
+        piece.style.setProperty(
+            "--rot", (Math.random() * 60 - 30) + "deg"
+        );
+
+        piece.style.animationDelay =
+            (Math.random() * 0.4) + "s";
+
+        container.appendChild(piece);
+
+    }
 
 }
 

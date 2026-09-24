@@ -494,3 +494,62 @@ MOBILE
     }
 
 }
+
+/* ==========================================
+   HAPPY ANNIVERSARY — BOTANICAL DECOR
+   (belum pernah mengecil di mobile sampai sekarang)
+========================================== */
+
+@media (max-width: 480px) {
+
+    .botanical-peony-top {
+        width: 110px;
+        top: -18px;
+        right: -18px;
+    }
+
+    .botanical-leaves-left {
+        width: 130px;
+        bottom: -18px;
+        left: -18px;
+    }
+
+    .photo-botanical {
+        width: 30px;
+    }
+
+}
+
+
+/* ==========================================
+   HAPPY ANNIVERSARY — SHORT + NARROW
+   (378x559 dan sejenisnya — kasus di screenshot kamu)
+========================================== */
+
+@media (max-width: 480px) and (max-height: 640px) {
+
+    .botanical-peony-top {
+        width: 68px;
+        top: -10px;
+        right: -10px;
+        opacity: .7;
+    }
+
+    .botanical-leaves-left {
+        width: 80px;
+        bottom: -10px;
+        left: -10px;
+        opacity: .7;
+    }
+
+    .photo-botanical {
+        width: 22px;
+    }
+
+    .memory-photo {
+        width: 62px;
+        height: 80px;
+        padding: 5px 5px 12px;
+    }
+
+}

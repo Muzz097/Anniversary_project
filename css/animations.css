@@ -1680,16 +1680,7 @@
     from { opacity: 1; transform: scale(1); }
     to   { opacity: 0; transform: scale(0.97); }
 }
-@keyframes transitionFlashPulse {
-    0%   { opacity: 0; }
-    45%  { opacity: 0; }
-    60%  { opacity: .9; }
-    100% { opacity: 0; }
-}
 
-.transition-overlay.is-active .transition-flash {
-    animation: transitionFlashPulse 1s ease-out forwards;
-}
 .transition-overlay.is-active .transition-overlay-bg {
     animation: curtainCoverIn .5s ease forwards;
 }

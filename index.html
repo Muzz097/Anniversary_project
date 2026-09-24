@@ -399,6 +399,38 @@
     <div class="memory-game-background"></div>
     <div class="memory-game-overlay"></div>
 
+    <!-- Ambient romantic atmosphere -->
+    <div class="memory-game-ambience ambient-particle" aria-hidden="true">
+
+        <span class="mg-monogram-bg">A ♥ S</span>
+
+        <span class="mg-orbit-line mg-orbit-one"></span>
+        <span class="mg-orbit-line mg-orbit-two"></span>
+
+        <span class="bokeh" style="--x:10%; --y:18%; --size:170px; --delay:0s; --duration:12s;"></span>
+        <span class="bokeh" style="--x:75%; --y:12%; --size:130px; --delay:2s; --duration:10s;"></span>
+        <span class="bokeh" style="--x:20%; --y:75%; --size:150px; --delay:1s; --duration:14s;"></span>
+        <span class="bokeh" style="--x:80%; --y:70%; --size:190px; --delay:3s; --duration:11s;"></span>
+
+        <span class="glitter" style="--x:25%; --y:22%; --delay:.2s;"></span>
+        <span class="glitter" style="--x:78%; --y:18%; --delay:1.2s;"></span>
+        <span class="glitter" style="--x:35%; --y:58%; --delay:.6s;"></span>
+        <span class="glitter" style="--x:62%; --y:52%; --delay:1.9s;"></span>
+        <span class="glitter" style="--x:48%; --y:78%; --delay:2.5s;"></span>
+        <span class="glitter" style="--x:12%; --y:45%; --delay:.9s;"></span>
+
+        <span class="petal" style="--x:8%; --size:13px; --delay:0s; --duration:16s;"></span>
+        <span class="petal" style="--x:40%; --size:10px; --delay:4s; --duration:14s;"></span>
+        <span class="petal" style="--x:65%; --size:15px; --delay:7s; --duration:18s;"></span>
+        <span class="petal" style="--x:85%; --size:11px; --delay:2s; --duration:15s;"></span>
+        <span class="petal" style="--x:52%; --size:12px; --delay:9s; --duration:17s;"></span>
+
+        <span class="mini-heart floating-heart" style="--x:16%; --delay:0s; --duration:10s;"></span>
+        <span class="mini-heart floating-heart" style="--x:58%; --delay:3.5s; --duration:11s;"></span>
+        <span class="mini-heart floating-heart" style="--x:82%; --delay:6s; --duration:9.5s;"></span>
+
+    </div>
+
     <div class="memory-game-content">
 
         <div class="memory-game-intro">
@@ -434,6 +466,29 @@
             <p class="memory-progress-text">
                 <span id="memoryPairsFound">0</span> / 3 pairs
             </p>
+
+                </div>
+
+
+        <!-- CHARACTER CELEBRATION (appears briefly on every match) -->
+
+        <div class="character-celebration-anchor">
+
+            <div
+                class="character-celebration"
+                id="characterCelebration"
+                aria-hidden="true"
+            >
+                <div class="character-celebration-glow"></div>
+
+                <img
+                    class="character-celebration-img"
+                    id="characterCelebrationImg"
+                    src="assets/images/characters/melody-happy.png"
+                    alt=""
+                    onerror="this.style.display='none'"
+                >
+            </div>
 
         </div>
 

@@ -25,6 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const ketemuContinue =
         document.getElementById("ketemuContinue");
 
+    const characterCelebration =
+        document.getElementById("characterCelebration");
+
+        
+
 
     /*
     ==========================================
@@ -150,11 +155,20 @@ document.addEventListener("DOMContentLoaded", () => {
     CREATE GAME
     ==========================================
     */
+ 
+       function createGame() {
 
-   function createGame() {
+        gameBoard.innerHTML = "";
+        gameBoard.classList.remove("dissolve");
+        
+        gameBoard.classList.remove("board-enter");
+        void gameBoard.offsetWidth;
+        gameBoard.classList.add("board-enter");
 
-    gameBoard.innerHTML = "";
-    gameBoard.classList.remove("dissolve");
+        setTimeout(() => {
+            gameBoard.classList.remove("board-enter");
+        }, 1000);
+
 
         firstCard = null;
         secondCard = null;
@@ -198,14 +212,20 @@ document.addEventListener("DOMContentLoaded", () => {
         button.dataset.pair = card.pair;
 
 
-        button.innerHTML = `
+               button.innerHTML = `
 
             <span class="memory-card-inner">
 
                 <span class="memory-card-front">
 
-                    <span class="card-question">
-                        ?
+                    <span class="card-back-monogram" aria-hidden="true">
+
+                        <span class="monogram-hearts"></span>
+
+                        <span class="monogram-text">A<span class="monogram-heart">♥</span>S</span>
+
+                        <span class="monogram-sub">our little story</span>
+
                     </span>
 
                 </span>
@@ -216,6 +236,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         src="${card.image}"
                         alt="${card.alt}"
                     >
+
+                    <span class="matched-heart-badge" aria-hidden="true"></span>
 
                 </span>
 
@@ -322,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ==========================================
     */
 
-    function handleMatch() {
+        function handleMatch() {
 
         firstCard.classList.add("matched");
         secondCard.classList.add("matched");
@@ -330,6 +352,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         firstCard.classList.add("match-animation");
         secondCard.classList.add("match-animation");
+
+
+        celebrateMatch(firstCard, secondCard);
+
+        triggerCharacterCelebration();
 
 
         const pairType =
@@ -367,6 +394,221 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
         }, 1300);
+
+    }
+
+
+    /*
+    ==========================================
+    MATCH CELEBRATION
+    ========================================== */
+    
+
+    function celebrateMatch(cardA, cardB) {
+
+        if (!gameBoard) {
+            return;
+        }
+
+        const boardRect =
+            gameBoard.getBoundingClientRect();
+
+        const rectA = cardA.getBoundingClientRect();
+        const rectB = cardB.getBoundingClientRect();
+
+        const centerA = {
+            x: rectA.left + rectA.width / 2 - boardRect.left,
+            y: rectA.top + rectA.height / 2 - boardRect.top
+        };
+
+        const centerB = {
+            x: rectB.left + rectB.width / 2 - boardRect.left,
+            y: rectB.top + rectB.height / 2 - boardRect.top
+        };
+
+        const midpoint = {
+            x: (centerA.x + centerB.x) / 2,
+            y: (centerA.y + centerB.y) / 2
+        };
+
+        const dx = centerB.x - centerA.x;
+        const dy = centerB.y - centerA.y;
+
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+
+        const celebration =
+            document.createElement("div");
+
+        celebration.className = "match-celebration";
+
+
+        /* Connector beam */
+
+        const connector =
+            document.createElement("span");
+
+        connector.className = "match-connector";
+
+        connector.style.left = centerA.x + "px";
+        connector.style.top = centerA.y + "px";
+        connector.style.width = distance + "px";
+
+        connector.style.setProperty(
+            "--angle", angle + "deg"
+        );
+
+        celebration.appendChild(connector);
+
+
+        /* Shockwave */
+
+        const shockwave =
+            document.createElement("span");
+
+        shockwave.className = "match-shockwave";
+
+        shockwave.style.left = midpoint.x + "px";
+        shockwave.style.top = midpoint.y + "px";
+
+        celebration.appendChild(shockwave);
+
+
+        /* Particle burst */
+
+        const particleTypes = [
+            "heart-particle",
+            "sparkle-particle",
+            "spark-dot",
+            "mini-petal"
+        ];
+
+        const totalParticles = 14;
+
+        for (let i = 0; i < totalParticles; i++) {
+
+            const particle =
+                document.createElement("span");
+
+            const type =
+                particleTypes[i % particleTypes.length];
+
+            particle.className =
+                "match-particle " + type;
+
+            const burstAngle = Math.random() * 360;
+            const spread = 34 + Math.random() * 46;
+
+            const tx =
+                Math.cos(burstAngle * Math.PI / 180) * spread;
+
+            const ty =
+                Math.sin(burstAngle * Math.PI / 180) * spread;
+
+            particle.style.left = midpoint.x + "px";
+            particle.style.top = midpoint.y + "px";
+
+            particle.style.setProperty("--tx", tx + "px");
+            particle.style.setProperty("--ty", ty + "px");
+
+            particle.style.setProperty(
+                "--duration",
+                (1.1 + Math.random() * 0.7) + "s"
+            );
+
+            particle.style.animationDelay =
+                (Math.random() * 0.2) + "s";
+
+            celebration.appendChild(particle);
+
+        }
+
+
+        gameBoard.appendChild(celebration);
+
+
+        /* Trigger the surface sweep on both cards */
+
+        cardA.classList.add("match-celebration-card");
+        cardB.classList.add("match-celebration-card");
+
+
+        /* Clean up once the celebration finishes */
+
+        setTimeout(() => {
+
+            celebration.remove();
+
+            cardA.classList.remove(
+                "match-celebration-card"
+            );
+
+            cardB.classList.remove(
+                "match-celebration-card"
+            );
+
+        }, 1300);
+
+    }
+
+
+    /*
+    ==========================================
+    CHARACTER CELEBRATION
+    ==========================================
+    */
+
+    function triggerCharacterCelebration() {
+
+        if (!characterCelebration) {
+            return;
+        }
+
+        characterCelebration.classList.remove(
+            "show", "dissolve"
+        );
+
+        void characterCelebration.offsetWidth;
+
+
+        /*
+        Small random variation each time so a
+        single character asset doesn't feel
+        monotonous across all three matches.
+        */
+
+        const randomRotate =
+            (Math.random() * 10 - 5).toFixed(1);
+
+        const randomShift =
+            (Math.random() * 16 - 8).toFixed(1);
+
+        characterCelebration.style.setProperty(
+            "--enter-rotate", randomRotate + "deg"
+        );
+
+        characterCelebration.style.setProperty(
+            "--enter-shift", randomShift + "px"
+        );
+
+        characterCelebration.classList.add("show");
+
+
+        setTimeout(() => {
+
+            characterCelebration.classList.remove("show");
+            characterCelebration.classList.add("dissolve");
+
+            setTimeout(() => {
+
+                characterCelebration.classList.remove(
+                    "dissolve"
+                );
+
+            }, 500);
+
+        }, 1900);
 
     }
 

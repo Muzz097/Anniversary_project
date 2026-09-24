@@ -1354,3 +1354,290 @@
     }
 
 }
+
+/* ==========================================
+   PHASE 03 — MEMORY GAME — ROMANTIC REDESIGN
+========================================== */
+
+/* Idle float — soft, elegant, paused on hover/touch */
+
+@keyframes cardIdleFloat {
+    0%   { transform: translateY(0) rotate(var(--rot-a, -0.5deg)); }
+    50%  { transform: translateY(var(--float-distance, -5px)) rotate(var(--rot-b, 0.6deg)); }
+    100% { transform: translateY(0) rotate(var(--rot-a, -0.5deg)); }
+}
+
+.memory-card:not(.flipped):not(.matched) {
+    animation: cardIdleFloat var(--float-duration, 6s) ease-in-out var(--float-delay, 0s) infinite;
+}
+
+.memory-card:hover,
+.memory-card:active,
+.memory-card:focus-visible {
+    animation-play-state: paused;
+}
+
+
+/* Breathing glow on idle cards */
+
+@keyframes cardGlowBreathe {
+    0%, 100% { box-shadow: 0 15px 35px rgba(0, 0, 0, .22), 0 0 0 rgba(224, 122, 149, 0); }
+    50%      { box-shadow: 0 15px 35px rgba(0, 0, 0, .22), 0 0 18px var(--card-glow-color, rgba(224, 122, 149, .45)); }
+}
+
+.memory-card:not(.flipped):not(.matched) .memory-card-front {
+    animation: cardGlowBreathe var(--float-duration, 6s) ease-in-out var(--float-delay, 0s) infinite;
+}
+
+
+/* Matched cards keep breathing softly instead of
+   staying completely static */
+
+@keyframes matchedGlowBreathe {
+    0%, 100% { box-shadow: 0 0 14px var(--card-glow-color, rgba(224, 122, 149, .4)), 0 15px 35px rgba(0, 0, 0, .25); }
+    50%      { box-shadow: 0 0 26px var(--card-glow-strong, rgba(232, 139, 163, .7)), 0 15px 35px rgba(0, 0, 0, .25); }
+}
+
+.memory-card.matched .memory-card-back {
+    animation: matchedGlowBreathe 3.6s ease-in-out infinite;
+}
+
+
+/* Highlight sweep, plays once right at the moment of match */
+
+@keyframes cardSweep {
+    0%   { transform: translateX(-120%); opacity: 0; }
+    35%  { opacity: .7; }
+    100% { transform: translateX(120%); opacity: 0; }
+}
+
+.memory-card.match-celebration-card .memory-card-back::before {
+    animation: cardSweep 0.9s ease forwards;
+}
+
+
+/* Light beam connecting the two matched cards */
+
+@keyframes matchConnectorGlow {
+    0%   { opacity: 0; transform: rotate(var(--angle, 0deg)) scaleX(0.2); }
+    35%  { opacity: .9; transform: rotate(var(--angle, 0deg)) scaleX(1); }
+    75%  { opacity: .5; transform: rotate(var(--angle, 0deg)) scaleX(1); }
+    100% { opacity: 0; transform: rotate(var(--angle, 0deg)) scaleX(1); }
+}
+
+.match-connector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    transform-origin: left center;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--particle-cream, #f7f1ec),
+            var(--particle-rose, #e07a95),
+            transparent
+        );
+    border-radius: 999px;
+    filter: blur(.5px);
+    opacity: 0;
+    animation: matchConnectorGlow 1s ease forwards;
+}
+
+
+/* Shockwave ring from the midpoint of the match */
+
+@keyframes matchShockwave {
+    0%   { opacity: .8; transform: scale(0.3); }
+    100% { opacity: 0; transform: scale(6.5); }
+}
+
+.match-shockwave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border-radius: 50%;
+    border: 1px solid rgba(232, 139, 163, .8);
+    box-shadow: 0 0 20px rgba(232, 139, 163, .5);
+    opacity: 0;
+    animation: matchShockwave 0.9s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+
+/* Particle burst — hearts, sparkles, light dots, petals */
+
+@keyframes matchParticleBurst {
+    0%   { opacity: 0; transform: translate(-50%, -50%) translate(0, 0) scale(0.4) rotate(0deg); }
+    18%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(-50%, -50%) translate(var(--tx, 40px), var(--ty, -40px)) scale(1) rotate(180deg); }
+}
+
+.match-particle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    animation: matchParticleBurst var(--duration, 1.3s) ease-out forwards;
+}
+
+.heart-particle {
+    width: 10px;
+    height: 10px;
+    background: var(--particle-rose, #e07a95);
+    transform: rotate(45deg);
+}
+.heart-particle::before,
+.heart-particle::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: inherit;
+}
+.heart-particle::before { top: -5px; left: 0; }
+.heart-particle::after  { top: 0; left: 5px; }
+
+.sparkle-particle {
+    width: 12px;
+    height: 12px;
+    background: var(--particle-cream, #f7f1ec);
+    clip-path: polygon(50% 0%, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0% 50%, 39% 35%);
+}
+
+.spark-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--particle-peach, #f3b6a0);
+    box-shadow: 0 0 6px rgba(243, 182, 160, .8);
+}
+
+.mini-petal {
+    width: 11px;
+    height: 9px;
+    background: linear-gradient(135deg, var(--particle-rose, #e07a95), var(--particle-peach, #f3b6a0));
+    border-radius: 50% 0 50% 50%;
+}
+
+
+/* Character celebration pop-in / dissolve.
+   --enter-rotate / --enter-shift are randomized in JS
+   so a single asset doesn't feel repetitive each match. */
+
+@keyframes characterCelebrationPop {
+    0%   { opacity: 0; transform: translate(calc(-50% + var(--enter-shift, 0px)), 12px) scale(0.4) rotate(var(--enter-rotate, 0deg)); }
+    55%  { opacity: 1; transform: translate(-50%, -6px) scale(1.06) rotate(0deg); }
+    75%  { transform: translate(-50%, 0) scale(1) rotate(0deg); }
+    100% { opacity: 1; transform: translate(-50%, 0) scale(1) rotate(0deg); }
+}
+
+@keyframes characterCelebrationDissolve {
+    0%   { opacity: 1; transform: translate(-50%, 0) scale(1); filter: blur(0); }
+    100% { opacity: 0; transform: translate(-50%, -14px) scale(0.5); filter: blur(4px); }
+}
+
+.character-celebration.show {
+    animation: characterCelebrationPop 0.6s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.character-celebration.dissolve {
+    animation: characterCelebrationDissolve 0.5s ease forwards;
+}
+
+
+/* ==========================================
+   ACCESSIBILITY — prefers-reduced-motion
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .memory-game-section *,
+    .memory-game-section *::before,
+    .memory-game-section *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .match-celebration,
+    .character-celebration {
+        display: none !important;
+    }
+
+}
+
+/* Reuse the existing petal/heart drift keyframes from
+   the Ketemu Kamu ambience, just extend the selector */
+
+.memory-game-ambience .petal {
+    animation: ketemuPetalFall var(--duration, 14s) linear var(--delay, 0s) infinite;
+}
+
+.memory-game-ambience .mini-heart {
+    animation: ketemuHeartFloat var(--duration, 9s) ease-in-out var(--delay, 0s) infinite;
+}
+
+@keyframes mgOrbitSpin {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(360deg); }
+}
+.mg-orbit-one {
+    animation: mgOrbitSpin 90s linear infinite;
+}
+
+@keyframes mgOrbitSpinAlt {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+}
+.mg-orbit-two {
+    animation: mgOrbitSpinAlt 110s linear infinite;
+}
+
+/* One-time staggered pop when the board is (re)built */
+
+@keyframes cardBoardEnter {
+    from { opacity: 0; transform: translateY(22px) scale(.92); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.memory-game-board.board-enter .memory-card .memory-card-inner {
+    animation: cardBoardEnter .6s cubic-bezier(.22, 1, .36, 1) var(--enter-delay, 0s) backwards;
+}
+
+
+/* Monogram pulse + one-shot shimmer on hover/touch */
+
+@keyframes monogramGlowPulse {
+    0%, 100% { text-shadow: 0 0 6px rgba(224, 122, 149, .25); }
+    50%      { text-shadow: 0 0 14px rgba(232, 139, 163, .55); }
+}
+.memory-card:not(.flipped):not(.matched) .monogram-text {
+    animation: monogramGlowPulse 4s ease-in-out infinite;
+}
+
+@keyframes monogramShimmer {
+    0%   { transform: translateX(-130%); opacity: 0; }
+    30%  { opacity: .8; }
+    100% { transform: translateX(130%); opacity: 0; }
+}
+.memory-card:not(.flipped):not(.matched):hover .card-back-monogram::after,
+.memory-card:not(.flipped):not(.matched):active .card-back-monogram::after {
+    animation: monogramShimmer .8s ease;
+}
+
+
+/* Intro text + progress fade-up when the section appears */
+
+@keyframes memoryIntroReveal {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.memory-eyebrow        { animation: memoryIntroReveal .8s ease .1s backwards; }
+.memory-game-intro h2  { animation: memoryIntroReveal .9s ease .22s backwards; }
+.memory-description    { animation: memoryIntroReveal .8s ease .36s backwards; }
+.memory-progress       { animation: memoryIntroReveal .8s ease .5s backwards; }

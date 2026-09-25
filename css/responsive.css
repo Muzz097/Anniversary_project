@@ -553,3 +553,141 @@ MOBILE
     }
 
 }
+
+/* ==========================================
+   PHASE 05 — HUB CINEMATIC REDESIGN — MOBILE
+   (append to the END of css/responsive.css)
+========================================== */
+
+@media (max-width: 480px) {
+
+    .menu-grid {
+        gap: 12px;
+        width: min(100%, 340px);
+    }
+
+    .menu-item {
+        border-radius: 18px;
+        padding: 16px 10px 14px;
+    }
+
+    .menu-visual {
+        width: 54px;
+        height: 54px;
+    }
+
+    .menu-text .surprise-label {
+        font-size: 0.92rem;
+    }
+
+    .menu-text .surprise-sub {
+        font-size: 0.64rem;
+    }
+
+    .hub-video {
+        /* Slightly less GPU/battery cost on phones */
+        filter: brightness(var(--video-brightness)) saturate(0.85) blur(0.3px);
+    }
+
+}
+
+
+@media (max-width: 375px) {
+
+    .menu-grid {
+        gap: 10px;
+    }
+
+    .menu-visual {
+        width: 50px;
+        height: 50px;
+    }
+
+}
+
+
+@media (max-width: 360px) {
+
+    .menu-grid {
+        gap: 8px;
+    }
+
+    .menu-item {
+        padding: 14px 8px 12px;
+    }
+
+    .menu-visual {
+        width: 44px;
+        height: 44px;
+    }
+
+    .menu-text .surprise-sub {
+        display: none;
+    }
+
+}
+
+
+/* Short / landscape viewports — keep the hub compact */
+
+@media (max-height: 700px) and (max-width: 480px) {
+
+    .surprise-hub-content {
+        padding-top: 34px;
+        padding-bottom: 30px;
+    }
+
+    .menu-item {
+        padding: 12px 8px 10px;
+    }
+
+    .menu-visual {
+        width: 42px;
+        height: 42px;
+    }
+
+}
+
+/* ==========================================
+   PHASE 05 — HUB MENU VISUAL OVERHAUL — MOBILE
+   (append to the END of css/responsive.css)
+
+   Sizes .menu-illustration down through the
+   existing breakpoints: ~118px by default,
+   down to the 80-105px mobile range requested.
+========================================== */
+
+@media (max-width: 480px) {
+
+    .menu-illustration {
+        width: 100px;
+        height: 100px;
+    }
+
+    .surprise-hub-section .menu-item {
+        padding: 16px 8px;
+    }
+
+}
+
+@media (max-width: 375px) {
+
+    .menu-illustration {
+        width: 92px;
+        height: 92px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .menu-illustration {
+        width: 84px;
+        height: 84px;
+    }
+
+    .surprise-hub-section .menu-item {
+        padding: 12px 6px;
+    }
+
+}

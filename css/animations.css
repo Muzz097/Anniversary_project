@@ -1725,3 +1725,279 @@
     }
 
 }
+
+/* ==========================================
+   PHASE 05 — MENU MENU
+========================================== */
+
+.hub-ambience .light-line {
+    position: absolute;
+    left: var(--x, 20%);
+    top: var(--y, 30%);
+
+    width: var(--length, 100px);
+    height: 1px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(247, 236, 228, 0.5),
+        transparent
+    );
+
+    transform: rotate(var(--angle, 20deg));
+
+    opacity: 0;
+}
+
+@keyframes hubLightLineShimmer {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: 0.55; }
+}
+
+.hub-ambience .light-line {
+    animation:
+        hubLightLineShimmer
+        var(--duration, 9s)
+        ease-in-out
+        var(--delay, 0s)
+        infinite;
+}
+
+
+/* ==========================================
+   1. MESSAGE — idle + hover
+========================================== */
+
+@keyframes envelopeFloat {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50%      { transform: translateY(-4px) rotate(1deg); }
+}
+
+@keyframes envelopeShine {
+    0%, 78%, 100% { transform: translateX(-140%); opacity: 0; }
+    85%           { opacity: 0.5; }
+    92%           { transform: translateX(140%); opacity: 0; }
+}
+
+.placeholder-message .envelope-body {
+    animation: envelopeFloat 6.5s ease-in-out infinite;
+}
+
+.placeholder-message .envelope-body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 70%
+    );
+    animation: envelopeShine 7s ease-in-out infinite;
+}
+
+.menu-item:hover .placeholder-message .envelope-flap {
+    transform: translateX(-50%) translateY(-3px) rotate(-3deg);
+}
+
+.menu-item:hover .placeholder-message .envelope-body {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 22px rgba(224, 122, 149, 0.35);
+}
+
+
+/* ==========================================
+   2. MEMORIES — idle + hover
+========================================== */
+
+@keyframes photoFrontFloat {
+    0%, 100% { transform: rotate(-2deg) translateY(0); }
+    50%      { transform: rotate(-4deg) translateY(-3px); }
+}
+
+@keyframes photoBackShift {
+    0%, 100% { transform: rotate(7deg) translateY(0); }
+    50%      { transform: rotate(9deg) translateY(2px); }
+}
+
+@keyframes photoShineSweep {
+    0%, 70%, 100% { transform: translateX(-120%); }
+    85%           { transform: translateX(120%); }
+}
+
+.photo-front { animation: photoFrontFloat 6s ease-in-out infinite; }
+.photo-back-one { animation: photoBackShift 6.6s ease-in-out infinite; }
+.photo-shine { animation: photoShineSweep 6.5s ease-in-out infinite; }
+
+.menu-item:hover .photo-front {
+    transform: rotate(0deg) translateY(-4px);
+}
+
+.menu-item:hover .placeholder-memories {
+    transform: scale(1.05);
+}
+
+
+/* ==========================================
+   3. JOURNEY — idle + hover
+========================================== */
+
+@keyframes journeyPageSway {
+    0%, 100% { transform: skewY(0deg); }
+    50%      { transform: skewY(-1.5deg); }
+}
+
+@keyframes journeyDotPulse {
+    0%, 100% { opacity: 0.35; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.3); }
+}
+
+.journey-page-left { animation: journeyPageSway 7s ease-in-out infinite; }
+
+.journey-dot-1 { animation: journeyDotPulse 3.6s ease-in-out infinite; }
+.journey-dot-2 { animation: journeyDotPulse 3.6s ease-in-out 1.2s infinite; }
+.journey-dot-3 { animation: journeyDotPulse 3.6s ease-in-out 2.4s infinite; }
+
+.menu-item:hover .journey-page-right {
+    transform: translateX(2px);
+}
+
+.menu-item:hover .journey-dot {
+    opacity: 1;
+}
+
+.menu-item:hover .placeholder-journey {
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+   4. PLAYLIST — idle + hover + is-playing
+========================================== */
+
+@keyframes vinylSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes vinylWaveBar {
+    0%, 100% { height: 3px; }
+    50%      { height: 10px; }
+}
+
+.vinyl-disc {
+    animation: vinylSpin 9s linear infinite;
+}
+
+.vinyl-wave span:nth-child(1) { animation: vinylWaveBar 1.6s ease-in-out infinite; }
+.vinyl-wave span:nth-child(2) { animation: vinylWaveBar 1.6s ease-in-out .2s infinite; }
+.vinyl-wave span:nth-child(3) { animation: vinylWaveBar 1.6s ease-in-out .4s infinite; }
+.vinyl-wave span:nth-child(4) { animation: vinylWaveBar 1.6s ease-in-out .6s infinite; }
+
+.menu-item:hover .vinyl-disc {
+    animation-duration: 3.2s;
+}
+
+.menu-item:hover .placeholder-playlist {
+    filter: drop-shadow(0 0 10px rgba(224, 122, 149, 0.45));
+}
+
+/* Hook for later, once the global player (music.js)
+   is wired up: add .is-playing to the Playlist
+   .menu-item while a track is actually playing */
+
+.menu-item.is-playing .vinyl-disc {
+    animation-duration: 6s;
+}
+
+.menu-item.is-playing {
+    border-color: rgba(224, 122, 149, 0.65);
+    box-shadow: 0 0 0 1px rgba(224, 122, 149, 0.3), 0 18px 40px rgba(224, 122, 149, 0.25);
+}
+
+
+/* ==========================================
+   CLICK / ACTIVE STATE
+========================================== */
+
+@keyframes menuItemSelectedPulse {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.06); }
+    100% { transform: scale(1); }
+}
+
+.menu-item.is-selected {
+    animation: menuItemSelectedPulse 0.45s ease;
+}
+
+@keyframes menuClickSparkle {
+    0% {
+        transform: translate(-50%, -50%) scale(0.4);
+        opacity: 1;
+    }
+    100% {
+        transform:
+            translate(
+                calc(-50% + var(--tx, 20px)),
+                calc(-50% + var(--ty, 20px))
+            )
+            scale(1);
+        opacity: 0;
+    }
+}
+
+.menu-click-spark {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--accent-pink, #e07a95);
+
+    box-shadow: 0 0 6px rgba(224, 122, 149, 0.7);
+
+    pointer-events: none;
+    z-index: 5;
+
+    animation: menuClickSparkle 0.55s ease-out forwards;
+}
+
+
+/* ==========================================
+   REDUCED MOTION — scoped to the hub only
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .surprise-hub-section .menu-visual,
+    .surprise-hub-section .menu-visual *,
+    .surprise-hub-section .hub-video {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .surprise-hub-section .hub-ambience {
+        display: none !important;
+    }
+
+}
+
+/* ==========================================
+   PHASE 05 — MENU MENU — scoped to the hub only
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .surprise-hub-section .menu-illustration-img,
+    .surprise-hub-section .surprise-card {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}

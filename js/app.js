@@ -961,3 +961,129 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+/* ==========================================
+   PHASE 05 — MENU MENU
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const surpriseHub =
+        document.getElementById("surpriseHub");
+
+    const menuItems =
+        document.querySelectorAll(".menu-item");
+
+    if (!surpriseHub || !menuItems.length) {
+        return;
+    }
+
+
+    /*
+    ==========================================
+    SPAWN CLICK SPARKLES
+    ==========================================
+    */
+
+    function spawnClickSparkles(item, event) {
+
+        const rect = item.getBoundingClientRect();
+
+        const originX =
+            (event.clientX ?? rect.left + rect.width / 2)
+            - rect.left;
+
+        const originY =
+            (event.clientY ?? rect.top + rect.height / 2)
+            - rect.top;
+
+        const total = 6;
+
+        for (let i = 0; i < total; i++) {
+
+            const spark =
+                document.createElement("span");
+
+            spark.className = "menu-click-spark";
+
+            const angle = (Math.PI * 2 * i) / total;
+            const distance = 26 + Math.random() * 14;
+
+            spark.style.left = originX + "px";
+            spark.style.top = originY + "px";
+
+            spark.style.setProperty(
+                "--tx",
+                Math.cos(angle) * distance + "px"
+            );
+
+            spark.style.setProperty(
+                "--ty",
+                Math.sin(angle) * distance + "px"
+            );
+
+            spark.style.animationDelay =
+                (Math.random() * 0.05) + "s";
+
+            item.appendChild(spark);
+
+            spark.addEventListener(
+                "animationend",
+                () => spark.remove()
+            );
+
+        }
+
+    }
+
+
+    /*
+    ==========================================
+    CLICK HANDLER
+    ==========================================
+    */
+
+    menuItems.forEach((item) => {
+
+        item.addEventListener("click", (event) => {
+
+            /*
+            Ignore taps while a transition is
+            already in flight — prevents double
+            navigation once real page transitions
+            are wired up per menu.
+            */
+
+            if (
+                surpriseHub.classList.contains(
+                    "page-transitioning"
+                )
+            ) {
+                return;
+            }
+
+            item.classList.remove("is-selected");
+            void item.offsetWidth;
+            item.classList.add("is-selected");
+
+            spawnClickSparkles(item, event);
+
+            surpriseHub.classList.add(
+                "page-transitioning"
+            );
+
+            setTimeout(() => {
+
+                surpriseHub.classList.remove(
+                    "page-transitioning"
+                );
+
+                item.classList.remove("is-selected");
+
+            }, 650);
+
+        });
+
+    });
+
+});

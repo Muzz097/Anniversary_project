@@ -633,6 +633,15 @@
 
 <!-- ==========================================
      PHASE 05 — CHOOSE YOUR SURPRISE
+     (Background/particles: "PHASE 05 — HUB
+     CINEMATIC REDESIGN" blocks in style.css /
+     animations.css / responsive.css, plus the
+     click-effect block appended to app.js.
+     Menu visuals: card look removed, each menu
+     is now a standalone transparent illustration
+     — see "PHASE 05 — HUB MENU VISUAL OVERHAUL"
+     in style.css / animations.css / responsive.css.
+     Asset files go in assets/botanical/.)
 ========================================== -->
 
 <section
@@ -640,10 +649,60 @@
     id="surpriseHub"
 >
 
-    <div class="surprise-hub-background"></div>
-    <div class="surprise-hub-overlay"></div>
+    <!-- ==========================================
+         BACKGROUND VIDEO (decorative, low opacity)
+         Ganti file di: assets/videos/surprise-hub-bg.mp4
+         Video ini murni dekoratif — kalau belum ada
+         file-nya, section ini otomatis jatuh ke
+         gradient fallback di bawahnya, jadi tampilan
+         tetap bagus tanpa video.
+    =========================================== -->
 
-    <!-- Botanical Decorations -->
+    <div class="hub-video-wrap" aria-hidden="true">
+        <video
+            class="hub-video"
+            autoplay
+            muted
+            loop
+            playsinline
+        >
+            <source src="assets/videos/suprise_video.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Color overlay + vignette (keeps text readable over the video) -->
+    <div class="hub-overlay-color" aria-hidden="true"></div>
+    <div class="hub-vignette" aria-hidden="true"></div>
+
+    <!-- Ambient particles: bokeh, sparkle, petals, hearts, light-lines -->
+    <div class="hub-ambience" aria-hidden="true">
+
+        <span class="bokeh" style="--x:6%; --y:12%; --size:180px; --delay:0s; --duration:13s;"></span>
+        <span class="bokeh" style="--x:82%; --y:8%; --size:140px; --delay:2.5s; --duration:11s;"></span>
+        <span class="bokeh" style="--x:12%; --y:78%; --size:160px; --delay:1s; --duration:15s;"></span>
+        <span class="bokeh" style="--x:86%; --y:72%; --size:150px; --delay:3.5s; --duration:12s;"></span>
+
+        <span class="glitter" style="--x:22%; --y:20%; --delay:.2s;"></span>
+        <span class="glitter" style="--x:70%; --y:16%; --delay:1.4s;"></span>
+        <span class="glitter" style="--x:34%; --y:64%; --delay:.8s;"></span>
+        <span class="glitter" style="--x:60%; --y:58%; --delay:2s;"></span>
+        <span class="glitter" style="--x:48%; --y:84%; --delay:2.7s;"></span>
+        <span class="glitter" style="--x:9%; --y:48%; --delay:1s;"></span>
+
+        <span class="petal" style="--x:14%; --size:12px; --delay:0s; --duration:17s;"></span>
+        <span class="petal" style="--x:44%; --size:10px; --delay:5s; --duration:15s;"></span>
+        <span class="petal" style="--x:68%; --size:14px; --delay:8s; --duration:19s;"></span>
+        <span class="petal" style="--x:88%; --size:11px; --delay:3s; --duration:16s;"></span>
+
+        <span class="mini-heart" style="--x:20%; --delay:0s; --duration:10s;"></span>
+        <span class="mini-heart" style="--x:64%; --delay:4s; --duration:11s;"></span>
+
+        <span class="light-line" style="--x:18%; --y:30%; --length:120px; --angle:22deg; --delay:0s; --duration:9s;"></span>
+        <span class="light-line" style="--x:66%; --y:60%; --length:100px; --angle:-18deg; --delay:3s; --duration:10s;"></span>
+
+    </div>
+
+    <!-- Botanical corner decorations (kept from the previous version) -->
     <img
         class="botanical surprise-botanical-leaf"
         src="assets/images/botanical/leaves.webp"
@@ -671,51 +730,107 @@
             I want to show you...
         </p>
 
-        <!-- SURPRISE GRID -->
+        <!-- SURPRISE GRID (2x2, four equal-size menu items) -->
 
         <div
-            class="surprise-grid"
+            class="surprise-grid menu-grid"
             id="surpriseGrid"
         >
 
+            <!-- MESSAGE -->
             <button
                 type="button"
-                class="surprise-card"
+                class="surprise-card menu-item"
                 data-target="message"
             >
-                <span class="surprise-icon">💌</span>
-                <span class="surprise-label">Message</span>
-                <span class="surprise-sub">A letter for you</span>
+                <span class="menu-illustration">
+                    <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
+                    <img
+                        class="menu-illustration-img"
+                        src="/assets/botanical/amplop.png"
+                        alt="Ilustrasi amplop surat, menuju halaman Message"
+                        loading="lazy"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+                    <span class="menu-illustration-fallback" aria-hidden="true"></span>
+                </span>
+
+                <span class="menu-copy">
+                    <span class="surprise-label">Message</span>
+                    <span class="surprise-sub">A letter for you</span>
+                </span>
             </button>
 
+            <!-- MEMORIES -->
             <button
                 type="button"
-                class="surprise-card"
+                class="surprise-card menu-item"
                 data-target="memories"
             >
-                <span class="surprise-icon">📸</span>
-                <span class="surprise-label">Memories</span>
-                <span class="surprise-sub">Our little timeline</span>
+                <span class="menu-illustration">
+                    <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
+                    <img
+                        class="menu-illustration-img"
+                        src="/assets/botanical/kamera.png"
+                        alt="Ilustrasi tumpukan foto polaroid, menuju halaman Memories"
+                        loading="lazy"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+                    <span class="menu-illustration-fallback" aria-hidden="true"></span>
+                </span>
+
+                <span class="menu-copy">
+                    <span class="surprise-label">Memories</span>
+                    <span class="surprise-sub">Our little timeline</span>
+                </span>
             </button>
 
+            <!-- JOURNEY -->
             <button
                 type="button"
-                class="surprise-card"
+                class="surprise-card menu-item"
                 data-target="journey"
             >
-                <span class="surprise-icon">🌱</span>
-                <span class="surprise-label">Journey</span>
-                <span class="surprise-sub">How far you've grown</span>
+                <span class="menu-illustration">
+                    <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
+                    <img
+                        class="menu-illustration-img"
+                        src="/assets/botanical/grow.png"
+                        alt="Ilustrasi buku catatan terbuka, menuju halaman Journey"
+                        loading="lazy"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+                    <span class="menu-illustration-fallback" aria-hidden="true"></span>
+                </span>
+
+                <span class="menu-copy">
+                    <span class="surprise-label">Journey</span>
+                    <span class="surprise-sub">How far you've grown</span>
+                </span>
             </button>
 
+            <!-- PLAYLIST -->
             <button
                 type="button"
-                class="surprise-card"
+                class="surprise-card menu-item"
                 data-target="playlist"
             >
-                <span class="surprise-icon">🎵</span>
-                <span class="surprise-label">Playlist</span>
-                <span class="surprise-sub">Three songs, us</span>
+                <span class="menu-illustration">
+                    <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
+                    <img
+                        class="menu-illustration-img"
+                        src="/assets/botanical/musikcd.png"
+                        alt="Ilustrasi piringan vinyl, menuju halaman Playlist"
+                        loading="lazy"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                    >
+                    <span class="menu-illustration-fallback" aria-hidden="true"></span>
+                </span>
+
+                <span class="menu-copy">
+                    <span class="surprise-label">Playlist</span>
+                    <span class="surprise-sub">Three songs, us</span>
+                </span>
             </button>
 
         </div>

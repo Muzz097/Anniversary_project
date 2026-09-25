@@ -2729,3 +2729,735 @@ button {
     top: 0;
     left: 0;
 }
+
+/* ==========================================
+   PHASE 05 — MENU MENU
+========================================== */
+
+.surprise-hub-section {
+    --video-opacity: 0.28;
+    --video-brightness: 0.85;
+    --overlay-opacity: 0.55;
+    --vignette-opacity: 0.6;
+    --accent-pink: #e07a95;
+    --soft-pink: #f3c6d3;
+    --deep-plum: #2b1625;
+    --cream: #f7ece4;
+}
+
+
+/* ==========================================
+   BACKGROUND VIDEO
+========================================== */
+
+.hub-video-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: -5;
+
+    /* Fallback if the video file isn't there yet */
+    background: linear-gradient(
+        160deg,
+        var(--deep-plum),
+        #4a2440 55%,
+        #1c0f1a 100%
+    );
+}
+
+.hub-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+
+    object-fit: cover;
+
+    transform: translate(-50%, -50%) scale(1.02);
+
+    opacity: var(--video-opacity);
+    filter: brightness(var(--video-brightness)) saturate(0.9);
+
+    pointer-events: none;
+}
+
+
+/* COLOR OVERLAY + VIGNETTE */
+
+.hub-overlay-color {
+    position: absolute;
+    inset: 0;
+    z-index: -4;
+
+    background: linear-gradient(
+        160deg,
+        rgba(43, 22, 37, 0.9),
+        rgba(74, 36, 64, 0.72) 55%,
+        rgba(28, 15, 26, 0.92) 100%
+    );
+
+    opacity: var(--overlay-opacity);
+
+    pointer-events: none;
+}
+
+.hub-vignette {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+
+    background: radial-gradient(
+        circle at 50% 42%,
+        transparent 32%,
+        rgba(8, 5, 8, var(--vignette-opacity)) 100%
+    );
+
+    pointer-events: none;
+}
+
+
+/* AMBIENT PARTICLE LAYER
+   (reuses the existing .bokeh / .glitter / .petal /
+   .mini-heart classes already defined for Phase 04 —
+   only .light-line is new, added in the animations file) */
+
+.hub-ambience {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: -2;
+    pointer-events: none;
+}
+
+
+/* ==========================================
+   MENU GRID — four equal-size items, 2x2
+========================================== */
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 16px;
+
+    width: min(100%, 420px);
+    margin: 0 auto;
+}
+
+.menu-item {
+    position: relative;
+    overflow: hidden;
+
+    aspect-ratio: 1 / 1.05;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 18px 12px 16px;
+
+    border: 1px solid rgba(224, 122, 149, 0.28);
+    border-radius: 22px;
+
+    background: linear-gradient(
+        160deg,
+        rgba(224, 122, 149, 0.1),
+        rgba(255, 255, 255, 0.03)
+    );
+
+    color: var(--cream);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 18px 40px rgba(10, 6, 12, 0.35);
+
+    transition:
+        transform 0.35s cubic-bezier(.22, 1, .36, 1),
+        border-color 0.35s ease,
+        background 0.35s ease,
+        box-shadow 0.35s ease,
+        opacity 0.3s ease;
+}
+
+.menu-item:hover,
+.menu-item:focus-visible {
+    transform: translateY(-5px) scale(1.03);
+
+    border-color: rgba(224, 122, 149, 0.6);
+
+    background: linear-gradient(
+        160deg,
+        rgba(224, 122, 149, 0.18),
+        rgba(255, 255, 255, 0.04)
+    );
+
+    box-shadow:
+        0 22px 50px rgba(224, 122, 149, 0.22),
+        0 18px 40px rgba(10, 6, 12, 0.4);
+}
+
+.menu-item:active {
+    transform: translateY(-2px) scale(0.97);
+}
+
+.surprise-hub-section.page-transitioning .menu-item:not(.is-selected) {
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.menu-item.visited {
+    border-color: rgba(224, 122, 149, 0.5);
+}
+
+.menu-item.visited::after {
+    content: "✓";
+
+    position: absolute;
+    top: 10px;
+    right: 12px;
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(224, 122, 149, 0.55);
+    border-radius: 50%;
+
+    background: rgba(224, 122, 149, 0.18);
+
+    color: var(--cream);
+    font-size: 0.68rem;
+}
+
+.menu-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    text-align: center;
+}
+
+.menu-text .surprise-label {
+    font-family: var(--font-heading);
+    font-size: 1.02rem;
+    color: var(--cream);
+}
+
+.menu-text .surprise-sub {
+    font-size: 0.7rem;
+    color: var(--color-muted);
+}
+
+
+/* ==========================================
+   MENU VISUAL — shared wrapper
+========================================== */
+
+.menu-visual {
+    position: relative;
+
+    width: 62px;
+    height: 62px;
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-visual-img {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    z-index: 2;
+}
+
+.menu-visual-placeholder {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ==========================================
+   1. MESSAGE — envelope
+========================================== */
+
+.placeholder-message {
+    position: relative;
+}
+
+.placeholder-message .envelope-body {
+    position: relative;
+
+    width: 50px;
+    height: 34px;
+
+    border-radius: 4px;
+
+    background: linear-gradient(160deg, var(--cream), #ecd6cd);
+
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.placeholder-message .envelope-flap {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+
+    width: 0;
+    height: 0;
+
+    transform: translateX(-50%);
+
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 17px solid rgba(224, 122, 149, 0.55);
+
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
+
+    transform-origin: top center;
+}
+
+.placeholder-message .envelope-seal {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+
+    width: 9px;
+    height: 9px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: var(--accent-pink);
+
+    box-shadow: 0 0 8px rgba(224, 122, 149, 0.6);
+}
+
+
+/* ==========================================
+   2. MEMORIES — photo stack
+========================================== */
+
+.placeholder-memories {
+    position: relative;
+    width: 56px;
+    height: 56px;
+}
+
+.photo-stack-item {
+    position: absolute;
+
+    width: 32px;
+    height: 38px;
+
+    border-radius: 3px;
+
+    background: linear-gradient(160deg, #fff, #ecd6cd);
+
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.photo-back-two {
+    top: 12px;
+    left: 3px;
+
+    transform: rotate(-11deg);
+
+    opacity: 0.65;
+}
+
+.photo-back-one {
+    top: 7px;
+    left: 10px;
+
+    transform: rotate(7deg);
+
+    opacity: 0.82;
+}
+
+.photo-front {
+    top: 3px;
+    left: 12px;
+
+    transform: rotate(-2deg);
+
+    z-index: 2;
+
+    overflow: hidden;
+}
+
+.photo-shine {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 70%
+    );
+
+    transform: translateX(-120%);
+}
+
+
+/* ==========================================
+   3. JOURNEY — open notebook + timeline
+========================================== */
+
+.placeholder-journey {
+    position: relative;
+
+    width: 58px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+}
+
+.journey-page {
+    width: 25px;
+    height: 38px;
+
+    border-radius: 2px;
+
+    background: linear-gradient(160deg, var(--cream), #e6d1c8);
+
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+}
+
+.journey-page-left {
+    margin-right: 2px;
+
+    transform-origin: right center;
+}
+
+.journey-page-right {
+    position: relative;
+
+    transform-origin: left center;
+}
+
+.journey-line {
+    position: absolute;
+    top: 15px;
+    left: 4px;
+
+    width: 17px;
+    height: 2px;
+
+    background: rgba(224, 122, 149, 0.5);
+}
+
+.journey-dot {
+    position: absolute;
+    top: 13px;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: var(--accent-pink);
+
+    opacity: 0.35;
+}
+
+.journey-dot-1 { left: 4px; }
+.journey-dot-2 { left: 10px; }
+.journey-dot-3 { left: 16px; }
+
+
+/* ==========================================
+   4. PLAYLIST — vinyl record
+========================================== */
+
+.placeholder-playlist {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.vinyl-disc {
+    position: relative;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: repeating-radial-gradient(
+        circle,
+        #1b1216 0px,
+        #1b1216 5px,
+        #2b1a20 6px,
+        #2b1a20 9px
+    );
+
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+.vinyl-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 13px;
+    height: 13px;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: var(--accent-pink);
+
+    box-shadow: 0 0 8px rgba(224, 122, 149, 0.5);
+}
+
+.vinyl-wave {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+
+    height: 10px;
+}
+
+.vinyl-wave span {
+    width: 2px;
+
+    border-radius: 2px;
+
+    background: var(--accent-pink);
+
+    opacity: 0.7;
+}
+
+/* ==========================================
+   PHASE 05 — HUB MENU VISUAL OVERHAUL
+   (append to the END of css/style.css, AFTER
+   the earlier "PHASE 05 — HUB CINEMATIC
+   REDESIGN" block)
+
+   Scope: ONLY the visual of the four menu
+   items. Background video/overlay/vignette/
+   particles, header, tracker and continue
+   button are untouched. Click logic in app.js
+   is untouched — .surprise-card / data-target
+   / .tracker-dot all still work exactly as
+   before.
+
+   This removes the card look (background,
+   blur, border, rounded corners, shadow) added
+   in the previous round and replaces the inner
+   content with a plain <img> illustration per
+   menu, pointed at:
+     /assets/botanical/message-envelope.webp
+     /assets/botanical/memories-polaroid.webp
+     /assets/botanical/journey-book.webp
+     /assets/botanical/playlist-vinyl.webp
+========================================== */
+
+.surprise-hub-section .menu-grid {
+    gap: 8px 6px;
+}
+
+.surprise-hub-section .menu-item {
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+
+    aspect-ratio: auto;
+
+    padding: 22px 12px;
+    gap: 14px;
+
+    transform: none;
+}
+
+.surprise-hub-section .menu-item:hover,
+.surprise-hub-section .menu-item:focus-visible {
+    background: none;
+    border-color: transparent;
+    box-shadow: none;
+    transform: none;
+}
+
+.surprise-hub-section .menu-item:active {
+    transform: none;
+}
+
+/* Keyboard focus still needs to be clearly visible
+   even without a card to outline */
+
+.surprise-hub-section .menu-item:focus-visible {
+    outline: 2px solid var(--accent-pink, #e07a95);
+    outline-offset: 6px;
+    border-radius: 14px;
+}
+
+/* The old boxed checkmark badge doesn't fit a
+   card-less design — visited state now shows as
+   a soft glow on the illustration itself instead
+   (see .menu-item.visited below) */
+
+.surprise-hub-section .menu-item.visited::after {
+    content: none;
+}
+
+
+/* ==========================================
+   ILLUSTRATION
+========================================== */
+
+.menu-illustration {
+    position: relative;
+
+    width: 118px;
+    height: 118px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+}
+
+.menu-illustration-img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    transition:
+        transform 0.32s cubic-bezier(.22, 1, .36, 1),
+        filter 0.32s ease;
+
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+
+    will-change: transform;
+}
+
+/* A small resting tilt per item, so the grid
+   reads like a scrapbook rather than a rigid
+   table — still tidy, just not perfectly boxed */
+
+.menu-item[data-target="message"] .menu-illustration-img { transform: rotate(-2deg); }
+.menu-item[data-target="memories"] .menu-illustration-img { transform: rotate(1.5deg); }
+.menu-item[data-target="journey"] .menu-illustration-img { transform: rotate(-1deg); }
+.menu-item[data-target="playlist"] .menu-illustration-img { transform: rotate(2deg); }
+
+
+/* Hover / focus — per-item personality, 280-360ms,
+   lift 6-8px + scale 1.04-1.07 + shape-following
+   drop-shadow, no layout shift (transform only) */
+
+.menu-item[data-target="message"]:hover .menu-illustration-img,
+.menu-item[data-target="message"]:focus-visible .menu-illustration-img {
+    transform: translateY(-7px) scale(1.05) rotate(-6deg);
+    filter: drop-shadow(0 12px 18px rgba(224, 122, 149, 0.35));
+    transition-duration: 0.3s;
+}
+
+.menu-item[data-target="memories"]:hover .menu-illustration-img,
+.menu-item[data-target="memories"]:focus-visible .menu-illustration-img {
+    transform: translateY(-7px) scale(1.05) rotate(3deg);
+    filter: drop-shadow(0 12px 18px rgba(224, 122, 149, 0.35));
+    transition-duration: 0.32s;
+}
+
+.menu-item[data-target="journey"]:hover .menu-illustration-img,
+.menu-item[data-target="journey"]:focus-visible .menu-illustration-img {
+    transform: translateY(-8px) scale(1.06) rotate(0.5deg);
+    filter: drop-shadow(0 12px 18px rgba(224, 122, 149, 0.35));
+    transition-duration: 0.34s;
+}
+
+.menu-item[data-target="playlist"]:hover .menu-illustration-img,
+.menu-item[data-target="playlist"]:focus-visible .menu-illustration-img {
+    transform: translateY(-7px) scale(1.06) rotate(9deg);
+    filter: drop-shadow(0 12px 18px rgba(224, 122, 149, 0.35));
+    transition-duration: 0.36s;
+}
+
+.menu-item.visited .menu-illustration-img {
+    filter: drop-shadow(0 8px 14px rgba(224, 122, 149, 0.45));
+}
+
+/* Selected/press pulse now targets the image,
+   not a card that no longer exists */
+
+.surprise-hub-section .menu-item.is-selected {
+    animation: none;
+}
+
+.menu-item.is-selected .menu-illustration-img {
+    animation: menuItemSelectedPulse 0.45s ease;
+}
+
+
+/* Very simple placeholder for local development,
+   shown only if an asset fails to load — never a
+   broken-image icon, and never a real illustration */
+
+.menu-illustration-fallback {
+    display: none;
+
+    width: 68%;
+    height: 68%;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px dashed rgba(247, 236, 228, 0.35);
+    border-radius: 50%;
+
+    color: rgba(247, 236, 228, 0.45);
+
+    font-size: 0.6rem;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.menu-illustration-fallback::after {
+    content: "image";
+}
+
+
+.menu-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    text-align: center;
+}

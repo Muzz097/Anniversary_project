@@ -3461,3 +3461,30 @@ button {
 
     text-align: center;
 }
+
+/* ==========================================
+   PHASE 05 — HUB MENU ILLUSTRATIONS 
+========================================== */
+
+.menu-illustration::before {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(        circle,        rgba(236, 227, 107, 0.295),        rgba(193, 71, 204, 0.048) 70%    );
+    filter: blur(10px);
+    opacity: 0,6;
+    pointer-events: none;
+    transition: opacity 0.32s ease;
+    -webkit-transition: opacity 0.32s ease;
+    -moz-transition: opacity 0.32s ease;
+    -ms-transition: opacity 0.32s ease;
+    -o-transition: opacity 0.32s ease;
+}
+
+
+.menu-item:hover .menu-illustration::before,
+.menu-item:focus-visible .menu-illustration::before {
+    opacity: 0.85;
+}

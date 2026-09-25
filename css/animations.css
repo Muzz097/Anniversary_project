@@ -2001,3 +2001,84 @@
     }
 
 }
+
+@keyframes hubIllustrationFloatA {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-6px) rotate(-2deg); }
+}
+
+@keyframes hubIllustrationFloatB {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-5px) rotate(2deg); }
+}
+
+@keyframes hubIllustrationFloatC {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-7px) rotate(1.5deg); }
+}
+
+@keyframes hubVinylIdleSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+
+/* Message — gentle bob, like a light letter */
+.menu-item[data-target="message"] .menu-illustration {
+    animation: hubIllustrationFloatA 5.5s ease-in-out infinite;
+}
+
+/* Memories — soft sway, like a photo settling in a breeze */
+.menu-item[data-target="memories"] .menu-illustration {
+    animation: hubIllustrationFloatB 6.2s ease-in-out .4s infinite;
+}
+
+/* Journey — slightly slower drift */
+.menu-item[data-target="journey"] .menu-illustration {
+    animation: hubIllustrationFloatC 6.8s ease-in-out .8s infinite;
+}
+
+/* Playlist — continuous, steady spin, like a record on a player */
+.menu-item[data-target="playlist"] .menu-illustration {
+    animation: hubVinylIdleSpin 9s linear infinite;
+}
+
+/* Spin picks up a little on hover/focus — still smooth, not jarring */
+.menu-item[data-target="playlist"]:hover .menu-illustration,
+.menu-item[data-target="playlist"]:focus-visible .menu-illustration {
+    animation-duration: 3.2s;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .surprise-hub-section .menu-illustration {
+        animation: none !important;
+    }
+
+}
+
+@keyframes hubGlowBreathe {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%      { opacity: 0.8; transform: scale(1.08); }
+}
+ 
+.menu-illustration::before {
+    animation: hubGlowBreathe 4.5s ease-in-out infinite;
+}
+ 
+/* Stagger it slightly per item, same spirit as the idle float delays */
+ 
+.menu-item[data-target="memories"] .menu-illustration::before { animation-delay: .4s; }
+.menu-item[data-target="journey"] .menu-illustration::before { animation-delay: .8s; }
+.menu-item[data-target="playlist"] .menu-illustration::before { animation-delay: 1.2s; }
+ 
+ 
+@media (prefers-reduced-motion: reduce) {
+ 
+    .surprise-hub-section .menu-illustration::before {
+        animation: none !important;
+        opacity: 0.6 !important;
+    }
+ 
+}

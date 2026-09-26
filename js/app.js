@@ -48,8 +48,6 @@ const memoryGame =
 Add number to code
 */
 
-let isAdventureTransitioning = false;
-
 if (
     adventureButton &&
     happyAnniversary &&
@@ -60,311 +58,60 @@ if (
         "click",
         () => {
 
-            if (isAdventureTransitioning) {
-                return;
-            }
-
-            isAdventureTransitioning = true;
-            adventureButton.disabled = true;
-
-            playHeartCurtainTransition();
-
-        }
-    );
-
-}
-
-
-/*
-==========================================
-HEART CURTAIN + LOVE LETTER REVEAL
-==========================================
-
-Fase 1: tombol memberi respon (glow + hati).
-Fase 2: curtain + partikel menutup layar.
-Fase 3: memory game terungkap, kartu &
-        teks masuk bertahap.
-*/
-
-function playHeartCurtainTransition() {
-
-    const reduceMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-
-    /* Simple fade fallback, no decoration */
-
-    if (reduceMotion) {
-
-        happyAnniversary.classList.add("section-exit");
-
-        setTimeout(() => {
-
-            happyAnniversary.classList.remove(
-                "active-section", "section-exit"
-            );
-
             happyAnniversary.classList.add(
-                "hidden-section"
+                "section-exit"
             );
 
-            memoryGame.classList.remove(
-                "hidden-section"
-            );
 
-            memoryGame.classList.add(
-                "active-section"
-            );
+            setTimeout(() => {
 
-            window.scrollTo({
-                top: 0,
-                behavior: "instant"
-            });
+                happyAnniversary.classList.remove(
+                    "active-section"
+                );
 
-            if (
-                typeof window.initializeMemoryGame
-                === "function"
-            ) {
-
-                window.initializeMemoryGame();
-
-            }
-
-            adventureButton.classList.remove(
-                "is-transitioning"
-            );
-
-        }, 600);
-
-        return;
-
-    }
+                happyAnniversary.classList.add(
+                    "hidden-section"
+                );
 
 
-    const overlay =
-        document.getElementById("transitionOverlay");
-
-    const particleLayer =
-        document.getElementById("transitionParticles");
+                happyAnniversary.classList.remove(
+                    "section-exit"
+                );
 
 
-    /* Fase 1 */
+                memoryGame.classList.remove(
+                    "hidden-section"
+                );
 
-    adventureButton.classList.add("is-transitioning");
+                memoryGame.classList.add(
+                    "active-section"
+                );
 
-    spawnButtonHearts(adventureButton);
 
-    happyAnniversary.classList.add(
-        "page-transition-exit"
+                window.scrollTo({
+                    top: 0,
+                    behavior: "instant"
+                });
+
+
+                /*
+                Reset game setiap kali
+                Phase 03 dibuka.
+                */
+
+                if (
+                    typeof window.initializeMemoryGame
+                    === "function"
+                ) {
+
+                    window.initializeMemoryGame();
+
+                }
+
+            }, 1000);
+
+        }
     );
-
-
-    /* Fase 2 */
-
-    setTimeout(() => {
-
-        if (overlay) {
-            overlay.classList.add("is-active");
-        }
-
-        spawnCurtainParticles(particleLayer);
-
-    }, 150);
-
-
-    setTimeout(() => {
-
-        happyAnniversary.classList.remove(
-            "active-section",
-            "page-transition-exit"
-        );
-
-        happyAnniversary.classList.add(
-            "hidden-section"
-        );
-
-        memoryGame.classList.remove(
-            "hidden-section"
-        );
-
-        memoryGame.classList.add(
-            "active-section"
-        );
-
-        window.scrollTo({
-            top: 0,
-            behavior: "instant"
-        });
-
-        if (
-            typeof window.initializeMemoryGame
-            === "function"
-        ) {
-
-            window.initializeMemoryGame();
-
-        }
-
-    }, 750);
-
-
-    /* Fase 3 */
-
-    setTimeout(() => {
-
-        if (overlay) {
-            overlay.classList.add("is-exiting");
-        }
-
-    }, 900);
-
-
-    setTimeout(() => {
-
-        if (overlay) {
-
-            overlay.classList.remove(
-                "is-active", "is-exiting"
-            );
-
-        }
-
-        if (particleLayer) {
-            particleLayer.innerHTML = "";
-        }
-
-        adventureButton.classList.remove(
-            "is-transitioning"
-        );
-
-    }, 1700);
-
-}
-
-
-function spawnButtonHearts(button) {
-
-    const rect = button.getBoundingClientRect();
-
-    const container =
-        document.createElement("div");
-
-    container.className = "button-heart-burst";
-
-    document.body.appendChild(container);
-
-    for (let i = 0; i < 6; i++) {
-
-        const heart =
-            document.createElement("span");
-
-        heart.className = "floating-heart heart-particle button-heart";
-
-        const angle = (i / 6) * 360 + Math.random() * 20;
-        const spread = 40 + Math.random() * 30;
-
-        heart.style.left =
-            (rect.left + rect.width / 2) + "px";
-
-        heart.style.top =
-            (rect.top + rect.height / 2) + "px";
-
-        heart.style.setProperty(
-            "--tx",
-            Math.cos(angle * Math.PI / 180) * spread + "px"
-        );
-
-        heart.style.setProperty(
-            "--ty",
-            Math.sin(angle * Math.PI / 180) * spread + "px"
-        );
-
-        heart.style.animationDelay =
-            (Math.random() * 0.15) + "s";
-
-        container.appendChild(heart);
-
-    }
-
-    setTimeout(() => {
-        container.remove();
-    }, 1200);
-
-}
-
-
-function spawnCurtainParticles(container) {
-
-    if (!container) {
-        return;
-    }
-
-    container.innerHTML = "";
-
-    const kinds = [
-        "heart-particle",
-        "mini-petal",
-        "sparkle-particle",
-        "curtain-bokeh-shape",
-        "curtain-paper-shape",
-        "curtain-ribbon-shape"
-    ];
-
-    const total = 22;
-
-    for (let i = 0; i < total; i++) {
-
-        const piece =
-            document.createElement("span");
-
-        const kind =
-            kinds[i % kinds.length];
-
-        piece.className =
-            "transition-particle " + kind;
-
-        const edge = i % 4;
-
-        let startX;
-        let startY;
-
-        if (edge === 0) {
-            startX = Math.random() * 100;
-            startY = -10;
-        } else if (edge === 1) {
-            startX = 110;
-            startY = Math.random() * 100;
-        } else if (edge === 2) {
-            startX = Math.random() * 100;
-            startY = 110;
-        } else {
-            startX = -10;
-            startY = Math.random() * 100;
-        }
-
-        piece.style.setProperty("--start-x", startX + "%");
-        piece.style.setProperty("--start-y", startY + "%");
-
-        piece.style.setProperty(
-            "--target-x", (40 + Math.random() * 20) + "%"
-        );
-
-        piece.style.setProperty(
-            "--target-y", (40 + Math.random() * 20) + "%"
-        );
-
-        piece.style.setProperty(
-            "--rot", (Math.random() * 60 - 30) + "deg"
-        );
-
-        piece.style.animationDelay =
-            (Math.random() * 0.4) + "s";
-
-        container.appendChild(piece);
-
-    }
 
 }
 
@@ -669,17 +416,17 @@ submitButton.addEventListener("click", function () {
    PHASE 05 — CHOOSE YOUR SURPRISE
    ==========================================
 
-   This section only wires the *hub* itself:
-   the four cards, the visited-tracker, and
-   the "continue" button that appears once
-   all four have been opened at least once.
+   Wires the hub itself: the four menu items,
+   the visited-tracker, the "continue" button,
+   AND (new) the actual navigation from each
+   menu item to its own page section, with
+   visited progress persisted in localStorage
+   so it survives a refresh.
 
-   The actual Message / Memories / Journey /
-   Playlist screens are built in their own
-   files (reasons.js, journey.js, etc.) —
-   for now each card shows a short in-context
-   note so nothing feels broken while those
-   pages are still being built.
+   The four destination pages (#messageSection,
+   #memoriesSection, #journeySection,
+   #playlistSection) are placeholder shells for
+   now — full Phase 06-09 content comes later.
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -710,6 +457,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*
     ==========================================
+    DESTINATION PAGES (Phase 06-09 placeholders)
+    ==========================================
+    */
+
+    const menuPages = {
+
+        message:
+            document.getElementById("messageSection"),
+
+        memories:
+            document.getElementById("memoriesSection"),
+
+        journey:
+            document.getElementById("journeySection"),
+
+        playlist:
+            document.getElementById("playlistSection")
+
+    };
+
+
+    /*
+    ==========================================
     STATE
     ==========================================
     */
@@ -723,10 +493,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /*
-    A short, in-voice note per card.
-    Swapped out for the real page once
-    that phase is built — the data-target
-    attribute is already wired for it.
+    A short, in-voice note per card. No longer
+    shown on click now that each menu actually
+    navigates away, but kept here in case a
+    future empty/locked state wants it back.
     */
 
     const previewNotes = {
@@ -739,6 +509,55 @@ document.addEventListener("DOMContentLoaded", () => {
         playlist:
             "Three songs, still being picked with care."
     };
+
+
+    /*
+    ==========================================
+    PROGRESS PERSISTENCE (localStorage)
+    ==========================================
+    */
+
+    const VISITED_STORAGE_KEY =
+        "ourLittleStory.visitedMenus";
+
+    function saveVisitedToStorage() {
+
+        try {
+
+            localStorage.setItem(
+                VISITED_STORAGE_KEY,
+                JSON.stringify(visited)
+            );
+
+        } catch (error) {
+
+            /*
+            localStorage unavailable (private
+            mode, etc.) — progress just won't
+            survive a refresh this time.
+            */
+
+        }
+
+    }
+
+    function loadVisitedFromStorage() {
+
+        try {
+
+            const raw = localStorage.getItem(
+                VISITED_STORAGE_KEY
+            );
+
+            return raw ? JSON.parse(raw) : null;
+
+        } catch (error) {
+
+            return null;
+
+        }
+
+    }
 
 
     /*
@@ -804,44 +623,120 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*
     ==========================================
-    CARD CLICK
+    NAVIGATION: HUB <-> MENU PAGE
     ==========================================
     */
 
-    surpriseCards.forEach((card) => {
+    function goToMenuPage(target) {
 
-        card.addEventListener("click", () => {
+        const page = menuPages[target];
 
-            const target = card.dataset.target;
+        if (!page) {
+            return;
+        }
 
-            if (!target) {
-                return;
-            }
+        surpriseHub.classList.add(
+            "section-exit"
+        );
 
-            markVisited(target);
+        setTimeout(() => {
 
-            showHint(
-                previewNotes[target] || ""
+            surpriseHub.classList.remove(
+                "active-section"
             );
 
-        });
+            surpriseHub.classList.add(
+                "hidden-section"
+            );
 
-    });
+            surpriseHub.classList.remove(
+                "section-exit"
+            );
+
+
+            page.classList.remove(
+                "hidden-section"
+            );
+
+            page.classList.add(
+                "active-section"
+            );
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "instant"
+            });
+
+        }, 1000);
+
+    }
+
+    function goBackToHub(target) {
+
+        const page = menuPages[target];
+
+        if (!page) {
+            return;
+        }
+
+        page.classList.add("section-exit");
+
+        setTimeout(() => {
+
+            page.classList.remove(
+                "active-section"
+            );
+
+            page.classList.add(
+                "hidden-section"
+            );
+
+            page.classList.remove(
+                "section-exit"
+            );
+
+
+            surpriseHub.classList.remove(
+                "hidden-section"
+            );
+
+            surpriseHub.classList.add(
+                "active-section"
+            );
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "instant"
+            });
+
+        }, 1000);
+
+    }
 
 
     /*
     ==========================================
     MARK VISITED
+    (now also persists to localStorage, and
+    can skip the pulse animation when restoring
+    state on page load)
     ==========================================
     */
 
-    function markVisited(target) {
+    function setVisited(target, options) {
 
-        if (visited[target]) {
-            return;
+        const animate =
+            !options || options.animate !== false;
+
+        if (!visited[target]) {
+
+            visited[target] = true;
+
+            saveVisitedToStorage();
+
         }
-
-        visited[target] = true;
 
 
         const card = document.querySelector(
@@ -852,15 +747,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             card.classList.add("visited");
 
-            card.classList.remove(
-                "visited-animation"
-            );
+            if (animate) {
 
-            void card.offsetWidth;
+                card.classList.remove(
+                    "visited-animation"
+                );
 
-            card.classList.add(
-                "visited-animation"
-            );
+                void card.offsetWidth;
+
+                card.classList.add(
+                    "visited-animation"
+                );
+
+            }
 
         }
 
@@ -926,6 +825,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*
     ==========================================
+    CARD CLICK — mark visited, then navigate
+    ==========================================
+    */
+
+    surpriseCards.forEach((card) => {
+
+        card.addEventListener("click", () => {
+
+            const target = card.dataset.target;
+
+            if (!target) {
+                return;
+            }
+
+            setVisited(target);
+
+            goToMenuPage(target);
+
+        });
+
+    });
+
+
+    /*
+    ==========================================
+    BACK BUTTON ON EACH MENU PAGE
+    ==========================================
+    */
+
+    Object.keys(menuPages).forEach((target) => {
+
+        const page = menuPages[target];
+
+        if (!page) {
+            return;
+        }
+
+        const backButton = page.querySelector(
+            "[data-back]"
+        );
+
+        if (!backButton) {
+            return;
+        }
+
+        backButton.addEventListener(
+            "click",
+            () => goBackToHub(target)
+        );
+
+    });
+
+
+    /*
+    ==========================================
+    RESTORE PROGRESS FROM A PREVIOUS VISIT
+    ==========================================
+    */
+
+    const storedVisited = loadVisitedFromStorage();
+
+    if (storedVisited) {
+
+        Object.keys(visited).forEach((target) => {
+
+            if (storedVisited[target]) {
+
+                setVisited(target, { animate: false });
+
+            }
+
+        });
+
+    }
+
+
+    /*
+    ==========================================
     CONTINUE BUTTON
     ==========================================
     */
@@ -945,14 +922,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 /*
-                Phase 14 (Our Future) akan
-                disambungkan setelah Message,
-                Memories, Journey, dan Playlist
-                selesai dibangun.
+                Phase 10 (transition) dan Phase 14
+                (Our Future) akan disambungkan
+                setelah keempat halaman menu selesai
+                dibangun sesuai konsep.
                 */
 
                 console.log(
-                    "Continue to Phase 14 — Our Future"
+                    "Continue to Phase 10 — Our Future transition"
                 );
 
             }
@@ -962,8 +939,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+
 /* ==========================================
-   PHASE 05 — MENU MENU
+   PHASE 05 — HUB CINEMATIC REDESIGN
+   (additive: click sparkle burst + double-click
+   guard on top of the existing hub logic above.
+   Does not touch the block above.)
 ========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1046,13 +1027,6 @@ document.addEventListener("DOMContentLoaded", () => {
     menuItems.forEach((item) => {
 
         item.addEventListener("click", (event) => {
-
-            /*
-            Ignore taps while a transition is
-            already in flight — prevents double
-            navigation once real page transitions
-            are wired up per menu.
-            */
 
             if (
                 surpriseHub.classList.contains(

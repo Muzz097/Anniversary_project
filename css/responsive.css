@@ -691,3 +691,110 @@ MOBILE
     }
 
 }
+
+/* ==========================================
+   PHASE 09 — PLAYLIST PAGE — MOBILE
+   (append to the END of css/responsive.css)
+========================================== */
+
+@media (max-width: 480px) {
+
+    .playlist-content {
+        padding: 54px 16px 110px;
+    }
+
+    .playlist-album-vinyl {
+        width: 180px;
+        height: 180px;
+    }
+
+    .playlist-vinyl {
+        width: 150px;
+        height: 150px;
+    }
+
+    .playlist-album-cover {
+        width: 150px;
+        height: 150px;
+    }
+
+    .playlist-polaroid {
+        width: 62px;
+    }
+
+    .playlist-progress-row {
+        max-width: 320px;
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .playlist-album-vinyl {
+        width: 160px;
+        height: 160px;
+    }
+
+    .playlist-vinyl {
+        width: 132px;
+        height: 132px;
+    }
+
+    .playlist-album-cover {
+        width: 132px;
+        height: 132px;
+    }
+
+    .playlist-polaroid {
+        width: 54px;
+    }
+
+    .playlist-polaroids {
+        gap: 8px;
+    }
+
+    .playlist-controls {
+        gap: 12px;
+    }
+
+}
+
+
+/* ==========================================
+   DESKTOP — a bit more room, same character
+========================================== */
+
+@media (min-width: 760px) {
+
+    .playlist-content {
+        width: min(88%, 760px);
+    }
+
+    .playlist-visual {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 56px;
+    }
+
+    .playlist-polaroids {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .playlist-album-vinyl {
+        width: 260px;
+        height: 260px;
+    }
+
+    .playlist-vinyl {
+        width: 220px;
+        height: 220px;
+    }
+
+    .playlist-album-cover {
+        width: 220px;
+        height: 220px;
+    }
+
+}

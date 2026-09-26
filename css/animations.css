@@ -2082,3 +2082,73 @@
     }
  
 }
+
+/* ==========================================
+   PHASE 09 — PLAYLIST PAGE — ANIMATIONS
+   (append to the END of css/animations.css)
+========================================== */
+
+@keyframes playlistVinylSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Idle: still (or you could uncomment a very slow
+   spin below if you'd rather it never fully stops) */
+
+.vinyl-disc-rotating {
+    animation: playlistVinylSpin 11s linear infinite;
+    animation-play-state: paused;
+}
+
+/* Spinning only while a track is actually playing —
+   pausing (not resetting) means it never jumps back
+   to a fixed position when the song stops */
+
+#playlistVinyl.is-spinning .vinyl-disc-rotating {
+    animation-play-state: running;
+}
+
+
+/* Polaroids — soft floating, gentle rotation wobble,
+   staggered so they don't move in sync */
+
+@keyframes playlistPolaroidFloat {
+    0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+    50%      { transform: translateY(-6px) rotate(calc(var(--rot, 0deg) + 1.5deg)); }
+}
+
+.polaroid-one   { --rot: -6deg; animation: playlistPolaroidFloat 6s ease-in-out infinite; }
+.polaroid-two   { --rot: 3deg;  animation: playlistPolaroidFloat 6.6s ease-in-out .4s infinite; }
+.polaroid-three { --rot: -3deg; animation: playlistPolaroidFloat 7.2s ease-in-out .8s infinite; }
+
+.playlist-polaroid:hover {
+    animation-play-state: paused;
+    transform: translateY(-8px) rotate(0deg) !important;
+}
+
+
+/* Track switch — brief scale/fade pulse on the
+   vinyl + cover when a new song is chosen */
+
+@keyframes playlistTrackSwitch {
+    0%   { transform: scale(1); opacity: 1; }
+    45%  { transform: scale(0.92); opacity: 0.55; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .playlist-page-section .vinyl-disc-rotating,
+    .playlist-page-section .playlist-polaroid,
+    .playlist-page-section .playlist-album-vinyl.track-switching .playlist-album-cover,
+    .playlist-page-section .playlist-album-vinyl.track-switching .playlist-vinyl {
+        animation: none !important;
+    }
+
+    .playlist-page-section .playlist-ambience {
+        display: none !important;
+    }
+
+}

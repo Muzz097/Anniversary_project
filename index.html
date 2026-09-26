@@ -311,7 +311,7 @@
         <div class="photo-inner">
             <img src="assets/images/couple/photo-02.jpeg" alt="Our memory">
         </div>
-        <img class="photo-botanical photo-botanical-leaf" src="assets/images/botanical/lop_kecil.png" alt="">
+        <img class="photo-botanical photo-botanical-leaf" src="assets/images/botanical/daun kecill.png" alt="">
     </div>
 
     <div class="memory-photo photo-three">
@@ -666,7 +666,7 @@
             loop
             playsinline
         >
-            <source src="assets/videos/suprise_video.mp4" type="video/mp4">
+            <source src="assets/videos/surprise-hub-bg.mp4" type="video/mp4">
         </video>
     </div>
 
@@ -744,14 +744,17 @@
                 data-target="message"
             >
                 <span class="menu-illustration">
-                    <img
-                        class="menu-illustration-img"
-                        src="/assets/images/botanical/amplop.png"
-                        alt="Ilustrasi amplop surat, menuju halaman Message"
-                        loading="lazy"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                    >
-                    <span class="menu-illustration-fallback" aria-hidden="true"></span>
+                    <span class="illustration-motion">
+                        <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
+                        <img
+                            class="menu-illustration-img"
+                            src="/assets/botanical/message-envelope.webp"
+                            alt="Ilustrasi amplop surat, menuju halaman Message"
+                            loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <span class="menu-illustration-fallback" aria-hidden="true"></span>
+                    </span>
                 </span>
 
                 <span class="menu-copy">
@@ -770,7 +773,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/images/botanical/kamera.png"
+                        src="/assets/botanical/memories-polaroid.webp"
                         alt="Ilustrasi tumpukan foto polaroid, menuju halaman Memories"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -794,7 +797,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/images/botanical/grow.png"
+                        src="/assets/botanical/journey-book.webp"
                         alt="Ilustrasi buku catatan terbuka, menuju halaman Journey"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -818,7 +821,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/images/botanical/musikcd.png"
+                        src="/assets/botanical/playlist-vinyl.webp"
                         alt="Ilustrasi piringan vinyl, menuju halaman Playlist"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -886,7 +889,357 @@
 </section>
 
 
+<!-- ==========================================
+     PHASE 06-09 — MENU PAGES (placeholders)
+     Full content per the concept doc comes later;
+     for now these just give each hub menu item a
+     real destination + a way back. Navigation and
+     visited-tracking wiring lives in js/app.js
+     ("PHASE 05 — CHOOSE YOUR SURPRISE" block).
+========================================== -->
+
+<!-- PHASE 06 — MESSAGE -->
+<section
+    class="menu-page-section hidden-section"
+    id="messageSection"
+    data-page="message"
+>
+    <div class="menu-page-background"></div>
+    <div class="menu-page-overlay"></div>
+
+    <div class="menu-page-content">
+
+        <p class="menu-page-eyebrow">PHASE 06 — MESSAGE</p>
+
+        <h2 class="menu-page-title">A Letter For You</h2>
+
+        <p class="menu-page-placeholder">
+            The full letter — with its typewriter reveal
+            and signature — is still being written.
+            This page will hold it soon.
+        </p>
+
+        <button
+            type="button"
+            class="menu-page-back"
+            data-back
+        >
+            ← Back to Our Little World
+        </button>
+
+    </div>
+
+</section>
+
+<!-- PHASE 07 — MEMORIES -->
+<section
+    class="menu-page-section hidden-section"
+    id="memoriesSection"
+    data-page="memories"
+>
+    <div class="menu-page-background"></div>
+    <div class="menu-page-overlay"></div>
+
+    <div class="menu-page-content">
+
+        <p class="menu-page-eyebrow">PHASE 07 — MEMORIES</p>
+
+        <h2 class="menu-page-title">Our Memories</h2>
+
+        <p class="menu-page-placeholder">
+            A scroll-through timeline of every "first" —
+            first meeting, first date, and everything after —
+            is coming together here.
+        </p>
+
+        <button
+            type="button"
+            class="menu-page-back"
+            data-back
+        >
+            ← Back to Our Little World
+        </button>
+
+    </div>
+
+</section>
+
+<!-- PHASE 08 — JOURNEY -->
+<section
+    class="menu-page-section hidden-section"
+    id="journeySection"
+    data-page="journey"
+>
+    <div class="menu-page-background"></div>
+    <div class="menu-page-overlay"></div>
+
+    <div class="menu-page-content">
+
+        <p class="menu-page-eyebrow">PHASE 08 — JOURNEY</p>
+
+        <h2 class="menu-page-title">Our Journey</h2>
+
+        <p class="menu-page-placeholder">
+            Ailsa's growth, her milestones, and the road
+            we've walked together — a timeline from
+            "once upon a time" to "look how far we've come".
+        </p>
+
+        <button
+            type="button"
+            class="menu-page-back"
+            data-back
+        >
+            ← Back to Our Little World
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     PHASE 09 — PLAYLIST
+     "The Soundtrack of Us" — real page, wired to
+     the global audio singleton in js/music.js.
+     Asset placeholders live in assets/images/playlist/
+     and assets/audio/ — see the comments by each one.
+========================================== -->
+
+<section
+    class="playlist-page-section hidden-section"
+    id="playlistSection"
+    data-page="playlist"
+>
+
+    <div class="playlist-background"></div>
+    <div class="playlist-overlay"></div>
+
+    <!-- Ambient particles (reuses existing bokeh/glitter/petal/mini-heart) -->
+    <div class="playlist-ambience" aria-hidden="true">
+        <span class="bokeh" style="--x:6%; --y:12%; --size:170px; --delay:0s; --duration:13s;"></span>
+        <span class="bokeh" style="--x:88%; --y:8%; --size:140px; --delay:2s; --duration:11s;"></span>
+        <span class="glitter" style="--x:20%; --y:20%; --delay:.2s;"></span>
+        <span class="glitter" style="--x:72%; --y:16%; --delay:1.4s;"></span>
+        <span class="glitter" style="--x:40%; --y:70%; --delay:.8s;"></span>
+        <span class="petal" style="--x:12%; --size:12px; --delay:0s; --duration:17s;"></span>
+        <span class="petal" style="--x:82%; --size:11px; --delay:4s; --duration:16s;"></span>
+        <span class="mini-heart" style="--x:60%; --delay:2s; --duration:10s;"></span>
+    </div>
+
+    <div class="playlist-content">
+
+        <!-- BACK NAVIGATION -->
+        <button type="button" class="playlist-back" data-back>
+            <span class="playlist-back-arrow" aria-hidden="true">←</span>
+            Back to Our Little World
+        </button>
+
+        <!-- HEADER -->
+        <header class="playlist-header">
+            <h2 class="playlist-title">Our Playlist</h2>
+            <p class="playlist-subtitle">Three songs. Three little pieces of us.</p>
+        </header>
+
+        <!-- MAIN VISUAL: vinyl + album cover + polaroids -->
+        <div class="playlist-visual">
+
+            <div class="playlist-album-vinyl">
+
+                <div class="playlist-vinyl" id="playlistVinyl" aria-hidden="true">
+                    <div class="vinyl-disc-rotating">
+                        <span class="vinyl-label-large">A ♥ S</span>
+                    </div>
+                </div>
+
+                <div class="playlist-album-cover">
+                    <!-- TODO: ganti dengan assets/images/playlist/album-<track-id>.jpg milikmu sendiri -->
+                    <img
+                        id="playlistAlbumCover"
+                        src="assets/images/playlist/album-beginning.jpg"
+                        alt="Album cover for the currently playing song"
+                        onerror="this.style.display='none'; this.parentElement.classList.add('cover-fallback');"
+                    >
+                </div>
+
+            </div>
+
+            <div class="playlist-polaroids" aria-hidden="true">
+                <!-- TODO: ganti dengan assets/images/playlist/polaroid-0X.jpg foto asli kalian -->
+                <figure class="playlist-polaroid polaroid-one">
+                    <img src="assets/images/playlist/polaroid-01.jpg" alt="" onerror="this.style.display='none'">
+                    <figcaption>the beginning</figcaption>
+                </figure>
+                <figure class="playlist-polaroid polaroid-two">
+                    <img src="assets/images/playlist/polaroid-02.jpg" alt="" onerror="this.style.display='none'">
+                    <figcaption>the moments</figcaption>
+                </figure>
+                <figure class="playlist-polaroid polaroid-three">
+                    <img src="assets/images/playlist/polaroid-03.jpg" alt="" onerror="this.style.display='none'">
+                    <figcaption>the future</figcaption>
+                </figure>
+            </div>
+
+        </div>
+
+        <!-- NOW PLAYING -->
+        <div class="playlist-now-playing">
+            <p class="now-playing-label">Now Playing</p>
+            <h3 class="now-playing-title" id="playlistNowPlayingTitle">The Beginning</h3>
+            <p class="now-playing-tagline">This one sounds like us.</p>
+            <p class="now-playing-error" id="playlistError" aria-live="polite"></p>
+        </div>
+
+        <!-- PROGRESS -->
+        <div class="playlist-progress-row">
+            <span class="playlist-time" id="playlistCurrentTime">0:00</span>
+            <input
+                type="range"
+                class="playlist-progress-range"
+                id="playlistProgressRange"
+                min="0"
+                max="100"
+                step="0.1"
+                value="0"
+                aria-label="Seek in the current song"
+            >
+            <span class="playlist-time" id="playlistDuration">0:00</span>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="playlist-controls">
+
+            <button
+                type="button"
+                class="playlist-control-btn"
+                id="playlistPrevBtn"
+                aria-label="Previous song"
+            >‹</button>
+
+            <button
+                type="button"
+                class="playlist-play-btn"
+                id="playlistPlayPauseBtn"
+                aria-label="Play or pause"
+            >
+                <span class="play-pause-icon" aria-hidden="true"></span>
+            </button>
+
+            <button
+                type="button"
+                class="playlist-control-btn"
+                id="playlistNextBtn"
+                aria-label="Next song"
+            >›</button>
+
+            <button
+                type="button"
+                class="playlist-control-btn playlist-mute-btn"
+                id="playlistMuteBtn"
+                aria-label="Mute or unmute"
+            >Mute</button>
+
+        </div>
+
+        <!-- TRACK LIST -->
+        <div class="playlist-track-list" role="list">
+
+            <button
+                type="button"
+                class="playlist-track-item"
+                data-track-id="the-beginning"
+                role="listitem"
+            >
+                <span class="track-thumb">
+                    <img src="assets/images/playlist/album-beginning.jpg" alt="" onerror="this.style.display='none'">
+                </span>
+                <span class="track-info">
+                    <span class="track-title">The Beginning</span>
+                    <span class="track-tagline">Where it all started.</span>
+                </span>
+                <span class="track-status" aria-hidden="true"></span>
+            </button>
+
+            <button
+                type="button"
+                class="playlist-track-item"
+                data-track-id="the-moments"
+                role="listitem"
+            >
+                <span class="track-thumb">
+                    <img src="assets/images/playlist/album-moments.jpg" alt="" onerror="this.style.display='none'">
+                </span>
+                <span class="track-info">
+                    <span class="track-title">The Moments</span>
+                    <span class="track-tagline">All the in betweens.</span>
+                </span>
+                <span class="track-status" aria-hidden="true"></span>
+            </button>
+
+            <button
+                type="button"
+                class="playlist-track-item"
+                data-track-id="the-future"
+                role="listitem"
+            >
+                <span class="track-thumb">
+                    <img src="assets/images/playlist/album-future.jpg" alt="" onerror="this.style.display='none'">
+                </span>
+                <span class="track-info">
+                    <span class="track-title">The Future</span>
+                    <span class="track-tagline">Still so much to come.</span>
+                </span>
+                <span class="track-status" aria-hidden="true"></span>
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 </main>
+
+
+<!-- ==========================================
+     GLOBAL MINI PLAYER
+     Lives OUTSIDE every section so it can stay
+     visible no matter which page is active, per
+     the "mini player tetap tersedia" requirement.
+     Hidden until a track has actually started at
+     least once. Controlled by js/music.js.
+========================================== -->
+
+<div class="mini-player" id="miniPlayer" aria-hidden="true">
+
+    <span class="mini-player-cover">
+        <img id="miniPlayerCover" alt="">
+    </span>
+
+    <span class="mini-player-info">
+        <span class="mini-player-title" id="miniPlayerTitle">—</span>
+        <span class="mini-player-progress" aria-hidden="true">
+            <span class="mini-player-progress-fill" id="miniPlayerProgressFill"></span>
+        </span>
+    </span>
+
+    <button
+        type="button"
+        class="mini-player-btn"
+        id="miniPlayerPlayPauseBtn"
+        aria-label="Play or pause"
+    >
+        <span class="play-pause-icon" aria-hidden="true"></span>
+    </button>
+
+    <button
+        type="button"
+        class="mini-player-btn mini-player-mute-btn"
+        id="miniPlayerMuteBtn"
+        aria-label="Mute or unmute"
+    >Mute</button>
+
+</div>
 
 
 <!-- JavaScript -->

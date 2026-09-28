@@ -584,9 +584,9 @@
             <span class="burst-heart"></span>
             <span class="burst-heart"></span>
 
-            <img src="assets/images/botanical/leaves.webp" class="ketemu-leaf ketemu-leaf-left" alt="">
-            <img src="assets/images/botanical/daun kecill.png" class="ketemu-leaf ketemu-leaf-right" alt="">
-            <img src="assets/images/botanical/peony.png" class="ketemu-flower ketemu-peony" alt="">
+            <img src="assets/images/botanical/siimut.png" class="ketemu-leaf ketemu-leaf-left" alt="">
+            <img src="assets/images/botanical/lop_kecil.png" class="ketemu-leaf ketemu-leaf-right" alt="">
+            <img src="assets/images/botanical/buket.png" class="ketemu-flower ketemu-peony" alt="">
             <img src="assets/images/botanical/Kupu.png" class="ketemu-flower ketemu-rose" alt="">
 
         </div>
@@ -633,15 +633,6 @@
 
 <!-- ==========================================
      PHASE 05 — CHOOSE YOUR SURPRISE
-     (Background/particles: "PHASE 05 — HUB
-     CINEMATIC REDESIGN" blocks in style.css /
-     animations.css / responsive.css, plus the
-     click-effect block appended to app.js.
-     Menu visuals: card look removed, each menu
-     is now a standalone transparent illustration
-     — see "PHASE 05 — HUB MENU VISUAL OVERHAUL"
-     in style.css / animations.css / responsive.css.
-     Asset files go in assets/botanical/.)
 ========================================== -->
 
 <section
@@ -650,12 +641,7 @@
 >
 
     <!-- ==========================================
-         BACKGROUND VIDEO (decorative, low opacity)
-         Ganti file di: assets/videos/surprise-hub-bg.mp4
-         Video ini murni dekoratif — kalau belum ada
-         file-nya, section ini otomatis jatuh ke
-         gradient fallback di bawahnya, jadi tampilan
-         tetap bagus tanpa video.
+         BACKGROUND VIDEO
     =========================================== -->
 
     <div class="hub-video-wrap" aria-hidden="true">
@@ -748,7 +734,7 @@
                         <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                         <img
                             class="menu-illustration-img"
-                            src="/assets/botanical/message-envelope.webp"
+                            src="/assets/images/botanical/amplop.png"
                             alt="Ilustrasi amplop surat, menuju halaman Message"
                             loading="lazy"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -773,7 +759,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/botanical/memories-polaroid.webp"
+                        src="/assets/images/botanical/kamera.png"
                         alt="Ilustrasi tumpukan foto polaroid, menuju halaman Memories"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -797,7 +783,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/botanical/journey-book.webp"
+                        src="/assets/images/botanical/grow.png"
                         alt="Ilustrasi buku catatan terbuka, menuju halaman Journey"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -821,7 +807,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/botanical/playlist-vinyl.webp"
+                        src="/assets/images/botanical/musikcd.png"
                         alt="Ilustrasi piringan vinyl, menuju halaman Playlist"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -891,11 +877,6 @@
 
 <!-- ==========================================
      PHASE 06-09 — MENU PAGES (placeholders)
-     Full content per the concept doc comes later;
-     for now these just give each hub menu item a
-     real destination + a way back. Navigation and
-     visited-tracking wiring lives in js/app.js
-     ("PHASE 05 — CHOOSE YOUR SURPRISE" block).
 ========================================== -->
 
 <!-- PHASE 06 — MESSAGE -->
@@ -999,10 +980,6 @@
 
 <!-- ==========================================
      PHASE 09 — PLAYLIST
-     "The Soundtrack of Us" — real page, wired to
-     the global audio singleton in js/music.js.
-     Asset placeholders live in assets/images/playlist/
-     and assets/audio/ — see the comments by each one.
 ========================================== -->
 
 <section
@@ -1055,7 +1032,7 @@
                     <!-- TODO: ganti dengan assets/images/playlist/album-<track-id>.jpg milikmu sendiri -->
                     <img
                         id="playlistAlbumCover"
-                        src="assets/images/playlist/album-beginning.jpg"
+                        src="assets/images/playlist/album-beginning.png"
                         alt="Album cover for the currently playing song"
                         onerror="this.style.display='none'; this.parentElement.classList.add('cover-fallback');"
                     >
@@ -1064,17 +1041,17 @@
             </div>
 
             <div class="playlist-polaroids" aria-hidden="true">
-                <!-- TODO: ganti dengan assets/images/playlist/polaroid-0X.jpg foto asli kalian -->
+
                 <figure class="playlist-polaroid polaroid-one">
-                    <img src="assets/images/playlist/polaroid-01.jpg" alt="" onerror="this.style.display='none'">
+                    <img src="assets/images/playlist/polaroid-01.jpeg" alt="" onerror="this.style.display='none'">
                     <figcaption>the beginning</figcaption>
                 </figure>
                 <figure class="playlist-polaroid polaroid-two">
-                    <img src="assets/images/playlist/polaroid-02.jpg" alt="" onerror="this.style.display='none'">
+                    <img src="assets/images/playlist/polaroid-02.jpeg" alt="" onerror="this.style.display='none'">
                     <figcaption>the moments</figcaption>
                 </figure>
                 <figure class="playlist-polaroid polaroid-three">
-                    <img src="assets/images/playlist/polaroid-03.jpg" alt="" onerror="this.style.display='none'">
+                    <img src="assets/images/playlist/polaroid-03.jpeg" alt="" onerror="this.style.display='none'">
                     <figcaption>the future</figcaption>
                 </figure>
             </div>
@@ -1150,7 +1127,7 @@
                 role="listitem"
             >
                 <span class="track-thumb">
-                    <img src="assets/images/playlist/album-beginning.jpg" alt="" onerror="this.style.display='none'">
+                    <img src="assets/images/playlist/album-beginning.png" alt="" onerror="this.style.display='none'">
                 </span>
                 <span class="track-info">
                     <span class="track-title">The Beginning</span>

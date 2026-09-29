@@ -587,9 +587,9 @@
             <span class="burst-heart"></span>
             <span class="burst-heart"></span>
 
-            <img src="assets/images/botanical/leaves.webp" class="ketemu-leaf ketemu-leaf-left" alt="">
-            <img src="assets/images/botanical/daun kecill.png" class="ketemu-leaf ketemu-leaf-right" alt="">
-            <img src="assets/images/botanical/peony.png" class="ketemu-flower ketemu-peony" alt="">
+            <img src="assets/images/botanical/lop_kecil.png" class="ketemu-leaf ketemu-leaf-left" alt="">
+            <img src="assets/images/botanical/siimut.png" class="ketemu-leaf ketemu-leaf-right" alt="">
+            <img src="assets/images/botanical/buket.png" class="ketemu-flower ketemu-peony" alt="">
             <img src="assets/images/botanical/Kupu.png" class="ketemu-flower ketemu-rose" alt="">
 
         </div>
@@ -636,15 +636,6 @@
 
 <!-- ==========================================
      PHASE 05 — CHOOSE YOUR SURPRISE
-     (Background/particles: "PHASE 05 — HUB
-     CINEMATIC REDESIGN" blocks in style.css /
-     animations.css / responsive.css, plus the
-     click-effect block appended to app.js.
-     Menu visuals: card look removed, each menu
-     is now a standalone transparent illustration
-     — see "PHASE 05 — HUB MENU VISUAL OVERHAUL"
-     in style.css / animations.css / responsive.css.
-     Asset files go in assets/botanical/.)
 ========================================== -->
 
 <section
@@ -654,11 +645,6 @@
 
     <!-- ==========================================
          BACKGROUND VIDEO (decorative, low opacity)
-         Ganti file di: assets/videos/surprise-hub-bg.mp4
-         Video ini murni dekoratif — kalau belum ada
-         file-nya, section ini otomatis jatuh ke
-         gradient fallback di bawahnya, jadi tampilan
-         tetap bagus tanpa video.
     =========================================== -->
 
     <div class="hub-video-wrap" aria-hidden="true">
@@ -669,7 +655,7 @@
             loop
             playsinline
         >
-            <source src="assets/videos/surprise-hub-bg.mp4" type="video/mp4">
+            <source src="assets/videos/suprise_video.mp4" type="video/mp4">
         </video>
     </div>
 
@@ -751,7 +737,7 @@
                         <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                         <img
                             class="menu-illustration-img"
-                            src="/assets/botanical/message-envelope.webp"
+                            src="/assets/images/botanical/amplop.png"
                             alt="Ilustrasi amplop surat, menuju halaman Message"
                             loading="lazy"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -776,7 +762,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/botanical/memories-polaroid.webp"
+                        src="/assets/images/botanical/kamera.png"
                         alt="Ilustrasi tumpukan foto polaroid, menuju halaman Memories"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -800,7 +786,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/botanical/journey-book.webp"
+                        src="/assets/images/botanical/grow.png"
                         alt="Ilustrasi buku catatan terbuka, menuju halaman Journey"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -824,7 +810,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/botanical/playlist-vinyl.webp"
+                        src="/assets/images/botanical/musikcd.png"
                         alt="Ilustrasi piringan vinyl, menuju halaman Playlist"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -894,11 +880,6 @@
 
 <!-- ==========================================
      PHASE 06-09 — MENU PAGES (placeholders)
-     Full content per the concept doc comes later;
-     for now these just give each hub menu item a
-     real destination + a way back. Navigation and
-     visited-tracking wiring lives in js/app.js
-     ("PHASE 05 — CHOOSE YOUR SURPRISE" block).
 ========================================== -->
 
 <!-- PHASE 06 — MESSAGE -->
@@ -1002,15 +983,6 @@
 
 <!-- ==========================================
      PHASE 09 — PLAYLIST  ("The Soundtrack of Us")
-     Revisi: komposisi scrapbook, kontrol SVG, Repeat All.
-
-     LOKASI PENGGANTIAN ASSET
-       Audio ........ /assets/audio/*.mp3        (nama & judul diatur di js/music.js -> playlistTracks)
-       Cover album .. /assets/playlist/album-*.jpg (diatur di js/music.js -> playlistTracks)
-       Polaroid ..... /assets/playlist/polaroid-large.jpg, polaroid-small-01.jpg, polaroid-small-02.jpg
-       Peony/daun ... /assets/playlist/peony-small.png, leaf-small.png (di bawah)
-       Tape, clip, sparkle, waveform, label vinyl -> variabel --pl-asset-* di css/playlist.css
-     Semua slot aman kalau file belum ada (tidak muncul broken-image).
 ========================================== -->
 
 <section
@@ -1047,7 +1019,7 @@
         <!-- HEADER -->
         <header class="pl-header">
             <h2 class="pl-title">Our Playlist</h2>
-            <p class="pl-subtitle">Three songs. Three little pieces of us.</p>
+            <p class="pl-subtitle">The songs that remember it to you</p>
         </header>
 
 
@@ -1063,7 +1035,7 @@
                  tidak ada, disembunyikan. -->
             <img
                 class="pl-decor pl-decor-peony"
-                src="/assets/playlist/peony-small.png"
+                src="/assets/images/playlist/peony-kering.jpg"
                 data-fb="assets/images/botanical/peony.png"
                 alt=""
                 aria-hidden="true"
@@ -1071,7 +1043,7 @@
             >
             <img
                 class="pl-decor pl-decor-leaf"
-                src="/assets/playlist/leaf-small.png"
+                src="/assets/images/playlist/kupu-musik.jpg"
                 data-fb="assets/images/botanical/leaves.webp"
                 alt=""
                 aria-hidden="true"
@@ -1121,7 +1093,7 @@
                             <!-- TODO: ganti dengan foto asli: /assets/playlist/polaroid-large.jpg -->
                             <img
                                 class="pl-pol-photo"
-                                src="/assets/playlist/polaroid-large.jpg"
+                                src="/assets/images/playlist/polaroid-large.jpeg"
                                 alt="Foto kenangan awal cerita kita"
                                 onerror="this.style.visibility='hidden'"
                             >
@@ -1138,7 +1110,7 @@
                                 <!-- TODO: ganti dengan foto asli: /assets/playlist/polaroid-small-01.jpg -->
                                 <img
                                     class="pl-pol-photo"
-                                    src="/assets/playlist/polaroid-small-01.jpg"
+                                    src="/assets/images/playlist/polaroid-01.jpeg"
                                     alt="Foto kenangan kecil kita"
                                     onerror="this.style.visibility='hidden'"
                                 >
@@ -1152,7 +1124,7 @@
                                 <!-- TODO: ganti dengan foto asli: /assets/playlist/polaroid-small-02.jpg -->
                                 <img
                                     class="pl-pol-photo"
-                                    src="/assets/playlist/polaroid-small-02.jpg"
+                                    src="/assets/images/playlist/polaroid-03.jpeg"
                                     alt="Foto harapan masa depan kita"
                                     onerror="this.style.visibility='hidden'"
                                 >
@@ -1170,14 +1142,10 @@
             </div>
 
             <!-- TODO: ganti tanggalnya (mis. since 31.08.2025) -->
-            <p class="pl-since" aria-hidden="true">since 00.00.0000</p>
+            <p class="pl-since" aria-hidden="true">since 31.08.2025</p>
 
         </div>
 
-
-        <!-- ==========================================
-             NOW PLAYING (diisi dari playlistTracks)
-        =========================================== -->
 
         <div class="pl-now" id="plNow">
             <p class="pl-now-label">Now Playing</p>
@@ -1261,7 +1229,6 @@
         </div>
 
 
-        <!-- TIGA ITEM LAGU (dibangun dari playlistTracks oleh js/music.js) -->
         <ul class="pl-tracks" id="plTracks"></ul>
 
     </div>
@@ -1274,11 +1241,6 @@
 
 <!-- ==========================================
      GLOBAL MINI BAR
-     Di luar semua section supaya bisa tampil di halaman mana pun.
-     Tampil setelah musik pernah mulai, KECUALI di halaman intro dan
-     di halaman Playlist (daftar section yang menyembunyikannya ada di
-     js/music.js -> MINI_HIDDEN_SECTIONS). Isi: cover kecil, judul,
-     play/pause, repeat.
 ========================================== -->
 
 <div class="mini-bar" id="miniPlayer" role="region" aria-label="Sedang diputar" aria-hidden="true">

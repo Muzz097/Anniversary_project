@@ -35,8 +35,8 @@
         {
             id: "the-beginning",
             category: "THE BEGINNING",
-            title: "Ganti judul lagu",
-            artist: "Ganti nama penyanyi",
+            title: "Lesung Pipi",
+            artist: "Raim Laode",
             audioSrc: "/assets/audio/the-beginning.mp3",
             coverSrc: "/assets/playlist/album-beginning.jpg",
             description: "Lagu yang mengingatkanku pada awal cerita kita.",

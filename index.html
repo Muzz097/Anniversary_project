@@ -27,6 +27,9 @@
 <!-- Animation Styles -->
 <link rel="stylesheet" href="css/animations.css">
 
+<!-- Playlist page styles (Phase 09) -->
+<link rel="stylesheet" href="css/playlist.css">
+
 
 </head>
 
@@ -584,9 +587,9 @@
             <span class="burst-heart"></span>
             <span class="burst-heart"></span>
 
-            <img src="assets/images/botanical/siimut.png" class="ketemu-leaf ketemu-leaf-left" alt="">
-            <img src="assets/images/botanical/lop_kecil.png" class="ketemu-leaf ketemu-leaf-right" alt="">
-            <img src="assets/images/botanical/buket.png" class="ketemu-flower ketemu-peony" alt="">
+            <img src="assets/images/botanical/leaves.webp" class="ketemu-leaf ketemu-leaf-left" alt="">
+            <img src="assets/images/botanical/daun kecill.png" class="ketemu-leaf ketemu-leaf-right" alt="">
+            <img src="assets/images/botanical/peony.png" class="ketemu-flower ketemu-peony" alt="">
             <img src="assets/images/botanical/Kupu.png" class="ketemu-flower ketemu-rose" alt="">
 
         </div>
@@ -633,6 +636,15 @@
 
 <!-- ==========================================
      PHASE 05 — CHOOSE YOUR SURPRISE
+     (Background/particles: "PHASE 05 — HUB
+     CINEMATIC REDESIGN" blocks in style.css /
+     animations.css / responsive.css, plus the
+     click-effect block appended to app.js.
+     Menu visuals: card look removed, each menu
+     is now a standalone transparent illustration
+     — see "PHASE 05 — HUB MENU VISUAL OVERHAUL"
+     in style.css / animations.css / responsive.css.
+     Asset files go in assets/botanical/.)
 ========================================== -->
 
 <section
@@ -641,7 +653,12 @@
 >
 
     <!-- ==========================================
-         BACKGROUND VIDEO
+         BACKGROUND VIDEO (decorative, low opacity)
+         Ganti file di: assets/videos/surprise-hub-bg.mp4
+         Video ini murni dekoratif — kalau belum ada
+         file-nya, section ini otomatis jatuh ke
+         gradient fallback di bawahnya, jadi tampilan
+         tetap bagus tanpa video.
     =========================================== -->
 
     <div class="hub-video-wrap" aria-hidden="true">
@@ -734,7 +751,7 @@
                         <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                         <img
                             class="menu-illustration-img"
-                            src="/assets/images/botanical/amplop.png"
+                            src="/assets/botanical/message-envelope.webp"
                             alt="Ilustrasi amplop surat, menuju halaman Message"
                             loading="lazy"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -759,7 +776,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/images/botanical/kamera.png"
+                        src="/assets/botanical/memories-polaroid.webp"
                         alt="Ilustrasi tumpukan foto polaroid, menuju halaman Memories"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -783,7 +800,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/images/botanical/grow.png"
+                        src="/assets/botanical/journey-book.webp"
                         alt="Ilustrasi buku catatan terbuka, menuju halaman Journey"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -807,7 +824,7 @@
                     <!-- TODO: Replace with final transparent Phase 5 menu illustration. -->
                     <img
                         class="menu-illustration-img"
-                        src="/assets/images/botanical/musikcd.png"
+                        src="/assets/botanical/playlist-vinyl.webp"
                         alt="Ilustrasi piringan vinyl, menuju halaman Playlist"
                         loading="lazy"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -877,6 +894,11 @@
 
 <!-- ==========================================
      PHASE 06-09 — MENU PAGES (placeholders)
+     Full content per the concept doc comes later;
+     for now these just give each hub menu item a
+     real destination + a way back. Navigation and
+     visited-tracking wiring lives in js/app.js
+     ("PHASE 05 — CHOOSE YOUR SURPRISE" block).
 ========================================== -->
 
 <!-- PHASE 06 — MESSAGE -->
@@ -979,196 +1001,268 @@
 </section>
 
 <!-- ==========================================
-     PHASE 09 — PLAYLIST
+     PHASE 09 — PLAYLIST  ("The Soundtrack of Us")
+     Revisi: komposisi scrapbook, kontrol SVG, Repeat All.
+
+     LOKASI PENGGANTIAN ASSET
+       Audio ........ /assets/audio/*.mp3        (nama & judul diatur di js/music.js -> playlistTracks)
+       Cover album .. /assets/playlist/album-*.jpg (diatur di js/music.js -> playlistTracks)
+       Polaroid ..... /assets/playlist/polaroid-large.jpg, polaroid-small-01.jpg, polaroid-small-02.jpg
+       Peony/daun ... /assets/playlist/peony-small.png, leaf-small.png (di bawah)
+       Tape, clip, sparkle, waveform, label vinyl -> variabel --pl-asset-* di css/playlist.css
+     Semua slot aman kalau file belum ada (tidak muncul broken-image).
 ========================================== -->
 
 <section
-    class="playlist-page-section hidden-section"
+    class="pl-page hidden-section"
     id="playlistSection"
     data-page="playlist"
 >
 
-    <div class="playlist-background"></div>
-    <div class="playlist-overlay"></div>
+    <div class="pl-bg" aria-hidden="true"></div>
+    <div class="pl-vignette" aria-hidden="true"></div>
 
-    <!-- Ambient particles (reuses existing bokeh/glitter/petal/mini-heart) -->
-    <div class="playlist-ambience" aria-hidden="true">
-        <span class="bokeh" style="--x:6%; --y:12%; --size:170px; --delay:0s; --duration:13s;"></span>
-        <span class="bokeh" style="--x:88%; --y:8%; --size:140px; --delay:2s; --duration:11s;"></span>
-        <span class="glitter" style="--x:20%; --y:20%; --delay:.2s;"></span>
-        <span class="glitter" style="--x:72%; --y:16%; --delay:1.4s;"></span>
-        <span class="glitter" style="--x:40%; --y:70%; --delay:.8s;"></span>
-        <span class="petal" style="--x:12%; --size:12px; --delay:0s; --duration:17s;"></span>
-        <span class="petal" style="--x:82%; --size:11px; --delay:4s; --duration:16s;"></span>
-        <span class="mini-heart" style="--x:60%; --delay:2s; --duration:10s;"></span>
+    <!-- Ambient particles (dekoratif, pointer-events: none) -->
+    <div class="pl-ambience" aria-hidden="true">
+        <span class="bokeh" style="--x:6%; --y:10%; --size:170px; --delay:0s; --duration:13s;"></span>
+        <span class="bokeh" style="--x:86%; --y:34%; --size:140px; --delay:2s; --duration:11s;"></span>
+        <span class="glitter" style="--x:18%; --y:18%; --delay:.2s;"></span>
+        <span class="glitter" style="--x:80%; --y:14%; --delay:1.4s;"></span>
+        <span class="glitter" style="--x:12%; --y:52%; --delay:.8s;"></span>
+        <span class="glitter" style="--x:88%; --y:62%; --delay:2.1s;"></span>
+        <span class="petal" style="--x:14%; --size:12px; --delay:0s; --duration:18s;"></span>
+        <span class="petal" style="--x:78%; --size:11px; --delay:5s; --duration:16s;"></span>
+        <span class="mini-heart" style="--x:24%; --delay:1s; --duration:11s;"></span>
+        <span class="mini-heart" style="--x:70%; --delay:6s; --duration:12s;"></span>
     </div>
 
-    <div class="playlist-content">
+    <div class="pl-content">
 
         <!-- BACK NAVIGATION -->
-        <button type="button" class="playlist-back" data-back>
-            <span class="playlist-back-arrow" aria-hidden="true">←</span>
-            Back to Our Little World
+        <button type="button" class="pl-back" data-back>
+            <svg class="pl-back-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            <span>Back to Our Little World</span>
         </button>
 
         <!-- HEADER -->
-        <header class="playlist-header">
-            <h2 class="playlist-title">Our Playlist</h2>
-            <p class="playlist-subtitle">Three songs. Three little pieces of us.</p>
+        <header class="pl-header">
+            <h2 class="pl-title">Our Playlist</h2>
+            <p class="pl-subtitle">Three songs. Three little pieces of us.</p>
         </header>
 
-        <!-- MAIN VISUAL: vinyl + album cover + polaroids -->
-        <div class="playlist-visual">
 
-            <div class="playlist-album-vinyl">
+        <!-- ==========================================
+             SCRAPBOOK STAGE: vinyl + cover + polaroids
+        =========================================== -->
 
-                <div class="playlist-vinyl" id="playlistVinyl" aria-hidden="true">
-                    <div class="vinyl-disc-rotating">
-                        <span class="vinyl-label-large">A ♥ S</span>
+        <div class="pl-stage">
+
+            <!-- Dekorasi (di bawah konten, tidak bisa diklik).
+                 Kalau file peony/daun belum ada, otomatis pakai
+                 botanical yang sudah ada di project; kalau itu pun
+                 tidak ada, disembunyikan. -->
+            <img
+                class="pl-decor pl-decor-peony"
+                src="/assets/playlist/peony-small.png"
+                data-fb="assets/images/botanical/peony.png"
+                alt=""
+                aria-hidden="true"
+                onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}"
+            >
+            <img
+                class="pl-decor pl-decor-leaf"
+                src="/assets/playlist/leaf-small.png"
+                data-fb="assets/images/botanical/leaves.webp"
+                alt=""
+                aria-hidden="true"
+                onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}"
+            >
+            <span class="pl-decor pl-decor-sparkle pl-sparkle-a" aria-hidden="true"></span>
+            <span class="pl-decor pl-decor-sparkle pl-sparkle-b" aria-hidden="true"></span>
+
+            <!-- Baris catatan atas -->
+            <div class="pl-notes-top" aria-hidden="true">
+                <span class="pl-tag-side">Side A</span>
+                <span class="pl-note pl-note-song">our song</span>
+            </div>
+
+            <!-- VINYL (belakang) + ALBUM COVER (depan, menyerong) -->
+            <div class="pl-cluster" id="plCluster">
+
+                <div class="pl-vinyl" id="playlistVinyl" aria-hidden="true">
+                    <div class="pl-vinyl-disc" id="plVinylDisc"></div>
+                    <!-- Label tidak ikut berputar supaya "A ♥ S" tetap terbaca.
+                         Ganti gambar label lewat --pl-asset-vinyl-label (css/playlist.css). -->
+                    <div class="pl-vinyl-label">
+                        <span class="pl-vinyl-monogram">A <span class="pl-vinyl-heart">♥</span> S</span>
                     </div>
                 </div>
 
-                <div class="playlist-album-cover">
-                    <!-- TODO: ganti dengan assets/images/playlist/album-<track-id>.jpg milikmu sendiri -->
-                    <img
-                        id="playlistAlbumCover"
-                        src="assets/images/playlist/album-beginning.png"
-                        alt="Album cover for the currently playing song"
-                        onerror="this.style.display='none'; this.parentElement.classList.add('cover-fallback');"
-                    >
+                <div class="pl-cover" id="plCover">
+                    <!-- Cover diisi otomatis dari js/music.js (coverSrc tiap lagu) -->
+                    <img id="playlistAlbumCover" alt="Album cover">
+                    <span class="pl-cover-shine" aria-hidden="true"></span>
                 </div>
 
             </div>
 
-            <div class="playlist-polaroids" aria-hidden="true">
+            <!-- Waveform tipis (slot gambar: --pl-asset-waveform) -->
+            <span class="pl-waveform" aria-hidden="true"></span>
 
-                <figure class="playlist-polaroid polaroid-one">
-                    <img src="assets/images/playlist/polaroid-01.jpeg" alt="" onerror="this.style.display='none'">
-                    <figcaption>the beginning</figcaption>
-                </figure>
-                <figure class="playlist-polaroid polaroid-two">
-                    <img src="assets/images/playlist/polaroid-02.jpeg" alt="" onerror="this.style.display='none'">
-                    <figcaption>the moments</figcaption>
-                </figure>
-                <figure class="playlist-polaroid polaroid-three">
-                    <img src="assets/images/playlist/polaroid-03.jpeg" alt="" onerror="this.style.display='none'">
-                    <figcaption>the future</figcaption>
-                </figure>
+            <!-- POLAROID: satu besar kiri, dua kecil bertumpuk kanan -->
+            <div class="pl-photos">
+
+                <span class="pl-note pl-note-moments" aria-hidden="true">little moments</span>
+
+                <div class="pl-polaroids">
+
+                    <figure class="pl-pol pl-pol-big">
+                        <div class="pl-pol-frame">
+                            <!-- TODO: ganti dengan foto asli: /assets/playlist/polaroid-large.jpg -->
+                            <img
+                                class="pl-pol-photo"
+                                src="/assets/playlist/polaroid-large.jpg"
+                                alt="Foto kenangan awal cerita kita"
+                                onerror="this.style.visibility='hidden'"
+                            >
+                            <figcaption>the beginning</figcaption>
+                            <span class="pl-tape" aria-hidden="true"></span>
+                            <span class="pl-clip" aria-hidden="true"></span>
+                        </div>
+                    </figure>
+
+                    <div class="pl-pol-smalls">
+
+                        <figure class="pl-pol pl-pol-small pl-pol-small-1">
+                            <div class="pl-pol-frame">
+                                <!-- TODO: ganti dengan foto asli: /assets/playlist/polaroid-small-01.jpg -->
+                                <img
+                                    class="pl-pol-photo"
+                                    src="/assets/playlist/polaroid-small-01.jpg"
+                                    alt="Foto kenangan kecil kita"
+                                    onerror="this.style.visibility='hidden'"
+                                >
+                                <figcaption>our little moments</figcaption>
+                                <span class="pl-tape" aria-hidden="true"></span>
+                            </div>
+                        </figure>
+
+                        <figure class="pl-pol pl-pol-small pl-pol-small-2">
+                            <div class="pl-pol-frame">
+                                <!-- TODO: ganti dengan foto asli: /assets/playlist/polaroid-small-02.jpg -->
+                                <img
+                                    class="pl-pol-photo"
+                                    src="/assets/playlist/polaroid-small-02.jpg"
+                                    alt="Foto harapan masa depan kita"
+                                    onerror="this.style.visibility='hidden'"
+                                >
+                                <figcaption>the future</figcaption>
+                                <span class="pl-tape" aria-hidden="true"></span>
+                            </div>
+                        </figure>
+
+                    </div>
+
+                </div>
+
+                <span class="pl-note pl-note-again" aria-hidden="true">play it again</span>
+
             </div>
 
+            <!-- TODO: ganti tanggalnya (mis. since 31.08.2025) -->
+            <p class="pl-since" aria-hidden="true">since 00.00.0000</p>
+
         </div>
 
-        <!-- NOW PLAYING -->
-        <div class="playlist-now-playing">
-            <p class="now-playing-label">Now Playing</p>
-            <h3 class="now-playing-title" id="playlistNowPlayingTitle">The Beginning</h3>
-            <p class="now-playing-tagline">This one sounds like us.</p>
-            <p class="now-playing-error" id="playlistError" aria-live="polite"></p>
+
+        <!-- ==========================================
+             NOW PLAYING (diisi dari playlistTracks)
+        =========================================== -->
+
+        <div class="pl-now" id="plNow">
+            <p class="pl-now-label">Now Playing</p>
+            <p class="pl-now-category" id="plNowCategory"></p>
+            <h3 class="pl-now-title" id="playlistNowPlayingTitle"></h3>
+            <p class="pl-now-artist" id="plNowArtist"></p>
+            <p class="pl-now-desc" id="plNowDesc"></p>
+            <p class="pl-now-error" id="playlistError" role="status" aria-live="polite"></p>
         </div>
+
 
         <!-- PROGRESS -->
-        <div class="playlist-progress-row">
-            <span class="playlist-time" id="playlistCurrentTime">0:00</span>
+        <div class="pl-progress-row">
+            <span class="pl-time" id="playlistCurrentTime">0:00</span>
             <input
                 type="range"
-                class="playlist-progress-range"
+                class="pl-progress"
                 id="playlistProgressRange"
                 min="0"
                 max="100"
                 step="0.1"
                 value="0"
-                aria-label="Seek in the current song"
+                aria-label="Posisi lagu"
             >
-            <span class="playlist-time" id="playlistDuration">0:00</span>
+            <span class="pl-time" id="playlistDuration">0:00</span>
         </div>
 
-        <!-- CONTROLS -->
-        <div class="playlist-controls">
 
-            <button
-                type="button"
-                class="playlist-control-btn"
-                id="playlistPrevBtn"
-                aria-label="Previous song"
-            >‹</button>
+        <!-- CONTROLS: [ kosong ] [ prev  PLAY  next ] [ repeat ]
+             Grid 1fr / auto / 1fr menjaga tombol play tepat di tengah. -->
+        <div class="pl-controls">
 
-            <button
-                type="button"
-                class="playlist-play-btn"
-                id="playlistPlayPauseBtn"
-                aria-label="Play or pause"
-            >
-                <span class="play-pause-icon" aria-hidden="true"></span>
-            </button>
+            <span class="pl-controls-side" aria-hidden="true"></span>
 
-            <button
-                type="button"
-                class="playlist-control-btn"
-                id="playlistNextBtn"
-                aria-label="Next song"
-            >›</button>
+            <div class="pl-controls-main">
 
-            <button
-                type="button"
-                class="playlist-control-btn playlist-mute-btn"
-                id="playlistMuteBtn"
-                aria-label="Mute or unmute"
-            >Mute</button>
+                <button
+                    type="button"
+                    class="pl-icon-btn pl-skip"
+                    id="playlistPrevBtn"
+                    aria-label="Lagu sebelumnya"
+                >
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="2.4" height="14" rx="1"/><path d="M19 5.7v12.6a1 1 0 0 1-1.55.83L9 12.83a1 1 0 0 1 0-1.66l8.45-5.6A1 1 0 0 1 19 5.7z"/></svg>
+                </button>
 
-        </div>
+                <button
+                    type="button"
+                    class="pl-play-btn is-paused"
+                    id="playlistPlayPauseBtn"
+                    aria-label="Putar"
+                >
+                    <svg class="pl-ico-play" viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+                    <svg class="pl-ico-pause" viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><rect x="6.5" y="5" width="4" height="14" rx="1.2"/><rect x="13.5" y="5" width="4" height="14" rx="1.2"/></svg>
+                    <span class="pl-spinner" aria-hidden="true"></span>
+                </button>
 
-        <!-- TRACK LIST -->
-        <div class="playlist-track-list" role="list">
+                <button
+                    type="button"
+                    class="pl-icon-btn pl-skip"
+                    id="playlistNextBtn"
+                    aria-label="Lagu berikutnya"
+                >
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><rect x="16.6" y="5" width="2.4" height="14" rx="1"/><path d="M5 5.7v12.6a1 1 0 0 0 1.55.83L15 12.83a1 1 0 0 0 0-1.66L6.55 5.57A1 1 0 0 0 5 5.7z"/></svg>
+                </button>
 
-            <button
-                type="button"
-                class="playlist-track-item"
-                data-track-id="the-beginning"
-                role="listitem"
-            >
-                <span class="track-thumb">
-                    <img src="assets/images/playlist/album-beginning.png" alt="" onerror="this.style.display='none'">
-                </span>
-                <span class="track-info">
-                    <span class="track-title">The Beginning</span>
-                    <span class="track-tagline">Where it all started.</span>
-                </span>
-                <span class="track-status" aria-hidden="true"></span>
-            </button>
+            </div>
 
-            <button
-                type="button"
-                class="playlist-track-item"
-                data-track-id="the-moments"
-                role="listitem"
-            >
-                <span class="track-thumb">
-                    <img src="assets/images/playlist/album-moments.jpg" alt="" onerror="this.style.display='none'">
-                </span>
-                <span class="track-info">
-                    <span class="track-title">The Moments</span>
-                    <span class="track-tagline">All the in betweens.</span>
-                </span>
-                <span class="track-status" aria-hidden="true"></span>
-            </button>
-
-            <button
-                type="button"
-                class="playlist-track-item"
-                data-track-id="the-future"
-                role="listitem"
-            >
-                <span class="track-thumb">
-                    <img src="assets/images/playlist/album-future.jpg" alt="" onerror="this.style.display='none'">
-                </span>
-                <span class="track-info">
-                    <span class="track-title">The Future</span>
-                    <span class="track-tagline">Still so much to come.</span>
-                </span>
-                <span class="track-status" aria-hidden="true"></span>
-            </button>
+            <div class="pl-controls-side pl-controls-end">
+                <button
+                    type="button"
+                    class="pl-icon-btn pl-repeat"
+                    id="playlistRepeatBtn"
+                    aria-label="Ulangi semua lagu"
+                    aria-pressed="false"
+                    title="Repeat all"
+                >
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                </button>
+            </div>
 
         </div>
+
+
+        <!-- TIGA ITEM LAGU (dibangun dari playlistTracks oleh js/music.js) -->
+        <ul class="pl-tracks" id="plTracks"></ul>
 
     </div>
 
@@ -1179,42 +1273,42 @@
 
 
 <!-- ==========================================
-     GLOBAL MINI PLAYER
-     Lives OUTSIDE every section so it can stay
-     visible no matter which page is active, per
-     the "mini player tetap tersedia" requirement.
-     Hidden until a track has actually started at
-     least once. Controlled by js/music.js.
+     GLOBAL MINI BAR
+     Di luar semua section supaya bisa tampil di halaman mana pun.
+     Tampil setelah musik pernah mulai, KECUALI di halaman intro dan
+     di halaman Playlist (daftar section yang menyembunyikannya ada di
+     js/music.js -> MINI_HIDDEN_SECTIONS). Isi: cover kecil, judul,
+     play/pause, repeat.
 ========================================== -->
 
-<div class="mini-player" id="miniPlayer" aria-hidden="true">
+<div class="mini-bar" id="miniPlayer" role="region" aria-label="Sedang diputar" aria-hidden="true">
 
-    <span class="mini-player-cover">
+    <span class="mini-bar-cover">
         <img id="miniPlayerCover" alt="">
     </span>
 
-    <span class="mini-player-info">
-        <span class="mini-player-title" id="miniPlayerTitle">—</span>
-        <span class="mini-player-progress" aria-hidden="true">
-            <span class="mini-player-progress-fill" id="miniPlayerProgressFill"></span>
-        </span>
-    </span>
+    <span class="mini-bar-title" id="miniPlayerTitle"></span>
 
     <button
         type="button"
-        class="mini-player-btn"
+        class="pl-icon-btn mini-bar-btn is-paused"
         id="miniPlayerPlayPauseBtn"
-        aria-label="Play or pause"
+        aria-label="Putar"
     >
-        <span class="play-pause-icon" aria-hidden="true"></span>
+        <svg class="pl-ico-play" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+        <svg class="pl-ico-pause" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><rect x="6.5" y="5" width="4" height="14" rx="1.2"/><rect x="13.5" y="5" width="4" height="14" rx="1.2"/></svg>
     </button>
 
     <button
         type="button"
-        class="mini-player-btn mini-player-mute-btn"
-        id="miniPlayerMuteBtn"
-        aria-label="Mute or unmute"
-    >Mute</button>
+        class="pl-icon-btn mini-bar-btn pl-repeat"
+        id="miniPlayerRepeatBtn"
+        aria-label="Ulangi semua lagu"
+        aria-pressed="false"
+        title="Repeat all"
+    >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+    </button>
 
 </div>
 

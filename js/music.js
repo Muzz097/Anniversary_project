@@ -38,7 +38,7 @@
             title: "Lesung Pipi",
             artist: "Raim Laode",
             audioSrc: "/assets/audio/the-beginning.mp3",
-            coverSrc: "/assets/playlist/album-beginning.jpg",
+            coverSrc: "/assets/images/playlist/album-beginning.jpg",
             description: "Lagu yang mengingatkanku pada awal cerita kita.",
             order: 0,
             isDefault: true
@@ -49,7 +49,7 @@
             title: "Everything u are",
             artist: "Hindia",
             audioSrc: "/assets/audio/the-moments.mp3",
-            coverSrc: "/assets/playlist/album-moments.jpg",
+            coverSrc: "/assets/images/playlist/album-moments.jpg",
             description: "Lagu untuk kenangan kecil kita.",
             order: 1,
             isDefault: false
@@ -60,7 +60,7 @@
             title: "Aku Milikmu",
             artist: "Dewa19",
             audioSrc: "/assets/audio/the-future.mp3",
-            coverSrc: "/assets/playlist/album-future.jpg",
+            coverSrc: "/assets/images/playlist/album-future.png",
             description: "Lagu untuk perjalanan kita berikutnya.",
             order: 2,
             isDefault: false

@@ -6,7 +6,8 @@
    SATU <audio> untuk seluruh website. Halaman mana pun cukup
    memanggil window.musicPlayer.playTrack(id) — modul ini yang
    menghentikan lagu lama, memuat lagu baru, dan memberi tahu semua
-   tampilan (halaman Playlist + mini bar) lewat subscribe().
+   tampilan (halaman Playlist + notifikasi OS lewat Media Session)
+   lewat subscribe().
 
    Autoplay: browser memblokir audio sebelum ada interaksi pengguna.
    Saat load, "The Beginning" (track isDefault) disiapkan dan dicoba
@@ -77,6 +78,16 @@
     */
 
     const RESTORE_LAST_TRACK_ON_LOAD = false;
+
+    /*
+    Repeat All menyala secara default begitu website pertama kali
+    dibuka (soundtrack langsung mengulang tanpa perlu ditekan) —
+    tapi kalau Sharkk sendiri pernah mematikannya lewat tombol
+    repeat, pilihan itu diingat lewat localStorage dan tidak
+    dipaksa nyala lagi setiap saat.
+    */
+
+    const REPEAT_ALL_DEFAULT = true;
 
     const STORAGE_KEY = "ourLittleStory.audioState.v2";
 
@@ -634,7 +645,17 @@
 
         const stored = loadStoredState();
 
-        state.repeatAll = !!(stored && stored.repeatAll);
+        /*
+        Repeat All: default ON sejak awal (REPEAT_ALL_DEFAULT),
+        kecuali Sharkk sendiri sudah pernah menyimpan pilihan
+        eksplisit (nyala ATAU mati) lewat tombol repeat -> pilihan
+        itu yang dipakai, bukan dipaksa nyala terus.
+        */
+
+        state.repeatAll =
+            stored && typeof stored.repeatAll === "boolean"
+                ? stored.repeatAll
+                : REPEAT_ALL_DEFAULT;
 
         let startTrack = getDefaultTrack();
         let startAt = 0;
@@ -690,11 +711,15 @@
 
 
 /* ==========================================
-   PLAYLIST PAGE + MINI BAR — UI WIRING
+   PLAYLIST PAGE UI WIRING
    ==========================================
 
    Hanya membaca state dari window.musicPlayer lalu memperbarui
-   DOM. Kalau elemen tertentu tidak ada, bagian itu dilewati.
+   DOM halaman Playlist. Notifikasi di luar website (lock screen /
+   notifikasi HP & desktop) ditangani sepenuhnya oleh Media Session
+   di atas — modul ini TIDAK LAGI menampilkan mini bar di dalam
+   website (sesuai permintaan Sharkk untuk menghapus tampilan itu).
+   Kalau elemen tertentu tidak ada di halaman, bagian itu dilewati.
    Semua listener dipasang SEKALI (tidak ada listener ganda).
 */
 
@@ -705,21 +730,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!player) {
         return;
     }
-
-    /*
-    Section yang TIDAK menampilkan mini bar: halaman intro (musik tetap
-    jalan, hanya barnya yang disembunyikan) dan halaman Playlist sendiri
-    (di sana sudah ada player besar). Section baru di masa depan
-    otomatis menampilkan mini bar.
-    */
-
-    const MINI_HIDDEN = [
-        "secret-entrance",
-        "happy-anniversary",
-        "memoryGame",
-        "ketemuSection",
-        "playlistSection"
-    ];
 
 
     /*
@@ -751,12 +761,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const repeatBtn = document.getElementById("playlistRepeatBtn");
 
     const trackList = document.getElementById("plTracks");
-
-    const miniBar = document.getElementById("miniPlayer");
-    const miniCover = document.getElementById("miniPlayerCover");
-    const miniTitle = document.getElementById("miniPlayerTitle");
-    const miniPlayBtn = document.getElementById("miniPlayerPlayPauseBtn");
-    const miniRepeatBtn = document.getElementById("miniPlayerRepeatBtn");
 
 
     /*
@@ -1116,75 +1120,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    if (miniCover) {
-
-        miniCover.addEventListener("error", () => {
-            miniCover.style.visibility = "hidden";
-        });
-
-        miniCover.addEventListener("load", () => {
-            miniCover.style.visibility = "visible";
-        });
-
-    }
-
 
     /*
     ==========================================
-    MINI BAR VISIBILITY (bergantung section aktif)
-    ==========================================
-    */
-
-    let lastState = null;
-
-    function getActiveSectionId() {
-
-        const active = document.querySelector("#app > section.active-section");
-
-        return active ? active.id : "";
-
-    }
-
-    function updateMiniVisibility() {
-
-        const activeId = getActiveSectionId();
-
-        document.body.classList.toggle(
-            "is-playlist-page",
-            activeId === "playlistSection"
-        );
-
-        if (!miniBar) {
-            return;
-        }
-
-        const show = !!(
-            lastState &&
-            lastState.hasStarted &&
-            lastState.track &&
-            activeId &&
-            MINI_HIDDEN.indexOf(activeId) === -1
-        );
-
-        miniBar.classList.toggle("is-visible", show);
-        miniBar.setAttribute("aria-hidden", show ? "false" : "true");
-
-        document.body.classList.toggle("mini-on", show);
-
-    }
-
-
-    /*
-    ==========================================
-    updateNowPlayingUI — satu fungsi yang menyegarkan semua tampilan
+    updateNowPlayingUI — satu fungsi yang menyegarkan tampilan
+    halaman Playlist (Now Playing, progress, kontrol, daftar lagu)
     ==========================================
     */
 
     let lastSpinning = null;
 
     function updateNowPlayingUI(current) {
-
-        lastState = current;
 
         const track = current.track;
 
@@ -1247,42 +1193,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-        /* play / pause (page + mini bar) : is-playing | is-paused | is-loading | is-disabled */
+        /* play / pause : is-playing | is-paused | is-loading | is-disabled */
 
-        [playBtn, miniPlayBtn].forEach((btn) => {
+        if (playBtn) {
 
-            if (!btn) {
-                return;
-            }
+            playBtn.classList.toggle("is-playing", current.isPlaying);
+            playBtn.classList.toggle("is-paused", !current.isPlaying);
+            playBtn.classList.toggle("is-loading", current.isLoading && !current.hasError);
+            playBtn.classList.toggle("is-disabled", current.hasError);
 
-            btn.classList.toggle("is-playing", current.isPlaying);
-            btn.classList.toggle("is-paused", !current.isPlaying);
-            btn.classList.toggle("is-loading", current.isLoading && !current.hasError);
-            btn.classList.toggle("is-disabled", current.hasError);
+            playBtn.setAttribute("aria-disabled", current.hasError ? "true" : "false");
 
-            btn.setAttribute("aria-disabled", current.hasError ? "true" : "false");
+            setLabel(playBtn, current.isPlaying ? "Jeda" : "Putar");
 
-            setLabel(btn, current.isPlaying ? "Jeda" : "Putar");
-
-        });
+        }
 
         /* repeat all */
 
-        [repeatBtn, miniRepeatBtn].forEach((btn) => {
-
-            if (!btn) {
-                return;
-            }
+        if (repeatBtn) {
 
             const pressed = current.repeatAll ? "true" : "false";
 
-            if (btn.getAttribute("aria-pressed") !== pressed) {
-                btn.setAttribute("aria-pressed", pressed);
+            if (repeatBtn.getAttribute("aria-pressed") !== pressed) {
+                repeatBtn.setAttribute("aria-pressed", pressed);
             }
 
-            btn.title = current.repeatAll ? "Repeat all: aktif" : "Repeat all: mati";
+            repeatBtn.title = current.repeatAll ? "Repeat all: aktif" : "Repeat all: mati";
 
-        });
+        }
 
         /* daftar lagu */
 
@@ -1324,16 +1262,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-        /* mini bar */
-
-        if (miniCover && miniCover.getAttribute("src") !== track.coverSrc) {
-            miniCover.src = track.coverSrc;
-        }
-
-        setText(miniTitle, track.title);
-
-        updateMiniVisibility();
-
     }
 
 
@@ -1352,11 +1280,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     bind(playBtn, () => player.togglePlay());
-    bind(miniPlayBtn, () => player.togglePlay());
     bind(prevBtn, () => player.playPreviousTrack());
     bind(nextBtn, () => player.playNextTrack());
     bind(repeatBtn, () => player.toggleRepeatAll());
-    bind(miniRepeatBtn, () => player.toggleRepeatAll());
 
     if (progressRange) {
 
@@ -1367,29 +1293,6 @@ document.addEventListener("DOMContentLoaded", () => {
             player.seek(
                 (parseFloat(progressRange.value) / 100) * (current.duration || 0)
             );
-
-        });
-
-    }
-
-
-    /*
-    ==========================================
-    SECTION CHANGES -> mini bar tampil / sembunyi
-    (memantau class .active-section, tanpa mengubah app.js)
-    ==========================================
-    */
-
-    if (typeof MutationObserver === "function") {
-
-        const observer = new MutationObserver(updateMiniVisibility);
-
-        document.querySelectorAll("#app > section").forEach((section) => {
-
-            observer.observe(section, {
-                attributes: true,
-                attributeFilter: ["class"]
-            });
 
         });
 

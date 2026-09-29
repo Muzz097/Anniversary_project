@@ -518,7 +518,15 @@ document.addEventListener("DOMContentLoaded", () => {
     */
 
     const VISITED_STORAGE_KEY =
-        "ourLittleStory.visitedMenus";
+        "ourLittleStory.visitedMenus.v2";
+
+    /*
+    Bumped from "ourLittleStory.visitedMenus" -> "...v2" once,
+    so the old data from earlier testing (all four menus already
+    marked visited) is left behind and everyone starts fresh.
+    Progress still persists normally under this new key going
+    forward — this is a one-time reset, not a behavior change.
+    */
 
     function saveVisitedToStorage() {
 
@@ -1027,6 +1035,13 @@ document.addEventListener("DOMContentLoaded", () => {
     menuItems.forEach((item) => {
 
         item.addEventListener("click", (event) => {
+
+            /*
+            Ignore taps while a transition is
+            already in flight — prevents double
+            navigation once real page transitions
+            are wired up per menu.
+            */
 
             if (
                 surpriseHub.classList.contains(

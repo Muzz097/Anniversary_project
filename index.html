@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Caveat:wght@500;600&display=swap"
     rel="stylesheet"
 >
 
@@ -29,6 +29,9 @@
 
 <!-- Playlist page styles (Phase 09) -->
 <link rel="stylesheet" href="css/playlist.css">
+
+<!-- Message page styles (Phase 06) -->
+<link rel="stylesheet" href="css/message.css">
 
 
 </head>
@@ -879,36 +882,177 @@
 
 
 <!-- ==========================================
-     PHASE 06-09 — MENU PAGES (placeholders)
+     PHASE 06-09 — MENU PAGES
 ========================================== -->
 
-<!-- PHASE 06 — MESSAGE -->
+<!-- ==========================================
+     PHASE 06 — MESSAGE
+     Tahap 1 — Opening Scene ("A Letter For You").
+     Tahap 2 (full letter) & Tahap 3 (29 Reasons)
+     belum dibangun — lihat hook di js/message.js
+     (messageStage, window.enterMessageFullLetter).
+========================================== -->
+
 <section
-    class="menu-page-section hidden-section"
+    class="msg-page hidden-section"
     id="messageSection"
     data-page="message"
 >
-    <div class="menu-page-background"></div>
-    <div class="menu-page-overlay"></div>
 
-    <div class="menu-page-content">
+    <div class="msg-bg" aria-hidden="true"></div>
+    <div class="msg-vignette" aria-hidden="true"></div>
 
-        <p class="menu-page-eyebrow">PHASE 06 — MESSAGE</p>
+    <!-- Ambient particles (dekoratif, pointer-events: none) -->
+    <div class="msg-ambience" aria-hidden="true">
+        <span class="bokeh" style="--x:8%; --y:8%; --size:170px; --delay:0s; --duration:13s;"></span>
+        <span class="bokeh" style="--x:88%; --y:55%; --size:150px; --delay:2s; --duration:12s;"></span>
+        <span class="glitter" style="--x:18%; --y:16%; --delay:.2s;"></span>
+        <span class="glitter" style="--x:80%; --y:24%; --delay:1.3s;"></span>
+        <span class="petal" style="--x:12%; --size:12px; --delay:0s; --duration:17s;"></span>
+        <span class="petal" style="--x:84%; --size:11px; --delay:5s; --duration:16s;"></span>
+        <span class="mini-heart" style="--x:60%; --delay:2s; --duration:10s;"></span>
+    </div>
 
-        <h2 class="menu-page-title">A Letter For You</h2>
+    <div class="msg-content">
 
-        <p class="menu-page-placeholder">
-            The full letter — with its typewriter reveal
-            and signature — is still being written.
-            This page will hold it soon.
-        </p>
+        <!-- BACK NAVIGATION -->
+        <button type="button" class="msg-back" data-back>
+            <svg class="msg-back-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            <span>Back to Our Little World</span>
+        </button>
 
+        <!-- HEADER -->
+        <header class="msg-header">
+            <p class="msg-chapter">
+                <span class="msg-chapter-line" aria-hidden="true"></span>
+                Chapter 01
+                <span class="msg-chapter-line" aria-hidden="true"></span>
+            </p>
+            <h2 class="msg-title">A Letter For You</h2>
+            <p class="msg-subtitle">Some words I wrote only for you.</p>
+        </header>
+
+
+        <!-- ==========================================
+             SCRAPBOOK SCENE: polaroids + open envelope
+        =========================================== -->
+
+        <div class="msg-scene">
+
+            <!-- Dekorasi (di bawah konten, tidak bisa diklik).
+                 Kalau file peony/daun belum ada, otomatis pakai
+                 botanical yang sudah ada di project. -->
+            <img
+                class="msg-decor msg-decor-peony"
+                src="/assets/images/message/peony-decoration.png"
+                data-fb="assets/images/botanical/peony.png"
+                alt=""
+                aria-hidden="true"
+                onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}"
+            >
+            <img
+                class="msg-decor msg-decor-leaf"
+                src="/assets/images/message/leaf-decoration.png"
+                data-fb="assets/images/botanical/leaves.webp"
+                alt=""
+                aria-hidden="true"
+                onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}"
+            >
+            <span class="msg-decor msg-decor-ribbon" aria-hidden="true"></span>
+            <span class="msg-decor msg-decor-sparkle msg-sparkle-a" aria-hidden="true"></span>
+            <span class="msg-decor msg-decor-sparkle msg-sparkle-b" aria-hidden="true"></span>
+            <span class="msg-note msg-note-written" aria-hidden="true">written just for you</span>
+
+            <!-- POLAROIDS: satu besar kiri, dua kecil bertumpuk kanan -->
+            <div class="msg-photos">
+
+                <figure class="msg-pol msg-pol-big">
+                    <div class="msg-pol-frame">
+                        <!-- TODO: ganti dengan foto asli: /assets/images/message/polaroid-large.jpg -->
+                        <img
+                            class="msg-pol-photo"
+                            src="/assets/images/message/polaroid-large.jpg"
+                            alt="Foto utama kalian berdua"
+                            onerror="this.style.visibility='hidden'"
+                        >
+                        <figcaption>you &amp; me <span aria-hidden="true">♡</span></figcaption>
+                        <span class="msg-tape" aria-hidden="true"></span>
+                    </div>
+                </figure>
+
+                <div class="msg-pol-smalls">
+
+                    <figure class="msg-pol msg-pol-small msg-pol-small-1">
+                        <div class="msg-pol-frame">
+                            <!-- TODO: ganti dengan foto asli: /assets/images/message/polaroid-small-01.jpg -->
+                            <img
+                                class="msg-pol-photo"
+                                src="/assets/images/message/polaroid-small-01.jpg"
+                                alt="Foto kecil kalian berdua"
+                                onerror="this.style.visibility='hidden'"
+                            >
+                            <span class="msg-tape" aria-hidden="true"></span>
+                        </div>
+                    </figure>
+
+                    <figure class="msg-pol msg-pol-small msg-pol-small-2">
+                        <div class="msg-pol-frame">
+                            <!-- TODO: ganti dengan foto asli: /assets/images/message/polaroid-small-02.jpg -->
+                            <img
+                                class="msg-pol-photo"
+                                src="/assets/images/message/polaroid-small-02.jpg"
+                                alt="Foto kecil kalian berdua"
+                                onerror="this.style.visibility='hidden'"
+                            >
+                            <span class="msg-tape" aria-hidden="true"></span>
+                        </div>
+                    </figure>
+
+                </div>
+
+                <!-- TODO: ganti tanggal penting hubungan kalian -->
+                <div class="msg-date-stamp" aria-hidden="true">
+                    <span class="msg-date-stamp-date">[DATE]</span>
+                    <span class="msg-date-stamp-word">Always <span aria-hidden="true">♡</span></span>
+                </div>
+
+            </div>
+
+            <!-- ENVELOPE + LETTER PREVIEW -->
+            <button
+                type="button"
+                class="message-envelope is-open"
+                id="msgEnvelope"
+                aria-label="Open the letter"
+            >
+
+                <span class="msg-envelope-flap-back" aria-hidden="true"></span>
+
+                <span class="message-letter-preview" id="msgLetterPreview" aria-hidden="true">
+                    <!-- TODO: ganti preview pesan singkat di sini -->
+                    <span class="msg-letter-greeting">Dear Ailsa,</span>
+                    <span class="msg-letter-preview-text">There are things I've been wanting to tell you...</span>
+                    <span class="msg-paperclip" aria-hidden="true"></span>
+                </span>
+
+                <span class="msg-envelope-flap-front" aria-hidden="true">
+                    <span class="msg-envelope-heart" aria-hidden="true">♡</span>
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- OPEN LETTER BUTTON -->
         <button
             type="button"
-            class="menu-page-back"
-            data-back
+            class="open-letter-button"
+            id="msgOpenBtn"
+            aria-label="Open my letter"
         >
-            ← Back to Our Little World
+            Open My Letter
+            <span class="msg-open-btn-arrow" aria-hidden="true">→</span>
         </button>
 
     </div>
@@ -1245,6 +1389,7 @@
 <script src="js/music.js"></script>
 <script src="js/memory-game.js"></script>
 <script src="js/quiz.js"></script>
+<script src="js/message.js"></script>
 <script src="js/reasons.js"></script>
 <script src="js/journey.js"></script>
 

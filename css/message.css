@@ -742,24 +742,250 @@
 
 
 /* ==========================================
-   REDUCED MOTION
-========================================== */
+   TAHAP 1 — POLISH: focal point + animasi hidup
+   ========================================== */
 
+.msg-page {
+    --msg-envelope-w: 260px;
+    --msg-envelope-h: 198px;
+    --msg-glow-peach: 243, 182, 160;
+    --msg-glow-cream: 247, 236, 224;
+
+    /* Aset dekoratif yang mudah diganti (kosongkan = kertas polos CSS) */
+    --message-date-card-image: none;
+}
+
+/* ---------- Layer / z-index ---------- */
+.msg-scene            { gap: 30px; }
+.message-decoration   { z-index: 1; pointer-events: none; }
+.message-handwritten-note { z-index: 2; }
+.msg-photos           { z-index: 2; }
+.message-date-card    { z-index: 4; }
+.message-envelope-stage { z-index: 3; }
+
+/* ---------- Catatan tulisan tangan (area kosong sendiri) ---------- */
+.message-handwritten-note {
+    align-self: flex-start;
+    margin: 0 0 0 8px;
+    color: rgba(247, 236, 228, 0.7);
+    font-family: var(--font-handwritten, cursive);
+    font-size: 1.1rem;
+    line-height: 1.2;
+    transform: rotate(-3deg);
+    pointer-events: none;
+    text-shadow: 0 0 10px rgba(217, 141, 165, 0.35);
+}
+
+/* ---------- Date card: kanan atas, di celah di atas foto ---------- */
+.message-date-card {
+    top: -26px;
+    right: -4px;
+    background:
+        var(--message-date-card-image) center / cover no-repeat,
+        var(--msg-cream);
+    transform-origin: top right;   /* seperti kertas yang terjepit di satu sudut */
+    animation: messagePaperSway 7s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ---------- Spotlight + glow amplop ---------- */
+.message-envelope-stage {
+    position: relative;
+    width: 100%;
+    min-height: calc(var(--msg-envelope-h) + 56px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-spotlight,
+.message-envelope-glow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.message-spotlight {
+    width: min(92vw, 340px);
+    height: min(92vw, 340px);
+    transform: translate(-50%, -50%);
+    background: radial-gradient(
+        circle,
+        rgba(var(--msg-glow-peach), 0.26) 0%,
+        rgba(var(--msg-glow-cream), 0.09) 40%,
+        transparent 68%
+    );
+    filter: blur(18px);
+    animation: messageSpotlightBreathe 7s ease-in-out infinite;
+}
+
+.message-envelope-glow {
+    width: calc(var(--msg-envelope-w) * 0.95);
+    height: calc(var(--msg-envelope-h) * 0.6);
+    transform: translate(-50%, -38%);
+    background: radial-gradient(
+        ellipse,
+        rgba(var(--msg-glow-peach), 0.38),
+        transparent 70%
+    );
+    filter: blur(16px);
+    opacity: 0.7;
+    animation: messageGlowBreathe 5.5s ease-in-out 0.8s infinite;
+    transition: opacity 0.5s ease;
+}
+
+.message-envelope-stage:hover .message-envelope-glow { opacity: 1; }
+
+.msg-page.is-transitioning-to-letter .message-envelope-glow {
+    opacity: 1;
+    animation-play-state: paused;
+}
+
+/* ---------- Amplop (gambar) ---------- */
+.message-envelope {
+    position: relative;
+    z-index: 2;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.message-envelope-float {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    animation: messageEnvelopeFloat 6s ease-in-out infinite;
+}
+
+.message-envelope-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+    filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.4));
+}
+
+/* Preview kertas diletakkan di atas bagian kertas cream pada gambar */
+.message-letter-preview {
+    top: 11%;
+    bottom: auto;
+    left: 50%;
+    width: 62%;
+    height: 32%;
+    padding: 0;
+    overflow: hidden;
+    background: none;
+    box-shadow: none;
+    transform: translateX(-50%) rotate(-1deg);
+    z-index: 2;
+}
+
+.message-letter-preview .msg-letter-greeting     { font-size: 1.05rem; line-height: 1.1; }
+.message-letter-preview .msg-letter-preview-text { margin-top: 3px; font-size: 0.62rem; line-height: 1.4; }
+
+/* ---------- Idle animations ---------- */
+.msg-pol-big     { --rot: -4deg; --float: 4px; --wobble: 1.2deg; animation: messagePolFloat 6.4s ease-in-out infinite; }
+.msg-pol-small-1 { --rot: 3deg;  --float: 3px; --wobble: 1deg;   animation: messagePolFloat 7.2s ease-in-out 0.7s infinite; }
+.msg-pol-small-2 { --rot: -2deg; --float: 5px; --wobble: 1.4deg; animation: messagePolFloat 6.8s ease-in-out 1.3s infinite; }
+
+.msg-pol-big .msg-tape     { animation: messageTapeSway 7s   ease-in-out infinite; }
+.msg-pol-small-1 .msg-tape { animation: messageTapeSway 8s   ease-in-out 0.8s infinite; }
+.msg-pol-small-2 .msg-tape { animation: messageTapeSway 7.5s ease-in-out 1.6s infinite; }
+
+.msg-decor-leaf   { transform-origin: bottom center; animation: messageLeafSway 8s ease-in-out infinite; }
+.msg-decor-peony  { left: -46px; bottom: -24px; transform-origin: bottom left; animation: messagePeonyPulse 6.5s ease-in-out infinite; }
+
+.msg-sparkle-a { animation-duration: 3.6s; }
+.msg-sparkle-b { animation-duration: 4.4s; }
+
+.message-petal {
+    position: absolute;
+    top: -24px;
+    left: var(--x, 10%);
+    width: var(--size, 12px);
+    height: calc(var(--size, 12px) * 0.8);
+    background: linear-gradient(135deg, #e07a95, #f3b6a0);
+    border-radius: 50% 0 50% 50%;
+    opacity: 0;
+    pointer-events: none;
+    animation: messagePetalFall var(--duration, 24s) linear var(--delay, 0s) infinite;
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes messageEnvelopeFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-4px); }
+}
+@keyframes messageSpotlightBreathe {
+    0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.06); }
+}
+@keyframes messageGlowBreathe {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 0.85; }
+}
+@keyframes messagePolFloat {
+    0%, 100% { transform: translateY(0) rotate(var(--rot)); }
+    50%      { transform: translateY(calc(var(--float) * -1)) rotate(calc(var(--rot) + var(--wobble))); }
+}
+@keyframes messageTapeSway {
+    0%, 100% { transform: translateX(-50%) rotate(-3deg); }
+    50%      { transform: translateX(-50%) rotate(-1deg) translateY(1px); }
+}
+@keyframes messagePaperSway {
+    0%, 100% { transform: rotate(4deg) translateY(0); }
+    50%      { transform: rotate(6.5deg) translateY(-3px); }
+}
+@keyframes messageLeafSway {
+    0%, 100% { transform: scaleX(-1) rotate(-8deg); }
+    50%      { transform: scaleX(-1) rotate(-3deg) translateY(-3px); }
+}
+@keyframes messagePeonyPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.035) rotate(1deg); }
+}
+@keyframes messagePetalFall {
+    0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.5; }
+    100% { transform: translate(40px, 115vh) rotate(200deg); opacity: 0; }
+}
+
+/* ---------- Responsive kecil ---------- */
+@media (max-width: 375px) {
+    .message-letter-preview .msg-letter-greeting     { font-size: 0.95rem; }
+    .message-letter-preview .msg-letter-preview-text { font-size: 0.58rem; }
+    .message-handwritten-note { font-size: 1rem; }
+}
+
+/* ---------- Reduced motion (menggantikan blok lama) ---------- */
 @media (prefers-reduced-motion: reduce) {
 
     .msg-page .msg-header,
     .msg-page .msg-photos,
     .msg-page .message-envelope,
     .msg-page .open-letter-button,
-    .msg-page .msg-decor-sparkle,
+    .msg-page .message-polaroid,
+    .msg-page .msg-tape,
+    .msg-page .message-date-card,
+    .msg-page .message-decoration,
+    .msg-page .message-envelope-float,
+    .msg-page .message-spotlight,
+    .msg-page .message-envelope-glow,
     .msg-page .message-envelope.is-opening {
         animation: none !important;
         transition: opacity 0.2s ease !important;
-        opacity: 1;
     }
 
-    .msg-page .msg-ambience {
-        display: none !important;
-    }
+    .msg-page .msg-decor-sparkle { opacity: 0.45; }
+    .msg-page .message-spotlight { opacity: 0.85; }
+    .msg-page .message-envelope-glow { opacity: 0.7; }
 
+    .msg-page .msg-ambience,
+    .msg-page .message-petal { display: none !important; }
 }

@@ -33,6 +33,8 @@
 <!-- Message page styles (Phase 06) -->
 <link rel="stylesheet" href="css/message.css">
 
+<link rel="stylesheet" href="css/memories-quiz.css">
+
 
 </head>
 
@@ -904,15 +906,16 @@
 
     <!-- Ambient particles (dekoratif, pointer-events: none) -->
     <div class="msg-ambience" aria-hidden="true">
-        <span class="bokeh" style="--x:8%; --y:8%; --size:170px; --delay:0s; --duration:13s;"></span>
-        <span class="bokeh" style="--x:88%; --y:55%; --size:150px; --delay:2s; --duration:12s;"></span>
-        <span class="glitter" style="--x:18%; --y:16%; --delay:.2s;"></span>
-        <span class="glitter" style="--x:80%; --y:24%; --delay:1.3s;"></span>
-        <span class="petal" style="--x:12%; --size:12px; --delay:0s; --duration:17s;"></span>
-        <span class="petal" style="--x:84%; --size:11px; --delay:5s; --duration:16s;"></span>
-        <span class="mini-heart" style="--x:60%; --delay:2s; --duration:10s;"></span>
-    </div>
-
+    <span class="bokeh" style="--x:8%; --y:8%; --size:170px; --delay:0s; --duration:13s;"></span>
+    <span class="bokeh" style="--x:88%; --y:55%; --size:150px; --delay:2s; --duration:12s;"></span>
+    <span class="glitter" style="--x:18%; --y:16%; --delay:.2s;"></span>
+    <span class="glitter" style="--x:80%; --y:24%; --delay:1.3s;"></span>
+    <span class="message-petal" style="--x:10%; --size:12px; --delay:0s;   --duration:22s;"></span>
+    <span class="message-petal" style="--x:32%; --size:10px; --delay:7s;   --duration:26s;"></span>
+    <span class="message-petal" style="--x:55%; --size:13px; --delay:3s;   --duration:24s;"></span>
+    <span class="message-petal" style="--x:76%; --size:11px; --delay:11s;  --duration:23s;"></span>
+    <span class="message-petal" style="--x:90%; --size:12px; --delay:15s;  --duration:27s;"></span>
+</div>
     <div class="msg-content">
 
         <!-- BACK NAVIGATION -->
@@ -939,109 +942,81 @@
 
         <div class="msg-scene">
 
-            <!-- Dekorasi (di bawah konten, tidak bisa diklik).
-                 Kalau file peony/daun belum ada, otomatis pakai
-                 botanical yang sudah ada di project. -->
-            <img
-                class="msg-decor msg-decor-peony"
-                src="/assets/images/message/peony-decoration.png"
-                data-fb="assets/images/botanical/peony.png"
-                alt=""
-                aria-hidden="true"
-                onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}"
-            >
-            <img
-                class="msg-decor msg-decor-leaf"
-                src="/assets/images/message/leaf-decoration.png"
-                data-fb="assets/images/botanical/leaves.webp"
-                alt=""
-                aria-hidden="true"
-                onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}"
-            >
-            <span class="msg-decor msg-decor-ribbon" aria-hidden="true"></span>
-            <span class="msg-decor msg-decor-sparkle msg-sparkle-a" aria-hidden="true"></span>
-            <span class="msg-decor msg-decor-sparkle msg-sparkle-b" aria-hidden="true"></span>
-            <span class="msg-note msg-note-written" aria-hidden="true">written just for you</span>
+    <!-- Dekorasi (pointer-events: none) -->
+    <img class="msg-decor message-decoration msg-decor-peony"
+         src="/assets/images/message/peony-decoration.png"
+         data-fb="assets/images/botanical/peony.png" alt="" aria-hidden="true"
+         onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}">
+    <img class="msg-decor message-decoration msg-decor-leaf"
+         src="/assets/images/message/leaf-decoration.png"
+         data-fb="assets/images/botanical/leaves.webp" alt="" aria-hidden="true"
+         onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}">
+    <span class="msg-decor message-decoration msg-decor-ribbon" aria-hidden="true"></span>
+    <span class="msg-decor message-decoration msg-decor-sparkle msg-sparkle-a" aria-hidden="true"></span>
+    <span class="msg-decor message-decoration msg-decor-sparkle msg-sparkle-b" aria-hidden="true"></span>
 
-            <!-- POLAROIDS: satu besar kiri, dua kecil bertumpuk kanan -->
-            <div class="msg-photos">
+    <!-- Catatan tulisan tangan: baris sendiri, tidak lagi absolute -->
+    <p class="message-handwritten-note" aria-hidden="true">written just for you</p>
 
-                <figure class="msg-pol msg-pol-big">
-                    <div class="msg-pol-frame">
-                        <!-- TODO: ganti dengan foto asli: /assets/images/message/polaroid-large.jpg -->
-                        <img
-                            class="msg-pol-photo"
-                            src="/assets/images/message/polaroid-large.jpg"
-                            alt="Foto utama kalian berdua"
-                            onerror="this.style.visibility='hidden'"
-                        >
-                        <figcaption>you &amp; me <span aria-hidden="true">♡</span></figcaption>
-                        <span class="msg-tape" aria-hidden="true"></span>
-                    </div>
-                </figure>
+    <!-- POLAROID + DATE CARD -->
+    <div class="msg-photos">
 
-                <div class="msg-pol-smalls">
-
-                    <figure class="msg-pol msg-pol-small msg-pol-small-1">
-                        <div class="msg-pol-frame">
-                            <!-- TODO: ganti dengan foto asli: /assets/images/message/polaroid-small-01.jpg -->
-                            <img
-                                class="msg-pol-photo"
-                                src="/assets/images/message/polaroid-small-01.jpg"
-                                alt="Foto kecil kalian berdua"
-                                onerror="this.style.visibility='hidden'"
-                            >
-                            <span class="msg-tape" aria-hidden="true"></span>
-                        </div>
-                    </figure>
-
-                    <figure class="msg-pol msg-pol-small msg-pol-small-2">
-                        <div class="msg-pol-frame">
-                            <!-- TODO: ganti dengan foto asli: /assets/images/message/polaroid-small-02.jpg -->
-                            <img
-                                class="msg-pol-photo"
-                                src="/assets/images/message/polaroid-small-02.jpg"
-                                alt="Foto kecil kalian berdua"
-                                onerror="this.style.visibility='hidden'"
-                            >
-                            <span class="msg-tape" aria-hidden="true"></span>
-                        </div>
-                    </figure>
-
-                </div>
-
-                <!-- TODO: ganti tanggal penting hubungan kalian -->
-                <div class="msg-date-stamp" aria-hidden="true">
-                    <span class="msg-date-stamp-date">[DATE]</span>
-                    <span class="msg-date-stamp-word">Always <span aria-hidden="true">♡</span></span>
-                </div>
-
+        <figure class="msg-pol msg-pol-big message-polaroid">
+            <div class="msg-pol-frame">
+                <img class="msg-pol-photo" src="/assets/images/message/polaroid-large.jpg"
+                     alt="Foto utama kalian berdua" onerror="this.style.visibility='hidden'">
+                <figcaption>you &amp; me <span aria-hidden="true">♡</span></figcaption>
+                <span class="msg-tape" aria-hidden="true"></span>
             </div>
+        </figure>
 
-            <!-- ENVELOPE + LETTER PREVIEW -->
-            <button
-                type="button"
-                class="message-envelope is-open"
-                id="msgEnvelope"
-                aria-label="Open the letter"
-            >
+        <div class="msg-pol-smalls">
+            <figure class="msg-pol msg-pol-small msg-pol-small-1 message-polaroid">
+                <div class="msg-pol-frame">
+                    <img class="msg-pol-photo" src="/assets/images/message/polaroid-small-01.jpg"
+                         alt="Foto kecil kalian berdua" onerror="this.style.visibility='hidden'">
+                    <span class="msg-tape" aria-hidden="true"></span>
+                </div>
+            </figure>
+            <figure class="msg-pol msg-pol-small msg-pol-small-2 message-polaroid">
+                <div class="msg-pol-frame">
+                    <img class="msg-pol-photo" src="/assets/images/message/polaroid-small-02.jpg"
+                         alt="Foto kecil kalian berdua" onerror="this.style.visibility='hidden'">
+                    <span class="msg-tape" aria-hidden="true"></span>
+                </div>
+            </figure>
+        </div>
 
-                <span class="msg-envelope-flap-back" aria-hidden="true"></span>
+        <!-- Aset terpisah: ganti tanggal di sini, gambar kertas lewat --message-date-card-image -->
+        <div class="msg-date-stamp message-date-card" aria-hidden="true">
+            <span class="msg-date-stamp-date">[DATE]</span>
+            <span class="msg-date-stamp-word">Always <span aria-hidden="true">♡</span></span>
+        </div>
 
+    </div>
+
+    <!-- FOCAL POINT: spotlight + glow + amplop -->
+    <div class="message-envelope-stage">
+
+        <div class="message-spotlight" aria-hidden="true"></div>
+        <div class="message-envelope-glow" aria-hidden="true"></div>
+
+        <button type="button" class="message-envelope" id="msgEnvelope" aria-label="Open the letter">
+            <span class="message-envelope-float">
+                <!-- GANTI GAMBAR AMPLOP: cukup timpa file ini atau ubah src -->
+                <img class="message-envelope-img"
+                     src="/assets/images/botanical/amplop.png"
+                     alt="" aria-hidden="true" draggable="false">
                 <span class="message-letter-preview" id="msgLetterPreview" aria-hidden="true">
-                    <!-- TODO: ganti preview pesan singkat di sini -->
                     <span class="msg-letter-greeting">Dear Ailsa,</span>
                     <span class="msg-letter-preview-text">There are things I've been wanting to tell you...</span>
-                    <span class="msg-paperclip" aria-hidden="true"></span>
                 </span>
+            </span>
+        </button>
 
-                <span class="msg-envelope-flap-front" aria-hidden="true">
-                    <span class="msg-envelope-heart" aria-hidden="true">♡</span>
-                </span>
+    </div>
 
-            </button>
-
-        </div>
+</div>
 
 
         <!-- OPEN LETTER BUTTON -->
@@ -1059,38 +1034,240 @@
 
 </section>
 
-<!-- PHASE 07 — MEMORIES -->
+<!-- PHASE 07 — MEMORIES · Phase 1: Memory Quiz
+     Ganti seluruh <section id="memoriesSection"> lama dengan blok ini.
+     Pertanyaan/jawaban diedit di js/quiz.js (MEMORY_QUIZ_QUESTIONS). -->
 <section
-    class="menu-page-section hidden-section"
+    class="menu-page-section mq-page hidden-section"
     id="memoriesSection"
     data-page="memories"
 >
-    <div class="menu-page-background"></div>
-    <div class="menu-page-overlay"></div>
 
-    <div class="menu-page-content">
+    <div class="mq-bg" aria-hidden="true"></div>
 
-        <p class="menu-page-eyebrow">PHASE 07 — MEMORIES</p>
+    <!-- Ambience (dekoratif, pointer-events: none) -->
+    <div class="mq-ambience" aria-hidden="true">
+        <span class="bokeh" style="--x:6%; --y:8%; --size:170px; --delay:0s; --duration:13s;"></span>
+        <span class="bokeh" style="--x:72%; --y:14%; --size:130px; --delay:3s; --duration:15s;"></span>
+        <span class="bokeh" style="--x:-6%; --y:40%; --size:150px; --delay:1s; --duration:14s;"></span>
+        <span class="bokeh" style="--x:80%; --y:52%; --size:160px; --delay:2s; --duration:12s;"></span>
+        <span class="bokeh" style="--x:8%; --y:76%; --size:170px; --delay:4s; --duration:16s;"></span>
+        <span class="bokeh" style="--x:60%; --y:88%; --size:190px; --delay:1.5s; --duration:13s;"></span>
+        <span class="glitter" style="--x:20%; --y:18%; --delay:.2s;"></span>
+        <span class="glitter" style="--x:78%; --y:26%; --delay:1.3s;"></span>
+        <span class="glitter" style="--x:30%; --y:48%; --delay:.7s;"></span>
+        <span class="glitter" style="--x:90%; --y:64%; --delay:2s;"></span>
+        <span class="glitter" style="--x:14%; --y:70%; --delay:2.6s;"></span>
+        <span class="glitter" style="--x:52%; --y:82%; --delay:.4s;"></span>
+        <span class="glitter" style="--x:84%; --y:92%; --delay:1.8s;"></span>
+        <span class="mq-dot" style="--x:12%; --y:30%; --delay:0s;"></span>
+        <span class="mq-dot" style="--x:66%; --y:36%; --delay:1.2s;"></span>
+        <span class="mq-dot" style="--x:40%; --y:66%; --delay:2.1s;"></span>
+        <span class="mq-dot" style="--x:92%; --y:78%; --delay:.6s;"></span>
+        <span class="mq-dot" style="--x:24%; --y:90%; --delay:1.7s;"></span>
+        <span class="mq-dot" style="--x:74%; --y:60%; --delay:2.8s;"></span>
+        <span class="mq-petal" style="--x:10%; --size:12px; --delay:0s;  --duration:24s;"></span>
+        <span class="mq-petal" style="--x:30%; --size:10px; --delay:8s;  --duration:28s;"></span>
+        <span class="mq-petal" style="--x:50%; --size:13px; --delay:3s;  --duration:26s;"></span>
+        <span class="mq-petal" style="--x:68%; --size:11px; --delay:13s; --duration:27s;"></span>
+        <span class="mq-petal" style="--x:84%; --size:12px; --delay:5s;  --duration:25s;"></span>
+        <span class="mq-petal" style="--x:94%; --size:10px; --delay:17s; --duration:29s;"></span>
+    </div>
+    <div class="mq-vignette" aria-hidden="true"></div>
+    <div class="mq-grain" aria-hidden="true"></div>
 
-        <h2 class="menu-page-title">Our Memories</h2>
+    <!-- Dekorasi atas (kecil, tidak menutupi judul) -->
+    <figure class="mq-decor mq-pol mq-pol-top" aria-hidden="true">
+        <img src="/assets/images/memories/quiz-polaroid-01.jpg" alt="" onerror="this.style.visibility='hidden'">
+        <figcaption>Our beginning</figcaption>
+    </figure>
+    <img class="mq-decor mq-decor-leaves" src="/assets/images/botanical/leaves.webp" alt="" aria-hidden="true">
 
-        <p class="menu-page-placeholder">
-            A scroll-through timeline of every "first" —
-            first meeting, first date, and everything after —
-            is coming together here.
+    <div class="mq-content">
+
+        <button type="button" class="mq-back" data-back>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            <span>Back to Our Little World</span>
+        </button>
+
+        <header class="mq-header">
+            <p class="mq-chapter">
+                <span class="mq-line" aria-hidden="true"></span>
+                Chapter 02
+                <span class="mq-line" aria-hidden="true"></span>
+            </p>
+            <h2 class="mq-title">Do you remember our story?</h2>
+            <p class="mq-subtitle">Let’s see if you still remember the little things about us.</p>
+        </header>
+
+        <!-- PROGRESS -->
+        <div class="mq-progress">
+            <div class="mq-progress-main">
+                <p class="mq-progress-label">Memory progress</p>
+                <p class="mq-progress-count" id="mqCount">0 / 5 memories remembered</p>
+                <div class="mq-bar" id="mqBar" role="progressbar" aria-label="Memory progress"
+                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <span class="mq-bar-fill" id="mqBarFill"></span>
+                </div>
+            </div>
+            <div class="mq-heart-wrap" id="mqHeartWrap" style="--mq-fill:0">
+                <svg class="mq-heart" viewBox="0 0 24 24" aria-hidden="true">
+                    <defs>
+                        <clipPath id="mqHeartClip"><path d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z"/></clipPath>
+                    </defs>
+                    <!-- Air pink: grup luar = bingkai (clip), grup dalam = level air -->
+                    <g clip-path="url(#mqHeartClip)">
+                        <g class="mq-water">
+                            <g class="mq-wave mq-wave-2"><path d="M-12 -0.8q3 1.4 6 0t6 0 6 0 6 0 6 0 6 0 6 0 6 0V30H-12Z"/></g>
+                            <g class="mq-wave"><path d="M-12 0q3 -1.4 6 0t6 0 6 0 6 0 6 0 6 0 6 0 6 0V30H-12Z"/></g>
+                        </g>
+                    </g>
+                    <path class="mq-heart-outline" d="M12 21s-9-5.6-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.4-9 12-9 12z"/>
+                </svg>
+                <span class="mq-percent" id="mqPercent">0%</span>
+            </div>
+        </div>
+
+        <div class="mq-stage">
+
+            <div class="mq-card-glow" aria-hidden="true"></div>
+
+            <!-- Dekorasi bawah: menempel di bawah kartu, di belakangnya (z-index 1) -->
+            <img class="mq-decor mq-decor-peony-bottom" src="/assets/images/botanical/peony.png" alt="" aria-hidden="true">
+            <figure class="mq-decor mq-pol mq-pol-bottom" aria-hidden="true">
+                <img src="/assets/images/memories/quiz-polaroid-02.jpg" alt="" onerror="this.style.visibility='hidden'">
+                <figcaption>Still you. Always.</figcaption>
+            </figure>
+
+        <!-- QUESTION CARD (diisi quiz.js) -->
+        <article class="mq-card" id="mqCard">
+            <img class="mq-card-flower" src="/assets/images/botanical/peony.png" alt="" aria-hidden="true">
+            <p class="mq-card-label"><span class="mq-line" aria-hidden="true"></span><span id="mqLabel">Memory 01 / 05</span><span class="mq-line" aria-hidden="true"></span></p>
+            <h3 class="mq-question" id="mqQuestion"></h3>
+            <div class="mq-answers" id="mqAnswers" role="group" aria-labelledby="mqQuestion"></div>
+        </article>
+
+        <!-- FEEDBACK -->
+        <p class="mq-feedback" id="mqFeedback" aria-live="polite">
+            <span class="mq-feedback-title"></span>
+            <span class="mq-feedback-sub"></span>
         </p>
 
-        <button
-            type="button"
-            class="menu-page-back"
-            data-back
-        >
-            ← Back to Our Little World
-        </button>
+        <!-- HASIL 100% (muncul setelah soal terakhir) -->
+        <section class="mq-result" id="mqResult" hidden>
+            <p class="mq-result-title">Yay, you remembered everything!</p>
+            <p class="mq-result-text">
+                Kalau ingatan tentang kita bisa 100%,<br>
+                semoga takdir kita juga 100% sampai selamanya.<br>
+                Aamiin. ♡
+            </p>
+            <button type="button" class="mq-result-btn" id="mqResultBtn">
+                Let’s remember our story <span aria-hidden="true">→</span>
+            </button>
+        </section>
+
+        <!-- Placeholder timeline (Phase 2) — hanya terbuka setelah quiz selesai -->
+        <section class="mq-timeline-soon" id="mqTimeline" hidden>
+            <p class="mq-result-title">Our timeline</p>
+            <p class="mq-result-text">Timeline kenangan kita sedang disusun di sini. ♡</p>
+        </section>
+
+        </div><!-- /mq-stage -->
 
     </div>
 
 </section>
+
+<!-- PHASE 07 — MEMORIES · Phase 2: halaman utama (opening + timeline + video)
+     Tempel SETELAH <section id="memoriesSection"> (quiz) di index.html.
+     Isi data (cerita, foto, video) ada di js/memories.js. -->
+<section
+    class="mem-page hidden-section"
+    id="memoriesTimelineSection"
+    data-page="memories-timeline"
+>
+
+    <div class="mem-bg" aria-hidden="true"></div>
+    <div class="mem-vignette" aria-hidden="true"></div>
+
+    <div class="mem-ambience" aria-hidden="true">
+        <span class="bokeh" style="--x:6%; --y:10%; --size:170px; --delay:0s; --duration:13s;"></span>
+        <span class="bokeh" style="--x:82%; --y:34%; --size:140px; --delay:2s; --duration:12s;"></span>
+        <span class="bokeh" style="--x:10%; --y:68%; --size:160px; --delay:1s; --duration:14s;"></span>
+        <span class="bokeh" style="--x:78%; --y:86%; --size:170px; --delay:3s; --duration:13s;"></span>
+        <span class="glitter" style="--x:20%; --y:16%; --delay:.2s;"></span>
+        <span class="glitter" style="--x:80%; --y:22%; --delay:1.3s;"></span>
+        <span class="glitter" style="--x:14%; --y:54%; --delay:.8s;"></span>
+        <span class="glitter" style="--x:88%; --y:64%; --delay:2.1s;"></span>
+        <span class="glitter" style="--x:50%; --y:90%; --delay:1.6s;"></span>
+        <span class="mem-petal" style="--x:12%; --size:12px; --delay:0s;  --duration:24s;"></span>
+        <span class="mem-petal" style="--x:42%; --size:10px; --delay:8s;  --duration:28s;"></span>
+        <span class="mem-petal" style="--x:70%; --size:13px; --delay:4s;  --duration:26s;"></span>
+        <span class="mem-petal" style="--x:90%; --size:11px; --delay:14s; --duration:27s;"></span>
+    </div>
+
+    <div class="mem-content">
+
+        <button type="button" class="mem-back" data-mem-back>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            <span>Back to Our Little World</span>
+        </button>
+
+        <!-- 1. OPENING -->
+        <header class="mem-header">
+            <h2 class="mem-title-main">Our Memories</h2>
+            <p class="mem-subtitle">Every little moment became part of us.</p>
+        </header>
+
+        <section class="mem-opening">
+
+            <div class="mem-intro-box">
+                <span class="mem-box-tape" aria-hidden="true"></span>
+                <img class="mem-box-flower" src="/assets/images/botanical/peony.png" alt="" aria-hidden="true">
+                <div class="mem-intro-text" id="memIntroText"></div>
+            </div>
+
+            <div class="mem-strip" aria-hidden="false">
+                <span class="mem-strip-tape" aria-hidden="true"></span>
+                <div class="mem-strip-photos" id="memStripPhotos"></div>
+            </div>
+
+            <img class="mem-open-leaf" src="/assets/images/botanical/leaves.webp" alt="" aria-hidden="true">
+
+        </section>
+
+        <!-- 2. TIMELINE (diisi js/memories.js) -->
+        <section class="mem-timeline" id="memTimeline" aria-label="Timeline kenangan kita"></section>
+
+        <!-- 3. OUR STORY VIDEO -->
+        <section class="mem-video mem-reveal" id="memVideo">
+            <p class="mem-eyebrow">Our story video</p>
+            <h2 class="mem-video-title">A little film about us.</h2>
+
+            <div class="mem-video-card">
+                <div class="mem-video-frame" id="memVideoFrame">
+                    <div class="mem-video-fallback" role="status">
+                        <span class="mem-video-fallback-heart" aria-hidden="true">♡</span>
+                        <p>Video kita sedang disiapkan…</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mem-video-caption" id="memVideoCaption"></p>
+            <p class="mem-video-signature" id="memVideoSignature"></p>
+        </section>
+
+        <!-- 4. PENUTUP -->
+        <div class="mem-closing mem-reveal">
+            <button type="button" class="mem-close-btn" data-mem-back>
+                Back to Our Little World <span aria-hidden="true">→</span>
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
 
 <!-- PHASE 08 — JOURNEY -->
 <section

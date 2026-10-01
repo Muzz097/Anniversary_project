@@ -1,0 +1,238 @@
+/* ==========================================
+   MESSAGE · TAHAP 2 — surat (css/message-letter.css)
+   Link setelah css/message.css. Class berawalan `msg-` / `msg-l-`.
+   Transisi: .is-opening-letter  ->  .is-letter-stage
+========================================== */
+
+.msg-page {
+    --msg-paper: #fbf1e6;
+    --msg-paper-edge: #e3b4bf;
+    --msg-ink: #4a1e28;
+    --msg-rose: #c95d82;
+    --msg-letter-glow: rgba(243, 182, 160, 0.4);
+    --msg-ease: cubic-bezier(.22, 1, .36, 1);
+    --msg-paper-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .3 0 0 0 0 .3 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.msg-page [hidden] { display: none !important; }
+
+/* ---------- Transisi Tahap 1 -> 2 ---------- */
+
+.msg-page .message-spotlight { transition: filter 0.6s ease; }
+
+.msg-page.is-opening-letter .message-spotlight { filter: blur(18px) brightness(1.8); }
+
+.msg-page .message-letter-preview { transition: transform 0.8s var(--msg-ease); }
+
+.msg-page.is-opening-letter .message-letter-preview {
+    transform: translateX(-50%) translateY(-34px) scale(1.18) rotate(0deg);
+}
+
+/* seluruh scene (polaroid, dekorasi, tombol, header) memudar */
+.msg-page.is-opening-letter .msg-content {
+    opacity: 0;
+    transition: opacity 0.65s ease 0.3s;
+    pointer-events: none;
+}
+.msg-page.is-opening-letter .msg-ambience { opacity: 0; transition: opacity 0.6s ease 0.3s; }
+
+/* paper reveal: lingkaran cream melebar dari amplop */
+.msg-reveal {
+    position: absolute; inset: 0; z-index: 40; pointer-events: none;
+    background: radial-gradient(circle at 50% 66%, #fff7ec, #f4dccb 70%, #ecc9b8);
+    -webkit-clip-path: circle(0% at 50% 66%);
+    clip-path: circle(0% at 50% 66%);
+}
+.msg-page.is-opening-letter .msg-reveal { animation: msgRevealIn 0.6s cubic-bezier(.5, 0, .2, 1) 0.35s both; }
+.msg-page.is-letter-stage .msg-reveal   { animation: msgRevealOut 0.55s ease both; }
+
+@keyframes msgRevealIn  { from { -webkit-clip-path: circle(0% at 50% 66%); clip-path: circle(0% at 50% 66%); } to { -webkit-clip-path: circle(150% at 50% 66%); clip-path: circle(150% at 50% 66%); } }
+@keyframes msgRevealOut { from { opacity: 1; -webkit-clip-path: circle(150% at 50% 66%); clip-path: circle(150% at 50% 66%); } to { opacity: 0; -webkit-clip-path: circle(150% at 50% 66%); clip-path: circle(150% at 50% 66%); } }
+
+/* ---------- Tahap 2: background ---------- */
+
+.msg-bg-letter {
+    position: absolute; inset: 0; z-index: -4; opacity: 0; transition: opacity 0.8s ease;
+    background:
+        radial-gradient(circle at 50% 14%, rgba(217, 141, 165, 0.38), transparent 55%),
+        radial-gradient(circle at 85% 80%, rgba(243, 182, 160, 0.14), transparent 55%),
+        linear-gradient(170deg, #6b2a45, #4a1f38 50%, #2b1119);
+}
+.msg-page.is-letter-stage .msg-bg-letter { opacity: 1; }
+
+.msg-letter {
+    position: relative; z-index: 6; width: 100%;
+    display: flex; justify-content: center; align-self: flex-start;
+}
+.msg-letter-ambience { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+
+.msg-letter-content {
+    position: relative; z-index: 2; width: min(92%, 480px);
+    padding: calc(40px + env(safe-area-inset-top, 0px)) 6px calc(90px + env(safe-area-inset-bottom, 0px));
+    display: flex; flex-direction: column; align-items: stretch; text-align: center;
+}
+
+.msg-letter-back {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 10px;
+    min-height: 44px; padding: 4px 6px; margin-bottom: 18px;
+    background: none; border: none; color: #dcbcc6;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+.msg-letter-back:hover, .msg-letter-back:focus-visible { color: var(--color-warm-white); transform: translateX(-3px); }
+.msg-letter-back:focus-visible, .msg-next-btn:focus-visible { outline: 2px solid #f3b6c4; outline-offset: 3px; }
+
+.msg-letter-header { margin-bottom: 30px; animation: msgFadeUp 0.9s ease 0.2s both; }
+.msg-letter-label { margin-bottom: 12px; color: #f3b6c4; font-size: 0.7rem; letter-spacing: 0.32em; text-transform: uppercase; }
+.msg-letter-title {
+    margin-bottom: 10px; color: var(--color-warm-white); font-family: var(--font-heading);
+    font-weight: 400; font-size: clamp(1.9rem, 8vw, 2.7rem); letter-spacing: 0.04em; text-transform: uppercase;
+}
+.msg-letter-sub { color: #e8cdd4; font-family: var(--font-handwritten, cursive); font-size: 1.45rem; }
+
+/* ---------- Kertas ---------- */
+
+.msg-paper-wrap {
+    position: relative; transform: rotate(-1deg);
+    filter: drop-shadow(0 20px 26px rgba(10, 3, 8, 0.5));
+    animation: msgPaperIn 0.9s var(--msg-ease) 0.1s both;
+}
+.msg-paper-wrap::before {          /* glow hangat di belakang kertas */
+    content: ""; position: absolute; inset: -28px; z-index: -1; border-radius: 40px;
+    background: radial-gradient(ellipse, var(--msg-letter-glow), transparent 68%); filter: blur(22px);
+}
+
+.msg-paper {
+    position: relative; padding: 46px 24px 52px; text-align: left; color: var(--msg-ink);
+    background: var(--msg-paper-texture), linear-gradient(172deg, #fffaf2, var(--msg-paper));
+    box-shadow: inset 0 0 0 6px var(--msg-paper-edge), inset 0 0 60px rgba(217, 141, 165, 0.12);
+    -webkit-clip-path: polygon(0.0% 2px, 3.3% 1px, 6.7% 3px, 10.0% 5px, 13.3% 0px, 16.7% 0px, 20.0% 4px, 23.3% 0px, 26.7% 2px, 30.0% 4px, 33.3% 0px, 36.7% 4px, 40.0% 1px, 43.3% 0px, 46.7% 0px, 50.0% 3px, 53.3% 3px, 56.7% 0px, 60.0% 1px, 63.3% 0px, 66.7% 4px, 70.0% 3px, 73.3% 0px, 76.7% 4px, 80.0% 0px, 83.3% 1px, 86.7% 5px, 90.0% 5px, 93.3% 4px, 96.7% 0px, 100.0% 4px, calc(100% - 3px) 18%, calc(100% - 0px) 38%, calc(100% - 1px) 58%, calc(100% - 0px) 78%, 100.0% calc(100% - 4px), 96.7% calc(100% - 6px), 93.3% calc(100% - 1px), 90.0% calc(100% - 2px), 86.7% calc(100% - 3px), 83.3% calc(100% - 1px), 80.0% calc(100% - 4px), 76.7% calc(100% - 0px), 73.3% calc(100% - 4px), 70.0% calc(100% - 2px), 66.7% calc(100% - 4px), 63.3% calc(100% - 6px), 60.0% calc(100% - 5px), 56.7% calc(100% - 1px), 53.3% calc(100% - 0px), 50.0% calc(100% - 4px), 46.7% calc(100% - 4px), 43.3% calc(100% - 5px), 40.0% calc(100% - 1px), 36.7% calc(100% - 2px), 33.3% calc(100% - 0px), 30.0% calc(100% - 4px), 26.7% calc(100% - 5px), 23.3% calc(100% - 0px), 20.0% calc(100% - 4px), 16.7% calc(100% - 0px), 13.3% calc(100% - 4px), 10.0% calc(100% - 1px), 6.7% calc(100% - 3px), 3.3% calc(100% - 5px), 0.0% calc(100% - 4px), 3px 78%, 2px 58%, 3px 38%, 3px 18%);
+    clip-path: polygon(0.0% 2px, 3.3% 1px, 6.7% 3px, 10.0% 5px, 13.3% 0px, 16.7% 0px, 20.0% 4px, 23.3% 0px, 26.7% 2px, 30.0% 4px, 33.3% 0px, 36.7% 4px, 40.0% 1px, 43.3% 0px, 46.7% 0px, 50.0% 3px, 53.3% 3px, 56.7% 0px, 60.0% 1px, 63.3% 0px, 66.7% 4px, 70.0% 3px, 73.3% 0px, 76.7% 4px, 80.0% 0px, 83.3% 1px, 86.7% 5px, 90.0% 5px, 93.3% 4px, 96.7% 0px, 100.0% 4px, calc(100% - 3px) 18%, calc(100% - 0px) 38%, calc(100% - 1px) 58%, calc(100% - 0px) 78%, 100.0% calc(100% - 4px), 96.7% calc(100% - 6px), 93.3% calc(100% - 1px), 90.0% calc(100% - 2px), 86.7% calc(100% - 3px), 83.3% calc(100% - 1px), 80.0% calc(100% - 4px), 76.7% calc(100% - 0px), 73.3% calc(100% - 4px), 70.0% calc(100% - 2px), 66.7% calc(100% - 4px), 63.3% calc(100% - 6px), 60.0% calc(100% - 5px), 56.7% calc(100% - 1px), 53.3% calc(100% - 0px), 50.0% calc(100% - 4px), 46.7% calc(100% - 4px), 43.3% calc(100% - 5px), 40.0% calc(100% - 1px), 36.7% calc(100% - 2px), 33.3% calc(100% - 0px), 30.0% calc(100% - 4px), 26.7% calc(100% - 5px), 23.3% calc(100% - 0px), 20.0% calc(100% - 4px), 16.7% calc(100% - 0px), 13.3% calc(100% - 4px), 10.0% calc(100% - 1px), 6.7% calc(100% - 3px), 3.3% calc(100% - 5px), 0.0% calc(100% - 4px), 3px 78%, 2px 58%, 3px 38%, 3px 18%);
+}
+
+.msg-paper-stamp {
+    position: absolute; top: 14px; right: 16px; padding: 6px 9px; transform: rotate(4deg);
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    border: 1.5px dashed rgba(107, 31, 42, 0.35); color: var(--msg-ink);
+    font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.msg-paper-stamp-word { font-family: var(--font-handwritten, cursive); font-size: 0.85rem; text-transform: none; letter-spacing: 0; }
+
+.msg-paper-body { padding-top: 14px; }
+
+.msg-l-greeting, .msg-l-closing, .msg-l-signature { font-family: var(--font-handwritten, cursive); color: var(--msg-rose); }
+.msg-l-greeting { margin-bottom: 14px; font-size: 2rem; line-height: 1.2; }
+.msg-l-para { margin-bottom: 16px; font-family: var(--font-heading); font-size: 1rem; line-height: 1.95; }
+.msg-l-closing { margin-top: 26px; font-size: 1.7rem; line-height: 1.3; }
+.msg-l-signature {
+    margin-top: 2px; font-size: 2.3rem; line-height: 1.3; color: #8f3350;
+    -webkit-clip-path: inset(-10% 100% -10% 0);
+    clip-path: inset(-10% 100% -10% 0);
+}
+.msg-l-signature.is-written { animation: msgWrite 1.6s cubic-bezier(.45, 0, .3, 1) forwards; }
+
+.msg-rest { visibility: hidden; }
+
+/* kursor: lebar 0 supaya tidak menggeser baris */
+.msg-cursor { display: inline-block; position: relative; width: 0; height: 1em; vertical-align: text-bottom; }
+.msg-cursor::after {
+    content: ""; position: absolute; left: 1px; top: 0.1em; width: 2px; height: 1.05em;
+    background: var(--msg-rose); animation: msgBlink 1s steps(2, start) infinite;
+}
+
+/* ---------- Dekorasi kertas ---------- */
+
+.msg-paper-tape {
+    position: absolute; top: -12px; left: 50%; width: 110px; height: 26px; z-index: 3; pointer-events: none;
+    transform: translateX(-50%) rotate(-2deg);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(243, 182, 196, 0.5));
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+.msg-paper-peony {
+    position: absolute; top: -40px; left: -34px; width: 104px; z-index: 3; pointer-events: none;
+    transform-origin: bottom right; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.35));
+    animation: msgBloom 1.6s var(--msg-ease) 0.9s both, msgPulseSoft 7s ease-in-out 2.6s infinite;
+}
+.msg-paper-leaf {
+    position: absolute; bottom: -26px; right: -26px; width: 92px; z-index: 3; pointer-events: none;
+    transform-origin: bottom left;
+    animation: msgLeafGrow 2s var(--msg-ease) 1.4s both, msgLeafSway 8s ease-in-out 3.6s infinite;
+}
+.msg-paper-spark {
+    position: absolute; z-index: 3; width: 9px; height: 9px; border-radius: 50%; pointer-events: none;
+    background: #fff7ec; box-shadow: 0 0 8px rgba(255, 247, 236, 0.9); opacity: 0;
+    animation: msgSparkleTwinkle 4s ease-in-out infinite;
+}
+.msg-paper-spark-a { top: 8%; right: -6px; animation-delay: 1.2s; }
+.msg-paper-spark-b { bottom: 18%; left: -8px; animation-delay: 2.6s; animation-duration: 5s; }
+
+/* ---------- Tombol Tahap 3 ---------- */
+
+.msg-next { margin-top: 38px; opacity: 0; transform: translateY(16px); transition: opacity 0.9s ease, transform 0.9s var(--msg-ease); }
+.msg-next.is-shown { opacity: 1; transform: translateY(0); }
+
+.msg-next-btn {
+    width: 100%; max-width: 360px; min-height: 64px; padding: 14px 24px;
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    border: 1px solid rgba(243, 182, 196, 0.6); border-radius: 28px;
+    background: linear-gradient(160deg, #8a2f4e, #4a1420); color: var(--color-warm-white);
+    box-shadow: 0 16px 34px rgba(60, 10, 30, 0.5), 0 0 28px rgba(224, 122, 149, 0.35);
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+.msg-next-main { font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.msg-next-sub { font-family: var(--font-handwritten, cursive); font-size: 1.1rem; color: #f0cfd8; }
+.msg-next-btn:hover { transform: translateY(-3px); filter: brightness(1.1); box-shadow: 0 20px 40px rgba(60, 10, 30, 0.55), 0 0 38px rgba(224, 122, 149, 0.5); }
+.msg-next-btn:active { transform: scale(0.97); }
+
+/* ---------- Keyframes ---------- */
+
+@keyframes msgPaperIn {
+    from { opacity: 0; transform: translateY(46px) scale(0.9) rotate(-3deg); -webkit-clip-path: inset(0 0 100% 0); clip-path: inset(0 0 100% 0); }
+    to   { opacity: 1; transform: rotate(-1deg); -webkit-clip-path: inset(-40px -40px -40px -40px); clip-path: inset(-40px -40px -40px -40px); }
+}
+@keyframes msgWrite  { from { -webkit-clip-path: inset(-10% 100% -10% 0); clip-path: inset(-10% 100% -10% 0); } to { -webkit-clip-path: inset(-10% -4% -10% 0); clip-path: inset(-10% -4% -10% 0); } }
+@keyframes msgBlink  { to { visibility: hidden; } }
+@keyframes msgBloom  { from { opacity: 0; transform: scale(0.3) rotate(-14deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+@keyframes msgPulseSoft { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.04) rotate(1deg); } }
+@keyframes msgLeafGrow  { from { opacity: 0; transform: scale(0.2) rotate(-18deg); } to { opacity: 0.92; transform: scale(1) rotate(0); } }
+@keyframes msgLeafSway  { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(5deg) translateY(-3px); } }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 375px) {
+    .msg-paper { padding: 44px 18px 48px; }
+    .msg-l-para { font-size: 0.96rem; }
+    .msg-l-greeting { font-size: 1.8rem; }
+    .msg-paper-peony { width: 88px; left: -26px; }
+    .msg-paper-leaf { width: 76px; right: -20px; }
+}
+
+@media (min-width: 760px) {
+    .msg-letter-content { width: min(90%, 560px); padding-top: 56px; }
+    .msg-paper { padding: 56px 40px 60px; }
+    .msg-l-para { font-size: 1.08rem; }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .msg-reveal { display: none !important; }
+
+    .msg-page .msg-letter *, .msg-page .msg-letter *::before, .msg-page .msg-letter *::after,
+    .msg-page .msg-paper-wrap { animation: none !important; }
+
+    .msg-page .message-spotlight, .msg-page .message-letter-preview,
+    .msg-page.is-opening-letter .msg-content, .msg-bg-letter { transition-duration: 0.01s !important; }
+
+    .msg-page .msg-next { transition: opacity 0.2s ease !important; transform: none; }
+
+    .msg-l-signature { -webkit-clip-path: none; clip-path: none; }
+    .msg-cursor::after { animation: none; }
+    .msg-paper-spark { opacity: 0.5; }
+    .msg-letter-ambience { display: none !important; }
+}
+
+/* Opsional: sembunyikan preview teks di atas gambar amplop (set di .msg-page: --msg-preview-display: none) */
+.message-letter-preview { display: var(--msg-preview-display, flex); }

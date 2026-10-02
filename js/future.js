@@ -76,6 +76,21 @@ const futureLetter = {
     signature: "— Always your leaf"
 };
 
+// Scrapbook collage di hero. Ganti src / caption / date sesuai foto kalian.
+// slot: "tl" kiri-atas, "tr" kanan-atas, "br" kanan-bawah. Foto yang tidak ditemukan
+// otomatis diganti kartu placeholder, jadi layout tidak pernah rusak.
+const futureCollage = {
+    tapeLabel: "FROM THEN<br>TO WHAT COMES NEXT",
+    main:  { src: "assets/images/couple/photo-01.jpeg", caption: "still growing", date: "31.08.2025" },
+    small: [
+        { src: "assets/images/couple/photo-02.jpeg", caption: "where we began",    slot: "tl" },
+        { src: "assets/images/couple/photo-03.jpeg", caption: "the little things", slot: "tr" },
+        { src: "assets/images/couple/photo-04.jpeg", caption: "today, with you",   slot: "br", date: "31.08.2026" }
+    ],
+    notes: ["we started here", "and somehow, we’re still growing", "more memories to come"],
+    miniNote: "to be continued,<br>always."
+};
+
 const futureFinale = {
     title: "THE FUTURE IS OURS TO WRITE",
     lines: [
@@ -97,6 +112,7 @@ const futureFinale = {
     const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let sec = null, io = null, timers = [];
+    let raf = 0;
     let idx = -1, locked = false, entering = false, leaving = false, letterDone = false;
 
     const later = (fn, ms) => {
@@ -123,6 +139,17 @@ const futureFinale = {
     const img = (src, cls, fb) =>
         `<img class="${cls}" src="${src}" alt="" data-fb="${fb}">`;
 
+    // Batang tanaman penghubung antar section (digambar sekali saat masuk viewport)
+    const vine = (h) => `
+        <div class="fut-vine fut-reveal" aria-hidden="true" style="--h:${h}px">
+          <svg viewBox="0 0 80 ${h}" preserveAspectRatio="xMidYMin meet">
+            <path class="fut-vine-path" pathLength="1" d="M40 0C28 ${h * .22} 54 ${h * .45} 40 ${h * .72}"/>
+            <path class="fut-vine-leaf" style="--d:.9s" d="M37 ${h * .3}c-16-2-24-10-26-22 16 0 24 8 26 22z"/>
+            <path class="fut-vine-leaf fut-vine-leaf-r" style="--d:1.3s" d="M43 ${h * .52}c16-2 24-10 26-22-16 0-24 8-26 22z"/>
+          </svg>
+          <span class="fut-vine-bloom">${flowerSVG}</span>
+        </div>`;
+
     /* ---------- BANGUN DOM ---------- */
 
     function build() {
@@ -138,29 +165,66 @@ const futureFinale = {
 
         const letterParas = futureLetter.paragraphs.map(() => `<p class="fut-lp"></p>`).join("");
 
+        const c = futureCollage;
+        const pol = (o, cls, extra = "") => `
+            <figure class="fut-slot ${cls}">
+              <div class="fut-pol" style="${extra}">
+                <span class="fut-tape" aria-hidden="true"></span>
+                ${img(o.src, "fut-pol-img", "ph")}
+                ${o.date ? `<span class="fut-date">${o.date}</span>` : ""}
+                <figcaption>${o.caption}</figcaption>
+              </div>
+            </figure>`;
+        const dirs = { tl: "--ex:-44px;--ey:-24px;--r:-9deg;--fy:-5px;--fd:7.4s", tr: "--ex:44px;--ey:-34px;--r:8deg;--fy:-6px;--fd:8.6s", br: "--ex:38px;--ey:44px;--r:6deg;--fy:-4px;--fd:6.8s" };
+        const smalls = c.small.map((o) => pol(o, `fut-slot-${o.slot} fut-slot-s`, dirs[o.slot] || dirs.tl)).join("");
+
         sec.innerHTML = `
-        <div class="fut-bg"></div>
+        <div class="fut-vignette" aria-hidden="true"></div>
         <div class="fut-ambience" aria-hidden="true">${sparks}${petals}</div>
         <div class="fut-toast" id="futToast" aria-live="polite"></div>
+
+        <div class="fut-scene" id="futScene">
+        <div class="fut-bokehs" aria-hidden="true">${
+            [[8, 140, 190], [72, 420, 150], [14, 880, 170], [80, 1200, 190], [10, 1650, 160], [76, 2050, 180], [30, 2500, 200]]
+                .map(([x, y, s2], i) => `<span class="fut-bokeh" style="--x:${x}%;--y:${y}px;--s:${s2}px;--d:${i * 1.3}s"></span>`).join("")}</div>
+        <div class="fut-grain" aria-hidden="true"></div>
+        <div class="fut-deepglow" aria-hidden="true"></div>
 
         <main class="fut-main">
 
           <header class="fut-hero">
             <div class="fut-glow" aria-hidden="true"></div>
-            <div class="fut-plant-art" aria-hidden="true">
-              <svg class="fut-stem" viewBox="0 0 120 210"><path d="M60 210C54 160 72 120 60 44"/><path class="fut-stem-leaf" d="M60 130c-22-2-34-14-38-30 22 0 36 10 38 30z"/><path class="fut-stem-leaf fut-stem-leaf-r" d="M62 100c20 0 32-12 36-28-20 0-34 10-36 28z"/></svg>
-              ${img(FUTURE_BOT + "leaves.webp", "fut-leaf fut-leaf-l", "leaf")}
-              ${img(FUTURE_BOT + "leaves.webp", "fut-leaf fut-leaf-r", "leaf")}
-              ${img(FUTURE_BOT + "peony.png", "fut-bloom", "flower")}
-            </div>
             <p class="fut-label">OUR FUTURE</p>
             <h2 class="fut-title">The best chapters<br>are still waiting for us.</h2>
             <p class="fut-sub">We’ve seen where we came from.<br>Now let’s imagine where we’re going.</p>
-            <figure class="fut-polaroid">${img("assets/images/couple/photo-01.jpeg", "", "rm")}</figure>
-            <p class="fut-cue">scroll</p>
+
+            <div class="fut-collage" id="futCollage">
+              ${smalls}
+              <figure class="fut-slot fut-slot-bl" aria-hidden="true">
+                <div class="fut-pol fut-deco-peony" style="--ex:-34px;--ey:34px;--r:-6deg;--fy:-5px;--fd:9s">${img(FUTURE_BOT + "peony.png", "fut-pol-img", "flower")}</div>
+              </figure>
+              <figure class="fut-slot fut-slot-main">
+                <div class="fut-pol fut-pol-main">
+                  <span class="fut-tape fut-tape-label">${c.tapeLabel}</span>
+                  ${img(c.main.src, "fut-pol-img", "ph")}
+                  <span class="fut-date">${c.main.date}</span>
+                  <figcaption>${c.main.caption}</figcaption>
+                </div>
+              </figure>
+              ${img(FUTURE_BOT + "leaves.webp", "fut-hleaf fut-hleaf-l", "leaf")}
+              ${img(FUTURE_BOT + "leaves.webp", "fut-hleaf fut-hleaf-r", "leaf")}
+            </div>
+
+            <div class="fut-notes">
+              ${c.notes.map((n, i) => `<p class="fut-note-line fut-reveal" style="--d:${i * 0.3}s">${n}</p>`).join("")}
+              <p class="fut-minote fut-reveal" style="--d:1s"><span class="fut-tape" aria-hidden="true"></span>${c.miniNote}</p>
+            </div>
+
+            ${vine(170)}
           </header>
 
           <section class="fut-wishes">
+            <span class="fut-wglow fut-reveal" aria-hidden="true"></span>
             <div class="fut-reveal">
               <h3 class="fut-h">OUR LITTLE WISH LIST</h3>
               <p class="fut-note">Things we hope to do, see, and become together.</p>
@@ -187,6 +251,7 @@ const futureFinale = {
           </section>
 
           <section class="fut-finale fut-locked" id="futFinale">
+            ${vine(130)}
             <div class="fut-garden" id="futGarden" aria-hidden="true"></div>
             <h3 class="fut-finale-title fut-reveal">${futureFinale.title}</h3>
             ${futureFinale.lines.map((l, i) =>
@@ -195,7 +260,8 @@ const futureFinale = {
             <button type="button" class="fut-btn fut-reveal" id="futRestart" style="--d:1s">START OUR STORY AGAIN →</button>
           </section>
 
-        </main>`;
+        </main>
+        </div>`;
 
         (document.getElementById("app") || document.body).appendChild(sec);
 
@@ -205,8 +271,8 @@ const futureFinale = {
                 const fb = im.dataset.fb;
                 if (fb === "rm") { im.remove(); return; }
                 const holder = document.createElement("span");
-                holder.className = im.className + " fut-fb";
-                holder.innerHTML = fb === "flower" ? flowerSVG : leafSVG;
+                holder.className = im.className + " fut-fb" + (fb === "ph" ? " fut-ph" : "");
+                holder.innerHTML = fb === "leaf" ? leafSVG : flowerSVG;
                 im.replaceWith(holder);
             }, { once: true });
         });
@@ -225,6 +291,21 @@ const futureFinale = {
         stack.addEventListener("pointerup", (e) => {
             if (sx !== null && sx - e.clientX > 45) nextWish();
             sx = null;
+        });
+
+        sec.addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    /* ---------- PARALLAX RINGAN (collage) ---------- */
+
+    function onScroll() {
+        if (raf || !sec) return;
+        raf = requestAnimationFrame(() => {
+            raf = 0;
+            const col = $("#futCollage", sec);
+            if (!col) return;
+            const p = Math.min(Math.max(sec.scrollTop / Math.max(window.innerHeight, 1), 0), 1.3);
+            col.style.setProperty("--p", p.toFixed(3));
         });
     }
 
@@ -372,6 +453,7 @@ const futureFinale = {
         if (!f || !f.classList.contains("fut-locked")) return;
         f.classList.remove("fut-locked");
         $("#futCue2", sec).classList.add("show");
+        $("#futScene", sec).classList.add("fut-deep");
         observe();
     }
 
@@ -450,6 +532,8 @@ const futureFinale = {
 
     function teardown() {
         if (io) { io.disconnect(); io = null; }
+        if (raf) { cancelAnimationFrame(raf); raf = 0; }
+        if (sec) sec.removeEventListener("scroll", onScroll);
         // timer restart (veil) dibiarkan selesai sendiri; hapus timer wish/surat
         timers.forEach(clearTimeout);
         timers = [];

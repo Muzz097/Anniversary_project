@@ -10,38 +10,20 @@
 
 @keyframes futGlowIn   { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
 @keyframes futGlowPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-@keyframes futDraw     { to { stroke-dashoffset: 0; } }
-@keyframes futFade     { to { opacity: .9; } }
 
-@keyframes futLeafIn {
-    from { opacity: 0; transform: scaleX(var(--flip, 1)) translateY(40px) rotate(-14deg) scale(.7); }
-    to   { opacity: .92; transform: scaleX(var(--flip, 1)) translateY(0) rotate(0) scale(1); }
-}
 
 @keyframes futSway {
     0%, 100% { opacity: .92; transform: scaleX(var(--flip, 1)) rotate(0deg); }
     50%      { opacity: .92; transform: scaleX(var(--flip, 1)) rotate(3deg) translateY(-3px); }
 }
 
-@keyframes futBloomIn {
-    from { opacity: 0; transform: scale(.3) translateY(24px); }
-    to   { opacity: 1; transform: scale(1) translateY(0); }
-}
 
-@keyframes futBreath {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%      { opacity: 1; transform: scale(1.035); }
-}
 
 @keyframes futUp {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes futPolaroidIn {
-    from { opacity: 0; transform: translateY(24px) rotate(10deg) scale(.9); }
-    to   { opacity: 1; transform: translateY(0) rotate(4deg) scale(1); }
-}
 
 @keyframes futTwinkle {
     0%, 100% { opacity: 0; transform: scale(.6); }
@@ -72,35 +54,94 @@
 
 /* ----- masuk / keluar halaman ----- */
 
-.fut-enter { animation: futEnter 1.2s ease both; }
+/* fill "backwards": tidak ada transform tersisa setelah selesai
+   (transform tersisa pada .future-section pernah memutus elemen position:fixed). */
+.fut-enter { animation: futEnter 1.2s ease backwards; }
 
 .fut-leaving .fut-main {
     opacity: 0;
     transition: opacity 1s ease;
 }
 
-/* ----- opening: tiap elemen masuk bertahap ----- */
+/* ----- opening: urutan masuk bertahap ----- */
 
-.fut-glow, .fut-bloom, .fut-leaf, .fut-label,
-.fut-title, .fut-sub, .fut-polaroid, .fut-cue:not(.fut-cue-2) { opacity: 0; }
+.fut-glow, .fut-label, .fut-title, .fut-sub,
+.fut-slot .fut-pol, .fut-hleaf, .fut-collage .fut-tape, .fut-date,
+.fut-pol figcaption { opacity: 0; }
 
-.fut-stem path:first-child { stroke-dasharray: 260; stroke-dashoffset: 260; }
-.fut-stem-leaf { opacity: 0; }
+.fut-ambience { opacity: 0; }
 
-.fut-play .fut-glow        { animation: futGlowIn 1.6s ease forwards, futGlowPulse 6s ease-in-out 1.8s infinite; }
-.fut-play .fut-stem path:first-child { animation: futDraw 1.8s ease .8s forwards; }
-.fut-play .fut-stem-leaf   { animation: futFade 1.2s ease 2s forwards; }
-.fut-play .fut-leaf        { animation: futLeafIn 1.2s cubic-bezier(.22, 1, .36, 1) 2.2s forwards, futSway 8s ease-in-out 3.6s infinite; }
-.fut-play .fut-leaf-r      { animation-delay: 2.5s, 3.9s; }
-.fut-play .fut-bloom       { animation: futBloomIn 1.4s cubic-bezier(.22, 1, .36, 1) 2.4s forwards, futBreath 7s ease-in-out 3.9s infinite; }
-.fut-play .fut-label       { animation: futUp 1s ease 3.2s forwards; }
-.fut-play .fut-title       { animation: futUp 1.2s ease 3.7s forwards; }
-.fut-play .fut-sub         { animation: futUp 1.1s ease 4.3s forwards; }
-.fut-play .fut-polaroid    { animation: futPolaroidIn 1.2s cubic-bezier(.22, 1, .36, 1) 5s forwards; }
-.fut-play .fut-hero .fut-cue { animation: futUp 1s ease 6s forwards, futCue 3s ease-in-out 7s infinite; }
+@keyframes futPolIn {
+    from { opacity: 0; transform: translate(var(--ex, 0), var(--ey, 20px)) rotate(calc(var(--r, 0deg) * 2.2)) scale(.82); }
+    to   { opacity: 1; transform: translate(0, 0) rotate(var(--r, 0deg)) scale(1); }
+}
 
+@keyframes futMainIn {
+    from { opacity: 0; transform: rotate(-6deg) scale(.7); }
+    to   { opacity: 1; transform: rotate(-2deg) scale(1); }
+}
+
+@keyframes futStick {
+    from { opacity: 0; transform: rotate(-16deg) scale(.6); }
+    to   { opacity: .95; transform: rotate(-4deg) scale(1); }
+}
+
+@keyframes futStamp {
+    from { opacity: 0; transform: rotate(-8deg) scale(1.5); }
+    to   { opacity: .9; transform: rotate(6deg) scale(1); }
+}
+
+@keyframes futFloat {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 var(--fy, -5px); }
+}
+
+@keyframes futHLeafIn {
+    from { opacity: 0; transform: scaleX(var(--flip, 1)) translateY(46px) scale(.6); }
+    to   { opacity: .95; transform: scaleX(var(--flip, 1)) translateY(0) scale(1); }
+}
+
+.fut-play .fut-glow  { animation: futGlowIn 1.6s ease forwards, futGlowPulse 6s ease-in-out 1.8s infinite; }
+.fut-play .fut-label { animation: futUp 1s ease .5s forwards; }
+.fut-play .fut-title { animation: futUp 1.2s ease .9s forwards; }
+.fut-play .fut-sub   { animation: futUp 1.1s ease 1.6s forwards; }
+
+.fut-play .fut-pol-main { animation: futMainIn 1.2s cubic-bezier(.22, 1, .36, 1) 2.3s forwards, futFloat 8s ease-in-out 3.6s infinite; --fy: -4px; }
+
+.fut-play .fut-slot-tl .fut-pol { animation: futPolIn 1.2s cubic-bezier(.22, 1, .36, 1) 2.8s forwards, futFloat var(--fd, 7s) ease-in-out 4s infinite; }
+.fut-play .fut-slot-tr .fut-pol { animation: futPolIn 1.2s cubic-bezier(.22, 1, .36, 1) 3.1s forwards, futFloat var(--fd, 7s) ease-in-out 4.3s infinite; }
+.fut-play .fut-slot-br .fut-pol { animation: futPolIn 1.2s cubic-bezier(.22, 1, .36, 1) 3.4s forwards, futFloat var(--fd, 7s) ease-in-out 4.6s infinite; }
+.fut-play .fut-slot-bl .fut-pol { animation: futPolIn 1.2s cubic-bezier(.22, 1, .36, 1) 3.6s forwards, futFloat var(--fd, 9s) ease-in-out 4.8s infinite; }
+
+.fut-play .fut-pol figcaption { animation: futUp 1s ease 3.9s forwards; }
+.fut-play .fut-collage .fut-tape { animation: futStick .7s ease 3.7s forwards; }
+.fut-play .fut-date  { animation: futStamp .7s ease 4.1s forwards; }
+
+.fut-play .fut-hleaf   { animation: futHLeafIn 1.3s cubic-bezier(.22, 1, .36, 1) 4.2s forwards, futSway 8s ease-in-out 5.6s infinite; }
+.fut-play .fut-hleaf-r { animation-delay: 4.5s, 5.9s; }
+
+/* sparkle + kelopak muncul paling akhir */
+.fut-play .fut-ambience { opacity: 1; transition: opacity 2.4s ease 5s; }
 .fut-play .fut-spark { animation: futTwinkle 3.6s ease-in-out var(--d, 0s) infinite; }
 .fut-play .fut-petal { animation: futPetalFall var(--t, 15s) linear var(--d, 0s) infinite; }
+
+/* bokeh latar: hidup pelan, selalu menyatu dengan background */
+@keyframes futBokeh {
+    from { transform: translate(0, 0) scale(1); opacity: .55; }
+    to   { transform: translate(14px, -22px) scale(1.08); opacity: 1; }
+}
+.fut-bokeh { animation: futBokeh 11s ease-in-out var(--d, 0s) infinite alternate; }
+
+.fut-deepglow { transition: opacity 3.5s ease; }
+.fut-deep .fut-deepglow { opacity: 1; }
+
+/* batang penghubung: digambar sekali saat masuk viewport */
+.fut-vine-path { transition: stroke-dashoffset 2.2s ease .2s; }
+.fut-vine.in .fut-vine-path { stroke-dashoffset: 0; }
+.fut-vine-leaf { transition: opacity 1s ease var(--d, 1s), transform 1.2s cubic-bezier(.22, 1, .36, 1) var(--d, 1s); }
+.fut-vine.in .fut-vine-leaf { opacity: .92; transform: scale(1); }
+.fut-vine-bloom { transition: opacity 1s ease 2s, transform 1.4s cubic-bezier(.22, 1, .36, 1) 2s; }
+.fut-vine.in .fut-vine-bloom { opacity: 1; transform: scale(1); }
 
 /* ----- scroll reveal (class .in dipasang sekali oleh IntersectionObserver) ----- */
 
@@ -185,6 +226,9 @@
         transition-duration: .01ms !important;
         transition-delay: 0s !important;
     }
+
+    .fut-collage,
+    .fut-slot { transform: none !important; opacity: 1 !important; }
 
     .fut-ambience,
     .fut-veil .fut-spark,

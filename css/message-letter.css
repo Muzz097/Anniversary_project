@@ -236,3 +236,66 @@
 
 /* Opsional: sembunyikan preview teks di atas gambar amplop (set di .msg-page: --msg-preview-display: none) */
 .message-letter-preview { display: var(--msg-preview-display, flex); }
+
+
+/* ==========================================
+   REVISI TAHAP 2 — tanpa header, kertas lebih besar,
+   closing & signature kecil. (Diletakkan di akhir file
+   supaya menimpa aturan di atas; media query ikut di sini.)
+========================================== */
+
+.msg-page {
+    --msg-closing-size: 1.2rem;       /* "With all my love," */
+    --msg-signature-size: 1.45rem;    /* nama */
+}
+
+.msg-letter-header { display: none !important; }
+
+.msg-letter-content {
+    width: min(94%, 520px);
+    padding:
+        calc(14px + env(safe-area-inset-top, 0px)) 4px
+        calc(96px + env(safe-area-inset-bottom, 0px));
+}
+
+.msg-letter-back {
+    min-height: 44px;
+    margin: 0 0 26px;
+    padding: 4px 8px 4px 4px;
+    font-size: 0.68rem;
+}
+
+/* tinggi mengikuti isi surat (tanpa height tetap) */
+.msg-paper {
+    height: auto;
+    min-height: min(68vh, 600px);
+    padding: 66px 26px 64px;
+}
+
+.msg-paper-body { padding-top: 6px; }
+
+.msg-l-greeting { margin-bottom: 18px; font-size: 1.85rem; }
+.msg-l-para     { margin-bottom: 20px; line-height: 2; overflow-wrap: anywhere; }
+
+.msg-l-closing {
+    margin-top: 38px;
+    font-size: var(--msg-closing-size);
+    line-height: 1.4;
+}
+.msg-l-signature {
+    margin-top: 4px;
+    font-size: var(--msg-signature-size);
+    line-height: 1.4;
+}
+
+.msg-next { margin-top: 44px; }
+
+@media (max-width: 375px) {
+    .msg-paper { padding: 62px 20px 58px; }
+    .msg-l-para { font-size: 0.96rem; }
+}
+
+@media (min-width: 760px) {
+    .msg-letter-content { width: min(90%, 600px); }
+    .msg-paper { padding: 72px 48px 68px; }
+}

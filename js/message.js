@@ -1,119 +1,4 @@
 /* ==========================================
-   MESSAGE — TAHAP 1: OPENING SCENE
-   (Phase 06 — "A Letter For You")
-   ==========================================
-*/
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const messageSection = document.getElementById("messageSection");
-    const envelope = document.getElementById("msgEnvelope");
-    const openBtn = document.getElementById("msgOpenBtn");
-
-    if (!messageSection) {
-        return;
-    }
-
-    /*
-    ==========================================
-    STATE
-    ==========================================
-    */
-
-    let messageStage = "intro";
-    let isTransitioning = false;
-
-
-    /*
-    ==========================================
-    OPEN LETTER
-    ==========================================
-    */
-
-    function openLetter() {
-
-        if (isTransitioning || messageStage !== "intro") {
-            return;
-        }
-
-        isTransitioning = true;
-
-        if (envelope) {
-
-            envelope.classList.remove("is-opening");
-
-            void envelope.offsetWidth;
-
-            envelope.classList.add("is-opening");
-
-        }
-
-        messageSection.classList.add("is-transitioning-to-letter");
-
-        setTimeout(() => {
-
-            messageStage = "full-letter";
-
-            /*
-            Hook untuk Tahap 2 (Full Letter). Setelah halaman
-            surat penuh dibangun, cukup definisikan fungsi ini
-            di file itu (mis. window.enterMessageFullLetter =
-            function () {...}) — kode Tahap 1 di sini tidak
-            perlu diubah sama sekali.
-            */
-
-            if (typeof window.enterMessageFullLetter === "function") {
-
-                window.enterMessageFullLetter();
-
-            } else {
-
-                console.log(
-                    "Message: Tahap 1 selesai, siap masuk Tahap 2 " +
-                    "(full letter) — halaman itu belum dibangun."
-                );
-
-                messageSection.classList.remove(
-                    "is-transitioning-to-letter"
-                );
-
-                messageStage = "intro";
-
-            }
-
-            isTransitioning = false;
-
-        }, 550);
-
-    }
-
-
-    /*
-    ==========================================
-    WIRING (amplop + tombol memicu aksi yang sama)
-    ==========================================
-    */
-
-    if (envelope) {
-        envelope.addEventListener("click", openLetter);
-    }
-
-    if (openBtn) {
-        openBtn.addEventListener("click", openLetter);
-    }
-
-
-    /*
-    Diekspos read-only untuk debugging / dipakai Tahap 2 nanti,
-    mengikuti pola window.goToSurpriseHub /
-    window.initializeMemoryGame yang sudah ada di project ini.
-    */
-
-    window.getMessageStage = () => messageStage;
-
-});
-
-/* ==========================================
    MESSAGE — TAHAP 1 (opening) + TAHAP 2 (surat)
    (Phase 06 — "A Letter For You")
    ==========================================
@@ -156,13 +41,162 @@ const typewriterSettings = {
 };
 
 
+
+/* Markup Tahap 2. Dipasang otomatis bila belum ada di index.html, jadi
+   tidak ada lagi langkah "tempel HTML" yang bisa salah tempat. */
+
+const MSG_LETTER_MARKUP = `
+<!-- TAHAP 2: surat -->
+<div class="msg-letter" id="msgLetter" hidden>
+
+    <div class="msg-letter-ambience" aria-hidden="true">
+        <span class="bokeh" style="--x:6%; --y:12%; --size:150px; --delay:0s; --duration:14s;"></span>
+        <span class="bokeh" style="--x:84%; --y:60%; --size:140px; --delay:2s; --duration:13s;"></span>
+        <span class="glitter" style="--x:16%; --y:22%; --delay:.3s;"></span>
+        <span class="glitter" style="--x:86%; --y:30%; --delay:1.5s;"></span>
+        <span class="glitter" style="--x:10%; --y:70%; --delay:.9s;"></span>
+        <span class="glitter" style="--x:90%; --y:84%; --delay:2.2s;"></span>
+    </div>
+
+    <div class="msg-letter-content">
+
+        <button type="button" class="msg-letter-back" id="msgLetterBack">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            <span>Back to Our Little World</span>
+        </button>
+
+        <div class="msg-paper-wrap">
+
+            <article class="msg-paper" aria-label="Surat untuk kamu">
+                <div class="msg-paper-stamp" aria-hidden="true">
+                    <span id="msgStampDate">[DATE]</span>
+                    <span class="msg-paper-stamp-word">Always ♡</span>
+                </div>
+                <div class="msg-paper-body" id="msgPaperBody"></div>
+            </article>
+
+            <!-- Dekorasi di luar kertas (pointer-events: none).
+                 Aset hilang -> otomatis pakai botanical yang sudah ada. -->
+            <span class="msg-paper-tape" aria-hidden="true"></span>
+            <img class="msg-paper-peony"
+                 src="/assets/images/message/peony-decoration.png"
+                 data-fb="assets/images/botanical/peony.png" alt="" aria-hidden="true"
+                 onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}">
+            <img class="msg-paper-leaf"
+                 src="/assets/images/message/leaf-decoration.png"
+                 data-fb="assets/images/botanical/leaves.webp" alt="" aria-hidden="true"
+                 onerror="if(this.dataset.fb&&!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fb}else{this.style.display='none'}">
+            <span class="msg-paper-spark msg-paper-spark-a" aria-hidden="true"></span>
+            <span class="msg-paper-spark msg-paper-spark-b" aria-hidden="true"></span>
+
+        </div>
+
+        <!-- Tombol Tahap 3: baru tampil setelah signature selesai -->
+        <div class="msg-next" id="msgNext" hidden>
+            <button type="button" class="msg-next-btn" id="msgNextBtn">
+                <span class="msg-next-main">Open 29 Reasons <span aria-hidden="true">→</span></span>
+                <span class="msg-next-sub">There is something else I want you to know.</span>
+            </button>
+        </div>
+
+    </div>
+
+</div>
+`;
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const page = document.getElementById("messageSection");
 
-    if (!page) {
+    if (!page || window.__msgStage2Ready) {
         return;
     }
+
+    window.__msgStage2Ready = true;      /* cegah inisialisasi ganda */
+
+    /* ---------- pastikan elemen Tahap 2 ada DI DALAM #messageSection ---------- */
+
+    function ensureStage2Dom() {
+
+        if (!page.querySelector(".msg-bg-letter")) {
+
+            const bg = document.createElement("div");
+
+            bg.className = "msg-bg-letter";
+            bg.setAttribute("aria-hidden", "true");
+
+            const base = page.querySelector(".msg-bg");
+
+            if (base) { base.after(bg); } else { page.prepend(bg); }
+
+        }
+
+        const existing = document.getElementById("msgLetter");
+
+        /* Surat HARUS anak langsung #messageSection. Kalau tertempel di luar
+           section ATAU di dalam .msg-content / .msg-scene, ia ikut
+           tersembunyi saat Tahap 1 disembunyikan -> layar kosong. */
+
+        if (existing) {
+
+            if (existing.parentElement !== page) {
+                page.appendChild(existing);
+            }
+
+        } else {
+            page.insertAdjacentHTML("beforeend", MSG_LETTER_MARKUP);
+        }
+
+        /* Tahap 2 tanpa judul/subtitle dekoratif di atas kertas */
+
+        const oldHeader = document.querySelector("#msgLetter .msg-letter-header");
+
+        if (oldHeader) {
+            oldHeader.remove();
+        }
+
+        const existingReveal = page.querySelector(".msg-reveal");
+
+        if (existingReveal) {
+
+            if (existingReveal.parentElement !== page) {
+                page.appendChild(existingReveal);   /* harus menutupi seluruh halaman */
+            }
+
+        } else {
+
+            const reveal = document.createElement("div");
+
+            reveal.className = "msg-reveal";
+            reveal.setAttribute("aria-hidden", "true");
+
+            page.appendChild(reveal);
+
+        }
+
+        /* CSS Tahap 2: dimuat otomatis bila belum ter-link */
+
+        const hasCss =
+            document.querySelector('link[href*="message-letter.css"]') ||
+            (window.getComputedStyle &&
+                getComputedStyle(page).getPropertyValue("--msg-paper-texture").trim());
+
+        if (!hasCss) {
+
+            const link = document.createElement("link");
+
+            link.rel = "stylesheet";
+            link.href = "css/message-letter.css";
+
+            document.head.appendChild(link);
+
+        }
+
+    }
+
+    ensureStage2Dom();
+
+    console.info("[Message] Tahap 2 (surat) aktif");
 
     const $ = (id) => document.getElementById(id);
 

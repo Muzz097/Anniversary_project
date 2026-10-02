@@ -1,0 +1,242 @@
+/* ==========================================
+   MESSAGE · TAHAP 3 — 29 REASONS (css/message-reasons.css)
+   Overlay di dalam #messageSection. Class berawalan `rs-`.
+   Dimuat otomatis oleh js/reasons.js bila belum di-link.
+========================================== */
+
+.msg-page {
+    --rs-ease: cubic-bezier(.22, 1, .36, 1);
+    --rs-plum: #2b1625;
+    --rs-wine: #4a1f38;
+    --rs-rose: #c0687a;
+    --rs-dusty: #d98da5;
+    --rs-soft: #f3b6c4;
+    --rs-cream: #f7ece4;
+    --rs-ink: #4a1e28;
+    --rs-glow: rgba(232, 138, 166, 0.55);
+    --rs-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .3 0 0 0 0 .3 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html.rs-lock, html.rs-lock body { overflow: hidden; }
+
+/* surat & dekorasi di belakang meredup */
+.msg-page .msg-letter { transition: filter 0.7s ease, opacity 0.7s ease; }
+.msg-page.is-reasons .msg-letter { filter: blur(3px); opacity: 0.35; }
+
+/* ---------- Overlay ---------- */
+
+.rs-overlay {
+    position: fixed; inset: 0; z-index: 80;
+    opacity: 0; transition: opacity 0.6s ease;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(192, 104, 122, 0.22), transparent 60%),
+        radial-gradient(circle at 85% 85%, rgba(243, 182, 160, 0.1), transparent 55%),
+        linear-gradient(170deg, rgba(43, 22, 37, 0.9), rgba(30, 12, 24, 0.95));
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    color: var(--rs-cream);
+}
+.rs-overlay[hidden] { display: none; }
+.rs-overlay.is-open { opacity: 1; }
+
+.rs-ambience { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.rs-petal {
+    position: absolute; top: -24px; left: var(--x, 10%);
+    width: var(--size, 12px); height: calc(var(--size, 12px) * 0.8);
+    background: linear-gradient(135deg, #e07a95, #f3b6a0);
+    border-radius: 50% 0 50% 50%; opacity: 0;
+    animation: rsPetalFall var(--duration, 24s) linear var(--delay, 0s) infinite;
+}
+
+.rs-scroll {
+    position: relative; z-index: 2; height: 100%;
+    overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
+    padding: calc(14px + env(safe-area-inset-top, 0px)) 16px calc(40px + env(safe-area-inset-bottom, 0px));
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+
+.rs-close {
+    align-self: flex-end; display: inline-flex; align-items: center; gap: 10px;
+    min-height: 44px; padding: 4px 6px; background: none; border: none;
+    color: var(--rs-cream); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+.rs-close:hover { color: var(--rs-soft); transform: scale(1.04); }
+.rs-close:focus-visible, .rs-finale-btn:focus-visible, .rs-stage:focus-visible { outline: 2px solid var(--rs-soft); outline-offset: 4px; }
+
+/* ---------- Judul ---------- */
+
+.rs-head { margin: 6px 0 22px; }
+.rs-title {
+    font-family: var(--font-heading); font-weight: 400;
+    font-size: clamp(1.1rem, 5vw, 1.75rem); letter-spacing: 0.16em; line-height: 1.55; text-transform: uppercase;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
+}
+.rs-divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 12px 0 10px; color: var(--rs-dusty); }
+.rs-divider i { display: block; width: 52px; height: 1px; background: rgba(243, 182, 196, 0.5); }
+.rs-sub { color: #e6cbd2; font-size: 0.95rem; letter-spacing: 0.06em; }
+
+.rs-overlay.is-open .rs-head { animation: rsDrop 0.9s var(--rs-ease) 0.25s backwards; }
+
+/* ---------- Tumpukan kartu ---------- */
+
+.rs-stage { width: min(84vw, 330px); margin: 8px auto 0; touch-action: pan-y; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+
+.rs-stack { position: relative; display: grid; }
+
+.rs-card {
+    grid-area: 1 / 1; position: relative; width: 100%;
+    min-height: clamp(270px, 46vh, 350px);
+    transition: transform 0.64s var(--rs-ease), opacity 0.64s ease, filter 0.6s ease;
+    filter: drop-shadow(0 18px 24px rgba(8, 2, 8, 0.5));
+    will-change: transform;
+}
+.rs-card[data-slot="0"] { transform: rotate(-0.6deg); opacity: 1; z-index: 3; }
+.rs-card[data-slot="1"] { transform: translate(9%, 1.5%) rotate(5deg) scale(0.96); opacity: 0.55; z-index: 2; }
+.rs-card[data-slot="2"] { transform: translate(-7%, 3%) rotate(-5.5deg) scale(0.93); opacity: 0.35; z-index: 1; }
+.rs-card[data-empty] { opacity: 0 !important; }
+.rs-card.is-leaving { z-index: 4; }
+.rs-card.is-lift { transform: translateY(-16px) rotate(-1.6deg); transition-duration: 0.14s; }
+
+.rs-paper {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    padding: 34px 24px 30px;
+    background: var(--rs-texture), linear-gradient(165deg, #fbeee6, #f1d6cc);
+    -webkit-clip-path: polygon(0.0% 3px, 6.2% 4px, 12.5% 3px, 18.8% 3px, 25.0% 4px, 31.2% 4px, 37.5% 1px, 43.8% 1px, 50.0% 4px, 56.2% 3px, 62.5% 4px, 68.8% 1px, 75.0% 0px, 81.2% 3px, 87.5% 2px, 93.8% 1px, 100.0% 0px, calc(100% - 0px) 20%, calc(100% - 3px) 45%, calc(100% - 3px) 70%, 100.0% calc(100% - 5px), 93.8% calc(100% - 5px), 87.5% calc(100% - 4px), 81.2% calc(100% - 5px), 75.0% calc(100% - 1px), 68.8% calc(100% - 4px), 62.5% calc(100% - 0px), 56.2% calc(100% - 4px), 50.0% calc(100% - 0px), 43.8% calc(100% - 0px), 37.5% calc(100% - 0px), 31.2% calc(100% - 1px), 25.0% calc(100% - 1px), 18.8% calc(100% - 4px), 12.5% calc(100% - 0px), 6.2% calc(100% - 3px), 0.0% calc(100% - 2px), 3px 70%, 1px 45%, 1px 20%);
+    clip-path: polygon(0.0% 3px, 6.2% 4px, 12.5% 3px, 18.8% 3px, 25.0% 4px, 31.2% 4px, 37.5% 1px, 43.8% 1px, 50.0% 4px, 56.2% 3px, 62.5% 4px, 68.8% 1px, 75.0% 0px, 81.2% 3px, 87.5% 2px, 93.8% 1px, 100.0% 0px, calc(100% - 0px) 20%, calc(100% - 3px) 45%, calc(100% - 3px) 70%, 100.0% calc(100% - 5px), 93.8% calc(100% - 5px), 87.5% calc(100% - 4px), 81.2% calc(100% - 5px), 75.0% calc(100% - 1px), 68.8% calc(100% - 4px), 62.5% calc(100% - 0px), 56.2% calc(100% - 4px), 50.0% calc(100% - 0px), 43.8% calc(100% - 0px), 37.5% calc(100% - 0px), 31.2% calc(100% - 1px), 25.0% calc(100% - 1px), 18.8% calc(100% - 4px), 12.5% calc(100% - 0px), 6.2% calc(100% - 3px), 0.0% calc(100% - 2px), 3px 70%, 1px 45%, 1px 20%);
+}
+.rs-paper::before {                       /* border dusty rose */
+    content: ""; position: absolute; inset: 11px; border: 1.5px solid rgba(217, 141, 165, 0.7); pointer-events: none;
+}
+
+.rs-body {
+    position: relative; z-index: 2; width: 100%; padding: 6px 4px; color: var(--rs-ink);
+    transition: opacity 0.25s ease;
+}
+.rs-card:not([data-slot="0"]) .rs-body { opacity: 0; }
+.rs-card[data-slot="0"] .rs-body { opacity: 1; transition: opacity 0.55s ease 0.25s; }
+
+.rs-label { font-size: 0.64rem; letter-spacing: 0.3em; text-transform: uppercase; color: #8a4d5a; }
+.rs-num {
+    margin: 10px 0 8px; font-family: var(--font-heading); font-size: clamp(3.2rem, 15vw, 4.2rem);
+    line-height: 1; color: var(--rs-rose);
+}
+.rs-rule { display: block; width: 44px; height: 1px; margin: 0 auto 14px; background: rgba(192, 104, 122, 0.55); }
+.rs-text { font-family: var(--font-heading); font-size: clamp(1rem, 4.5vw, 1.2rem); line-height: 1.7; overflow-wrap: anywhere; }
+.rs-subtext { margin-top: 10px; font-family: var(--font-handwritten, cursive); font-size: 1.35rem; color: #8f3350; }
+.rs-subtext:empty { display: none; }
+.rs-heart { display: block; margin-top: 12px; font-size: 1.5rem; color: #a63d52; }
+
+.rs-ghost {                                /* nomor samar di kartu belakang */
+    position: absolute; top: 18px; right: 26px; z-index: 1; font-family: var(--font-heading);
+    font-size: 1.8rem; color: var(--rs-rose); opacity: 0; transition: opacity 0.4s ease;
+}
+.rs-card:not([data-slot="0"]) .rs-ghost { opacity: 0.45; }
+
+.rs-tape {
+    position: absolute; top: -10px; left: 50%; width: 96px; height: 24px; z-index: 4; pointer-events: none;
+    transform: translateX(-50%) rotate(-3deg);
+    background: linear-gradient(180deg, rgba(243, 182, 196, 0.85), rgba(217, 141, 165, 0.6));
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+}
+.rs-peony { position: absolute; top: -16px; left: -14px; width: 76px; z-index: 4; pointer-events: none; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3)); }
+.rs-leafs { position: absolute; right: -12px; bottom: -14px; width: 84px; z-index: 4; pointer-events: none; transform: rotate(-8deg); }
+.rs-card[data-decor="leaf"] .rs-peony, .rs-card[data-decor="none"] .rs-peony { display: none; }
+.rs-card[data-decor="peony"] .rs-leafs, .rs-card[data-decor="none"] .rs-leafs { display: none; }
+
+.rs-photo {                                /* foto mini opsional */
+    position: absolute; left: 14px; bottom: -12px; z-index: 4; width: 58px; padding: 4px 4px 12px;
+    background: #fbf1e8; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); transform: rotate(-7deg); pointer-events: none;
+}
+.rs-photo[hidden] { display: none; }
+.rs-photo img { display: block; width: 100%; aspect-ratio: 1 / 1.05; object-fit: cover; }
+
+/* ---------- Animasi pembuka ---------- */
+
+.rs-overlay.is-intro .rs-card[data-slot="0"] { animation: rsRise 0.9s var(--rs-ease) 0.5s backwards; }
+.rs-overlay.is-intro .rs-card[data-slot="1"], .rs-overlay.is-intro .rs-card[data-slot="2"] { animation: rsGhostIn 0.9s ease 0.8s backwards; }
+
+.rs-spark {
+    position: absolute; z-index: 5; width: 12px; height: 12px; pointer-events: none; opacity: 0;
+    background: #fff4ea; filter: drop-shadow(0 0 6px rgba(255, 244, 234, 0.9));
+    -webkit-clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%);
+    clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%);
+}
+.rs-spark-a { top: 4%; left: -6%; } .rs-spark-b { top: 18%; right: -8%; }
+.rs-spark-c { bottom: 12%; left: -8%; } .rs-spark-d { bottom: 2%; right: 6%; }
+.rs-overlay.is-open .rs-spark { animation: rsSparkOnce 1.8s ease-out 1.2s both; }
+.rs-overlay.is-open .rs-spark-b { animation-delay: 1.5s; } .rs-overlay.is-open .rs-spark-c { animation-delay: 1.8s; } .rs-overlay.is-open .rs-spark-d { animation-delay: 2.1s; }
+
+/* ---------- Counter & hint ---------- */
+
+.rs-meta { margin-top: 26px; }
+.rs-count { display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 1.1rem; letter-spacing: 0.24em; }
+.rs-count i { display: block; width: 44px; height: 1px; background: rgba(243, 182, 196, 0.5); }
+.rs-hint { margin-top: 12px; color: #e6cbd2; font-size: 0.9rem; letter-spacing: 0.1em; transition: opacity 0.5s ease; }
+.rs-hint.is-hidden { opacity: 0; }
+.rs-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Kartu 29 (klimaks) ---------- */
+
+.rs-bouquet, .rs-final-leaf { position: absolute; pointer-events: none; opacity: 0; z-index: 6; }
+.rs-bouquet { top: -62px; left: 50%; width: 130px; margin-left: -65px; transform-origin: bottom center; }
+.rs-final-leaf { bottom: 6%; width: 78px; transform-origin: bottom center; }
+.rs-final-leaf-l { left: -30px; transform: scaleX(-1); }
+.rs-final-leaf-r { right: -30px; }
+
+.rs-stack[data-final] .rs-card[data-slot="0"] {
+    transform: scale(1.05) rotate(0deg);
+    filter: drop-shadow(0 0 24px var(--rs-glow)) drop-shadow(0 18px 26px rgba(8, 2, 8, 0.5));
+}
+.rs-stack[data-final] .rs-card:not([data-slot="0"]) { opacity: 0; }
+.rs-stack[data-final] .rs-bouquet { animation: rsBloom 1.6s var(--rs-ease) 0.5s both; }
+.rs-stack[data-final] .rs-final-leaf-l { animation: rsLeafGrowL 1.8s var(--rs-ease) 0.8s both; }
+.rs-stack[data-final] .rs-final-leaf-r { animation: rsLeafGrowR 1.8s var(--rs-ease) 1s both; }
+
+.rs-finale { margin-top: 26px; max-width: 340px; }
+.rs-finale.is-shown { animation: rsDrop 0.9s var(--rs-ease) both; }
+.rs-finale-text { font-family: var(--font-heading); font-style: italic; font-size: 1.05rem; line-height: 1.8; color: var(--rs-cream); }
+.rs-finale-btn {
+    margin-top: 22px; min-height: 52px; padding: 15px 28px; border: 1px solid rgba(243, 182, 196, 0.6); border-radius: 999px;
+    background: linear-gradient(160deg, #8a2f4e, #4a1420); color: var(--rs-cream);
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    box-shadow: 0 14px 30px rgba(60, 10, 30, 0.5), 0 0 28px var(--rs-glow);
+    -webkit-tap-highlight-color: transparent; transition: transform 0.3s ease, filter 0.3s ease;
+}
+.rs-finale-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+.rs-finale-btn:active { transform: scale(0.97); }
+
+/* ---------- Keyframes ---------- */
+
+@keyframes rsDrop     { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes rsRise     { from { opacity: 0; transform: translateY(90px) rotate(5deg) scale(0.94); } }
+@keyframes rsGhostIn  { from { opacity: 0; } }
+@keyframes rsSparkOnce { 0% { opacity: 0; transform: scale(0.3); } 40% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0; transform: scale(0.8); } }
+@keyframes rsBloom    { from { opacity: 0; transform: scale(0.3) rotate(-10deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+@keyframes rsLeafGrowL { from { opacity: 0; transform: scaleX(-1) scale(0.2) rotate(-14deg); } to { opacity: 0.95; transform: scaleX(-1) scale(1) rotate(0); } }
+@keyframes rsLeafGrowR { from { opacity: 0; transform: scale(0.2) rotate(14deg); } to { opacity: 0.95; transform: scale(1) rotate(0); } }
+@keyframes rsPetalFall { 0% { transform: translate(0, 0) rotate(0); opacity: 0; } 10% { opacity: 0.65; } 90% { opacity: 0.45; } 100% { transform: translate(40px, 112vh) rotate(200deg); opacity: 0; } }
+
+/* ---------- Responsive ---------- */
+
+@media (max-height: 640px) {
+    .rs-head { margin-bottom: 12px; }
+    .rs-meta { margin-top: 18px; }
+    .rs-card { min-height: 250px; }
+}
+@media (max-width: 375px) {
+    .rs-paper { padding: 32px 20px 28px; }
+    .rs-peony { width: 64px; } .rs-leafs { width: 70px; }
+}
+@media (min-width: 760px) {
+    .rs-stage { width: 360px; }
+    .rs-card { min-height: 380px; }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .rs-overlay, .rs-overlay *, .rs-overlay *::before { animation: none !important; transition-duration: 0.01s !important; }
+    .rs-ambience { display: none !important; }
+    .rs-stack[data-final] .rs-bouquet, .rs-stack[data-final] .rs-final-leaf { opacity: 1; }
+    .rs-spark { opacity: 0.5; }
+}

@@ -507,6 +507,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         clearAll();
 
+        if (typeof window.exitMessageReasons === "function") {
+            window.exitMessageReasons();
+        }
+
         typingStarted = false;
         messageStage = "intro";
 
@@ -556,22 +560,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
         nextBtn.addEventListener("click", () => {
 
+            /* hanya dari "full-letter": klik berulang saat Tahap 3 terbuka diabaikan */
+
             if (messageStage !== "full-letter" || nextWrap.hidden) {
                 return;
             }
 
-            if (typeof window.enterMessageReasons === "function") {
-
-                window.enterMessageReasons();
-
-            } else {
+            if (typeof window.enterMessageReasons !== "function") {
 
                 console.log(
-                    "Message: siap ke Tahap 3 (29 Reasons) — " +
-                    "halaman itu belum dibangun."
+                    "Message: Tahap 3 (reasons.js) belum dimuat."
                 );
 
+                return;
+
             }
+
+            messageStage = "reasons";
+
+            window.enterMessageReasons({
+
+                /* tombol Close: kembali ke surat */
+                onClose: () => {
+                    messageStage = "full-letter";
+                    nextBtn.focus({ preventScroll: true });
+                },
+
+                /* tombol penutup: kembali ke hub lewat jalur Back yang sama */
+                onFinish: () => {
+                    messageStage = "full-letter";
+                    if (introBack) { introBack.click(); }
+                }
+
+            });
 
         });
 

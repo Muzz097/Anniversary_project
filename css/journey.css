@@ -1,0 +1,468 @@
+/* ==========================================
+   JOURNEY — "OUR JOURNEY · WATCH YOU BLOOM" (css/journey.css)
+   Class berawalan `jn-`. Dimuat otomatis oleh js/journey.js bila belum di-link.
+
+   POLA: gaya dasar = keadaan AKHIR (semua tampil). Keadaan awal
+   "tersembunyi" + semua animasi hanya aktif di bawah `.jn-motion`
+   (dipasang JS bila prefers-reduced-motion TIDAK aktif).
+========================================== */
+
+.jn-page {
+    --jn-plum: #2b1625;
+    --jn-berry: #4a2440;
+    --jn-wine: #6b2c4a;
+    --jn-dusty: #d98da5;
+    --jn-pink: #e88aa6;
+    --jn-soft: #f3b6c4;
+    --jn-peach: #f3b6a0;
+    --jn-cream: #f7ece4;
+    --jn-paper: #f4e6db;
+    --jn-ink: #4a2b30;
+    --jn-muted: #cdb7bd;
+    --jn-leaf: #6f8f72;
+    --jn-leaf-light: #8fb094;
+    --jn-gold: #d4af6a;
+    --jn-gold-deep: #a8803c;
+    --jn-hand: "Caveat", "Segoe Script", cursive;
+    --jn-ease: cubic-bezier(.22, 1, .36, 1);
+    --jn-gap: 72px;
+    --jn-texture: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .3 0 0 0 0 .3 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+
+    position: relative; width: 100%; min-height: 100vh;
+    align-items: flex-start; justify-content: center;
+    overflow: hidden; isolation: isolate;
+    background: var(--jn-plum); color: var(--jn-cream);
+}
+
+.jn-bg {
+    position: absolute; inset: 0; z-index: -4;
+    background:
+        radial-gradient(circle at 25% 6%, rgba(224, 122, 149, 0.18), transparent 50%),
+        radial-gradient(circle at 85% 55%, rgba(243, 182, 160, 0.09), transparent 55%),
+        linear-gradient(165deg, #2b1625, #4a2440 45%, #1c0f1a 100%);
+}
+.jn-hero-glow {
+    position: absolute; top: 0; left: 50%; z-index: -3; width: 560px; height: 520px; margin-left: -280px;
+    background: radial-gradient(ellipse at 50% 35%, rgba(232, 138, 166, 0.42), transparent 66%);
+    filter: blur(20px); pointer-events: none;
+}
+.jn-ambience { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
+.jn-petal-fall {
+    position: absolute; top: -24px; left: var(--x, 10%);
+    width: var(--size, 12px); height: calc(var(--size, 12px) * 0.8);
+    background: linear-gradient(135deg, #e07a95, #f3b6a0); border-radius: 50% 0 50% 50%;
+    opacity: 0; animation: jnPetalFall var(--duration, 26s) linear var(--delay, 0s) infinite;
+}
+
+.jn-content {
+    position: relative; z-index: 5; width: min(92%, 540px);
+    padding: calc(40px + env(safe-area-inset-top, 0px)) 6px calc(70px + env(safe-area-inset-bottom, 0px));
+    display: flex; flex-direction: column; text-align: center;
+}
+
+.jn-back {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 10px;
+    min-height: 44px; padding: 4px 6px; margin-bottom: 10px; background: none; border: none;
+    color: var(--jn-muted); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+.jn-back:hover, .jn-back:focus-visible { color: var(--jn-cream); transform: translateX(-3px); }
+.jn-back:focus-visible, .jn-finale-btn:focus-visible, .jn-thumb:focus-visible, .jn-egg:focus-visible { outline: 2px solid var(--jn-soft); outline-offset: 3px; }
+
+/* ---------- OPENING ---------- */
+
+.jn-hero { position: relative; display: flex; flex-direction: column; align-items: center; padding: 0 0 56px; }
+.jn-hero-plant { width: 120px; height: 190px; overflow: visible; margin-bottom: 8px; }
+.jn-hero-stem { fill: none; stroke: var(--jn-leaf-light); stroke-width: 3; stroke-linecap: round; }
+.jn-hero-leaf { fill: var(--jn-leaf); transform-origin: 60px 150px; }
+.jn-hero-leaf .jn-leaf-vein, .jn-leaf-vein { fill: none; stroke: rgba(255, 255, 255, 0.28); stroke-width: 1.2; }
+.jn-hero-bud { transform-origin: 60px 88px; }
+.jn-bud-sepal { fill: var(--jn-leaf); }
+.jn-bud-petal-b { fill: #d96f8f; }
+.jn-bud-petal-l, .jn-bud-petal-r { fill: var(--jn-pink); }
+
+.jn-hero-label { margin-bottom: 12px; color: var(--jn-dusty); font-size: 0.72rem; letter-spacing: 0.34em; text-transform: uppercase; }
+.jn-hero-title {
+    margin-bottom: 12px; font-family: var(--font-heading); font-weight: 400;
+    font-size: clamp(2.3rem, 11vw, 3.6rem); letter-spacing: 0.06em; text-transform: uppercase;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+.jn-hero-subtitle { font-family: var(--jn-hand); font-size: 1.7rem; color: var(--jn-soft); }
+.jn-hero-tagline { max-width: 300px; margin-top: 10px; color: var(--jn-muted); font-size: 0.92rem; line-height: 1.8; }
+
+.jn-hero-photo { position: relative; margin: 30px 0 0; width: 112px; transform: rotate(-4deg); }
+.jn-hero-photo-frame { display: block; padding: 6px 6px 22px; background: var(--jn-paper); box-shadow: 0 14px 28px rgba(8, 2, 8, 0.5); }
+.jn-hero-photo img { display: block; width: 100%; aspect-ratio: 1 / 1.05; object-fit: cover; background: linear-gradient(160deg, #e8d3c9, #d9b9b0); }
+.jn-hero-photo figcaption { position: absolute; left: 6px; right: 6px; bottom: 3px; color: var(--jn-ink); font-family: var(--jn-hand); font-size: 0.78rem; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.jn-hero-spark {
+    position: absolute; width: 11px; height: 11px; background: #fff4ea; pointer-events: none;
+    filter: drop-shadow(0 0 6px rgba(255, 244, 234, 0.9));
+    -webkit-clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%);
+    clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%);
+}
+.jn-hero-spark-a { top: 38px; left: 18%; } .jn-hero-spark-b { bottom: 90px; right: 14%; }
+
+.jn-tape {
+    position: absolute; top: -9px; left: 50%; width: 70px; height: 20px; z-index: 3; pointer-events: none;
+    transform: translateX(-50%) rotate(-3deg);
+    background: linear-gradient(180deg, rgba(243, 182, 196, 0.85), rgba(217, 141, 165, 0.6));
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* urutan opening: glow -> batang -> daun -> bunga kuncup -> label -> judul -> subtitle -> foto & dekorasi */
+.jn-motion .jn-hero-glow { animation: jnFadeIn 1.4s ease both; }
+.jn-motion .jn-hero-stem { stroke-dasharray: 1; stroke-dashoffset: 1; animation: jnDraw 1.6s ease 0.5s forwards; }
+.jn-motion .jn-hero-leaf { transform: scale(0); animation: jnGrowIn 0.9s var(--jn-ease) 1.6s forwards; }
+.jn-motion .jn-hero-bud { opacity: 0; animation: jnBudIn 1s ease 2s forwards, jnBudSway 7s ease-in-out 3.2s infinite; }
+.jn-motion .jn-hero-label { animation: jnUp 1s var(--jn-ease) 2.3s both; }
+.jn-motion .jn-hero-title { animation: jnUp 1.1s var(--jn-ease) 2.6s both; }
+.jn-motion .jn-hero-subtitle { animation: jnUp 1s var(--jn-ease) 3.1s both; }
+.jn-motion .jn-hero-tagline { animation: jnUp 1s var(--jn-ease) 3.5s both; }
+.jn-motion .jn-hero-photo { animation: jnPhotoIn 1s var(--jn-ease) 3.9s both; }
+.jn-motion .jn-hero-spark-a { animation: jnSparkLoop 4s ease-in-out 4.3s infinite both; }
+.jn-motion .jn-hero-spark-b { animation: jnSparkLoop 5s ease-in-out 4.7s infinite both; }
+
+/* ---------- THE GROWING PATH ---------- */
+
+.jn-path { position: relative; padding-top: 4px; }
+.jn-path-head { margin-bottom: 30px; }
+.jn-path-label { color: var(--jn-dusty); font-size: 0.72rem; letter-spacing: 0.34em; text-transform: uppercase; }
+.jn-path-rule { display: block; width: 48px; height: 1px; margin: 12px auto 0; background: rgba(243, 182, 196, 0.5); }
+
+.jn-stem {
+    position: absolute; left: 14px; top: 60px; bottom: 0; width: 4px; margin-left: -2px;
+    border-radius: 4px; background: rgba(217, 141, 165, 0.16); pointer-events: none;
+}
+.jn-stem-fill {
+    display: block; width: 100%; height: 100%; border-radius: inherit;
+    background: linear-gradient(180deg, var(--jn-leaf-light), var(--jn-dusty));
+    box-shadow: 0 0 10px rgba(217, 141, 165, 0.45);
+    transition: height 0.9s ease-out;
+}
+.jn-motion .jn-stem-fill { height: 0; }
+
+.jn-item { position: relative; padding-left: 54px; margin-bottom: var(--jn-gap); text-align: left; }
+
+.jn-node { position: absolute; left: 14px; top: 0; width: 0; height: 0; z-index: 4; }
+.jn-node-dot {
+    position: absolute; left: -7px; top: 36px; width: 14px; height: 14px; border-radius: 50%; background: var(--jn-pink);
+    box-shadow: 0 0 0 4px rgba(232, 138, 166, 0.2), 0 0 14px rgba(232, 138, 166, 0.6);
+}
+.jn-egg { position: absolute; display: block; padding: 0; background: none; border: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.jn-egg-bloom { left: -26px; top: -18px; width: 52px; height: 52px; }
+.jn-egg-leaf { left: 5px; top: 40px; width: 30px; height: 44px; transform-origin: left bottom; transform: scaleX(var(--flip, 1)) rotate(-30deg); }
+.jn-egg-bloom svg, .jn-egg-leaf svg { display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.jn-egg.is-poked { animation: jnPoke 0.5s ease; }
+
+.jn-petal { fill: var(--jn-pink); stroke: rgba(255, 255, 255, 0.35); stroke-width: 0.6; }
+.jn-flower g:nth-child(odd) .jn-petal { fill: #f09bb4; }
+.jn-flower-core { fill: var(--jn-gold); }
+.jn-bloom-full .jn-egg-bloom { filter: drop-shadow(0 0 10px rgba(232, 138, 166, 0.7)); }
+.jn-leaf-body { fill: var(--jn-leaf); }
+
+.jn-card { display: flex; flex-direction: column; gap: 22px; }
+.jn-media-col { position: relative; }
+
+.jn-motion .jn-node-dot { transform: scale(0); }
+.jn-motion .jn-petal, .jn-motion .jn-flower-core { transform: scale(0); }
+.jn-motion .jn-egg-leaf { transform: scaleX(var(--flip, 1)) rotate(-60deg) scale(0); }
+.jn-motion .jn-item.is-visible .jn-node-dot { animation: jnGrowIn 0.6s ease 0.1s forwards; }
+.jn-motion .jn-item.is-visible .jn-petal { animation: jnGrowIn 0.9s var(--jn-ease) calc(0.5s + var(--i) * 0.07s) forwards; }
+.jn-motion .jn-item.is-visible .jn-flower-core { animation: jnGrowIn 0.7s ease 1s forwards; }
+.jn-motion .jn-item.is-visible .jn-egg-leaf { animation: jnLeafGrow 1.1s var(--jn-ease) 0.3s forwards; }
+
+/* reveal bertahap */
+.jn-motion .jn-item:not(.is-visible) .jn-r, .jn-motion .jn-item:not(.is-visible) .jn-deco,
+.jn-motion .jn-path-head:not(.is-visible) { opacity: 0; }
+.jn-motion .jn-item.is-visible .jn-r { animation: jnUp 0.9s var(--jn-ease) calc(0.1s + var(--s, 1) * 0.22s) both; }
+.jn-motion .jn-item.is-visible .jn-r[data-anim="from-left"]  { animation-name: jnFromLeft; }
+.jn-motion .jn-item.is-visible .jn-r[data-anim="from-right"] { animation-name: jnFromRight; }
+.jn-motion .jn-path-head.is-visible { animation: jnUp 0.9s var(--jn-ease) both; }
+
+/* ---------- Media ---------- */
+
+.jn-media {
+    position: relative; z-index: 2; margin: 0; padding: 8px 8px 12px; background: var(--jn-paper);
+    box-shadow: 0 18px 34px rgba(8, 2, 8, 0.5); transform: rotate(var(--rot, -2deg));
+}
+.jn-media-stage { position: relative; aspect-ratio: 4 / 3.1; overflow: hidden; background: linear-gradient(160deg, #e8d3c9, #d9b9b0); }
+.jn-layer { position: absolute; inset: 0; opacity: 0; transition: opacity 0.45s ease; }
+.jn-layer.is-in { opacity: 1; }
+.jn-layer img, .jn-layer video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.jn-layer video { object-fit: contain; background: #1c0f1a; }
+.jn-missing {
+    position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 16px;
+    color: #8a4d5a; font-family: var(--jn-hand); font-size: 1.15rem; text-align: center;
+}
+.jn-layer.is-missing .jn-missing { display: flex; }
+.jn-layer.is-missing img, .jn-layer.is-missing video { visibility: hidden; }
+
+.jn-caption { min-height: 1.3em; margin-top: 8px; color: var(--jn-ink); font-family: var(--jn-hand); font-size: 1.1rem; text-align: center; transition: opacity 0.22s ease; }
+.jn-caption.is-swap { opacity: 0; }
+
+.jn-thumbs { display: flex; justify-content: center; gap: 8px; margin-top: 8px; }
+.jn-thumb { position: relative; width: 48px; height: 48px; padding: 0; overflow: hidden; border: 2px solid transparent; border-radius: 6px; background: #d9b9b0; transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease; }
+.jn-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.jn-thumb.is-active { border-color: var(--jn-dusty); box-shadow: 0 0 10px rgba(217, 141, 165, 0.6); }
+.jn-thumb:active { transform: scale(0.94); }
+.jn-thumb-play { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: 0.7rem; background: rgba(0, 0, 0, 0.28); }
+
+/* collage / polaroid bertumpuk */
+.jn-layout-collage .jn-media::before, .jn-layout-collage .jn-media::after {
+    content: ""; position: absolute; inset: 0; z-index: -1; background: var(--jn-paper); box-shadow: 0 10px 20px rgba(8, 2, 8, 0.4);
+}
+.jn-layout-collage .jn-media::before { transform: rotate(6deg) translate(8px, 4px); opacity: 0.8; }
+.jn-layout-collage .jn-media::after  { transform: rotate(-5deg) translate(-8px, 6px); opacity: 0.65; }
+
+/* ---------- Teks ---------- */
+
+.jn-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 8px; }
+.jn-date { color: var(--jn-soft); font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase; }
+.jn-cat { padding: 3px 10px; border: 1px solid rgba(212, 175, 106, 0.55); border-radius: 999px; color: var(--jn-gold); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.jn-title { margin-bottom: 6px; font-family: var(--font-heading); font-weight: 400; font-size: clamp(1.35rem, 6.2vw, 1.9rem); letter-spacing: 0.05em; line-height: 1.25; text-transform: uppercase; }
+.jn-kicker { margin-bottom: 4px; color: var(--jn-gold); font-size: 0.78rem; letter-spacing: 0.32em; text-transform: uppercase; }
+.jn-tagline { margin-bottom: 12px; color: var(--jn-soft); font-family: var(--jn-hand); font-size: 1.45rem; line-height: 1.2; }
+.jn-desc { color: var(--jn-muted); font-size: 0.95rem; line-height: 1.85; overflow-wrap: anywhere; }
+.jn-loc { margin-top: 8px; color: var(--jn-dusty); font-family: var(--jn-hand); font-size: 1.2rem; }
+
+/* Pride meter */
+.jn-pride { margin-top: 16px; }
+.jn-pride-label { margin-bottom: 4px; color: var(--jn-muted); font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase; }
+.jn-heart { display: inline-block; margin-right: 4px; font-size: 1.45rem; color: rgba(217, 141, 165, 0.28); }
+.jn-heart.is-on { color: #e8738f; text-shadow: 0 0 10px rgba(232, 115, 143, 0.6); }
+.jn-pride-infinite { margin-top: 4px; color: var(--jn-gold); font-size: 0.74rem; letter-spacing: 0.28em; text-transform: uppercase; }
+.jn-pride-infinite::before { content: "∞ "; font-size: 1rem; }
+.jn-motion .jn-heart.is-on { color: rgba(217, 141, 165, 0.28); text-shadow: none; }
+.jn-motion .jn-item.is-visible .jn-heart.is-on { animation: jnHeartFill 0.7s ease calc(1.5s + var(--i) * 0.26s) forwards; }
+.jn-motion .jn-item.is-visible .jn-pride.is-infinite .jn-heart { animation: jnHeartFill 0.7s ease calc(1.5s + var(--i) * 0.26s) forwards, jnHeartBeat 2.4s ease-in-out 3.6s infinite; }
+.jn-motion .jn-item:not(.is-visible) .jn-pride-infinite { opacity: 0; }
+.jn-motion .jn-item.is-visible .jn-pride-infinite { animation: jnUp 0.9s ease 3s both; }
+
+/* My Note */
+.jn-note { position: relative; max-width: 300px; margin-top: 20px; padding: 18px 16px 14px; background: var(--jn-texture), #fbf1e8; color: var(--jn-ink); box-shadow: 0 10px 20px rgba(8, 2, 8, 0.4); rotate: -1.5deg; }  /* 'rotate' terpisah dari transform agar animasi fade-up tidak menimpanya */
+.jn-tape-sm { width: 54px; height: 16px; top: -8px; }
+.jn-note-label { color: #b5636f; font-family: var(--jn-hand); font-size: 1.15rem; }
+.jn-note-text { margin-top: 2px; font-family: var(--jn-hand); font-size: 1.2rem; line-height: 1.45; overflow-wrap: anywhere; }
+
+/* Dekorasi (pointer-events: none) */
+.jn-deco { position: absolute; z-index: 1; pointer-events: none; opacity: 0.92; }
+.jn-deco-peony { right: -24px; bottom: -34px; width: 96px; transform-origin: bottom right; filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.35)); }
+.jn-deco-leaf  { left: 30px; bottom: -30px; width: 84px; transform-origin: bottom left; }
+.jn-motion .jn-item.is-visible .jn-deco-peony { animation: jnDecoIn 1.2s var(--jn-ease) 0.9s both, jnSwaySoft 8s ease-in-out 2.4s infinite; }
+.jn-motion .jn-item.is-visible .jn-deco-leaf  { animation: jnDecoIn 1.2s var(--jn-ease) 1s both, jnSwaySoft 9s ease-in-out 2.4s infinite reverse; }
+
+.jn-burst { position: absolute; left: 4px; top: -30px; width: 12px; height: 12px; pointer-events: none; opacity: 0; z-index: 5; }
+.jn-burst-a { background: #fff4ea; filter: drop-shadow(0 0 6px rgba(255, 244, 234, 0.9)); -webkit-clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%); clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%); }
+.jn-burst-b { left: 22px; top: -20px; width: 10px; height: 8px; background: linear-gradient(135deg, #e07a95, #f3b6a0); border-radius: 50% 0 50% 50%; }
+.jn-motion .jn-item.is-visible .jn-burst-a { animation: jnSparkOnce 1.8s ease-out 1.1s both; }
+.jn-motion .jn-item.is-visible .jn-burst-b { animation: jnPetalOnce 2.4s ease-out 1.3s both; }
+
+/* ---------- Badge LKS (gold) ---------- */
+
+.jn-egg-badge { top: -26px; right: -12px; z-index: 6; width: 98px; height: 98px; }
+.jn-badge {
+    width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, #f8e6b0, var(--jn-gold) 58%, var(--jn-gold-deep));
+    border: 3px solid #f3dc9c; box-shadow: 0 10px 20px rgba(8, 2, 8, 0.5), 0 0 18px rgba(212, 175, 106, 0.55), inset 0 0 0 3px rgba(255, 255, 255, 0.28);
+    color: #5a3a14; pointer-events: none;
+}
+.jn-badge-num { font-family: var(--font-heading); font-size: 2.6rem; line-height: 1; font-weight: 700; }
+.jn-badge-text { margin-top: 2px; font-size: 0.5rem; letter-spacing: 0.18em; font-weight: 700; }
+.jn-motion .jn-item:not(.is-visible) .jn-egg-badge { opacity: 0; }
+.jn-motion .jn-item.is-visible .jn-egg-badge { animation: jnBadgeIn 0.9s var(--jn-ease) 0.7s both; }
+.jn-motion .jn-item.is-visible .jn-badge-num { animation: jnNumPulse 1.5s ease-in-out 1.7s 3; }
+
+/* ---------- Report card (ranking) ---------- */
+
+.jn-report {
+    position: relative; z-index: 4; width: min(78%, 250px); margin: -34px 0 0 auto; padding: 24px 16px 16px; text-align: center; color: var(--jn-ink);
+    background: repeating-linear-gradient(transparent 0 23px, rgba(217, 141, 165, 0.28) 24px 25px), var(--jn-texture), #fbf1e8;
+    box-shadow: 0 14px 28px rgba(8, 2, 8, 0.5); transform: rotate(2.4deg);
+}
+.jn-clip { position: absolute; top: -14px; left: 20px; width: 16px; height: 40px; border: 3px solid #c9a86a; border-radius: 8px; border-bottom-color: transparent; transform: rotate(6deg); }
+.jn-report-title { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: #8a4d5a; }
+.jn-rank-label { margin-top: 6px; font-family: var(--jn-hand); font-size: 1.1rem; color: #b5636f; }
+.jn-rank-num { min-height: 1.1em; font-family: var(--font-heading); font-size: 3.2rem; line-height: 1; color: #b5436a; }
+.jn-underline { display: block; width: 70%; height: 3px; margin: 4px auto 10px; border-radius: 3px; background: var(--jn-dusty); transform-origin: left; }
+.jn-stars { font-size: 1.2rem; letter-spacing: 4px; }
+.jn-star { color: var(--jn-gold); text-shadow: 0 0 8px rgba(212, 175, 106, 0.6); }
+.jn-sticky { margin: 12px -6px 0 6px; padding: 10px 12px; background: #f9dcb0; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); font-family: var(--jn-hand); font-size: 1.15rem; line-height: 1.3; transform: rotate(-3deg); }
+.jn-motion .jn-underline { transform: scaleX(0); }
+.jn-motion .jn-star { color: rgba(212, 175, 106, 0.22); text-shadow: none; }
+.jn-motion .jn-item.is-visible .jn-underline { animation: jnLine 0.9s ease 1.7s forwards; }
+.jn-motion .jn-item.is-visible .jn-star { animation: jnStarOn 0.6s ease calc(2.1s + var(--i) * 0.28s) forwards; }
+
+/* ---------- Penampilan tari ---------- */
+
+.jn-type-performance .jn-media {
+    padding: 12px 12px 12px; background: var(--jn-texture), linear-gradient(160deg, #f9e6dc, #f0cfc6);
+    box-shadow: none; filter: drop-shadow(0 16px 24px rgba(8, 2, 8, 0.5));
+    -webkit-mask: radial-gradient(circle 10px at 0 52%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 10px at 100% 52%, #0000 98%, #000) right / 51% 100% no-repeat;
+    mask: radial-gradient(circle 10px at 0 52%, #0000 98%, #000) left / 51% 100% no-repeat, radial-gradient(circle 10px at 100% 52%, #0000 98%, #000) right / 51% 100% no-repeat;
+}
+.jn-ticket-stub { display: block; margin-top: 6px; padding-top: 6px; border-top: 1.5px dashed rgba(138, 77, 90, 0.5); color: #8a4d5a; font-size: 0.58rem; letter-spacing: 0.34em; text-align: center; text-transform: uppercase; }
+.jn-ticket-stub::before { content: "Admit one ♡ the stage is yours"; }
+
+.jn-spotlight { position: absolute; inset: -34px -22px; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 62% 72% at 50% 30%, rgba(232, 138, 166, 0.5), transparent 70%); filter: blur(14px); }
+.jn-motion .jn-item:not(.is-visible) .jn-spotlight { opacity: 0; }
+.jn-motion .jn-item.is-visible .jn-spotlight { animation: jnFadeIn 1.2s ease 0.2s both, jnSpot 9s ease-in-out 1.4s infinite alternate; }
+
+.jn-motion-trail { position: absolute; left: -6%; right: -6%; top: 36%; z-index: 3; width: 112%; height: auto; pointer-events: none; overflow: visible; }
+.jn-trail { fill: none; stroke: rgba(243, 182, 196, 0.6); stroke-width: 1.4; stroke-linecap: round; }
+.jn-trail-2 { stroke: rgba(212, 175, 106, 0.45); }
+.jn-motion .jn-trail { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.jn-motion .jn-item.is-visible .jn-trail { animation: jnDraw 2.2s ease 1.1s forwards; }
+.jn-motion .jn-item.is-visible .jn-trail-2 { animation-delay: 1.4s; }
+
+.jn-diag-petal { position: absolute; z-index: 3; left: calc(6% + var(--i) * 24%); top: -14px; width: 11px; height: 9px; pointer-events: none; opacity: 0; background: linear-gradient(135deg, #e07a95, #f3b6a0); border-radius: 50% 0 50% 50%; }
+.jn-motion .jn-item.is-visible .jn-diag-petal { animation: jnDiag 9s ease-in-out calc(1.6s + var(--i) * 2.1s) infinite; }
+
+.jn-egg-dance { top: -16px; right: -10px; z-index: 6; width: 44px; height: 44px; }
+.jn-dance-star { display: grid; place-items: center; width: 100%; height: 100%; color: var(--jn-gold); font-size: 1.5rem; text-shadow: 0 0 12px rgba(212, 175, 106, 0.8); pointer-events: none; }
+.jn-motion .jn-item.is-visible .jn-dance-star { animation: jnSparkLoop 3.4s ease-in-out 2s infinite; }
+
+/* caption tari muncul setelah media terlihat */
+.jn-motion .jn-type-performance:not(.is-visible) .jn-caption { opacity: 0; }
+.jn-motion .jn-type-performance.is-visible .jn-caption:not(.is-swap) { animation: jnFadeIn 0.9s ease 1.3s both; }
+
+/* ---------- FINALE: YOU BLOOMED ---------- */
+
+.jn-finale { position: relative; padding: 24px 0 20px; text-align: center; }
+.jn-garden { position: relative; width: min(100%, 360px); height: 340px; margin: 0 auto 26px; }
+.jn-garden-glow { position: absolute; inset: -24px; background: radial-gradient(circle at 50% 55%, rgba(232, 138, 166, 0.5), transparent 66%); filter: blur(24px); pointer-events: none; }
+.jn-garden-plant { position: absolute; left: 50%; bottom: 0; width: 120px; height: 230px; margin-left: -60px; overflow: visible; pointer-events: none; }
+.jn-garden-stem { fill: none; stroke: var(--jn-leaf-light); stroke-width: 3; stroke-linecap: round; }
+
+.jn-garden-flower { position: absolute; z-index: 2; pointer-events: none; overflow: visible; filter: drop-shadow(0 0 8px rgba(232, 138, 166, 0.5)); }
+.jn-g-f1 { top: -6px; left: calc(50% - 46px); width: 92px; height: 92px; }
+.jn-g-f2 { top: 26%; left: 2%; width: 64px; height: 64px; }
+.jn-g-f3 { top: 20%; right: 0; width: 78px; height: 78px; }
+.jn-g-f4 { bottom: 12%; left: 8%; width: 58px; height: 58px; }
+.jn-g-f5 { bottom: 8%; right: 8%; width: 62px; height: 62px; }
+
+.jn-garden-leaf { position: absolute; z-index: 1; width: 34px; height: 51px; pointer-events: none; transform-origin: bottom center; }
+.jn-g-l1 { bottom: 0; left: 26%; --r: -35deg; } .jn-g-l2 { bottom: 2%; right: 24%; --r: 38deg; }
+.jn-g-l3 { bottom: 26%; left: 1%; --r: -60deg; } .jn-g-l4 { bottom: 30%; right: 1%; --r: 62deg; }
+.jn-g-l5 { top: 4%; left: 22%; --r: -28deg; } .jn-g-l6 { top: 2%; right: 20%; --r: 30deg; }
+.jn-garden-leaf { transform: rotate(var(--r, 0deg)); }
+
+.jn-garden-photo { position: absolute; z-index: 3; left: 50%; top: 34%; width: 150px; margin: 0 0 0 -75px; transform: rotate(-3deg); }
+.jn-garden-photo-frame { display: block; padding: 7px 7px 26px; background: var(--jn-paper); box-shadow: 0 16px 30px rgba(8, 2, 8, 0.55), 0 0 28px rgba(232, 138, 166, 0.45); }
+.jn-garden-photo img { display: block; width: 100%; aspect-ratio: 1 / 1.1; object-fit: cover; background: linear-gradient(160deg, #e8d3c9, #d9b9b0); }
+
+.jn-garden-petal { position: absolute; z-index: 4; top: 0; left: calc(10% + var(--i) * 18%); width: 11px; height: 9px; pointer-events: none; opacity: 0; background: linear-gradient(135deg, #e07a95, #f3b6a0); border-radius: 50% 0 50% 50%; animation: jnGardenPetal 11s ease-in-out calc(var(--i) * 2.2s) infinite; }
+
+.jn-finale-kicker { font-family: var(--font-heading); font-weight: 400; font-size: clamp(1.25rem, 6vw, 1.8rem); letter-spacing: 0.12em; text-transform: uppercase; }
+.jn-finale-lines { margin-top: 18px; }
+.jn-finale-line { display: block; color: var(--jn-cream); font-family: var(--font-heading); font-style: italic; font-size: 1.1rem; line-height: 1.9; }
+.jn-finale-signature { margin-top: 14px; color: var(--jn-soft); font-family: var(--jn-hand); font-size: 1.6rem; }
+.jn-finale-btn {
+    margin-top: 26px; min-height: 52px; padding: 15px 28px; border: 1px solid rgba(243, 182, 196, 0.6); border-radius: 999px;
+    background: linear-gradient(160deg, #8a2f4e, #4a1420); color: var(--jn-cream); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    box-shadow: 0 14px 30px rgba(60, 10, 30, 0.5), 0 0 28px rgba(224, 122, 149, 0.4); -webkit-tap-highlight-color: transparent;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+.jn-finale-btn:hover { transform: translateY(-3px); filter: brightness(1.1); }
+.jn-finale-btn:active { transform: scale(0.97); }
+
+/* urutan finale: glow -> batang -> bunga mekar -> daun -> foto -> teks -> tanda tangan -> tombol */
+.jn-motion .jn-finale:not(.is-visible) .jn-r, .jn-motion .jn-finale:not(.is-visible) .jn-garden-glow,
+.jn-motion .jn-finale:not(.is-visible) .jn-garden-photo, .jn-motion .jn-finale:not(.is-visible) .jn-finale-line { opacity: 0; }
+.jn-motion .jn-finale.is-visible .jn-garden-glow { animation: jnFadeIn 1.4s ease both, jnBreath 6s ease-in-out 1.8s infinite; }
+.jn-motion .jn-garden-stem { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.jn-motion .jn-finale.is-visible .jn-garden-stem { animation: jnDraw 2s ease 0.4s forwards; }
+.jn-motion .jn-garden-flower .jn-petal, .jn-motion .jn-garden-flower .jn-flower-core { transform: scale(0); }
+.jn-motion .jn-finale.is-visible .jn-garden-flower .jn-petal { animation: jnGrowIn 0.9s var(--jn-ease) calc(1s + var(--g) * 0.35s + var(--i) * 0.06s) forwards; }
+.jn-motion .jn-finale.is-visible .jn-garden-flower .jn-flower-core { animation: jnGrowIn 0.7s ease calc(1.5s + var(--g) * 0.35s) forwards; }
+.jn-motion .jn-garden-leaf { transform: rotate(var(--r, 0deg)) scale(0); }
+.jn-motion .jn-finale.is-visible .jn-garden-leaf { animation: jnGardenLeaf 1.2s var(--jn-ease) calc(0.8s + var(--g) * 0.3s) forwards; }
+.jn-motion .jn-finale.is-visible .jn-garden-photo { animation: jnPhotoIn 1.1s var(--jn-ease) 2.2s both; }
+.jn-motion .jn-finale.is-visible .jn-r { animation: jnUp 1s var(--jn-ease) calc(2.9s + (var(--s) - 6) * 0.5s) both; }
+.jn-motion .jn-finale.is-visible .jn-finale-lines { animation: none; opacity: 1; }
+.jn-motion .jn-finale.is-visible .jn-finale-line { animation: jnUp 1s var(--jn-ease) calc(3.4s + var(--l) * 0.6s) both; }
+.jn-motion .jn-finale.is-visible .jn-finale-signature { animation-delay: 5.4s; }
+.jn-motion .jn-finale.is-visible .jn-finale-btn { animation-delay: 5.9s; }
+
+/* ---------- Toast easter egg ---------- */
+
+.jn-toast {
+    position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); z-index: 60; max-width: min(88vw, 360px);
+    padding: 12px 18px; border-radius: 18px; background: rgba(251, 241, 232, 0.97); color: #4a1e28; box-shadow: 0 14px 30px rgba(8, 2, 8, 0.5);
+    font-family: var(--jn-hand); font-size: 1.25rem; line-height: 1.3; text-align: center; pointer-events: none;
+    opacity: 0; transform: translate(-50%, 14px); transition: opacity 0.35s ease, transform 0.45s var(--jn-ease);
+}
+.jn-toast.is-shown { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Keyframes ---------- */
+
+@keyframes jnFadeIn   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes jnUp       { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes jnFromLeft { from { opacity: 0; transform: translateX(-44px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes jnFromRight{ from { opacity: 0; transform: translateX(44px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes jnDraw     { to { stroke-dashoffset: 0; } }
+@keyframes jnGrowIn   { from { transform: scale(0); } to { transform: scale(1); } }
+@keyframes jnBudIn    { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+@keyframes jnBudSway  { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(3.5deg); } }
+@keyframes jnPhotoIn  { from { opacity: 0; transform: translateY(26px) rotate(-8deg) scale(0.9); } }
+@keyframes jnLeafGrow { from { transform: scaleX(var(--flip, 1)) rotate(-60deg) scale(0); } to { transform: scaleX(var(--flip, 1)) rotate(-30deg) scale(1); } }
+@keyframes jnGardenLeaf { from { transform: rotate(var(--r, 0deg)) scale(0); } to { transform: rotate(var(--r, 0deg)) scale(1); } }
+@keyframes jnDecoIn   { from { opacity: 0; transform: scale(0.5) rotate(-10deg); } to { opacity: 0.92; transform: scale(1); } }
+@keyframes jnSwaySoft { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(4deg) translateY(-3px); } }
+@keyframes jnHeartFill { 0% { color: rgba(217, 141, 165, 0.28); transform: scale(1); } 50% { transform: scale(1.4); } 100% { color: #e8738f; text-shadow: 0 0 10px rgba(232, 115, 143, 0.6); transform: scale(1); } }
+@keyframes jnHeartBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+@keyframes jnStarOn   { 0% { color: rgba(212, 175, 106, 0.22); text-shadow: none; transform: scale(1); } 50% { transform: scale(1.5); } 100% { color: var(--jn-gold); text-shadow: 0 0 8px rgba(212, 175, 106, 0.6); transform: scale(1); } }
+@keyframes jnLine     { to { transform: scaleX(1); } }
+@keyframes jnBadgeIn  { from { opacity: 0; transform: scale(0.2) rotate(-18deg); } 70% { transform: scale(1.1) rotate(3deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+@keyframes jnNumPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.22); } }
+@keyframes jnSpot     { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
+@keyframes jnDiag     { 0% { opacity: 0; transform: translate(0, 0) rotate(0); } 15% { opacity: 0.85; } 85% { opacity: 0.5; } 100% { opacity: 0; transform: translate(70px, 260px) rotate(220deg); } }
+@keyframes jnSparkLoop { 0%, 100% { opacity: 0.1; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.25); } }
+@keyframes jnSparkOnce { 0% { opacity: 0; transform: scale(0.3); } 40% { opacity: 1; transform: scale(1.4); } 100% { opacity: 0; transform: scale(0.8); } }
+@keyframes jnPetalOnce { 0% { opacity: 0; transform: translate(0, 0) rotate(0); } 25% { opacity: 1; } 100% { opacity: 0; transform: translate(26px, 46px) rotate(160deg); } }
+@keyframes jnBreath   { 0%, 100% { opacity: 0.65; } 50% { opacity: 1; } }
+@keyframes jnPoke     { 0%, 100% { transform: scale(1); } 40% { transform: scale(1.22) rotate(-6deg); } }
+@keyframes jnGardenPetal { 0% { opacity: 0; transform: translate(0, 0) rotate(0); } 15% { opacity: 0.8; } 100% { opacity: 0; transform: translate(40px, 300px) rotate(200deg); } }
+@keyframes jnPetalFall { 0% { transform: translate(0, 0) rotate(0); opacity: 0; } 10% { opacity: 0.65; } 90% { opacity: 0.45; } 100% { transform: translate(40px, 112vh) rotate(200deg); opacity: 0; } }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 375px) {
+    .jn-item { padding-left: 50px; }
+    .jn-egg-badge { width: 88px; height: 88px; right: -8px; }
+    .jn-report { width: min(82%, 230px); }
+    .jn-garden { height: 320px; }
+    .jn-garden-photo { width: 136px; margin-left: -68px; }
+}
+
+@media (min-width: 760px) {
+    .jn-content { width: min(92%, 980px); }
+    .jn-hero-photo { width: 140px; }
+
+    .jn-stem { left: 50%; }
+    .jn-item { padding-left: 0; }
+    .jn-node { left: 50%; }
+
+    .jn-card { display: grid; grid-template-columns: 1fr 1fr; column-gap: 90px; align-items: center; }
+    .jn-layout-right .jn-media-col { grid-column: 2; grid-row: 1; }
+    .jn-layout-right .jn-text-col  { grid-column: 1; grid-row: 1; text-align: right; }
+    .jn-layout-right .jn-meta { justify-content: flex-end; }
+    .jn-layout-right .jn-note { margin-left: auto; }
+    .jn-layout-right .jn-egg-leaf { --flip: -1; left: -36px; }
+
+    .jn-layout-center .jn-card, .jn-layout-collage .jn-card { grid-template-columns: 1fr; row-gap: 26px; }
+    .jn-layout-center .jn-media-col, .jn-layout-collage .jn-media-col { width: min(100%, 480px); margin: 0 auto; }
+    .jn-layout-center .jn-text-col, .jn-layout-collage .jn-text-col { text-align: center; }
+    .jn-layout-center .jn-meta, .jn-layout-collage .jn-meta { justify-content: center; }
+    .jn-layout-center .jn-note, .jn-layout-collage .jn-note { margin-left: auto; margin-right: auto; }
+
+    .jn-deco-peony { right: -50px; } .jn-deco-leaf { left: 56%; }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .jn-page *, .jn-page *::before, .jn-page *::after { animation: none !important; transition-duration: 0.01s !important; }
+    .jn-ambience, .jn-burst, .jn-diag-petal, .jn-garden-petal, .jn-hero-spark { display: none !important; }
+    .jn-heart.is-on { color: #e8738f; }
+}

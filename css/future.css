@@ -1,0 +1,608 @@
+/* ==========================================
+   PHASE 14 — OUR FUTURE (static styling)
+   Keyframes & transisi ada di future-animations.css
+========================================== */
+
+.future-section {
+    --f-plum: #2b1625;
+    --f-mauve: #4a2440;
+    --f-wine: #8a3a58;
+    --f-rose: #d98da5;
+    --f-pink: #f0c4d0;
+    --f-peach: #f3b6a0;
+    --f-cream: #f7f1ec;
+    --f-leaf: #6f8f72;
+    --f-paper: #f6ecdf;
+    --f-ink: #4a2f3a;
+
+    --f-z-bg: 0;
+    --f-z-deco: 1;
+    --f-z-content: 5;
+    --f-z-toast: 40;
+
+    --f-space: 22px;
+    --f-dur: .9s;
+
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    background: var(--f-plum);
+    color: var(--f-cream);
+    font-family: var(--font-heading, Georgia, serif);
+}
+
+.fut-bg {
+    position: fixed;
+    inset: 0;
+    z-index: var(--f-z-bg);
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 25% 15%, rgba(224, 122, 149, .26), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(243, 182, 160, .18), transparent 60%),
+        linear-gradient(165deg, var(--f-plum), var(--f-mauve) 55%, #1c0f1a);
+}
+
+.fut-ambience {
+    position: fixed;
+    inset: 0;
+    z-index: var(--f-z-deco);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.fut-spark {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--f-cream);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.fut-petal,
+.fut-vleaf {
+    position: absolute;
+    top: -6%;
+    left: var(--x);
+    width: 13px;
+    height: 10px;
+    border-radius: 50% 0 50% 50%;
+    background: linear-gradient(135deg, var(--f-rose), var(--f-peach));
+    opacity: 0;
+    pointer-events: none;
+}
+
+.fut-vleaf {
+    top: var(--y);
+    background: linear-gradient(135deg, var(--f-leaf), #9bb89d);
+}
+
+.fut-main {
+    position: relative;
+    z-index: var(--f-z-content);
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 var(--f-space);
+}
+
+.fut-locked { display: none !important; }
+
+.fut-toast {
+    position: fixed;
+    left: 50%;
+    bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+    z-index: var(--f-z-toast);
+    max-width: 86%;
+    padding: 10px 20px;
+    border: 1px solid rgba(217, 141, 165, .5);
+    border-radius: 999px;
+    background: rgba(43, 22, 37, .92);
+    color: var(--f-pink);
+    font-size: .85rem;
+    font-style: italic;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* ---------- OPENING ---------- */
+
+.fut-hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 48px 0 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.fut-glow {
+    position: absolute;
+    left: 50%;
+    top: 28%;
+    width: 340px;
+    height: 340px;
+    margin-left: -170px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(243, 182, 160, .5), rgba(224, 122, 149, .2) 45%, transparent 70%);
+    filter: blur(14px);
+    pointer-events: none;
+}
+
+.fut-plant-art {
+    position: relative;
+    width: 240px;
+    height: 290px;
+    margin-bottom: 14px;
+    pointer-events: none;
+}
+
+.fut-stem {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 120px;
+    height: 210px;
+    margin-left: -60px;
+    overflow: visible;
+}
+
+.fut-stem path:first-child {
+    fill: none;
+    stroke: var(--f-leaf);
+    stroke-width: 5;
+    stroke-linecap: round;
+}
+
+.fut-stem-leaf { fill: var(--f-leaf); opacity: .9; }
+
+.fut-leaf {
+    position: absolute;
+    bottom: 24px;
+    width: 92px;
+    --flip: 1;
+}
+
+.fut-leaf-l { left: 0; transform-origin: 100% 100%; }
+.fut-leaf-r { right: 0; --flip: -1; transform-origin: 0 100%; }
+
+.fut-bloom {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 170px;
+    margin-left: -85px;
+    transform-origin: 50% 85%;
+}
+
+.fut-fb svg { display: block; width: 100%; height: auto; }
+
+.fut-label {
+    margin-bottom: 14px;
+    color: var(--f-rose);
+    font-size: .72rem;
+    letter-spacing: .3em;
+}
+
+.fut-title {
+    margin-bottom: 16px;
+    font-size: clamp(1.75rem, 7.2vw, 2.7rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--f-cream);
+}
+
+.fut-sub {
+    max-width: 330px;
+    color: var(--f-pink);
+    font-size: .92rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.fut-polaroid {
+    width: 96px;
+    margin-top: 30px;
+    padding: 6px 6px 18px;
+    background: var(--f-paper);
+    box-shadow: 0 16px 34px rgba(0, 0, 0, .4);
+    transform: rotate(4deg);
+    pointer-events: none;
+}
+
+.fut-polaroid img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+.fut-cue {
+    position: absolute;
+    bottom: 22px;
+    left: 0;
+    right: 0;
+    color: var(--f-rose);
+    font-size: .68rem;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+}
+
+/* ---------- WISH LIST ---------- */
+
+.fut-wishes,
+.fut-letter,
+.fut-finale {
+    position: relative;
+    padding: 60px 0 40px;
+    text-align: center;
+}
+
+.fut-h {
+    margin-bottom: 10px;
+    color: var(--f-rose);
+    font-size: .78rem;
+    font-weight: 400;
+    letter-spacing: .26em;
+}
+
+.fut-note {
+    max-width: 300px;
+    margin: 0 auto 26px;
+    color: var(--f-pink);
+    font-size: .9rem;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.fut-cards {
+    position: relative;
+    width: min(100%, 300px);
+    height: 300px;
+    margin: 0 auto;
+    touch-action: pan-y;
+}
+
+.fut-card {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px 16px;
+    border-radius: 6px;
+    background: var(--f-paper);
+    color: var(--f-ink);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, .38);
+    text-align: center;
+    overflow: hidden;
+}
+
+.fut-card-num {
+    font-size: .72rem;
+    letter-spacing: .18em;
+    color: var(--f-wine);
+}
+
+.fut-card-cat {
+    margin-top: 4px;
+    font-size: .6rem;
+    letter-spacing: .26em;
+    color: #a5798a;
+}
+
+.fut-card-img {
+    width: 100%;
+    height: 78px;
+    margin-top: 10px;
+    border-radius: 3px;
+    object-fit: cover;
+}
+
+.fut-card-title {
+    margin-top: 12px;
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.fut-card-desc {
+    min-height: 4.6em;
+    margin-top: 8px;
+    font-size: .82rem;
+    line-height: 1.55;
+    color: #6b4a58;
+}
+
+.fut-card-foot {
+    margin-top: auto;
+    font-size: .74rem;
+    font-style: italic;
+    color: var(--f-wine);
+}
+
+.fut-card-deco {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    padding: 4px;
+    border: 0;
+    background: transparent;
+}
+
+.fut-card-deco svg,
+.fut-plant svg { display: block; width: 100%; height: 100%; }
+
+.fut-jar {
+    position: relative;
+    z-index: 2;
+    width: 118px;
+    height: 96px;
+    margin: -14px auto 0;
+    border: 2px solid rgba(247, 241, 236, .38);
+    border-radius: 16px 16px 30px 30px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, .13), rgba(217, 141, 165, .08));
+    box-shadow: 0 0 30px rgba(224, 122, 149, .25), inset 0 0 18px rgba(255, 255, 255, .06);
+    pointer-events: none;
+}
+
+.fut-jar::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    width: 74px;
+    height: 14px;
+    margin-left: -37px;
+    border-radius: 6px 6px 2px 2px;
+    background: var(--f-wine);
+}
+
+.fut-jar i {
+    position: absolute;
+    bottom: 10px;
+    width: 34px;
+    height: 24px;
+    border-radius: 2px;
+    background: var(--f-paper);
+    opacity: .85;
+}
+
+.fut-jar i:nth-child(1) { left: 14px; transform: rotate(-14deg); }
+.fut-jar i:nth-child(2) { left: 42px; bottom: 16px; transform: rotate(8deg); background: var(--f-pink); }
+.fut-jar i:nth-child(3) { right: 12px; transform: rotate(18deg); }
+
+.fut-counter {
+    margin-top: 20px;
+    color: var(--f-pink);
+    font-size: .8rem;
+    letter-spacing: .2em;
+}
+
+.fut-btn {
+    min-height: 46px;
+    margin-top: 16px;
+    padding: 13px 26px;
+    border: 1px solid rgba(217, 141, 165, .6);
+    border-radius: 999px;
+    background: rgba(217, 141, 165, .12);
+    color: var(--f-cream);
+    font-size: .82rem;
+    letter-spacing: .06em;
+}
+
+.fut-btn:hover { background: rgba(217, 141, 165, .24); }
+.fut-btn:focus-visible,
+.fut-card-deco:focus-visible,
+.fut-plant:focus-visible { outline: 2px solid var(--f-peach); outline-offset: 3px; }
+
+.fut-strip {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 6px;
+    min-height: 48px;
+    margin-top: 26px;
+}
+
+.fut-plant {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    padding: 2px;
+    border: 0;
+    background: transparent;
+    transform-origin: 50% 100%;
+}
+
+/* ---------- LETTER ---------- */
+
+.fut-paper {
+    position: relative;
+    margin: 14px auto 0;
+    padding: 56px 24px 56px;
+    background:
+        repeating-linear-gradient(0deg, rgba(120, 80, 60, .035) 0 2px, transparent 2px 5px),
+        var(--f-paper);
+    border: 1px solid rgba(217, 141, 165, .5);
+    border-radius: 4px;
+    box-shadow: 0 26px 50px rgba(0, 0, 0, .42);
+    color: var(--f-ink);
+    text-align: left;
+    transform: rotate(-.8deg);
+}
+
+.fut-tape {
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    width: 76px;
+    height: 22px;
+    background: rgba(243, 182, 160, .65);
+    transform: rotate(-5deg);
+    pointer-events: none;
+}
+
+.fut-stamp {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 3px 8px;
+    border: 1.5px solid var(--f-wine);
+    border-radius: 3px;
+    color: var(--f-wine);
+    font-size: .64rem;
+    letter-spacing: .14em;
+    transform: rotate(4deg);
+    opacity: .8;
+}
+
+.fut-paper-photo {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    width: 52px;
+    padding: 3px 3px 8px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
+    transform: rotate(-5deg);
+}
+
+.fut-paper-photo img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+.fut-greet {
+    min-height: 1.5em;
+    margin-bottom: 14px;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--f-wine);
+}
+
+.fut-lp {
+    min-height: 1.7em;
+    margin-bottom: 14px;
+    font-size: .95rem;
+    line-height: 1.85;
+}
+
+.fut-signature {
+    margin-top: 20px;
+    color: var(--f-wine);
+    font-size: 1.05rem;
+    font-style: italic;
+    text-align: right;
+}
+
+.fut-paper .fut-signature { opacity: 0; }
+.fut-paper .fut-signature.in { opacity: 1; }
+
+.fut-paper-flower {
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    width: 40px;
+    pointer-events: none;
+}
+
+.fut-cue-2 {
+    position: static;
+    margin-top: 30px;
+    opacity: 0;
+}
+
+.fut-cue-2.show { opacity: 1; }
+
+/* ---------- FINALE ---------- */
+
+.fut-finale { padding-bottom: 90px; }
+
+.fut-garden {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 4px;
+    max-width: 330px;
+    margin: 0 auto 36px;
+    padding-top: 34px;
+    border-bottom: 3px solid rgba(111, 143, 114, .45);
+    pointer-events: none;
+}
+
+.fut-garden .fut-plant { width: 28px; height: 28px; }
+
+.fut-finale-title {
+    margin-bottom: 20px;
+    font-size: clamp(1.35rem, 6vw, 1.9rem);
+    font-weight: 400;
+    letter-spacing: .08em;
+    line-height: 1.35;
+    color: var(--f-cream);
+}
+
+.fut-finale-text {
+    margin-bottom: 18px;
+    color: var(--f-pink);
+    font-size: .95rem;
+    line-height: 1.9;
+}
+
+.fut-finale .fut-signature { text-align: center; }
+
+/* ---------- VEIL (transisi) ---------- */
+
+.fut-veil {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(43, 22, 37, .94);
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.fut-veil-glow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 320px;
+    height: 320px;
+    margin: -160px 0 0 -160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 139, 163, .55), transparent 70%);
+    filter: blur(18px);
+}
+
+.fut-veil-text {
+    position: relative;
+    width: min(86%, 380px);
+    font-family: var(--font-heading, Georgia, serif);
+    color: #f7f1ec;
+    line-height: 1.7;
+}
+
+.fut-veil-text p { opacity: 0; font-size: 1.1rem; font-style: italic; }
+.fut-veil-text .v2 { margin-top: 10px; color: #f0c4d0; }
+.fut-veil-full { background: radial-gradient(circle, #e88ba3, #8a3a58 70%, #2b1625); }
+.fut-veil-full .v1 { font-size: 1.6rem; }
+
+@media (max-width: 480px) {
+    .fut-main { padding: 0 16px; }
+    .fut-plant-art { transform: scale(.92); }
+    .fut-cards { height: 310px; }
+}
+
+@media (max-width: 360px) {
+    .fut-cards { width: 270px; height: 320px; }
+    .fut-paper { padding: 56px 18px; }
+}

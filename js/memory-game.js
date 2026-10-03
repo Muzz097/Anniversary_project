@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const characterCelebration =
         document.getElementById("characterCelebration");
 
-        
+
 
 
     /*
@@ -119,6 +119,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /*
     ==========================================
+    MATCH REACTIONS (karakter per match)
+    Match ke-1 -> karakter 1, ke-2 -> karakter 2,
+    ke-3 -> karakter 3 (dipilih lewat matchedPairs - 1)
+    ==========================================
+    */
+
+    const matchReactions = [
+        {
+            character: "/assets/memory/character-01.png",
+            text: "Yay, you remember this one!"
+        },
+        {
+            character: "/assets/memory/character-02.png",
+            text: "That memory is still special, right?"
+        },
+        {
+            character: "/assets/memory/character-03.png",
+            text: "You remembered all of us!"
+        }
+    ];
+
+    const characterImg =
+        document.getElementById("characterCelebrationImg");
+
+    let celebrationHideTimer = null;
+    let celebrationCleanTimer = null;
+
+
+    /*
+    ==========================================
     SHUFFLE
     ==========================================
     */
@@ -155,12 +185,12 @@ document.addEventListener("DOMContentLoaded", () => {
     CREATE GAME
     ==========================================
     */
- 
-       function createGame() {
+
+    function createGame() {
 
         gameBoard.innerHTML = "";
         gameBoard.classList.remove("dissolve");
-        
+
         gameBoard.classList.remove("board-enter");
         void gameBoard.offsetWidth;
         gameBoard.classList.add("board-enter");
@@ -175,6 +205,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         lockBoard = false;
         matchedPairs = 0;
+
+        /* bersihkan karakter + timer dari permainan sebelumnya */
+
+        if (typeof resetCharacterCelebration === "function") {
+            resetCharacterCelebration();
+        }
 
         updateProgress();
 
@@ -212,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
         button.dataset.pair = card.pair;
 
 
-               button.innerHTML = `
+        button.innerHTML = `
 
             <span class="memory-card-inner">
 
@@ -344,7 +380,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ==========================================
     */
 
-        function handleMatch() {
+    function handleMatch() {
 
         firstCard.classList.add("matched");
         secondCard.classList.add("matched");
@@ -354,9 +390,20 @@ document.addEventListener("DOMContentLoaded", () => {
         secondCard.classList.add("match-animation");
 
 
+        /*
+        matchedPairs dinaikkan dulu supaya
+        matchedPairs - 1 = indeks karakter
+        untuk match yang baru saja terjadi.
+        */
+
+        matchedPairs++;
+
+        updateProgress();
+
+
         celebrateMatch(firstCard, secondCard);
 
-        triggerCharacterCelebration();
+        triggerCharacterCelebration(matchedPairs - 1);
 
 
         const pairType =
@@ -366,11 +413,6 @@ document.addEventListener("DOMContentLoaded", () => {
         showMatchMessage(
             matchMessages[pairType]
         );
-
-
-        matchedPairs++;
-
-        updateProgress();
 
 
         setTimeout(() => {
@@ -402,7 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ==========================================
     MATCH CELEBRATION
     ========================================== */
-    
+
 
     function celebrateMatch(cardA, cardB) {
 
@@ -559,17 +601,46 @@ document.addEventListener("DOMContentLoaded", () => {
     ==========================================
     */
 
-    function triggerCharacterCelebration() {
+    function resetCharacterCelebration() {
 
-        if (!characterCelebration) {
+        clearTimeout(celebrationHideTimer);
+        clearTimeout(celebrationCleanTimer);
+
+        if (characterCelebration) {
+
+            characterCelebration.classList.remove(
+                "show",
+                "dissolve"
+            );
+
+        }
+
+    }
+
+
+    function triggerCharacterCelebration(matchIndex) {
+
+        if (!characterCelebration || !characterImg) {
             return;
         }
 
-        characterCelebration.classList.remove(
-            "show", "dissolve"
-        );
+        const reaction = matchReactions[matchIndex];
+
+        if (!reaction) {
+            return;
+        }
+
+
+        /* bersihkan karakter sebelumnya + timer-nya */
+
+        resetCharacterCelebration();
 
         void characterCelebration.offsetWidth;
+
+
+        characterImg.style.display = "";
+        characterImg.src = reaction.character;
+        characterImg.alt = reaction.text;
 
 
         /*
@@ -595,12 +666,12 @@ document.addEventListener("DOMContentLoaded", () => {
         characterCelebration.classList.add("show");
 
 
-        setTimeout(() => {
+        celebrationHideTimer = setTimeout(() => {
 
             characterCelebration.classList.remove("show");
             characterCelebration.classList.add("dissolve");
 
-            setTimeout(() => {
+            celebrationCleanTimer = setTimeout(() => {
 
                 characterCelebration.classList.remove(
                     "dissolve"
@@ -737,19 +808,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function finishGame() {
 
-    lockBoard = true;
-
-   
-    gameBoard.classList.add("dissolve");
+        lockBoard = true;
 
 
-    setTimeout(() => {
+        gameBoard.classList.add("dissolve");
 
-        transitionToKetemu();
 
-    }, 1800);
+        setTimeout(() => {
 
-}
+            transitionToKetemu();
+
+        }, 1800);
+
+    }
 
 
     /*
@@ -811,52 +882,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startKetemuAnimation() {
 
-    ketemuSection.classList.add(
-        "ketemu-start"
-    );
+        ketemuSection.classList.add(
+            "ketemu-start"
+        );
 
-    spawnKetemuConfetti();
-
-}
-
-
-function spawnKetemuConfetti() {
-
-    const container =
-        document.getElementById("ketemuConfetti");
-
-    if (!container) {
-        return;
-    }
-
-    container.innerHTML = "";
-
-    const total = 18;
-
-    for (let i = 0; i < total; i++) {
-
-        const piece =
-            document.createElement("span");
-
-        const isHeart = i % 2 === 0;
-
-        piece.className =
-            isHeart ? "confetti-heart" : "confetti-petal";
-
-        piece.style.left =
-            Math.random() * 100 + "%";
-
-        piece.style.animationDelay =
-            (Math.random() * 1.2) + "s";
-
-        piece.style.animationDuration =
-            (2.2 + Math.random() * 1.6) + "s";
-
-        container.appendChild(piece);
+        spawnKetemuConfetti();
 
     }
 
-}
+
+    function spawnKetemuConfetti() {
+
+        const container =
+            document.getElementById("ketemuConfetti");
+
+        if (!container) {
+            return;
+        }
+
+        container.innerHTML = "";
+
+        const total = 18;
+
+        for (let i = 0; i < total; i++) {
+
+            const piece =
+                document.createElement("span");
+
+            const isHeart = i % 2 === 0;
+
+            piece.className =
+                isHeart ? "confetti-heart" : "confetti-petal";
+
+            piece.style.left =
+                Math.random() * 100 + "%";
+
+            piece.style.animationDelay =
+                (Math.random() * 1.2) + "s";
+
+            piece.style.animationDuration =
+                (2.2 + Math.random() * 1.6) + "s";
+
+            container.appendChild(piece);
+
+        }
+
+    }
 
 
     /*

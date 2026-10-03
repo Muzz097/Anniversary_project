@@ -148,7 +148,8 @@
     padding: 0 var(--f-space);
 }
 
-.fut-locked { display: none !important; }
+.fut-locked,
+.fut-hidden { display: none !important; }
 
 .fut-toast {
     position: fixed;
@@ -632,7 +633,7 @@
 .fut-paper {
     position: relative;
     margin: 14px auto 0;
-    padding: 56px 24px 56px;
+    padding: 106px 24px 56px;
     background:
         repeating-linear-gradient(0deg, rgba(120, 80, 60, .035) 0 2px, transparent 2px 5px),
         var(--f-paper);
@@ -658,8 +659,8 @@
 
 .fut-stamp {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 30px;
+    right: 18px;
     padding: 3px 8px;
     border: 1.5px solid var(--f-wine);
     border-radius: 3px;
@@ -672,9 +673,9 @@
 
 .fut-paper-photo {
     position: absolute;
-    top: 14px;
-    left: 18px;
-    width: 52px;
+    top: 20px;
+    left: 20px;
+    width: 58px;
     padding: 3px 3px 8px;
     background: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .2);
@@ -728,20 +729,6 @@
 /* ---------- FINALE ---------- */
 
 .fut-finale { padding-top: 0; padding-bottom: 90px; }
-
-.fut-garden {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2px 4px;
-    max-width: 330px;
-    margin: 0 auto 36px;
-    padding-top: 34px;
-    border-bottom: 3px solid rgba(111, 143, 114, .45);
-    pointer-events: none;
-}
-
-.fut-garden .fut-plant { width: 28px; height: 28px; }
 
 .fut-finale-title {
     margin-bottom: 20px;
@@ -812,5 +799,310 @@
     .fut-slot-tl, .fut-slot-tr, .fut-slot-br { width: 80px; }
     .fut-slot-bl { width: 74px; }
     .fut-cards { width: 270px; height: 320px; }
-    .fut-paper { padding: 56px 18px; }
+    .fut-paper { padding: 106px 18px 52px; }
+}
+
+
+/* ---------- WISH LIST SELESAI: "31 dreams. One future. Still us." ---------- */
+
+.fut-dreams {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+}
+
+.fut-dreams-line {
+    color: var(--f-cream);
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    font-style: italic;
+    line-height: 1.35;
+}
+
+.fut-dreams-line:nth-of-type(2) { color: var(--f-peach); }
+.fut-dreams-line:nth-of-type(3) { color: var(--f-pink); }
+.fut-dreams .fut-btn { margin-top: 34px; }
+
+/* warm pink glow di seluruh layar (muncul saat wish selesai) */
+.fut-warm {
+    position: fixed;
+    inset: 0;
+    z-index: var(--f-z-deco);
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 80% 55% at 50% 50%, rgba(243, 160, 180, .3), rgba(224, 122, 149, .12) 50%, transparent 75%);
+    opacity: 0;
+}
+
+/* ---------- FINALE: satu tanaman utama + foto ---------- */
+
+.fut-plantx {
+    position: relative;
+    width: min(100%, 250px);
+    margin: 34px auto 0;
+    pointer-events: none;
+    filter: drop-shadow(0 0 22px rgba(240, 160, 180, .35));
+}
+
+.fut-plantx svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.fut-pstem {
+    fill: none;
+    stroke: var(--f-leaf);
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
+
+.fut-pstem-main { stroke-width: 5; }
+.fut-pstem-br { stroke-width: 3.4; }
+
+.fut-pl {
+    fill: var(--f-leaf);
+    opacity: 0;
+    transform: scale(.1);
+    transform-box: fill-box;
+    transform-origin: 0 50%;
+}
+
+.fut-pfi {
+    opacity: 0;
+    transform: scale(.1);
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.fut-plantx .fut-spark { width: 5px; height: 5px; }
+
+.fut-pp {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 11px;
+    height: 9px;
+    border-radius: 50% 0 50% 50%;
+    background: linear-gradient(135deg, var(--f-rose), var(--f-peach));
+    opacity: 0;
+}
+
+.fut-finale-photo {
+    width: 128px;
+    margin: 30px auto 0;
+    pointer-events: none;
+}
+
+.fut-fpol {
+    position: relative;
+    padding: 7px 7px 30px;
+    background: var(--f-paper);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, .38);
+    rotate: -3deg;
+}
+
+.fut-fpol figcaption {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: 7px;
+    color: var(--f-ink);
+    font-family: var(--f-hand);
+    font-size: 1rem;
+    line-height: 1;
+    text-align: center;
+}
+
+.fut-finale .fut-btn { margin-top: 38px; }
+
+/* foto surat dihilangkan bila file tidak ditemukan (tidak ada bingkai kosong) */
+.fut-paper-photo:not(:has(img)) { display: none; }
+
+/* ujung bawah scene memudar ke warna dasar selama finale belum dibuka (tanpa garis) */
+.fut-scene:not(.fut-deep)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 220px;
+    background: linear-gradient(180deg, transparent, var(--f-base));
+    pointer-events: none;
+}
+
+/* ---------- FINALE: jarak vine ke judul ---------- */
+
+.fut-finale .fut-vine { margin-bottom: 46px; }
+
+/* ---------- FINALE: bunga & daun interaktif ---------- */
+
+.fut-hit {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    z-index: 3;
+    width: var(--w);
+    height: var(--h);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fut-live .fut-hit { pointer-events: auto; }
+.fut-hit:focus-visible { outline: 2px solid var(--f-peach); outline-offset: 2px; }
+
+.fut-bsway {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.fut-fglow {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--g);
+    height: var(--g);
+    margin: calc(var(--g) / -2) 0 0 calc(var(--g) / -2);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 190, 210, .65), rgba(232, 139, 163, .25) 45%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.fut-mlayer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.fut-mp {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--w);
+    padding: 4px 4px 28px;
+    border: 0;
+    background: var(--f-paper);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .4);
+    color: var(--f-ink);
+    cursor: pointer;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fut-mp-img { display: block; width: 100%; aspect-ratio: 1; overflow: hidden; background: #3a1b30; }
+.fut-mp-img img,
+.fut-mp-img .fut-ph { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.fut-mp-cap {
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    font-family: var(--f-hand);
+    font-size: .7rem;
+    line-height: 1.02;
+    text-align: center;
+}
+
+.fut-hint,
+.fut-mcap {
+    position: absolute;
+    left: -10px;
+    right: -10px;
+    bottom: -25px;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.fut-hint { color: var(--f-pink); font-size: .74rem; font-style: italic; white-space: nowrap; }
+.fut-mcap { color: var(--f-peach); font-family: var(--f-hand); font-size: 1.15rem; line-height: 1.2; }
+
+.fut-bspark {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    z-index: 5;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(255, 200, 215, .9);
+    pointer-events: none;
+}
+
+.fut-allmem {
+    margin-top: 34px;
+    color: var(--f-pink);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+/* lightbox kecil */
+
+.fut-lb {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+}
+
+.fut-lb.show { opacity: 1; }
+
+.fut-lb-back {
+    position: absolute;
+    inset: 0;
+    background: rgba(14, 5, 13, .8);
+}
+
+.fut-lb-card {
+    position: relative;
+    width: min(100%, 320px);
+    margin: 0;
+    padding: 10px 10px 44px;
+    background: var(--f-paper);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, .5);
+    rotate: -1.5deg;
+}
+
+.fut-lb-img { aspect-ratio: 1; overflow: hidden; background: #3a1b30; }
+.fut-lb-img img,
+.fut-lb-img .fut-ph { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.fut-lb-card figcaption {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 12px;
+    color: var(--f-ink);
+    font-family: var(--f-hand);
+    font-size: 1.3rem;
+    line-height: 1;
+    text-align: center;
+}
+
+.fut-lb-x {
+    position: absolute;
+    top: -14px;
+    right: -10px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--f-wine);
+    color: var(--f-cream);
+    font-size: 1.4rem;
+    line-height: 1;
 }

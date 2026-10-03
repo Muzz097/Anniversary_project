@@ -2412,18 +2412,24 @@ button {
 
 .matched-heart-badge {
     position: absolute;
-    bottom: 8px;
     right: 8px;
-    width: 14px;
-    height: 14px;
-    background: var(--particle-rose);
-    transform: rotate(45deg) scale(0);
+    bottom: 8px;
+    width: 16px;
+    height: 15px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23e07a95' d='M12 21s-8-4.5-8-11a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.5-8 11-8 11z'/%3E%3C/svg%3E") center / contain no-repeat;
+    transform: rotate(0deg) scale(0);
     opacity: 0;
     pointer-events: none;
     z-index: 3;
     transition:
         transform .4s cubic-bezier(.22, 1, .36, 1),
         opacity .4s ease;
+}
+
+.memory-card.matched .matched-heart-badge {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 6px rgba(224, 122, 149, .6));
 }
 
 .matched-heart-badge::before,
@@ -2482,9 +2488,9 @@ button {
 
 .character-celebration {
     position: absolute;
-    left: 50%;
-    bottom: 6px;
-    width: 104px;
+    left: calc(100% - 40px);
+    bottom: 30px;
+    width: 64px;
     z-index: 30;
     text-align: center;
     opacity: 0;

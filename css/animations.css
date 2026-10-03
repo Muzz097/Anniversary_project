@@ -605,25 +605,15 @@
 
 }
 
-
 @keyframes ketemuHeartReveal {
-
     from {
         opacity: 0;
-
-        transform:
-            rotate(45deg)
-            scale(.3);
+        transform: scale(.3);
     }
-
     to {
         opacity: 1;
-
-        transform:
-            rotate(45deg)
-            scale(1);
+        transform: scale(1);
     }
-
 }
 
 

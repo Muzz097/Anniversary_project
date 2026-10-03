@@ -510,6 +510,55 @@ document.addEventListener("DOMContentLoaded", () => {
             "Three songs, still being picked with care."
     };
 
+/*
+==========================================
+RESET HUB (fresh start tiap refresh)
+==========================================
+*/
+
+// Ganti/hapus key sesuai yang kamu pakai di versi barumu
+const HUB_STORAGE_KEYS = [
+    "visitedMenus",
+    "surpriseVisited",
+    "ourStoryVisited"
+];
+
+function resetSurpriseHub() {
+
+    // 1. Hapus state tersimpan
+    HUB_STORAGE_KEYS.forEach((key) => {
+        try {
+            localStorage.removeItem(key);
+            sessionStorage.removeItem(key);
+        } catch (e) {}
+    });
+
+    // 2. Reset state di memori
+    Object.keys(visited).forEach((key) => {
+        visited[key] = false;
+    });
+
+    // 3. Reset tampilan kartu & dot
+    surpriseCards.forEach((card) => {
+        card.classList.remove("visited", "visited-animation");
+    });
+
+    trackerDots.forEach((dot) => {
+        dot.classList.remove("completed");
+    });
+
+    // 4. Sembunyikan tombol wish list & kosongkan hint
+    if (surpriseContinue) {
+        surpriseContinue.classList.remove("ready");
+    }
+
+    if (surpriseHint) {
+        surpriseHint.textContent = "";
+    }
+}
+
+// Reset saat halaman pertama kali dimuat (refresh)
+resetSurpriseHub();
 
     /*
     ==========================================
@@ -603,6 +652,8 @@ document.addEventListener("DOMContentLoaded", () => {
             surpriseHub.classList.remove(
                 "hidden-section"
             );
+
+            resetSurpriseHub();
 
             surpriseHub.classList.add(
                 "active-section"

@@ -1352,46 +1352,12 @@ button {
 
 
 .ketemu-heart {
-    position: relative;
-
-    width: 22px;
-    height: 22px;
-
+    display: block;
+    width: 30px;  /* Silakan atur ukurannya sesuai selera */
+    height: 30px; /* Silakan atur ukurannya sesuai selera */
     margin: 22px auto;
-
-    background: var(--color-romantic-red);
-
-    transform:
-        rotate(45deg);
-
+    object-fit: contain;
     opacity: 0;
-}
-
-
-.ketemu-heart::before,
-.ketemu-heart::after {
-    content: "";
-
-    position: absolute;
-
-    width: 22px;
-    height: 22px;
-
-    border-radius: 50%;
-
-    background: var(--color-romantic-red);
-}
-
-
-.ketemu-heart::before {
-    top: -11px;
-    left: 0;
-}
-
-
-.ketemu-heart::after {
-    top: 0;
-    left: 11px;
 }
 
 

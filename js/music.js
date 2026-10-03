@@ -42,7 +42,7 @@
             coverSrc: "/assets/images/playlist/the-beginning.jpg",
             description: "Lagu yang mengingatkanku pada awal cerita kita.",
             order: 0,
-            isDefault: true
+            isDefault: false
         },
         {
             id: "the-moments",
@@ -64,7 +64,7 @@
             coverSrc: "/assets/images/playlist/album-future.png",
             description: "Lagu untuk perjalanan kita berikutnya.",
             order: 2,
-            isDefault: false
+            isDefault: true
         }
     ];
 

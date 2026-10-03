@@ -32,15 +32,16 @@
     min-height: 100vh;
 
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* <--- Ubah ke flex-start agar menempel ke atas */
     justify-content: center;
 
     overflow: hidden;
     isolation: isolate;
 
     background: var(--color-dark);
-
     font-family: var(--font-cute, var(--font-body));
+    
+    padding-top: 20px; /* <--- Tambahkan sedikit ruang napas di atas */
 }
 
 
@@ -92,7 +93,7 @@
     width: min(92%, 560px);
 
     padding:
-        calc(56px + env(safe-area-inset-top, 0px))
+        calc(20px + env(safe-area-inset-top, 0px)) /* <--- Ubah jadi 20px agar lebih ke atas */
         18px
         calc(60px + env(safe-area-inset-bottom, 0px));
 
@@ -118,8 +119,8 @@
     min-height: 44px;
     padding: 4px 6px;
 
-    margin-bottom: 30px;
-
+    margin-bottom: 15px; 
+    
     background: none;
     border: none;
 

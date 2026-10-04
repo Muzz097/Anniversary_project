@@ -127,15 +127,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const matchReactions = [
         {
-            character: "/assets/memory/character-01.png",
+            character: "/assets/images/characters/melody-happy.png",
             text: "Yay, you remember this one!"
         },
         {
-            character: "/assets/memory/character-02.png",
+            character: "/assets/images/characters/melody-happy.png",
             text: "That memory is still special, right?"
         },
         {
-            character: "/assets/memory/character-03.png",
+            character: "/assets/images/characters/melody-happy.png",
             text: "You remembered all of us!"
         }
     ];

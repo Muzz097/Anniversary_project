@@ -8,13 +8,13 @@ window.DM_INTRO_CONFIG = {
 
     /* Header chat */
     contact: {
-        name: "Ailsa",
+        name: "🌷 Ashalynne 🪞",
         status: "active now",
         typingLabel: "typing...",
 
         /* Foto avatar lokal. Kalau file tidak ada,
            otomatis tampil lingkaran dengan inisial. */
-        avatar: "assets/images/game/ailsa.jpeg",
+        avatar: "assets/images/playlist/polaroid-01.jpeg",
         fallbackInitial: "A"
     },
 
@@ -27,10 +27,10 @@ window.DM_INTRO_CONFIG = {
        time      : opsional, mis. "21.24". Kosong = jam saat ini.
     */
     messages: [
-        { text: "Hey, Ailsa...",                                side: "right", important: false },
-        { text: "Aku punya sesuatu untuk kamu.",                side: "left",  important: true  },
-        { text: "Sesuatu yang berisi cerita tentang kita.",     side: "right", important: true  },
-        { text: "Masukkan secret code kita untuk memulainya.",  side: "left",  important: true  }
+        { text: "Ini siapa?",              side: "right", important: false },
+        { text: "aku follback ya",         side: "right",  important: true  },
+        { text: "Ailsa",                   side: "left", important: true  },
+        { text: "Okeyy.",                  side: "left",  important: true  }
     ],
 
     /* Placeholder di bar input palsu (tidak bisa diketik) */

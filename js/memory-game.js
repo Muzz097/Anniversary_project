@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             text: "Yay, you remember this one!"
         },
         {
-            character: "/assets/images/characters/melody-happy.png",
+            character: "/assets/images/characters/melody-sad.png",
             text: "That memory is still special, right?"
         },
         {
@@ -638,9 +638,24 @@ document.addEventListener("DOMContentLoaded", () => {
         void characterCelebration.offsetWidth;
 
 
+                characterImg.onerror = () => {
+
+            console.warn(
+                "[Memory Game] Gambar karakter tidak ditemukan:",
+                reaction.character
+            );
+
+            characterImg.onerror = () => {
+                characterImg.style.display = "none";
+            };
+
+            characterImg.src =
+                "assets/images/characters/melody-happy.png";
+
+        };
+
         characterImg.style.display = "";
         characterImg.src = reaction.character;
-        characterImg.alt = reaction.text;
 
 
         /*

@@ -21,6 +21,8 @@
 <!-- Main Styles -->
 <link rel="stylesheet" href="css/style.css">
 
+<link rel="stylesheet" href="css/dm-intro.css">
+
 <!-- Responsive Styles -->
 <link rel="stylesheet" href="css/responsive.css">
 
@@ -46,6 +48,18 @@
 
 
 <main id="app">
+
+<!-- ==========================================
+         DM INTRO (sebelum Secret Code)
+         Isinya dibuat otomatis oleh js/dm-intro.js
+    =========================================== -->
+
+    <section
+        id="dmIntro"
+        class="dm-intro active-section"
+        aria-label="Pesan pembuka"
+    ></section>
+
 
  <!-- ==========================================
          PAGE TRANSITION OVERLAY (Heart Curtain)
@@ -107,7 +121,7 @@
 
 
 <p class="secret-label">
-    Our secret code
+    Shailsaa.. Passwordnya?
 </p>
 
 <!-- Code Display -->
@@ -259,12 +273,12 @@
         </div>
 
         <p class="code-modal-title">
-            Yeay, benar! 🎉
+            Yeay, beneurrr! 🎉
         </p>
 
         <p class="code-modal-text">
-            Selamat datang ke dunia kecil kita.
-            Yuk, lanjut ke cerita selanjutnya...
+            Selamat datang ke dunia gemes kita.
+            Yuu, lanjut ke cerita kita selanjutnya...
         </p>
 
     </div>
@@ -343,68 +357,75 @@
 </div>
 
 
-    <!-- Main Content -->
     <div class="anniversary-content">
 
-        <p
-            id="anniversary-prelude"
-            class="anniversary-prelude"
-        >
-            Our story started with two people...
-        </p>
+    <p id="anniversary-prelude" class="anniversary-prelude">
+        Our story started with two people...
+    </p>
 
+    <div id="anniversary-title" class="anniversary-title">
+        <span>Happy</span>
+        <span>Anniversary</span>
+    </div>
 
-        <div
-            id="anniversary-title"
-            class="anniversary-title"
-        >
-            <span>Happy</span>
-            <span>Anniversary</span>
-        </div>
+    <!-- 1. BADGE DURASI (ganti durasi di sini) -->
+    <p class="anniversary-years">
+        1 Tahun 1 Bulan Bersama <span class="years-heart">❤</span>
+    </p>
 
-        <p class="anniversary-years"> 
-        1 Tahun Bersama <span class="years-heart">❤</span>
-        </p>
-
-        <p
-            id="anniversary-name"
-            class="anniversary-name"
-        >
-            Ailsa
-        </p>
-
-
-        <div
-            id="anniversary-message"
-            class="anniversary-message"
-        >
-
-            <p>
-                Thank you for becoming
-                one of the most beautiful
-                parts of my life.
-            </p>
-
-            <p>
-                Here's to everything
-                we've been through,
-                everything we've become,
-                and everything that's
-                still waiting for us.
-            </p>
-
-        </div>
-
+    <!-- 2. NAMA (focal point + easter egg) -->
+    <div class="anniversary-name-block">
 
         <button
             type="button"
-            id="start-adventure"
-            class="adventure-button"
+            id="anniversary-name"
+            class="anniversary-name"
+            aria-label="Ailsa Indestianty Anindyta. Tap untuk melihat pesan kecil."
         >
-            <Link></Link>Let's Continue Our Story →
+            <!-- Teks asli: ganti nama di sini -->
+            <span class="name-text name-text-original">
+                Ailsa Indestianty Anindyta
+            </span>
+
+            <!-- Teks easter egg: ganti di sini -->
+            <span class="name-text name-text-secret" aria-hidden="true">
+                Gadis periang yang manis dan sempurna
+            </span>
+
+            <span class="name-sparkles" aria-hidden="true">
+                <i class="name-sparkle" style="--dx:-110px; --dy:-26px; --d:0s;"></i>
+                <i class="name-sparkle" style="--dx:-62px;  --dy:-34px; --d:.08s;"></i>
+                <i class="name-sparkle" style="--dx:-18px;  --dy:-30px; --d:.16s;"></i>
+                <i class="name-sparkle" style="--dx:34px;   --dy:-32px; --d:.05s;"></i>
+                <i class="name-sparkle" style="--dx:82px;   --dy:-28px; --d:.13s;"></i>
+                <i class="name-sparkle" style="--dx:118px;  --dy:-22px; --d:.2s;"></i>
+            </span>
         </button>
 
+        <p id="anniversaryNameHint" class="name-hint">Tap her name ♡</p>
+
+        <!-- Pengumuman untuk screen reader saat teks berganti -->
+        <span id="anniversaryNameLive" class="sr-only" aria-live="polite"></span>
+
     </div>
+
+    <!-- 3. PESAN (ganti pesan di sini) -->
+    <div id="anniversary-message" class="anniversary-message">
+        <p>
+            Thank you for becoming one of the most beautiful parts of my life.
+        </p>
+        <p>
+            Here's to everything we've been through, everything we've become,
+            and everything that's still waiting for us.
+        </p>
+    </div>
+
+    <!-- 4. TOMBOL -->
+    <button type="button" id="start-adventure" class="adventure-button">
+        Let's Continue Our Story →
+    </button>
+
+</div>
 
 </section>
 
@@ -1650,6 +1671,8 @@
 <!-- JavaScript -->
 
 <script src="js/app.js"></script>
+<script src="js/dm-intro-config.js"></script>
+<script src="js/dm-intro.js"></script>
 <script src="js/music.js"></script>
 <script src="js/memory-game.js"></script>
 <script src="js/quiz.js"></script>

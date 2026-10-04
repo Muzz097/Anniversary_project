@@ -798,3 +798,67 @@ MOBILE
     }
 
 }
+
+/* ==========================================
+   HAPPY ANNIVERSARY — MOBILE
+   Polaroid diperkecil di sudut; konten diberi ruang
+   atas & bawah supaya foto tidak menutupi teks.
+========================================== */
+
+@media (max-width: 480px) {
+
+    .happy-anniversary .anniversary-content {
+        width: min(94%, 420px);
+        padding: 124px 18px 128px;
+    }
+
+    .happy-anniversary .memory-photo {
+        width: 80px;
+        height: 100px;
+        padding: 6px 6px 18px;
+    }
+
+    .happy-anniversary .photo-one   { top: 2%;    left: 3%; }
+    .happy-anniversary .photo-two   { top: 3%;    right: 3%; }
+    .happy-anniversary .photo-three { bottom: 2%; left: 3%; }
+    .happy-anniversary .photo-four  { bottom: 2%; right: 3%; }
+
+    .happy-anniversary .photo-botanical {
+        width: 34px;
+    }
+
+    .happy-anniversary .anniversary-prelude {
+        margin-bottom: 16px;
+        font-size: 0.95rem;
+    }
+
+    .happy-anniversary .anniversary-title {
+        font-size: clamp(3.2rem, 15vw, 4.2rem);
+    }
+
+    .happy-anniversary .anniversary-message {
+        font-size: 0.88rem;
+        line-height: 1.8;
+    }
+
+    .happy-anniversary .adventure-button {
+        margin-top: 24px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .happy-anniversary .anniversary-content {
+        padding: 116px 14px 120px;
+    }
+
+    .happy-anniversary .memory-photo {
+        width: 72px;
+        height: 90px;
+    }
+
+    .happy-anniversary .anniversary-years {
+        font-size: 0.76rem;
+        padding: 7px 16px;
+    }
+}

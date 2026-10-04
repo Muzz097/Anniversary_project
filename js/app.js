@@ -1127,3 +1127,105 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+/* ==========================================
+   HAPPY ANNIVERSARY — NAME EASTER EGG
+   Perilaku: tap nama → crossfade ke teks rahasia
+   → otomatis kembali setelah 3 detik.
+   Tap saat teks rahasia tampil diabaikan (konsisten).
+   Teks diambil dari HTML (.name-text-secret).
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const nameButton = document.getElementById("anniversary-name");
+    const nameHint = document.getElementById("anniversaryNameHint");
+    const nameLive = document.getElementById("anniversaryNameLive");
+
+    if (!nameButton || nameButton.dataset.bound === "true") {
+        return;
+    }
+
+    nameButton.dataset.bound = "true";
+
+    const SECRET_DURATION = 3000;   // ms sebelum kembali ke nama asli
+    const HINT_KEY = "ols_nameHintSeen";
+
+    const secretText = nameButton.querySelector(".name-text-secret");
+
+    let revertTimer = null;
+    let sparkleTimer = null;
+
+
+    /* Hint hanya muncul pertama kali */
+
+    function hintAlreadySeen() {
+        try {
+            return localStorage.getItem(HINT_KEY) === "1";
+        } catch (e) {
+            return false;
+        }
+    }
+
+    function markHintSeen() {
+        try {
+            localStorage.setItem(HINT_KEY, "1");
+        } catch (e) { /* storage tidak tersedia: abaikan */ }
+    }
+
+    function dismissHint() {
+        if (!nameHint || nameHint.classList.contains("is-dismissed")) {
+            return;
+        }
+        nameHint.classList.add("is-dismissed");
+        markHintSeen();
+    }
+
+    if (nameHint && hintAlreadySeen()) {
+        nameHint.classList.add("is-dismissed");
+    }
+
+
+    /* Sparkle (restart animasi tiap tap) */
+
+    function playSparkle() {
+        clearTimeout(sparkleTimer);
+        nameButton.classList.remove("is-sparkling");
+        void nameButton.offsetWidth;
+        nameButton.classList.add("is-sparkling");
+
+        sparkleTimer = setTimeout(() => {
+            nameButton.classList.remove("is-sparkling");
+        }, 1500);
+    }
+
+
+    function showSecret() {
+        nameButton.classList.add("is-secret");
+        playSparkle();
+
+        if (nameLive && secretText) {
+            nameLive.textContent = secretText.textContent.trim();
+        }
+
+        clearTimeout(revertTimer);
+        revertTimer = setTimeout(() => {
+            nameButton.classList.remove("is-secret");
+            if (nameLive) {
+                nameLive.textContent = "";
+            }
+        }, SECRET_DURATION);
+    }
+
+
+    nameButton.addEventListener("click", () => {
+        dismissHint();
+
+        if (nameButton.classList.contains("is-secret")) {
+            return;
+        }
+
+        showSecret();
+    });
+
+});

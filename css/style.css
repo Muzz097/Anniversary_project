@@ -4353,3 +4353,228 @@ button {
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
+
+/* ==========================================
+   HAPPY ANNIVERSARY — LAYOUT & NAME EASTER EGG
+   (static styling only — animasi ada di animations.css)
+========================================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Rotasi dasar tiap polaroid (dipakai animasi masuk & fallback reduced-motion) */
+.happy-anniversary .photo-one   { --rot: -8deg; }
+.happy-anniversary .photo-two   { --rot: 7deg; }
+.happy-anniversary .photo-three { --rot: 6deg; }
+.happy-anniversary .photo-four  { --rot: -7deg; }
+
+
+/* Wrapper konten + scrim gelap lembut (bukan hitam solid) */
+.happy-anniversary .anniversary-content {
+    width: min(90%, 460px);
+    padding: 48px 22px;
+}
+
+.happy-anniversary .anniversary-content::before {
+    content: "";
+    position: absolute;
+    inset: 0 -4%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse 85% 75% at 50% 50%,
+        rgba(24, 10, 20, 0.68) 0%,
+        rgba(24, 10, 20, 0.46) 55%,
+        rgba(24, 10, 20, 0) 100%
+    );
+}
+
+.happy-anniversary .anniversary-prelude {
+    margin-bottom: 22px;
+}
+
+.happy-anniversary .anniversary-years {
+    margin-top: 20px;
+}
+
+
+/* Nama: focal point */
+.anniversary-name-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    margin: 24px 0 6px;
+}
+
+.happy-anniversary .anniversary-name {
+    position: relative;
+    isolation: isolate;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    margin: 0;
+    padding: 10px 8px;
+
+    border: 0;
+    border-radius: 16px;
+    background: transparent;
+
+    color: var(--color-warm-white);
+
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(1.12rem, 5.4vw, 1.9rem);
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    text-align: center;
+    text-transform: uppercase;
+    text-wrap: balance;
+
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    transition: transform 0.2s ease;
+}
+
+.happy-anniversary .anniversary-name:active {
+    transform: scale(0.97);
+}
+
+.happy-anniversary .anniversary-name:focus-visible {
+    outline: 2px solid rgba(232, 139, 163, 0.85);
+    outline-offset: 4px;
+}
+
+/* Glow lembut di belakang nama, aktif saat sparkle */
+.happy-anniversary .anniversary-name::before {
+    content: "";
+    position: absolute;
+    inset: -8px -2%;
+    z-index: -1;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+        ellipse,
+        rgba(232, 139, 163, 0.38),
+        transparent 70%
+    );
+}
+
+/* Dua teks ditumpuk di satu sel grid → tinggi = yang terpanjang,
+   jadi layout TIDAK bergeser saat berganti */
+.name-text {
+    grid-area: 1 / 1;
+
+    text-shadow:
+        0 0 16px rgba(217, 141, 165, 0.5),
+        0 2px 12px rgba(10, 4, 8, 0.7);
+
+    transition:
+        opacity 0.7s ease,
+        filter 0.7s ease,
+        text-shadow 0.7s ease;
+}
+
+.name-text-secret {
+    opacity: 0;
+    filter: blur(3px);
+
+    color: #ffd9e2;
+
+    font-size: 0.88em;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: none;
+}
+
+.anniversary-name.is-secret .name-text-original {
+    opacity: 0;
+    filter: blur(3px);
+}
+
+.anniversary-name.is-secret .name-text-secret {
+    opacity: 1;
+    filter: none;
+
+    text-shadow:
+        0 0 22px rgba(232, 139, 163, 0.75),
+        0 2px 12px rgba(10, 4, 8, 0.7);
+}
+
+/* Sparkle */
+.name-sparkles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.name-sparkle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(circle, #fff 0%, #e88ba3 70%);
+
+    opacity: 0;
+}
+
+/* Hint (ruangnya selalu dipesan agar tidak ada layout shift) */
+.name-hint {
+    min-height: 1.3em;
+    margin: 0;
+
+    color: var(--color-peony);
+
+    font-family: var(--font-cute, var(--font-body));
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Pesan & tombol */
+.happy-anniversary .anniversary-message {
+    max-width: 420px;
+    margin-top: 14px;
+
+    color: rgba(247, 241, 236, 0.84);
+
+    text-shadow: 0 1px 8px rgba(10, 4, 8, 0.6);
+}
+
+.happy-anniversary .adventure-button {
+    width: min(100%, 320px);
+    min-height: 48px;
+
+    margin-top: 30px;
+    padding: 14px 26px;
+
+    background: rgba(217, 141, 165, 0.14);
+
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}

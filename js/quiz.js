@@ -16,33 +16,34 @@
 
 const MEMORY_QUIZ_QUESTIONS = [
     {
-        question: "Where did our story begin?",
+        question: "Dimana kita pertama kali bertemu?",
         answers: [
-            "At the place we first met",
-            "During a late-night conversation",
-            "On our first little adventure"
+            "Di Alfamart PSM",
+            "Di ICB",
+            "Di suatu kelas",
+            "Di hatimu"
         ],
-        correctIndex: 0
+        correctIndex: 2
     },
     {   /* TODO: ganti dengan pertanyaan asli */
-        question: "What was the first thing I ever gave you?",
-        answers: ["Silver Queen", "A bouquet of peonies", "A handwritten letter"],
-        correctIndex: 0
+        question: "Ditanggal berapa kita mulai DM an?",
+        answers: ["25 Juli 2025", "28 Juli 2025", "20 Juli 2025", "23 Juli 2025"],
+        correctIndex: 3
     },
     {   /* TODO */
-        question: "What do I call you most often?",
-        answers: ["Sayang", "Ay", "Cantik"],
+        question: "Kita pakai baju apa ketika kita pertama kali foto bareng?",
+        answers: ["Daun pake kemeja biru, kamu pake cardigan merah manis", "Daun pake PDL Paskibra, kamu pake olahraga ICB", "Daun pake Seragam ICB, kamu pake seragam produktif Farmasi imut", "Daun pake Jas hitam , kamu pake Dress Abu cantik"],
         correctIndex: 1
     },
     {   /* TODO */
-        question: "Which song reminds me of the beginning of us?",
-        answers: ["Lesung Pipi", "Everything u are", "Aku Milikmu"],
+        question: "First Time kita saling pelukan saat kapan?",
+        answers: ["Saat hari ulang tahun mu", "Saat kita pertama kali bertemu", "Saat aku cengeng", "Saat kamu belajar motor di GBLA"],
         correctIndex: 0
     },
     {   /* TODO */
-        question: "When is our special date?",
-        answers: ["31 August", "14 February", "1 January"],
-        correctIndex: 0
+        question: "Menurut mu, mana nama yang benar yang mengandung rancangan masa depan kita?",
+        answers: ["Claraquin Indestianty Shafira dan Calvian Silvansa Musyaffa", "Claraquin Indesty Shafira dan Calvian Silvan Musyafa", "Claraquin Indesty Shafira dan Calvian Silvansa Musyaffa", "Claraqueen Indesty Syafira dan Calvin Silvasa Musyaffa"],
+        correctIndex: 2
     }
 ];
 

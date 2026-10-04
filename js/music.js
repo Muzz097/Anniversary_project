@@ -36,10 +36,10 @@
         {
             id: "the-beginning",
             category: "THE BEGINNING",
-            title: "Best Part",
-            artist: "Daniel Caesar & H.E.R.",
-            audioSrc: "/assets/audio/the-beginning1.mp3",
-            coverSrc: "/assets/images/playlist/the-beginning.jpg",
+            title: "Lesung Pipi",
+            artist: "Raim Laude",
+            audioSrc: "/assets/audio/the-beginning.mp3",
+            coverSrc: "/assets/images/playlist/album-beginning.jpg",
             description: "Lagu yang mengingatkanku pada awal cerita kita.",
             order: 0,
             isDefault: false

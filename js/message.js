@@ -16,15 +16,66 @@
 ========================================== */
 
 const letterContent = {
-    date: "[DATE]",                       /* tulisan di date stamp */
-    greeting: "Dear Ailsa,",
+    date: "04/10/2026",
+
+    greeting: "HAPPY ANNIVERSARY   1 Tahun 1 Bulan sayangkuu,",
+
     paragraphs: [
-        "[Tulis paragraf pembuka di sini.]",
-        "[Tulis kenangan dan perasaan di sini.]",
-        "[Tulis harapan untuk hubungan kami di sini.]"
+        `Haiii bunga perasasa kuu.. Jujur yaa, aku masih suka nggak nyangka tau sayang kalo kita bisa sampai di titik ini.
+        Dari awal kita kenal kamu follow aku dan akuu kepedean sama kamuu sampai sekarang yang udah saling cintaa, ternyata udah banyak banget hal yang kita lewatin bareng, buktinya coba aja menyelam kayanya ga bakal cukup sehari ay.
+        Dan dari semuanya, aku cuma mau bilang kalau aku seneng pake banget...
+        seneng karena dari sekian banyak kemungkinan di hidup ini,
+        ternyata aku bisa menemukan kamu dan punya cerita banyak banyak sama kamu.`,
+
+        `Maaf ya aku buat website ini telat dan ga sesuai yang di rencanakan tapi tetap Aku bikin website ini karena aku pengen kasih sesuatu yang benar-benar tentang kita berdua.
+        Mungkin sederhana, tapi setiap bagian di dalamnya aku buat dengan penuh rasa sayang.
+        Ada cerita, kenangan, dan hal-hal kecil yang mungkin kelihatan sepele,
+        tapi sebenarnya punya tempat sendiri di hati aku.
+        Semoga kamu suka ya, sayang.
+        Semoga waktu kamu lihat semuanya, kamu bisa ngerasain sedikit dari rasa sayang yang aku masukin ke sini hihi.`,
+
+        `Aku juga mau minta maaf untuk semua hal yang selama ini mungkin pernah bikin kamu kecewa,
+        capek, sedih, atau merasa kurang dimengerti.
+        Maaf kalau aku belum selalu jadi pasangan yang baik buat kamu cintaku,
+        masih sering salah ngomong, komunikasi kurang, salah bersikap, atau mungkin terlalu egois baik di sengaja maupun tidak disengaja.
+        Aku tahu aku masih jauh dari sempurna sayanggku,
+        tapi aku benar-benar mau belajar jadi lebih baik buat kamu.
+        Bukan cuma supaya hubungan kita tetap berjalan,
+        tapi karena kamu memang sepenting itu buat aku my future wife.`,
+
+        `Semakin lama sama kamu, aku semakin sadar kalau aku nggak akan mau menganggap kehadiran kamu sebagai sesuatu yang biasa. Tapi luar biasa yang membuat hidup ku jauh lebih baikk.
+        Aku bersyukur banget bisa punya seseorang yang bisa diajak ngobrol, bercanda, berbagi cerita, saling support satu sama lain, saling melengkapi, 
+        ada berantem kecil, ngambek, lalu kembali saling sayang lagii. karna aku selalu sayang dan cinta sama kamu ga pernah berkurang sedikit pun my sweety
+        Dan di antara banyak hal yang bisa berubah dalam hidup,
+        aku berharap kita tetap jadi dua orang yang memilih satu sama lain.`,
+
+        `Aku paling nggak mau kehilangan kamu.
+        Aku masih mau punya banyak cerita sama kamu,
+        masih mau melihat kita tumbuh,
+        masih mau melihat kita meraih mimpi kita masing masing dan bersama bareng bareng,
+        masih mau melewati hari-hari baik dan buruk bareng kamu.
+        Aku nggak bisa janji semuanya akan selalu mudah sayang pasti ada rintangan yang kita gatau apa kedepannya,
+        tapi aku bisa janji kalau aku akan terus berusaha menjaga apa yang sudah kita punya. aku akan terus perjuangin hidden gem yang udah aku punya, yaituu kamuuu ailsa indestianty anindyta`,
+
+        `Kalau suatu hari nanti kita melihat kembali semua yang sudah kita lewati,
+        aku berharap kita bisa saling tersenyum dan bilang,
+        "Ternyata kita udah sejauh ini yaa sayangg, ga kerasa bett gemess"
+
+        Dan kalau aku diberi kesempatan untuk mengulang semuanya dari awal,
+        dengan semua tawa, kesalahan, pertengkaran, dan air mata yang pernah ada,
+        aku rasa aku tetap akan memilih jalan yang sama.
+
+        Jalan yang akhirnya membawa aku ke kamu.
+
+        Happy anniversary, sayangkuu, cintakuu, duniakuu, bidadari cantikku manis kuuu, masa depannya akuu..
+        Terima kasih banyak sudah tetap di sini bersama kuu,
+        Aku kan selalu memilih kamu.
+        Dan aku masih mau kita terus bersama.`
     ],
+
     closing: "With all my love,",
-    signature: "[YOUR NAME]"
+
+    signature: "- Your Pilar Daun"
 };
 
 /* ==========================================

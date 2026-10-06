@@ -18,7 +18,7 @@
 const letterContent = {
     date: "04/10/2026",
 
-    greeting: "HAPPY ANNIVERSARY   1 Tahun 1 Bulan sayangkuu,",
+    greeting: "HAPPY ANNIVERSARY 1 Tahun 1 Bulan sayangkuu,",
 
     paragraphs: [
         `Haiii bunga perasasa kuu.. Jujur yaa, aku masih suka nggak nyangka tau sayang kalo kita bisa sampai di titik ini.
@@ -248,6 +248,89 @@ document.addEventListener("DOMContentLoaded", () => {
     ensureStage2Dom();
 
     console.info("[Message] Tahap 2 (surat) aktif");
+
+    /* ---------- Tahap 1: amplop = satu-satunya CTA ---------- */
+
+    function enhanceIntro() {
+
+        /* tombol "Open My Letter" dihapus sepenuhnya (hapus juga dari index.html) */
+
+        const oldButton = document.getElementById("msgOpenBtn");
+
+        if (oldButton) {
+            oldButton.remove();
+        }
+
+        /* petunjuk kecil (bukan tombol) tepat di bawah amplop */
+
+        const stage = page.querySelector(".message-envelope-stage");
+
+        if (stage && !page.querySelector(".message-envelope-hint")) {
+
+            const hint = document.createElement("p");
+
+            hint.className = "message-envelope-hint";
+            hint.setAttribute("aria-hidden", "true");
+            hint.textContent = "Tap the envelope to open";
+
+            stage.after(hint);
+
+        }
+
+        /* tambahan bokeh pink & sparkle supaya background tidak kosong */
+
+        const ambience = page.querySelector(".msg-ambience");
+
+        if (ambience && !ambience.dataset.enriched) {
+
+            ambience.dataset.enriched = "1";
+
+            [[26, 34, 150, 1, 14], [74, 70, 170, 3, 13], [4, 56, 130, 2, 15], [92, 18, 120, 4, 12]].forEach((b) => {
+
+                const span = document.createElement("span");
+
+                span.className = "bokeh";
+                span.style.cssText =
+                    "--x:" + b[0] + "%; --y:" + b[1] + "%; --size:" + b[2] + "px; --delay:" + b[3] + "s; --duration:" + b[4] + "s;";
+
+                ambience.appendChild(span);
+
+            });
+
+            [[30, 40, 0.5], [70, 30, 1.7], [14, 78, 1.1], [86, 66, 2.4], [52, 88, 0.9]].forEach((g) => {
+
+                const span = document.createElement("span");
+
+                span.className = "glitter";
+                span.style.cssText = "--x:" + g[0] + "%; --y:" + g[1] + "%; --delay:" + g[2] + "s;";
+
+                ambience.appendChild(span);
+
+            });
+
+        }
+
+        /* CSS penyempurnaan Tahap 1: dimuat otomatis bila belum ter-link */
+
+        const hasIntroCss =
+            document.querySelector('link[href*="message-intro.css"]') ||
+            (window.getComputedStyle &&
+                getComputedStyle(page).getPropertyValue("--msg-intro-ready").trim());
+
+        if (!hasIntroCss) {
+
+            const link = document.createElement("link");
+
+            link.rel = "stylesheet";
+            link.href = "css/message-intro.css";
+
+            document.head.appendChild(link);
+
+        }
+
+    }
+
+    enhanceIntro();
 
     const $ = (id) => document.getElementById(id);
 

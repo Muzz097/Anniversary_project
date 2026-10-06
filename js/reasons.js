@@ -20,35 +20,150 @@
 ========================================== */
 
 const reasons = [
-    { number: 1,  text: "The way you smile even when you don’t realize how beautiful you are." },
-    { number: 2,  text: "[Alasan kedua]" },
-    { number: 3,  text: "[Alasan ketiga]" },
-    { number: 4,  text: "[Alasan keempat]" },
-    { number: 5,  text: "[Alasan kelima]", photo: "" },
-    { number: 6,  text: "[Alasan keenam]" },
-    { number: 7,  text: "[Alasan ketujuh]" },
-    { number: 8,  text: "[Alasan kedelapan]" },
-    { number: 9,  text: "[Alasan kesembilan]" },
-    { number: 10, text: "[Alasan kesepuluh]", photo: "" },
-    { number: 11, text: "[Alasan ke-11]" },
-    { number: 12, text: "[Alasan ke-12]" },
-    { number: 13, text: "[Alasan ke-13]" },
-    { number: 14, text: "[Alasan ke-14]" },
-    { number: 15, text: "[Alasan ke-15]", photo: "" },
-    { number: 16, text: "[Alasan ke-16]" },
-    { number: 17, text: "[Alasan ke-17]" },
-    { number: 18, text: "[Alasan ke-18]" },
-    { number: 19, text: "[Alasan ke-19]" },
-    { number: 20, text: "[Alasan ke-20]", photo: "" },
-    { number: 21, text: "[Alasan ke-21]" },
-    { number: 22, text: "[Alasan ke-22]" },
-    { number: 23, text: "[Alasan ke-23]" },
-    { number: 24, text: "[Alasan ke-24]" },
-    { number: 25, text: "[Alasan ke-25]", photo: "" },
-    { number: 26, text: "[Alasan ke-26]" },
-    { number: 27, text: "[Alasan ke-27]" },
-    { number: 28, text: "[Alasan ke-28]" },
-    { number: 29, text: "Because you’re you." }
+    {
+        number: 1,
+        text: "Karena senyummu yang sangat manis itu selalu punya cara sendiri buat bikin hariku terasa jauh lebih baik."
+    },
+
+    {
+        number: 2,
+        text: "Karena kamu ngerti aku. Bahkan saat aku nggak ngerti diriku sendiri, kamu tetap bisa ngerti aku sasayang."
+    },
+
+    {
+        number: 3,
+        text: "Karena aku suka cara kamu bercerita. Mau menurut mu yappingnya penting ga penting, menurut ku itu penting banget karna aku seneng dengerin kamu cerita."
+    },
+
+    {
+        number: 4,
+        text: "Karena kamu bener bener perhatian padaku bahkan ketika aku justfriend pun kamu selalu kasih aku saran agar hidup ku lebih terarah contohnya perawatan diriku sendiri hehe"
+    },
+
+    {
+        number: 5,
+        text: "Kamu selalu bisa nge validasiin aku (alias kamu jago gombal, jadi weh baper :b)"
+    },
+
+    {
+        number: 6,
+        text: "Karena kamu bikin aku bisa ekspresiin diriku sendiri, kamu bukan hanya pasangan tapi juga punya teman hidup yang bisa diajak cerita apapunn itu, bahkan hal-hal random yang kadang nggak penting."
+    },
+
+    {
+        number: 7,
+        text: "Karena sama kamu aku bisa jadi diriku sendiri, bahkan versi diriku yang kadang agak nyebelin.. or banget? hehe."
+    },
+
+    {
+        number: 8,
+        text: "Karena kamu perempuan terhebat yang pernah aku kenal. Kamu punya banyak hal yang bikin aku kagum, dan aku nggak pernah bosen buat terus belajarr tentang dunia kamu."
+    },
+
+    {
+        number: 9,
+        text: "Karena kamu adalah salah satu alasan kenapa aku sering senyum senyum sendiri lihat layar HP nihh kaya orang gila, dan kamuu harus tanggung jawab yee haha"
+    },
+
+    {
+        number: 10,
+        text: "Karena tengil centilnya kamu ke aku itu bikin hati aku merasa senengg"
+    },
+
+    {
+        number: 11,
+        text: "Karena kamu baik hati bahkan ke aku jaman jamannya rambut nobita haha"
+    },
+
+    {
+        number: 12,
+        text: "Karena kamu pinter, berwawasan luas, berpikir panjang dan punya perencanaan masa depan kamu yang bikin aku kagumm, semangatt "
+    },
+
+    {
+        number: 13,
+        text: "Karena aku suka semua versi kamu. Yang manis, yang manja, yang random, yang ngambek hehe"
+    },
+
+    {
+        number: 14,
+        text: "Karena kamu mau nerima seorang aku ini, bahkan selalu menemani aku dari 0, dan aku nggak bisa bayangin kalau nggak ada kamu di hidupku sayang."
+    },
+
+    {
+        number: 15,
+        text: "Karena kamu loyal, dan juga kamu nggak cuma setia ke aku, tapi juga ke orang-orang yang kamu sayang. Dan itu bikin aku makin sayang sama kamu."
+    },
+
+    {
+        number: 16,
+        text: "Karena kamu nggak cuma bikin aku merasa dicintai, tapi juga bikin aku merasa dihargai dan diterima apa adanya."
+    },
+
+    {
+        number: 17,
+        text: "Karena kamu bener bener berbakti sama keluarga dan jadi kakak yang baikk, aku selalu bangga padamu"
+    },
+
+    {
+        number: 18,
+        text: "Karena kamu mau follow aku yang bikin aku sadar seberapa cantik manisnya dirimu cinaku yang aku cuekin itu (maafkann sayangg)"
+    },
+
+    {
+        number: 19,
+        text: "Karena kamu cipitt, punya mata yang indah rambut yang cantikk juga dan senyuman pelet nya yang maniss melebihi pabrik gula"
+    },
+
+    {
+        number: 20,
+        text: "Karena kamu memiliki jiwa adventure yang sama kaya aku, jadi aku nyaman dan amann bangett bisa bangun kenangan indah bersama dimana mana bersamamu dan ga sendiri lagi."
+    },
+
+    {
+        number: 21,
+        text: "Karena Kamu princess cantik ku selalu jadi motivasi hidup ku untuk terus berkembang sampai ke versi terbaik diriku untuk kamu dan keluarga ku ."
+    },
+
+    {
+        number: 22,
+        text: "Karena kamu itu perempuan tertangguh yang pekerja keras, bahkan ketika nggak ada yang melihat seberapa besar usaha kamu."
+    },
+    
+    {
+        number: 23,
+        text: "Karena aku suka melihat kamu ketika sedang benar-benar fokus melakukan sesuatu. Ada sesuatu dari caramu bekerja yang bikin aku kagum salah satunya kamu perfeksionis sayang."
+    },
+
+    {
+        number: 24,
+        text: "Karena kamu bisa ingat hal-hal kecil yang bahkan kadang diri aku sendiri lupa pernah cerita."
+    },
+
+    {
+        number: 25,
+        text: "Karena aku semakin beruntung ketika punya kamu yang selalu tidak membuka pintu dengan cowo lain bahkan selalu berkomunikasi dengan ku, sampai dulu aja just friend minta saran ke aku malah :b"
+    },
+
+    {
+        number: 26,
+        text: "Karena sejak ada kamu, hidup aku rasanya berubah jadi jauh lebih berwarna. Hal-hal kecil yang dulu biasa aja sekarang bisa jadi sesuatu yang menyenangkan cuma karena ada kamu di dalamnya."
+    },
+
+    {
+        number: 27,
+        text: "Karena aku suka cara kamu menjadi diri sendiri ketika sudah merasa nyaman denganku. Di situ biasanya sisi random kamu keluar semua. dan itu bikin aku seneng dan makin sayang sama kamu"
+    },
+
+    {
+        number: 28,
+        text: "Kamu punya nama yang indah dan unik, sama seperti mu yang indah dan unik selalu bikin akuu tersenyum bahagia, aku suka sama banget sama Ailsa Indestianty Anindyta."
+    },
+
+    {
+        number: 29,
+        text: "Karena kamu adalah kamu. Dan itu sudah cukup buat aku sayang sama kamu, cinta semua tentang diri kamu sendiri Ailsa Indestianty Anindyta. Aku nggak butuh alasan lain lagi."
+    }
 ];
 
 /* Teks lain di Tahap 3 */

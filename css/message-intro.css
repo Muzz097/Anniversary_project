@@ -1,0 +1,135 @@
+/* ==========================================
+   MESSAGE · TAHAP 1 — penyempurnaan (css/message-intro.css)
+   - amplop = satu-satunya CTA (tombol "Open My Letter" dihapus)
+   - amplop lebih besar & di tengah
+   - background lebih pink, menyatu dengan Playlist/Memories/Journey
+   - shape kosong di kanan amplop -> kartu kecil
+   Dimuat otomatis oleh js/message.js bila belum di-link; harus berada
+   SETELAH message.css agar menimpanya (otomatis bila dimuat JS).
+========================================== */
+
+.msg-page {
+    --msg-intro-ready: 1;
+
+    /* ukuran amplop (ubah di sini). Rasio mengikuti gambar amplop merah. */
+    --msg-envelope-w: 300px;
+    --msg-envelope-h: 270px;
+
+    /* glow lebih pink */
+    --msg-glow-peach: 240, 150, 176;
+    --msg-glow-cream: 250, 226, 224;
+
+    /* kartu kecil di kanan amplop: isi gambar sendiri bila mau, mis.
+       --message-note-card-image: url("/assets/message/note-card.png"); */
+    --message-note-card-image: none;
+}
+
+@media (max-width: 480px) { .msg-page { --msg-envelope-w: 270px; --msg-envelope-h: 244px; } }
+@media (max-width: 375px) { .msg-page { --msg-envelope-w: 252px; --msg-envelope-h: 228px; } }
+@media (max-width: 360px) { .msg-page { --msg-envelope-w: 240px; --msg-envelope-h: 218px; } }
+
+/* ---------- Tombol lama dihilangkan sepenuhnya ---------- */
+
+.open-letter-button { display: none !important; }
+
+/* ---------- Background: berry plum -> wine pink -> dusty rose ---------- */
+
+.msg-bg {
+    background:
+        radial-gradient(circle at 50% 64%, rgba(232, 138, 166, 0.34), transparent 56%),
+        radial-gradient(circle at 18% 10%, rgba(224, 122, 149, 0.26), transparent 52%),
+        radial-gradient(circle at 88% 82%, rgba(243, 182, 160, 0.14), transparent 55%),
+        linear-gradient(165deg, #3a1630, #4a2440 46%, #2b1625 100%);
+}
+
+.msg-vignette {
+    background: radial-gradient(circle at 50% 45%, transparent 38%, rgba(30, 8, 24, 0.5) 100%);
+}
+
+/* grain tipis di atas background (di bawah ambience & konten) */
+.msg-vignette::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .3 0 0 0 0 .3 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.55; mix-blend-mode: soft-light; pointer-events: none;
+}
+
+.msg-ambience .bokeh { background: radial-gradient(circle, rgba(240, 150, 176, 0.34), transparent 70%); }
+
+.message-spotlight {
+    background: radial-gradient(
+        circle,
+        rgba(var(--msg-glow-peach), 0.36) 0%,
+        rgba(var(--msg-glow-cream), 0.1) 40%,
+        transparent 68%
+    );
+}
+
+/* ---------- Amplop: satu-satunya CTA ---------- */
+
+.message-envelope-img { transition: filter 0.25s ease; }
+
+.message-envelope:active .message-envelope-img {
+    filter: drop-shadow(0 0 16px rgba(232, 138, 166, 0.75)) drop-shadow(0 14px 22px rgba(0, 0, 0, 0.4));
+}
+
+/* petunjuk kecil: fade-in / fade-out, bukan tombol */
+.message-envelope-hint {
+    margin: -34px 0 0;
+    color: rgba(250, 226, 224, 0.88);
+    font-family: var(--font-handwritten, "Caveat", cursive);
+    font-size: 1.2rem; letter-spacing: 0.03em; text-align: center;
+    text-shadow: 0 0 12px rgba(232, 138, 166, 0.55);
+    pointer-events: none; -webkit-user-select: none; user-select: none;
+    opacity: 0;
+    animation: msgIntroHint 4.4s ease-in-out 1.6s infinite;
+}
+.msg-page.is-opening-letter .message-envelope-hint { animation: none; opacity: 0; transition: opacity 0.3s ease; }
+
+@keyframes msgIntroHint {
+    0%, 100% { opacity: 0; transform: translateY(5px); }
+    45%, 60% { opacity: 0.9; transform: translateY(0); }
+}
+
+/* ---------- Shape kosong -> kartu kecil "a little piece of us" ---------- */
+
+/* di layar sempit tidak ada ruang di kanan amplop -> disembunyikan
+   (tidak bertabrakan dan tidak ada shape kosong) */
+.msg-scene .msg-decor-ribbon { display: none; }
+
+@media (min-width: 600px) {
+
+    .msg-scene .msg-decor-ribbon {
+        display: flex; align-items: center; justify-content: center;
+        right: 0; bottom: 92px; left: auto;
+        width: 96px; height: auto; min-height: 72px; padding: 12px 8px;
+        background:
+            var(--message-note-card-image) center / cover no-repeat,
+            linear-gradient(160deg, #fbf1e6, #f0d3cb);
+        border: 1.5px dashed rgba(107, 31, 42, 0.32);
+        -webkit-clip-path: none; clip-path: none;
+        box-shadow: 0 12px 22px rgba(8, 2, 8, 0.4);
+        transform: rotate(5deg);
+        opacity: 0.96; z-index: 2;
+        animation: msgIntroCardSway 7s ease-in-out infinite;
+    }
+
+    .msg-scene .msg-decor-ribbon::before {
+        content: "a little piece of us";
+        color: #7a2f45; text-align: center;
+        font-family: var(--font-handwritten, "Caveat", cursive);
+        font-size: 1.1rem; line-height: 1.15;
+    }
+}
+
+@keyframes msgIntroCardSway {
+    0%, 100% { transform: rotate(5deg) translateY(0); }
+    50%      { transform: rotate(7deg) translateY(-3px); }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .message-envelope-hint { animation: none !important; opacity: 0.75; }
+    .msg-scene .msg-decor-ribbon { animation: none !important; }
+}

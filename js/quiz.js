@@ -390,18 +390,29 @@ document.addEventListener("DOMContentLoaded", () => {
 ========================================== */
 
 /* Cerita pembuka (satu string = satu paragraf) */
+
 const memoriesIntro = {
     paragraphs: [
-        "[Tulis cerita pembuka di sini — bagaimana semuanya bermula.]",
-        "Setiap momen kecil pelan-pelan jadi bagian dari kita."
+        `Ailsa Indestianty Anindyta yang ku sayang, kalau dipikir-pikir lagi,
+        ternyata udah banyak banget tauu hal yang kita lewatin selama ini.
+        Rasanya baru kemarin kita mulai ngobrol bareng,
+        eh sekarang kita udah punya kenangan sebuanyak mungkin
+        yang kalau diingat-ingat lagi bisa bikin aku senyum senyum sendiri saking gemesnya.`,
+
+        `Jadi, yuu kita lihat lagi cerita kita dari awal sampai sejauh ini.
+        Dan kalau nanti kita udah selesai melihat semuanya,
+        aku harap kamu tau satu hal:
+        aku seneng banget karena semua cerita kita ini
+        ada kamu di dalamnya.`
     ]
 };
 
+
 /* Foto photostrip di samping text box (3 foto) */
 const memoriesStrip = [
-    "/assets/memories/strip-01.jpg",
-    "/assets/memories/strip-02.jpg",
-    "/assets/memories/strip-03.jpg"
+    "/assets/images/couple/photo-04.jpeg",
+    "/assets/images/memories/tepi-gunung1.jpeg",
+    "/assets/images/couple/strip02.jpeg"
 ];
 
 /* Timeline.
@@ -414,30 +425,78 @@ const memoriesStrip = [
    location boleh dikosongkan "" */
 const memories = [
     {
-        date: "31 AUG 2025",
-        title: "The Beginning",
-        description: "[Tulis cerita kenangan di sini]",
-        image: "/assets/memories/memory-01.jpg",
-        location: "[Lokasi]",
+        date: "30 AUG 2025",
+        title: "Awal dari segalanya",
+        description: "Hari dimana kita pertama kali bertemu sebagai JUST FRIENDS, tapi ternyata itu awal dari segalanya yaa sayang. dan fun fact ini foto kita satu satunya di hari pertama aku nembak kamu hihi, makanya Aku seneng banget untung kamu nge candit di hari itu, kalau engga gatau deh kita mengenang nya mau seperti apa :D",
+        image: "/assets/images/memories/30agustus.jpeg",
+        location: "Alfamart PSM, Babakan Siliwangi, Taman Photo, and Wizzmie",
         layout: "left"
     },
     {
-        date: "[TANGGAL]",
-        title: "[Judul kenangan]",
-        description: "[Tulis cerita kenangan di sini]",
-        image: "/assets/memories/memory-02.jpg",
-        location: "[Lokasi]",
+        date: "12 SEP 2025",
+        title: "Foto Pertama Kita",
+        description: "Tau ga sih dihari ini salah satu mimpi aku bisa foto bareng sama princesss tercantikk yang ku sayang itu bisa terwujud, dan ini juga awal dari segalanya yang sekarang udah selaluu fotbar kita hihii, dimulai dari aku iseng kode buka kamera dilaptop dan akhirnya dibales juga kode ku sama kamuu cintanya aku nihhh, makasiiih princess mulai dari sini juga aku mulai terus belajar buat caranya buat senyum tuh gimana, dan of course di ajarin juga sama satu satunya my future wife yaituu kamuuu :b",
+        image: "/assets/images/memories/fotbar-first.jpeg",
+        location: "Kedai si ibu mie jebew PSM",
         layout: "right"
     },
     {
+        date: "20 OKT 2025",
+        title: "Awal mula mama yi papa with Arka",
+        description: "Disini momen aku pertama kali ketemu arka setelah kamu cerita kalau arka itu selalu di rumah dan jarang main, makanya aku ngebet juga pengen ajak main adik kamuu yang nanti jadi ipar aku nanti hhe aamiin, makasih ya sayang udah memperkenalkan arka dunia mu ke aku, hingga sekarang aku pengen selalu ajak arka main kemanapun yang dia belum pernah samsek bersama mu jugaa, aku bener bener liat arka kaya aku dulu jadi izin ya sayang aku anggap adik sendiri dan mencoba jadi kakak yang baik juga seperti mu kakak yang terbaik buat adik adikmu",
+        image: "/assets/images/memories/witharka.jpeg",
+        location: "Playground Pahlawan & Sabana Fried Chicken",
+        layout: "left"
+    },
+    {
+        date: "24 NOV 2025",
+        title: "First time fotbar (prewed) dengan kostum tarimu",
+        description: "Inget ga sayang disini? yang sampai sekarang masih jadi pembahasan.. dimana pertama kali juga aku digandeng sama perempuan seumur hidup ku loh, mana sama bidadari paling cantik manis indah cintaanya aku, ya gimana ga nge geter banget tuh tanganku digandengnya haha, dan aku seneng banget juga bangga sama bakat kamu seperti tari ini.. sekali lagi Aku bangga banget sama kamu sayang. Seneng tau rasanya bisa lihat kamu memberikan yang terbaik, bukan cuma saat tampil, tapi juga dari semua proses di balik panggung yang nggak semua orang lihat. Nah Aku bersyukur bisa ada didalam cerita-cerita kamu, menyaksikan kamu berkembang, dan melihat kamu bersinar dengan caramu sendiri. im so proud of youu princess, semangattt",
+        images: [
+            "/assets/images/memories/latian-nari.jpeg",
+            "/assets/images/couple/strip01.jpeg",
+            "/assets/images/memories/after-nari.jpeg"
+        ],
+        location: "SMK ICB CT",
+        layout: "stack"
+    },
+     {
         date: "[TANGGAL]",
         title: "[Judul kenangan]",
         description: "[Tulis cerita kenangan di sini]",
-        image: "/assets/memories/memory-03.jpg",
-        location: "",
-        layout: "center"
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "[Lokasi]",
+        layout: "stack"
     },
-    {
+     {
+        date: "[TANGGAL]",
+        title: "[Judul kenangan]",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "[Lokasi]",
+        layout: "stack"
+    },
+     {
+        date: "[TANGGAL]",
+        title: "[Judul kenangan]",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "[Lokasi]",
+        layout: "stack"
+    },
+     {
         date: "[TANGGAL]",
         title: "[Judul kenangan]",
         description: "[Tulis cerita kenangan di sini]",

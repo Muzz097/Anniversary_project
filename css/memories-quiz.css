@@ -686,3 +686,213 @@
     .mem-sprout { opacity: 0.85; }
     .mem-ambience { display: none !important; }
 }
+
+/* ==========================================
+   MEMORIES — FOTO BERTUMPUK (stack)
+   Tempel di AKHIR css/memories.css.
+   Aturan lama .mem-pol / .mem-pol-1..3 tidak dipakai lagi
+   (aman dibiarkan, atau dihapus nanti).
+========================================== */
+
+/* figure tidak diputar (kartu punya rotasi sendiri) & tinggi mengikuti isi */
+.mem-photo.mem-photo-stack {
+    --rot: 0deg;
+    width: min(100%, 320px);
+    height: auto;
+    margin-inline: auto;
+}
+
+/* Panggung: tinggi tetap -> layout tidak bergeser saat foto berganti */
+.mem-stack-stage {
+    position: relative;
+    container-type: inline-size;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    touch-action: pan-y;            /* scroll vertikal tetap jalan, swipe horizontal ditangkap */
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.mem-stack-stage:focus-visible { outline: 2px solid var(--mem-soft); outline-offset: 4px; border-radius: 6px; }
+
+/* Kartu: posisi diatur lewat data-pos (front / right / left).
+   Atur komposisi dari 3 baris di bawah (tx, ty, rotasi, skala). */
+.mem-stack-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 58%;
+    transform:
+        translate(-50%, -50%)
+        translate(var(--tx, 0), var(--ty, 0))
+        rotate(var(--tr, 0deg))
+        scale(var(--ts, 1));
+    transition: transform var(--mem-stack-dur, 0.52s) cubic-bezier(.22, 1, .36, 1);
+    will-change: transform;
+}
+.mem-stack-card[data-pos="front"] { --tx: 0cqw;   --ty: 7cqw;   --tr: 0deg;  --ts: 1;   z-index: 3; }
+.mem-stack-card[data-pos="right"] { --tx: 26cqw;  --ty: -19cqw; --tr: 4deg;  --ts: .8;  z-index: 2; }
+.mem-stack-card[data-pos="left"]  { --tx: -26cqw; --ty: -19cqw; --tr: -4deg; --ts: .8;  z-index: 1; }
+
+/* fase A: foto depan bergeser lembut sebelum pindah ke belakang */
+.mem-stack-card.is-out-left  { --tx: -14cqw; --ty: 9cqw; --tr: -6deg; --ts: .94; }
+.mem-stack-card.is-out-right { --tx: 14cqw;  --ty: 9cqw; --tr: 6deg;  --ts: .94; }
+
+/* Bingkai cream */
+.mem-stack-body {
+    position: relative;
+    display: block;
+    padding: 6px 6px 22px;
+    background: var(--mem-paper);
+    border-radius: 2px;
+    box-shadow: 0 8px 18px rgba(10, 3, 10, 0.45);
+    transition: box-shadow var(--mem-stack-dur, 0.52s) ease;
+}
+/* redup untuk foto belakang */
+.mem-stack-body::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(43, 22, 37, 0.28);
+    border-radius: inherit;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+/* foto aktif: shadow kuat + glow + scale-in kecil */
+.mem-stack-card[data-pos="front"] .mem-stack-body {
+    box-shadow: 0 22px 40px rgba(10, 3, 10, 0.6), 0 0 26px rgba(224, 122, 149, 0.32);
+    animation: memStackPop 0.55s var(--mem-ease);
+}
+.mem-stack-card[data-pos="front"] .mem-stack-body::after { opacity: 0; }
+
+/* foto pendukung: floating sangat halus */
+.mem-stack-card:not([data-pos="front"]) .mem-stack-body { animation: memStackFloat 6.5s ease-in-out infinite; }
+.mem-stack-card[data-pos="left"] .mem-stack-body { animation-delay: -2.4s; }
+
+/* Foto: proporsi asli lewat --ar (diisi JS setelah gambar dimuat) */
+.mem-stack-img {
+    position: relative;
+    display: block;
+    aspect-ratio: var(--ar, 1 / 1.05);
+    overflow: hidden;
+    background: linear-gradient(160deg, #e8d3c9, #d9b9b0);
+}
+.mem-stack-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+.mem-stack-img.is-broken::after {   /* fallback bila foto gagal dimuat */
+    content: "♡";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: rgba(122, 39, 68, 0.45);
+    font-size: 1.8rem;
+}
+
+/* Satu tape saja, menempel di tepi atas foto aktif, ikut rotasi kartu */
+.mem-stack-tape {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    z-index: 2;
+    width: 54px;
+    height: 17px;
+    transform: translateX(-50%) rotate(-2deg);
+    background: linear-gradient(180deg, rgba(243, 182, 196, 0.82), rgba(224, 122, 149, 0.58));
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+.mem-stack-card[data-pos="front"] .mem-stack-tape { opacity: 1; }
+
+/* Sparkle sekali saat foto berganti */
+.mem-stack-sparks { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+.mem-stack-sparks span {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    background: var(--mem-cream);
+    opacity: 0;
+    -webkit-clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%);
+    clip-path: polygon(50% 0, 61% 35%, 100% 50%, 61% 65%, 50% 100%, 39% 65%, 0 50%, 39% 35%);
+}
+.mem-stack-sparks span:nth-child(1) { left: 20%; top: 40%; }
+.mem-stack-sparks span:nth-child(2) { right: 18%; top: 46%; }
+.mem-stack-sparks span:nth-child(3) { left: 30%; bottom: 8%; }
+.mem-stack-sparks span:nth-child(4) { right: 28%; bottom: 10%; }
+.mem-stack-sparks.is-burst span { animation: memSparkOnce 1.2s ease-out both; }
+.mem-stack-sparks.is-burst span:nth-child(2) { animation-delay: 0.1s; }
+.mem-stack-sparks.is-burst span:nth-child(3) { animation-delay: 0.2s; }
+.mem-stack-sparks.is-burst span:nth-child(4) { animation-delay: 0.3s; }
+
+/* Indikator + tombol kecil */
+.mem-stack-ui { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 10px; text-align: center; }
+.mem-stack-nav { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.mem-stack-btn {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(243, 182, 196, 0.45);
+    border-radius: 50%;
+    background: rgba(224, 122, 149, 0.1);
+    color: var(--mem-cream);
+    font-size: 1.3rem;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+.mem-stack-btn:hover { background: rgba(224, 122, 149, 0.22); }
+.mem-stack-btn:active { transform: scale(0.94); }
+.mem-stack-btn:focus-visible { outline: 2px solid var(--mem-soft); outline-offset: 3px; }
+.mem-stack-count { min-width: 58px; color: var(--mem-soft); font-size: 0.78rem; letter-spacing: 0.2em; }
+.mem-stack-hint { color: var(--mem-muted); font-size: 0.7rem; font-style: italic; letter-spacing: 0.03em; }
+
+/* Teks per foto: ditumpuk di 1 sel grid -> tinggi tetap, tidak ada layout shift */
+.mem-text-slides { display: grid; }
+.mem-text-slide {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0.4s;
+}
+.mem-text-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.5s ease 0.15s, transform 0.5s ease 0.15s, visibility 0s;
+}
+
+@keyframes memStackPop   { from { scale: 0.97; } to { scale: 1; } }
+@keyframes memStackFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -3px; } }
+
+@media (min-width: 760px) {
+    .mem-layout-stack .mem-photo.mem-photo-stack { width: 360px; height: auto; }
+}
+
+/* Browser lama tanpa satuan cqw: pakai persen (komposisi serupa) */
+@supports not (width: 1cqw) {
+    .mem-stack-card[data-pos="front"] { --tx: 0%;   --ty: 10%; }
+    .mem-stack-card[data-pos="right"] { --tx: 45%;  --ty: -36%; }
+    .mem-stack-card[data-pos="left"]  { --tx: -45%; --ty: -36%; }
+    .mem-stack-card.is-out-left  { --tx: -24%; --ty: 12%; }
+    .mem-stack-card.is-out-right { --tx: 24%;  --ty: 12%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mem-stack-sparks { display: none !important; }
+    .mem-text-slide { transform: none; }
+}

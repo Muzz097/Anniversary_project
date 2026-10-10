@@ -461,13 +461,12 @@ const memories = [
         layout: "stack"
     },
      {
-        date: "[TANGGAL]",
-        title: "[Judul kenangan]",
-        description: "[Tulis cerita kenangan di sini]",
+        date: "01 DES 2025",
+        title: "My Special Little Gift 3 month Mensiversary",
+        description: "N",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/memories/handmade01.jpeg",
+            "/assets/memories/handmade02.jpeg"
         ],
         location: "[Lokasi]",
         layout: "stack"
@@ -600,48 +599,353 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* ---------- timeline ---------- */
+    /* ---------- foto bertumpuk (stack) ---------- */
 
-    function buildPhoto(memory, layout) {
+/* Mendukung dua format data (keduanya boleh dipakai):
+   1) images: ["a.jpg","b.jpg","c.jpg"]   -> format lama, teks sama untuk 3 foto
+   2) photos: [{ src, date, title, description, location }, ...]
+      -> teks berganti mengikuti foto aktif; field kosong memakai teks memory */
 
-        const figure = el("figure", "mem-photo");
+function getSlides(memory) {
 
-        if (layout === "stack") {
+    const source = (memory.photos && memory.photos.length)
+        ? memory.photos
+        : (memory.images || []);
 
-            figure.classList.add("mem-photo-stack");
+    return source.slice(0, 3).map((item) => {
 
-            (memory.images || []).slice(0, 3).forEach((src, i) => {
-                const pol = el("span", "mem-pol mem-pol-" + (i + 1));
-                pol.appendChild(photo(src, memory.title));
-                figure.appendChild(pol);
-            });
+        const data = typeof item === "string" ? { src: item } : item;
 
-        } else {
+        return {
+            src: data.src,
+            date: data.date || "",
+            title: data.title || "",
+            description: data.description || "",
+            location: data.location || ""
+        };
 
-            const frame = el("span", "mem-photo-frame");
-            frame.appendChild(photo(memory.image, memory.title));
-            figure.appendChild(frame);
+    });
+
+}
+
+function hasOwnText(slide) {
+
+    return !!(slide.date || slide.title || slide.description || slide.location);
+
+}
+
+function buildStackCard(src, alt) {
+
+    const card = el("span", "mem-stack-card");
+    const body = el("span", "mem-stack-body");
+    const frame = el("span", "mem-stack-img");
+
+    const image = photo(src, alt);
+
+    image.draggable = false;
+
+    /* proporsi asli (dibatasi 0.78–1.2 supaya bingkai tetap rapi) */
+
+    image.addEventListener("load", () => {
+
+        if (image.naturalWidth && image.naturalHeight) {
+
+            const ratio = image.naturalWidth / image.naturalHeight;
+
+            frame.style.setProperty(
+                "--ar",
+                Math.min(1.2, Math.max(0.78, ratio)).toFixed(3)
+            );
 
         }
 
-        figure.appendChild(el("span", "mem-tape"));
+    });
 
-        return figure;
+    /* fallback: foto gagal dimuat -> bingkai cream + ikon hati */
+
+    image.addEventListener("error", () => {
+        frame.classList.add("is-broken");
+    });
+
+    frame.appendChild(image);
+
+    body.appendChild(el("span", "mem-stack-tape"));
+    body.appendChild(frame);
+    card.appendChild(body);
+
+    return card;
+
+}
+
+function buildStack(memory, slides) {
+
+    const figure = el("figure", "mem-photo mem-photo-stack");
+    const stage = el("div", "mem-stack-stage");
+
+    stage.tabIndex = 0;
+    stage.setAttribute("role", "group");
+    stage.setAttribute(
+        "aria-label",
+        memory.title + " — ketuk atau geser untuk foto berikutnya"
+    );
+
+    slides.forEach((slide, i) => {
+        stage.appendChild(
+            buildStackCard(slide.src, memory.title + " " + (i + 1))
+        );
+    });
+
+    const sparks = el("span", "mem-stack-sparks");
+    sparks.setAttribute("aria-hidden", "true");
+
+    for (let i = 0; i < 4; i++) {
+        sparks.appendChild(document.createElement("span"));
+    }
+
+    stage.appendChild(sparks);
+    figure.appendChild(stage);
+
+       if (slides.length > 1) {
+
+        const ui = el("div", "mem-stack-ui");
+
+        ui.appendChild(
+            el("p", "mem-stack-hint", "Tap the photo to see the next memory")
+        );
+
+        figure.appendChild(ui);
 
     }
 
-    function buildItem(memory, index) {
+    return figure;
 
-        const layout = memory.layout || "left";
+}
 
-        const item = el("article", "mem-item mem-layout-" + layout);
+function buildPhoto(memory, layout, slides) {
 
-        item.style.setProperty("--rot", (index % 2 ? 2.2 : -2.2) + "deg");
+    if (layout === "stack") {
+        return buildStack(memory, slides || getSlides(memory));
+    }
 
-        item.appendChild(el("span", "mem-node"));
-        item.appendChild(buildPhoto(memory, layout));
+    const figure = el("figure", "mem-photo");
 
-        const text = el("div", "mem-text");
+    const frame = el("span", "mem-photo-frame");
+    frame.appendChild(photo(memory.image, memory.title));
+    figure.appendChild(frame);
+
+    figure.appendChild(el("span", "mem-tape"));
+
+    return figure;
+
+}
+
+/* Semua teks slide ditumpuk di satu sel grid -> tinggi = slide terpanjang,
+   jadi layout tidak bergeser saat foto berganti. */
+
+function buildTextSlides(memory, slides) {
+
+    const wrap = el("div", "mem-text-slides");
+
+    slides.forEach((slide) => {
+
+        const block = el("div", "mem-text-slide");
+
+        block.appendChild(el("p", "mem-date", slide.date || memory.date));
+        block.appendChild(el("h3", "mem-title", slide.title || memory.title));
+        block.appendChild(el("p", "mem-desc", slide.description || memory.description));
+
+        const loc = slide.location || memory.location;
+
+        if (loc) {
+            block.appendChild(el("p", "mem-loc", "♡ " + loc));
+        }
+
+        wrap.appendChild(block);
+
+    });
+
+    return wrap;
+
+}
+
+/* Dipanggil sekali per item (tidak ada listener ganda). */
+
+function setupStack(figure, textBlocks) {
+
+    const stage = figure.querySelector(".mem-stack-stage");
+    const cards = Array.from(stage.querySelectorAll(".mem-stack-card"));
+    const total = cards.length;
+
+    const sparks = stage.querySelector(".mem-stack-sparks");
+
+    const reduce = window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    let active = 0;
+    let busy = false;
+
+    function place() {
+
+        cards.forEach((card, i) => {
+
+            const rel = (i - active + total) % total;
+            const pos = rel === 0 ? "front" : (rel === 1 ? "right" : "left");
+
+            card.dataset.pos = pos;
+            card.setAttribute("aria-hidden", pos === "front" ? "false" : "true");
+
+        });
+
+
+        if (textBlocks) {
+            textBlocks.forEach((block, i) => {
+                block.classList.toggle("is-active", i === active);
+                block.setAttribute("aria-hidden", i === active ? "false" : "true");
+            });
+        }
+
+    }
+
+    function burst() {
+
+        if (!sparks || reduce) {
+            return;
+        }
+
+        sparks.classList.remove("is-burst");
+        void sparks.offsetWidth;
+        sparks.classList.add("is-burst");
+
+    }
+
+    /* dir: +1 = foto berikutnya, -1 = sebelumnya.
+       Fase A (±230ms): foto depan bergeser sedikit ke samping.
+       Fase B (±520ms): semua foto pindah posisi. Total ±750ms. */
+
+    function go(dir) {
+
+        if (busy || total < 2) {
+            return;
+        }
+
+        busy = true;
+
+        const leaving = cards[active];
+        const landsLeft = dir > 0 && total > 2;
+        const outClass = landsLeft ? "is-out-left" : "is-out-right";
+
+        stage.style.setProperty("--mem-stack-dur", reduce ? "0.01s" : "0.22s");
+        leaving.classList.add(outClass);
+
+        setTimeout(() => {
+
+            leaving.classList.remove(outClass);
+            stage.style.setProperty("--mem-stack-dur", "0.52s");
+
+            active = (active + dir + total) % total;
+
+            place();
+            burst();
+
+            setTimeout(() => { busy = false; }, reduce ? 20 : 540);
+
+        }, reduce ? 20 : 230);
+
+    }
+
+    /* tap / swipe pada foto */
+
+    let startX = 0;
+    let startY = 0;
+    let tracking = false;
+
+    stage.addEventListener("pointerdown", (event) => {
+
+        if (event.pointerType === "mouse" && event.button !== 0) {
+            return;
+        }
+
+        tracking = true;
+        startX = event.clientX;
+        startY = event.clientY;
+
+    });
+
+    stage.addEventListener("pointerup", (event) => {
+
+        if (!tracking) {
+            return;
+        }
+
+        tracking = false;
+
+        const dx = event.clientX - startX;
+        const dy = event.clientY - startY;
+
+        if (Math.abs(dx) > 36 && Math.abs(dx) > Math.abs(dy)) {
+            go(dx < 0 ? 1 : -1);
+            return;
+        }
+
+        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) {
+
+            const hit = event.target.closest(".mem-stack-card");
+
+            go(hit && hit.dataset.pos === "left" ? -1 : 1);
+
+        }
+
+    });
+
+    stage.addEventListener("pointercancel", () => { tracking = false; });
+
+    stage.addEventListener("keydown", (event) => {
+
+        if (event.key === "ArrowRight" || event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            go(1);
+        } else if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            go(-1);
+        }
+
+    });
+
+    place();
+
+}
+
+
+/* ---------- item timeline ---------- */
+
+function buildItem(memory, index) {
+
+    const layout = memory.layout || "left";
+
+    const slides = layout === "stack" ? getSlides(memory) : [];
+    const ownText = slides.some(hasOwnText);
+
+    const item = el("article", "mem-item mem-layout-" + layout);
+
+    item.style.setProperty("--rot", (index % 2 ? 2.2 : -2.2) + "deg");
+
+    item.appendChild(el("span", "mem-node"));
+
+    const figure = buildPhoto(memory, layout, slides);
+    item.appendChild(figure);
+
+    const text = el("div", "mem-text");
+
+    let blocks = null;
+
+    if (ownText) {
+
+        const wrap = buildTextSlides(memory, slides);
+
+        blocks = Array.from(wrap.children);
+        text.appendChild(wrap);
+
+    } else {
 
         text.appendChild(el("p", "mem-date", memory.date));
         text.appendChild(el("h3", "mem-title", memory.title));
@@ -651,18 +955,24 @@ document.addEventListener("DOMContentLoaded", () => {
             text.appendChild(el("p", "mem-loc", "♡ " + memory.location));
         }
 
-        item.appendChild(text);
-
-        const sprout = photo("/assets/images/botanical/leaves.webp", "");
-        sprout.className = "mem-sprout";
-        sprout.setAttribute("aria-hidden", "true");
-
-        item.appendChild(sprout);
-        item.appendChild(el("span", "mem-spark"));
-
-        return item;
-
     }
+
+    item.appendChild(text);
+
+    const sprout = photo("/assets/images/botanical/leaves.webp", "");
+    sprout.className = "mem-sprout";
+    sprout.setAttribute("aria-hidden", "true");
+
+    item.appendChild(sprout);
+    item.appendChild(el("span", "mem-spark"));
+
+    if (layout === "stack") {
+        setupStack(figure, blocks);
+    }
+
+    return item;
+
+}
 
     function renderTimeline() {
 

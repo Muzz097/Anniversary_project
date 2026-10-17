@@ -463,56 +463,222 @@ const memories = [
      {
         date: "01 DES 2025",
         title: "My Special Little Gift 3 month Mensiversary",
-        description: "N",
+        description: "Aku lagi menyelam dan salfok sama momen ini tau, sayangkuu. Wkwk, masih inget nggak sama hadiah kecil kecialan ini? wlee, Kalau dipikir-pikir lucu juga yaa sayang soalnya aku inget banget ketika aku buat itu disetiap prosesnya di pikiran ku cuma tentang kamu sayangg. dan maaf yaa Sederhana banget nih hadiah ku kala itu dan meski begitu aku seneng banget kamu menerimanya dengan bahagia jugaa cintaku walau masih kecil kecilan begitu, makanya hal-hal kayak gini yang bikin aku seneng kalau diingat lagi. Apalagi sekarang udah lewat cukup lama, rasanya gemes aja ga sih liat kita ngerayain 3 bulan pas itu yang rasanya udah bener bener lumayan jauh nih dan saat itu selalu berdoa dan berharap kita selalu bersama sampai anniv sampai selamanya cenah, ehh sekarang udah mau 14 bulan aja nihh hahaa",
         images: [
-            "/assets/memories/handmade01.jpeg",
-            "/assets/memories/handmade02.jpeg"
+            "/assets/images/memories/handmade01.jpeg",
+            "/assets/images/memories/handmade02.jpeg"
         ],
-        location: "[Lokasi]",
+        location: "Kedai Ibu Jebew",
         layout: "stack"
     },
      {
-        date: "[TANGGAL]",
-        title: "[Judul kenangan]",
+        date: "21 DES 2025",
+        title: "Si Gosong Juling",
+        description: "Before jadi mongling nih si salju haha, iseng aja aku pajang tuan muda Mongling siapa tau mau liat dia di taun 2025 hihi",
+        images:  "/assets/memories/memory-04a.jpg",
+        location: "Rumah Om Ace & Cici",
+        layout: "right"
+    },
+     {
+        date: "29 DES 2025",
+        title: "Your Sweet SevenTeen my love",
         description: "[Tulis cerita kenangan di sini]",
         images: [
             "/assets/memories/memory-04a.jpg",
             "/assets/memories/memory-04b.jpg",
             "/assets/memories/memory-04c.jpg"
         ],
-        location: "[Lokasi]",
+        location: "Rumah daun & Tahura",
         layout: "stack"
     },
      {
-        date: "[TANGGAL]",
-        title: "[Judul kenangan]",
+        date: "16 JAN 2026",
+        title: "Kekeretaan menuju IKEA",
         description: "[Tulis cerita kenangan di sini]",
         images: [
             "/assets/memories/memory-04a.jpg",
             "/assets/memories/memory-04b.jpg",
             "/assets/memories/memory-04c.jpg"
         ],
-        location: "[Lokasi]",
-        layout: "stack"
-    },
-     {
-        date: "[TANGGAL]",
-        title: "[Judul kenangan]",
-        description: "[Tulis cerita kenangan di sini]",
-        images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
-        ],
-        location: "[Lokasi]",
+        location: "IKEA, Kota Baru Parahyangan - Padalarang",
         layout: "stack"
     },
     {
-        date: "[TANGGAL]",
-        title: "[Judul kenangan]",
+        date: "14 FEB 2026",
+        title: "Happy Sweet Valentine my love",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Summarecon Bandung",
+        layout: "stack"
+    },
+    {
+        date: "18 MAR 2026",
+        title: "Lengah dikit ke Sumedang",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Alun alun Sumedang",
+        layout: "stack"
+    },
+    {
+        date: "26 MAR 2026",
+        title: "First time mam MBCI 💓",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg"
+        ],
+        location: "Ranca bali to Citambur, but yea..",
+        layout: "stack"
+    },
+    {
+        date: "11 APR 2026",
+        title: "Naik angsa sambil di Masakin my princess",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg"
+        ],
+        location: "Situ Ciburuy",
+        layout: "stack"
+    },
+    {
+        date: "15 APR 2026",
+        title: "Penampilan Tari indahmu di Gelar Karya",
+        description: "[Tulis cerita kenangan di sini]",
+        images:  "/assets/memories/memory-04a.jpg",
+        location: "SMK ICB CT",
+        layout: "left"
+    },
+    {
+        date: "18 APR 2026",
+        title: "Pertama kali imut ku belajar motor",
+        description: "[Tulis cerita kenangan di sini]",
+        images:  "/assets/memories/memory-04a.jpg",
+        location: "GBLA - Gede Bage",
+        layout: "right"
+    },
+     {
+        date: "03 MEI 2026",
+        title: "First time main sama keluarga ku",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Curug Cipeureu & Seblak Cadas",
+        layout: "stack"
+    },
+     {
+        date: "16 MEI 2026",
+        title: "Chicken Steak Date Special for 2rd champions of LKS",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Waroeng Steak",
+        layout: "stack"
+    },
+     {
+        date: "23 MEI 2026",
+        title: "Ke Garut bareng keluarga ku",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Kaki Gunung Cikuray - Garut",
+        layout: "stack"
+    },
+    {
+        date: "06 JUN 2026",
+        title: "Momen Bidadari cantik tari di Event Graduate",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "SMK ICB CT",
+        layout: "stack"
+    },
+     {
+        date: "05 JUL 2026",
+        title: "Diantara Kopi Cafe Sinlay",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Di antara kopi",
+        layout: "stack"
+    },
+    {
+        date: "08 JUL 2026",
+        title: "My Sweet Seventeen hehe",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Rumah Daun",
+        layout: "stack"
+    },
+    {
+        date: "19 JUL 2026",
+        title: "Ke Tahura with adik arka",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Tahura part 2",
+        layout: "stack"
+    },
+    {
+        date: "09 AGU 2026",
+        title: "Nemenin sayangnya aku Lomba",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Pasteur",
+        layout: "stack"
+    },
+     {
+        date: "06 SEP 2026 (Di undur)",
+        title: "And Finally, Our First Anniversary Shailsa 31 AUGUST",
+        description: "[Tulis cerita kenangan di sini]",
+        images: [
+            "/assets/memories/memory-04a.jpg",
+            "/assets/memories/memory-04b.jpg",
+            "/assets/memories/memory-04c.jpg"
+        ],
+        location: "Tsuka Ramen - Makeupucinno - Playverse",
+        layout: "stack"
+    },
+    {
+        date: "13 SEP 2026",
+        title: "And Our Story.. Never end",
         description: "[Tulis cerita kenangan di sini]",
         image: "/assets/memories/memory-05.jpg",
-        location: "[Lokasi]",
+        location: "Tepi Gunung",
         layout: "left"
     }
 ];

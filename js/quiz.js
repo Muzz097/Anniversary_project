@@ -475,18 +475,18 @@ const memories = [
         date: "21 DES 2025",
         title: "Si Gosong Juling",
         description: "Before jadi mongling nih si salju haha, iseng aja aku pajang tuan muda Mongling siapa tau mau liat dia di taun 2025 hihi",
-        images:  "/assets/memories/memory-04a.jpg",
+        images:  "/assets/images/memories/mongling.jpeg",
         location: "Rumah Om Ace & Cici",
         layout: "right"
     },
      {
         date: "29 DES 2025",
         title: "Your Sweet SevenTeen my love",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Perayaan Ulang tahun princess pertama kali ketika kita bersama nii, dan akuu bener bener seneng kalau ternyata aku lah orang di sisimu yang bisa merayakan dan menemani mu di saat kamu udah berumur 17 tahun nii sayangg (walau aku berondong masih umur 16 sichh), Dan disini akhirnya suprise ku berhasil yeaa setelah banyaknya suprise yang gagal haha, dan aku juga bisa dapet pelukan pertama ku pertama kita saat hari ini kan cinta, and thats is so memorable and cuteee",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/birthdaysasa01.jpeg",
+            "/assets/images/memories/birthdaysasa022.JPG",
+            "/assets/images/memories/birthdaysasa03.JPG"
         ],
         location: "Rumah daun & Tahura",
         layout: "stack"
@@ -494,11 +494,11 @@ const memories = [
      {
         date: "16 JAN 2026",
         title: "Kekeretaan menuju IKEA",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Duhh jadi pengen lagi pas liat ini ya ga sih, lucu banget kita akhirnya bisa kekeretan date ke padalarang sayangg, walau akses transport nya susah sih ya di sana nya kaya anak ilang wkwk cuma akhirnya kita bisa ke IKEA untuk pertama kalinya kala itu, jiwa explore kita meronta ronta hihi dan liat liat semua yang ada di dalem sana sabari teu boga duid tea haha, makasih ya sayangg udah selalu bersama disini banyak hal yang udah kita explore dan masih banyak lagi yang belum kita explore jadi aku mau kita terus tetap bersama sampai selamanya yaa sayangg aamiinn, karna nanti ari boga duid mah kita borong se IKEA IKEA nya yuu wkwk, terus udah ini kita dapet pengalaman naik metro trans yaa cinta, lebih tepatnya pengalaman buruk anjay :D",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/ikea03.jpeg",
+            "/assets/images/memories/ikea02.jpeg",
+            "/assets/images/memories/ikea01.jpeg"
         ],
         location: "IKEA, Kota Baru Parahyangan - Padalarang",
         layout: "stack"
@@ -506,11 +506,11 @@ const memories = [
     {
         date: "14 FEB 2026",
         title: "Happy Sweet Valentine my love",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Alaaa walau rencana ku kala ini ga begitu mulu ya sayangg dan ada drama nya tapi kamu tetep menerima itu dengan sangat baik makasih banyak princessku yang maniss, dan akuu senengg hal itu jadi suatu hal kenangan di perjalanan hidup kita yang gemesinn inii, ga sabar buat Valentine berikutnya :>",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/valentine01.jpeg",
+            "/assets/images/memories/valentine02.jpeg",
+            "/assets/images/memories/memory-04c.jpg"
         ],
         location: "Summarecon Bandung",
         layout: "stack"
@@ -518,11 +518,11 @@ const memories = [
     {
         date: "18 MAR 2026",
         title: "Lengah dikit ke Sumedang",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Hihii kangen yaa kita main sejauh ini, dan kenangan ini kita ke sumedang bener bener no plan banget yaa langsung tancap gas ae btw wkwk, cuma aku sukaa banget ay kita bisa explore gini sampai sumedang akuu selalu suka motor ku di belakang nya ada bidadari tercintakuu yaitu kamuuu, dan next kita kesini lagii yuu jujur incer tahu nya aja sih hahaha",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/sumedang01.jpeg",
+            "/assets/images/memories/sumedang02.jpeg",
+            "/assets/images/memories/sumedang03.jpeg"
         ],
         location: "Alun alun Sumedang",
         layout: "stack"
@@ -530,10 +530,10 @@ const memories = [
     {
         date: "26 MAR 2026",
         title: "First time mam MBCI 💓",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "YEAYYY INII DIAA YANG BIKIN AKU SUKA PARE PERTAMA KALI YAHH, Masakann darii perempuan imut tercintanyaa akuu yaituu kamuu, bener bener racikan mu bikin pare yang aku pikir pait jadi ga pait tauu malah jadi makanan ter enakkk salah satunya yang akuu coba dariimu, emangg kamu multi talent banget sihh masak ajaa bisaa, bener bener jadi pesulap dari yang pait jadi rasa yang balance manis asin gurih pedes dan ada khas pare nya yang ga pait malah jadi khas gituu :>, kangenn bangett samaa masakan mu ini hihi, walau ga berjalan dengan mulus yaa kala itu.. tapi gapapaa waktu kita masih panjang dan kita masih bisa wujudin yang belum terwujud ko cintaaa <3",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg"
+            "/assets/images/memories/citambur01.jpeg",
+            "/assets/images/memories/citambur02.jpeg"
         ],
         location: "Ranca bali to Citambur, but yea..",
         layout: "stack"
@@ -541,10 +541,10 @@ const memories = [
     {
         date: "11 APR 2026",
         title: "Naik angsa sambil di Masakin my princess",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Ini pengalaman aku yang seru bangett jugaa tau sekaligus wish list bisa nge goes angsa badag bareng kamuu sayangkuu di situ ciburuy inii (next sama arka lah yaa cobain), plus di masakin kangkung dan nasi daun jeruk juga buatan calon istrii ku ini alamakkk terlalu beruntung aku memiliki mu sayanggg karna masakannya juga enakk banget cii dan ada di konten juga kann makasiii",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg"
+            "/assets/images/memories/ciburuy01.jpeg",
+            "/assets/images/memories/ciburuy02.jpeg"
         ],
         location: "Situ Ciburuy",
         layout: "stack"
@@ -552,27 +552,27 @@ const memories = [
     {
         date: "15 APR 2026",
         title: "Penampilan Tari indahmu di Gelar Karya",
-        description: "[Tulis cerita kenangan di sini]",
-        images:  "/assets/memories/memory-04a.jpg",
+        description: "Jujur disini aku sibuk jadi operator kali yaa jadi ga bisa lama lama juga banyak banyak dan kamu mau postud, tapi akuu punya video penampilannya ko hihii, penampilan tari kamuu yang lihai itu sayanggg, kamuu bener benerr jagoo dan di lahirkan untuk tari jugaa nihh karna se berbakat itu dari kecil juga, im so proud of youuu princess ku sayanggg, dan ngomongin soal kostum jugaa inii gemesss bangettt cintaakuu ada gelangnya gituu dan warnanyaa juga cocok di kamuu plisss makin bersinar ajaa tauu sayanggnyaa akuu nii :>",
+        images:  "/assets/images/memories/tari-gelarkarya.jpeg",
         location: "SMK ICB CT",
         layout: "left"
     },
     {
         date: "18 APR 2026",
         title: "Pertama kali imut ku belajar motor",
-        description: "[Tulis cerita kenangan di sini]",
-        images:  "/assets/memories/memory-04a.jpg",
+        description: "hehehe akhirnyaa aku bisa ajarinn sayangnya aku motor juga di momen ini ay bersama motor kodok merah itu, dan walau ada sebuah tragedi disitu dan sayangku kesakitan, jadi keinget lagii meluk kamu di saat lagi nangiss gituu, jujur merasa bersalah adaa terus kasian juga khawatir tapi di sisi lain aku seneng juga sayang kamuu menangis di dalam pelukan akuu wlee, dan kamuu bisa semanja mungkin sama akuu itu yang akuu sukaa jugaa dengan ke terbukaan nya dirimu samaa diri ku my lovee",
+        images:  "/assets/images/memories/bljrmotor.jpeg",
         location: "GBLA - Gede Bage",
         layout: "right"
     },
      {
         date: "03 MEI 2026",
         title: "First time main sama keluarga ku",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Disini seru banget ga sih ay plus aku seneng banget bisa main sama keluarga ku juga cintaaku dan kita dapet tempat yang adem dan curug pertama yang kita kunjungi kann yaitu curug cipeureu ini hihi, kita main air seru seruan dan ada adagen tigolosor juga sihh wkkw, pokoknya aku sangat seneng ketika keluargaku bisa lebih deket sama kamuu sayangg karna kamu kebanggaannya aku yang perlu aku pamerin dan seriusin nanti hihi",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/cipeureu01.jpeg",
+            "/assets/images/memories/cipeureu02.jpeg",
+            "/assets/images/memories/cipeureu03.jpeg"
         ],
         location: "Curug Cipeureu & Seblak Cadas",
         layout: "stack"
@@ -580,11 +580,11 @@ const memories = [
      {
         date: "16 MEI 2026",
         title: "Chicken Steak Date Special for 2rd champions of LKS",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Janji ku ketika kamu juara 2 LKS Farmasi nii sayanggg, sumpahh akuu bangga banget sama sayangnya aku dan aku emang udah seyakin ituu kalo kamu bisaa",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/steak01.jpeg",
+            "/assets/images/memories/steak02.jpeg",
+            "/assets/images/memories/steak03.jpeg"
         ],
         location: "Waroeng Steak",
         layout: "stack"
@@ -592,11 +592,11 @@ const memories = [
      {
         date: "23 MEI 2026",
         title: "Ke Garut bareng keluarga ku",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Part 2 nihh main jauh sama keluarga aku sama bunda aku hihi, dan kita saat itu bener bener perginya nyubuh banget kannn, tapi sangat sangat membuahkan hasil sama pemandangan di kebun kaki gunung cikuray inii yaaa dan banyak vlog juga kitaa hihi, emang ay pilihan bunda asa ga pernah gagal yaa soal wisata mah, udah mah gratis tapi pemandangan sangat sangatt begituu indahh kaya kamuu yang selalu indahh di matakuu dan hatikuu",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/garut01.jpeg",
+            "/assets/images/memories/garut02.jpeg",
+            "/assets/images/memories/garut03.jpeg"
         ],
         location: "Kaki Gunung Cikuray - Garut",
         layout: "stack"
@@ -604,11 +604,11 @@ const memories = [
     {
         date: "06 JUN 2026",
         title: "Momen Bidadari cantik tari di Event Graduate",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Aku bersyukur bisa jadi orang yang bisa temani di proses mu, di setiap cerita mu loh ay.. dan hari itu akuu bisa jemput kamuu subuh subuh jam 3 an lebih itu jugaa bikin akuu seneng hihi, dan bisa liat kostum kamuu inii yang sangat amat cantikkkk dan sempurna inii karna di pakai sama kamuu sayaangg, udahh ma penampilannya juga kerenn bangett sih emang ga pernah ga keren sayanggkuu ma, dan juga kebetulan ada tukang bunga yang bisa ku beli buat bunga tercintakuu yang udahh berusaha semaksimal mungkin kasih penampilan yang amatt begituu terbaikk, akuu juga senengg fotbar kitaa di hari itu gemess gemess semuaa yakaannnn",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/graduate01.jpeg",
+            "/assets/images/memories/graduate02.jpeg",
+            "/assets/images/memories/graduate03.jpeg"
         ],
         location: "SMK ICB CT",
         layout: "stack"
@@ -616,11 +616,11 @@ const memories = [
      {
         date: "05 JUL 2026",
         title: "Diantara Kopi Cafe Sinlay",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Akhirnya bisa culik kamu ke cafe sinlay ku ini yang sepi asri, juga sky view yang indah yaaa.. sama kita ada buat trend trend ginii dari wishlist ku terwujud jugaa lucu bangett sihh walau random dikit wkwk ",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/cafe01.jpeg",
+            "/assets/images/memories/cafe02.jpeg",
+            "/assets/images/memories/cafe03.jpeg"
         ],
         location: "Di antara kopi",
         layout: "stack"
@@ -628,11 +628,11 @@ const memories = [
     {
         date: "08 JUL 2026",
         title: "My Sweet Seventeen hehe",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Sayangg.. di saat orang lain yaa ga ada yang ucapin ultah aku ya, kamu bener bener hadir di hari spesial ku dari pagi sampai malam 24 jam.. makasii yaa sayangkuu kamu sempetin hadir padahal kamuu abis beres PKL cape cape terus udaa kasih aku hadiah rak yang sampai sekarang selalu kepakai dan bergunaa buat kuu.. dan di tengah semua ucapan dan hal-hal yang terjadi di rumah hari itu, aku seneng banget karena kamu ada di sana. Rasanya manis aja kaya kamuu, bisa punya kenangan ulang tahun yang di dalamnya ada kamu. Jadi, kalau suatu hari aku ditanya apa salah satu hal yang paling aku inget dari umur 17 tahun, mungkin salah satunya adalah hari ketika ada kamuu di dalam nya sayangg hihii dan juga kado terbaik di hari ulang tahunku umur 16 tahun itu adalah kehadiran kamuu di hidup ku hihi",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/birthdaydaun-01.jpeg",
+            "/assets/images/memories/birthdaydaun-02.jpeg",
+            "/assets/images/memories/birthdaydaun-03.jpeg"
         ],
         location: "Rumah Daun",
         layout: "stack"
@@ -640,11 +640,11 @@ const memories = [
     {
         date: "19 JUL 2026",
         title: "Ke Tahura with adik arka",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Hihi sesuai janji kitaa yaa di ulang tahun ku bakal ke tahura part 2 dan sekarang ituu bareng arka, waktuu terasa begitu cepat tau ay di saat ulang tahun mu kita ga sabar pengen ke tahura lagi part dua dan akhirnya udahh kejadian juga kan sampai sekarang udah satu tahun sebulan lebih mau 2 bulan, emang senyaman ituu sayangg akuu samaa kamuu tuuu sampai bumi ini rotasi nya jadi begituu cepatt anjayy",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/tahura02.jpeg",
+            "/assets/images/memories/tahura01.jpeg",
+            "/assets/images/memories/tahura03.jpeg"
         ],
         location: "Tahura part 2",
         layout: "stack"
@@ -652,11 +652,11 @@ const memories = [
     {
         date: "09 AGU 2026",
         title: "Nemenin sayangnya aku Lomba",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Di hari ini kita yang jadi bapa anak yeee wkwk, akuuu kagumm selalu sama kamu ay karna selalu mau explore banyak hal yang contohnya kamu ikut lomba Shuuji inii dan beruntungnya akuu ialah akuu yang bisa nemenin perempuan hebatt ituu berkarya masya allah :), Im always support youuu honey",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/Pasteur01.jpeg",
+            "/assets/images/memories/Pasteur02.jpeg",
+            "/assets/images/memories/Pasteur03.jpeg"
         ],
         location: "Pasteur",
         layout: "stack"
@@ -664,11 +664,11 @@ const memories = [
      {
         date: "06 SEP 2026 (Di undur)",
         title: "And Finally, Our First Anniversary Shailsa 31 AUGUST",
-        description: "[Tulis cerita kenangan di sini]",
+        description: "Sayanggg, akhirnya momen dan hari yang DI TUNGGU TUNGGU kita sampai jugaa yaa di perayaan Anniversary pertama kita inii :). Walaupun perayaannya harus diundur sii hehe cuma demii kesejahteraan bersama yaa gaa haha, yang penting kita tetap punya kesempatan buat ngerayain hari spesial yang sangat spesial ini bareng-barengg. Dari Tsuka Ramen rekomendasi darimu yang aku baru nyoba ramen pertama kali juga jadi sukaa bangett wish list juga tsuka ramen ini dari jaman kita pdkt akhirnya beneran akuu di temenin kamuu sebagai partner hidup selamanyaa akuu lohh hihi, lanjut ke Makeupucinno tempatnyaa yang kamu mauu dan nanti nantikan juga kann dari SMP sayangg dan akuu seneng banget bisa wujudin ituu bersama samaa :>, terus ke mamah bentar buat kasih oleh oleh make up ituu emang anak yangg teladan banget cii kamuuu kebanggaannya akuu dan mamah pastinyaa, terus sampai ke Playverse dimana awal dari segalanyaaa kita yang bisa sangat terbuka satu sama lain inii dan momen ketawa bareng juga seru seruan bareng yang ga pernah terlupakan inii yaa sayanggg di hari anniv pulaa bener benerr sangatt spesial :),  Seneng banget pliss rasanya bisa ngerayain satu tahun perjalanan kitaa yang banyakk rintangannya ini, mengingat semua yang udah kita lewatin, sekaligus bikin kenangan indah baru lagi. Kalau dipikir-pikir, setahun ini ternyata bukan cuma soal berapa lama kita bersama, tapi juga tentang seberapa banyak hal yang udah kita lewati dan pelajari jugaa untuk saling memperbaiki satu sama lain inii yaa cintakuu. i lovee youuu foreverr",
         images: [
-            "/assets/memories/memory-04a.jpg",
-            "/assets/memories/memory-04b.jpg",
-            "/assets/memories/memory-04c.jpg"
+            "/assets/images/memories/anniv02.jpeg",
+            "/assets/images/memories/anniv01.jpeg",
+            "/assets/images/memories/anniv03.jpeg"
         ],
         location: "Tsuka Ramen - Makeupucinno - Playverse",
         layout: "stack"
@@ -676,8 +676,8 @@ const memories = [
     {
         date: "13 SEP 2026",
         title: "And Our Story.. Never end",
-        description: "[Tulis cerita kenangan di sini]",
-        image: "/assets/memories/memory-05.jpg",
+        description: "Sayangkuu, aku tahu perjalanan kita ke depan masih panjang, dan aku masih mau menjalani banyak hal bareng kamu. Masih banyak tempat yang ingin kita datangi, cerita yang ingin kita buat, dan mimpi yang ingin kita wujudkan bersama. Aku nggak janji semuanya akan selalu mudah, tapi aku mau terus belajar, berusaha, dan serius membangun masa depan yang indah inii sama kamuuu sayang",
+        image: "/assets/images/memories/forever.jpeg",
         location: "Tepi Gunung",
         layout: "left"
     }
@@ -688,7 +688,7 @@ const storyVideo = {
     src: "/assets/memories/our-story-video.mp4",
     poster: "/assets/memories/our-story-poster.jpg",
     caption: "Every memory leads me back to you. ♡",
-    signature: "— With all my love, [Nama]"
+    signature: "— With all my love, Daun nya bunga"
 };
 
 

@@ -42,16 +42,16 @@ const journeyMilestones = [
     {
         id: "lks-pharmacy",
         type: "competition",
-        date: "[DATE]",
+        date: "[12 MEI 2026",
         category: "COMPETITION",
         title: "LKS FARMASI",
         kicker: "SECOND PLACE",
         tagline: "The courage to compete",
         achievement: "Juara 2",
         badge: { number: "2", text: "2ND PLACE" },
-        description: "[Tulis cerita di sini — proses, latihan, rasa lelah, dan kerja kerasnya.]",
-        location: "[Lokasi]",
-        myNote: "[Tulis pesan pribadi di sini]",
+        description: "Aku tau sampai di titik ini bukan hal yang gampang buat kamu. Ada proses belajar dengan buku farmasi yang tebal mu itu, latihan, mungkin ada rasa gugup juga, dan banyak hal yang harus kamu siapin. Aku mungkin nggak ngerasain semuanya secara langsung, tapi aku jadi partner yang temenin kamuu dan jadi tau kamu udah sangat berusaha buat ngasih yang terbaik. Dan akhirnya, kamu berhasil bawa pulang kabar baik dan prestasi mu sebagai juara 2 di LKS Farmasi ini. I'm so proud of youu, sayang. Bukan cuma karena hasilnya, tapi karena prosesnya.. kamu udah berani mencoba disaat temen kelas mu yang lain engga dan membuktikan kalau usaha kamu ga mengkhianati hasil yang bisa membawa kamu sejauh ini.",
+        location: "SMKN 7 Kota Bandung",
+        myNote: "CONGRASTTT PEREMPUAN HEBATTT KUUUUUU, Kalau suatu saat kamu mulai ragu sama kemampuan diri sendiri, aku harap kamu sangat sangat inget momen ini, yaa cantikk. Kamu pernah berjuang lohh dan selalu berjuang, kamu pernah dan suka berani untuk explore segala hal, dan kamu bisa berhasil sampai sejauh ini. Aku bangga banget sama kamu tauu, bukan cuma hari ini, tapi juga sama semua proses yang udah kamu lewati. Semoga setelah ini masih banyak hal baik yang bisa kamu raih yaa cintaa. Aku seneng bisa nemenin kamu tumbuh sejauh ini, sayang.. Love youu so muchh",
         media: [
             { type: "image", src: "/assets/journey/lks-photo.jpg", caption: "[Caption]" },
             { type: "video", src: "/assets/journey/lks-video.mp4", poster: "/assets/journey/lks-poster.jpg", caption: "[Caption]" }
@@ -64,12 +64,12 @@ const journeyMilestones = [
     {
         id: "class-ranking",
         type: "ranking",
-        date: "[DATE]",
+        date: "Forever number 1 in my heart too",
         category: "ACADEMIC",
         title: "ALWAYS AMONG THE BEST",
         tagline: "Consistency looks beautiful on you.",
         achievement: "Ranking kelas",
-        rank: "#1",                                   /* TODO: ganti ranking asli */
+        rank: "#1",                                   
         rankLabel: "Class rank",
         stars: 5,
         stickyText: "Top of the class,\ntop of my heart. ♡",

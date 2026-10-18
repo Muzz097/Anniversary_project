@@ -17,12 +17,12 @@
 /* ---------- Opening ---------- */
 
 const journeyOpening = {
-    label: "Watch you bloom",
-    title: "Our Journey",
-    subtitle: "Look how far you’ve come.",
-    tagline: "A year of courage, growth, and beautiful moments.",
-    photo: "/assets/journey/opening-photo.jpg",     /* foto kecil di opening */
-    photoCaption: "where it all grew"
+    label: "Tumbuh bersamamu",
+    title: "Perjalanan Kita",
+    subtitle: "Setahun ini dan selamanya, kamu bikin aku bangga berkali-kali.",
+    tagline: "Setahun yang penuh nyali, lelah, dan hal-hal kecil yang diam-diam bikin aku makin jatuh cinta.",
+    photo: "/assets/journey/opening-photo.jpg",
+    photoCaption: "di sinilah semuanya bermula"
 };
 
 /* ---------- Milestone ----------
@@ -75,23 +75,12 @@ const journeyMilestones = [
   stickyText: "Top of the class,\ntop of my heart. ♡",
 
   description:
-    "Dari dulu sampai sekarang, kamu selalu menjadi perempuan imut yang membuatku bangga tauu ay. " +
-    "Di tengah kesibukan sekolah, latihan tari, mengurus berbagai lomba, dan banyak hal lainnya yang kamu lakuin seperti melakukan hobi mu lalu mencoba ini itu, sama beberapa rintangan yang menerjangmu " +
-    "kamu tetap mampu menjaga semangattt dan memberikan yang terbaik di sekolah dan di dirimu sendiri cintaku. " +
-    "Pencapaian ini aku pikir bukan cuma angka atau ranking loh, " +
-    "tetapi tentang usaha, ketekunan kamu dalam menggapai sesuatu, dan cara kamu terus berkembang setiap harinya. " +
-    "Aku tau ga selalu mudah membagi waktu untuk semuanya yaa sayangg, " +
-    "tetapi kamu tetep bisa menjalaninya dengan hebat. You're the best honeyy",
+    "Jujur ya, aku suka bingung sama kamu. Jadwalmu tuh padet banget kaya udah ma sekolah, latihan tari, lomba, belum lagi hal-hal yang kamu coba karena penasaran dan explore lebih jauh untuk dirimu yang cantik ini. Belum lagi masalah yang kadang dateng tanpa permisi kan. Tapi entah gimana, namamu masih aja nongol di urutan paling atas sayaanggg. Padahal aku tau itu nggak gampang. Aku tau ada hari-hari kamu capek banget tapi kamu tetep pantang mundur. Dan kamu ngelakuinnya tanpa banyak ngeluh, tanpa pamer. Diem-diem aja, tau-tau udah jadi yang terbaik dan bikin hatiku makin kecintaan aja. Rank #1 dan #2 itu emang kerenn bangetttt. Tapi yang bikin aku makin bangga itu cara kamu susah payah untuk dapetinnya. ",
 
   location: "SMK ICB CTw",
 
   myNote:
-    "Aku harap kamu tau kalo akuu sangatt sangat bersyukur punya kamuu. akuu bener bener banggaa sama kamu, " +
-    "Bukan hanya karena pencapaian yang kamu dapetin doang, " +
-    "tetapi karena aku bisa liat sendiri bagaimana kamu terus berusaha di tengah banyaknya kesibukan. dan aku punya kesempatan untuk menemani mu selaluu perempuan cintaku mau di kondisi apapun ituu, " +
-    "Soalnya dari aku baru kenal kamu ajaa, kamu selalu punya cara untuk membuatku kagum, " +
-    "dan bagiku kamu tetap menjadi seseorang yang paling istimewa di hidup aku selamanya. " +
-    "Top of the class, top of my heart. ♡",
+    "Sayang, dari pertama aku kenal kamu, kamu emang udah bikin aku kagum. Sampai sekarang pun masih, dan anehnya nggak ada habisnya. Kayaknya aku emang udah ditakdirin buat terus bangga sama kamu. 😌 Kamu tau nggak, tiap kamu cerita soal nilai atau lomba, aku dengerinnya sambil senyum-senyum sendiri. Yang belajar kamu, yang capek kamu, tapi yang paling seneng kayaknya malah aku beuh wkw. Makasih yaa sayanggku udah jadi orang yang bikin aku pengen ikut jadi lebih baik seperti muu untuk kita terus bertumbuh bersama sama. Dan makasih banget udah ngizinin aku untuk jadi partner satu satunya kamu yang nemenin kamu, di hari yang bahagia maupun yang berat. Kamu juara di kelas iyaa, tapi di hidup aku, kamu selalu juara kesatu di hati akuu. 🤍 Top of the class, top of my heart. ♡`",
 
   media: [
     {
@@ -117,26 +106,12 @@ const journeyMilestones = [
   achievement: "Penampilan tari",
 
   description:
-    "Sejak kecil, kamu sudah punya cara sendiri untuk membuat orang berhenti dan memperhatikanmu lewat tarian. " +
-    "Dan sampai sekarang, kamu terus berkembang jadi seseorang yang bukan cuma bisa menari, " +
-    "tapi juga bisa menyampaikan banyak hal lewat setiap gerakanmu. " +
-    "Setiap kali tampil, aku selalu bisa melihat usaha, keberanian, dan rasa cinta yang kamu punya untuk tari. " +
-    "Mungkin bagi orang lain itu hanya sebuah penampilan, " +
-    "tapi buatku, itu adalah hasil dari semua latihan dan proses yang sudah kamu lewati. " +
-    "Kamu selalu memberikan yang terbaik, dan entah kenapa setiap kali melihatmu di atas panggung, " +
-    "aku selalu merasa seperti sedang melihat seseorang yang sangat istimewa.",
+    "Orang lain butuh banyak kata atau perlakuan buat bikin orang terpesona. Kamu cukup menari. Dari kecil kamu udah punya bakat itu kann, dan sekarang makin ajaa kerasa pastinya makin berkembangg karna pengalaman dan jam terbang mu yang ga bisa boong. Kamu nggak cuma hafal gerakan, kamu bisa bikin setiap gerakan itu ngomong tauu.. kamu bener bener selalu membuat seni yang bikin akuu kagumm bangett dengan kamu nari aja ada perasaan, ada cerita, dan ada kamu bidadari cantik ku di dalamnya. Dan di balik semua itu ada latihan yang nggak sebentar menyita banyak waktumu, keirngat mu cape mu, dan keberanian buat tampil. Aku tau semua itu, makanya tiap liat kamu di atas panggung, rasanya bangga banget. Jujur, aku nggak pernah bisa fokus sama sekitar. Mataku udah otomatis cuma ke kamu perempuan hebatt kuu hihi.",
 
   location: "dihatiku",
 
   myNote:
-    "Aku suka melihat bagaimana kamu bisa berubah begitu kamu mulai menari. " +
-    "Senyummu, gerakanmu, dan caramu menikmati setiap musik selalu berhasil membuatku ikut bahagia. " +
-    "Aku tahu mungkin kamu masih sering merasa kurang atau masih ingin tampil lebih baik, " +
-    "tapi dari tempatku melihat, kamu sudah lebih dari cukup. " +
-    "Kamu bukan cuma membuat panggung terlihat lebih indah, " +
-    "kamu juga berhasil membuat aku jatuh cinta lagi setiap kali melihatmu tampil. " +
-    "Jadi kalau suatu hari kamu lupa seberapa hebat dirimu, " +
-    "ingatlah bahwa aku akan selalu menjadi orang yang paling semangat melihatmu bersinar.",
+    "CINTAA SELAMANYAA AKUU CANTIKK BANGETT SIHH, dan aku mau ngaku nihhh kalo salah satu hal favorit aku di dunia ini adalah liat kamu partner terbaik kuu itu pas lagi nari jugaa. Kamu jadi versi diri kamu yang paling bebas, dan aku suka banget liatnya karna itu memang udah passion mu dari kecil yaa. Kalo kamu masih ngerasa ada yang kurang. Kamu harus tau kalau bagi aku dan pastinya bagi banyak orang yang memerhatikanmu, kamu udah selalu bersinar dari duluu.. Makasih yaa sayangkuu udah bikin aku ngerasain untuk liat orang yang kita sayangg banget berkembang itu rasanya sebahagia ini :). Terus nari ya, terus berkarya yaa sayang. Aku pasti bakal ada di situ di setiap cerita mu, jadi fans nomor satu kamu. 🤍",
 
   media: [
     {
@@ -163,11 +138,11 @@ const journeyMilestones = [
 /* ---------- Finale ---------- */
 
 const journeyFinale = {
-    photo: "/assets/journey/finale-photo.jpg",        /* foto terbaik di tengah taman */
-    kicker: "Look how far you’ve come",
-    lines: ["You kept growing,", "and I was lucky enough", "to be there watching you bloom."],
-    signature: "— Your forever leaf",
-    button: "Back to Our Little World"
+    photo: "/assets/journey/finale-photo.jpg",
+    kicker: "Lihat, sudah sejauh ini kamu melangkah",
+    lines: ["Kamu terus tumbuh,", "dan aku beruntung banget", "bisa ada di sini menyaksikanmu terus bertumbuh. seperti bunga yang terus mekar yang buat bunga itu semakin indah"],
+    signature: "— Daun yang selalu ada di sisimu",
+    button: "Yuu, kembali ke dunia kecil kita"
 };
 
 /* ---------- Teks kecil & easter egg ---------- */

@@ -62,48 +62,102 @@ const journeyMilestones = [
         bloom: "normal"
     },
     {
-        id: "class-ranking",
-        type: "ranking",
-        date: "Forever number 1 in my heart too",
-        category: "ACADEMIC",
-        title: "ALWAYS AMONG THE BEST",
-        tagline: "Consistency looks beautiful on you.",
-        achievement: "Ranking kelas",
-        rank: "#1",                                   
-        rankLabel: "Class rank",
-        stars: 5,
-        stickyText: "Top of the class,\ntop of my heart. ♡",
-        description: "[Tulis cerita di sini]",
-        location: "",
-        myNote: "[Tulis pesan pribadi di sini]",
-        media: [
-            { type: "image", src: "/assets/journey/rank-photo.jpg", caption: "[Caption]" }
-        ],
-        layout: "right",
-        decoration: "leaf",
-        pride: 5,
-        bloom: "normal"
+  id: "class-ranking",
+  type: "ranking",
+  date: "From then until now",
+  category: "ACADEMIC",
+  title: "ALWAYS AMONG THE BEST",
+  tagline: "Consistency looks beautiful on you.",
+  achievement: "Consistently outstanding in class",
+  rank: "#1 & #2",
+  rankLabel: "A journey of dedication",
+  stars: 5,
+  stickyText: "Top of the class,\ntop of my heart. ♡",
+
+  description:
+    "Dari dulu sampai sekarang, kamu selalu menjadi perempuan imut yang membuatku bangga tauu ay. " +
+    "Di tengah kesibukan sekolah, latihan tari, mengurus berbagai lomba, dan banyak hal lainnya yang kamu lakuin seperti melakukan hobi mu lalu mencoba ini itu, sama beberapa rintangan yang menerjangmu " +
+    "kamu tetap mampu menjaga semangattt dan memberikan yang terbaik di sekolah dan di dirimu sendiri cintaku. " +
+    "Pencapaian ini aku pikir bukan cuma angka atau ranking loh, " +
+    "tetapi tentang usaha, ketekunan kamu dalam menggapai sesuatu, dan cara kamu terus berkembang setiap harinya. " +
+    "Aku tau ga selalu mudah membagi waktu untuk semuanya yaa sayangg, " +
+    "tetapi kamu tetep bisa menjalaninya dengan hebat. You're the best honeyy",
+
+  location: "SMK ICB CTw",
+
+  myNote:
+    "Aku harap kamu tau kalo akuu sangatt sangat bersyukur punya kamuu. akuu bener bener banggaa sama kamu, " +
+    "Bukan hanya karena pencapaian yang kamu dapetin doang, " +
+    "tetapi karena aku bisa liat sendiri bagaimana kamu terus berusaha di tengah banyaknya kesibukan. dan aku punya kesempatan untuk menemani mu selaluu perempuan cintaku mau di kondisi apapun ituu, " +
+    "Soalnya dari aku baru kenal kamu ajaa, kamu selalu punya cara untuk membuatku kagum, " +
+    "dan bagiku kamu tetap menjadi seseorang yang paling istimewa di hidup aku selamanya. " +
+    "Top of the class, top of my heart. ♡",
+
+  media: [
+    {
+      type: "image",
+      src: "/assets/journey/rank-photo.jpg",
+      caption: "Proud of the person you are and everything you continue to become."
+    }
+  ],
+
+  layout: "right",
+  decoration: "leaf",
+  pride: 5,
+  bloom: "normal"
+},
+
+    {
+  id: "dance-performance",
+  type: "performance",
+  date: "Forever",
+  category: "PERFORMANCE",
+  title: "WHEN YOU DANCE, YOU SHINE",
+  tagline: "The stage was made for you.",
+  achievement: "Penampilan tari",
+
+  description:
+    "Sejak kecil, kamu sudah punya cara sendiri untuk membuat orang berhenti dan memperhatikanmu lewat tarian. " +
+    "Dan sampai sekarang, kamu terus berkembang jadi seseorang yang bukan cuma bisa menari, " +
+    "tapi juga bisa menyampaikan banyak hal lewat setiap gerakanmu. " +
+    "Setiap kali tampil, aku selalu bisa melihat usaha, keberanian, dan rasa cinta yang kamu punya untuk tari. " +
+    "Mungkin bagi orang lain itu hanya sebuah penampilan, " +
+    "tapi buatku, itu adalah hasil dari semua latihan dan proses yang sudah kamu lewati. " +
+    "Kamu selalu memberikan yang terbaik, dan entah kenapa setiap kali melihatmu di atas panggung, " +
+    "aku selalu merasa seperti sedang melihat seseorang yang sangat istimewa.",
+
+  location: "dihatiku",
+
+  myNote:
+    "Aku suka melihat bagaimana kamu bisa berubah begitu kamu mulai menari. " +
+    "Senyummu, gerakanmu, dan caramu menikmati setiap musik selalu berhasil membuatku ikut bahagia. " +
+    "Aku tahu mungkin kamu masih sering merasa kurang atau masih ingin tampil lebih baik, " +
+    "tapi dari tempatku melihat, kamu sudah lebih dari cukup. " +
+    "Kamu bukan cuma membuat panggung terlihat lebih indah, " +
+    "kamu juga berhasil membuat aku jatuh cinta lagi setiap kali melihatmu tampil. " +
+    "Jadi kalau suatu hari kamu lupa seberapa hebat dirimu, " +
+    "ingatlah bahwa aku akan selalu menjadi orang yang paling semangat melihatmu bersinar.",
+
+  media: [
+    {
+      type: "video",
+      src: "/assets/journey/dance-video.mp4",
+      poster: "/assets/journey/dance-poster.jpg",
+      caption: "Every movement carries a piece of your story."
     },
     {
-        id: "dance-performance",
-        type: "performance",
-        date: "[DATE]",
-        category: "PERFORMANCE",
-        title: "WHEN YOU DANCE, YOU SHINE",
-        tagline: "The stage was made for you.",
-        achievement: "Penampilan tari",
-        description: "[Tulis cerita di sini]",
-        location: "[Lokasi]",
-        myNote: "[Tulis pesan pribadi di sini]",
-        media: [
-            { type: "video", src: "/assets/journey/dance-video.mp4", poster: "/assets/journey/dance-poster.jpg", caption: "[Caption penampilan]" },
-            { type: "image", src: "/assets/journey/dance-backstage.jpg", caption: "[Caption backstage / kostum]" }
-        ],
-        layout: "center",
-        decoration: "peony",
-        pride: "infinite",
-        bloom: "full"
+      type: "image",
+      src: "/assets/journey/dance-backstage.jpg",
+      caption: "Before the spotlight, there was always your hard work."
     }
+  ],
+
+  layout: "center",
+  decoration: "peony",
+  pride: "infinite",
+  bloom: "full"
+}
+
 ];
 
 /* ---------- Finale ---------- */

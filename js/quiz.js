@@ -685,8 +685,8 @@ const memories = [
 
 /* Video: ganti src & poster. Tanpa autoplay. */
 const storyVideo = {
-    src: "/assets/memories/our-story-video.mp4",
-    poster: "/assets/memories/our-story-poster.jpg",
+    src: "/assets/videos/memories-video.mp4",
+    poster: "/assets/images/couple/photo-02.jpeg",
     caption: "Every memory leads me back to you. ♡",
     signature: "— With all my love, Daun nya bunga"
 };

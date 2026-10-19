@@ -21,7 +21,7 @@ const journeyOpening = {
     title: "Perjalanan Kita",
     subtitle: "Setahun ini dan selamanya, kamu bikin aku bangga berkali-kali.",
     tagline: "Setahun yang penuh nyali, lelah, dan hal-hal kecil yang diam-diam bikin aku makin jatuh cinta.",
-    photo: "/assets/journey/opening-photo.jpg",
+    photo: "/assets/images/couple/beginning-journey.jpeg",
     photoCaption: "di sinilah semuanya bermula"
 };
 
@@ -138,7 +138,7 @@ const journeyMilestones = [
 /* ---------- Finale ---------- */
 
 const journeyFinale = {
-    photo: "/assets/journey/finale-photo.jpg",
+    photo: "/assets/images/couple/ending-journey.jpeg",
     kicker: "Lihat, sudah sejauh ini kamu melangkah",
     lines: ["Kamu terus tumbuh,", "dan aku beruntung banget", "bisa ada di sini menyaksikanmu terus bertumbuh. seperti bunga yang terus mekar yang buat bunga itu semakin indah"],
     signature: "— Daun yang selalu ada di sisimu",

@@ -778,9 +778,9 @@ document.addEventListener("DOMContentLoaded", () => {
         item.appendChild(card);
 
         if (m.decoration === "peony") {
-            item.appendChild(deco("jn-deco-peony", "/assets/images/botanical/peony.png"));
+            item.appendChild(deco("jn-deco-peony", "/assets/images/botanical/tulipp.png"));
         } else if (m.decoration === "leaf") {
-            item.appendChild(deco("jn-deco-leaf", "/assets/images/botanical/leaves.webp"));
+            item.appendChild(deco("jn-deco-leaf", "/assets/images/botanical/tulplop.png"));
         }
 
         /* kelopak & sparkle lembut sekali saat muncul */

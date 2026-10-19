@@ -51,8 +51,8 @@ const journeyMilestones = [
         location: "SMKN 7 Kota Bandung",
         myNote: "CONGRASTTT PEREMPUAN HEBATTT KUUUUUU, Kalau suatu saat kamu mulai ragu sama kemampuan diri sendiri, aku harap kamu sangat sangat inget momen ini, yaa cantikk. Kamu pernah berjuang lohh dan selalu berjuang, kamu pernah dan suka berani untuk explore segala hal, dan kamu bisa berhasil sampai sejauh ini. Aku bangga banget sama kamu tauu, bukan cuma hari ini, tapi juga sama semua proses yang udah kamu lewati. Semoga setelah ini masih banyak hal baik yang bisa kamu raih yaa cintaa. Aku seneng bisa nemenin kamu tumbuh sejauh ini, sayang.. Love youu so muchh",
         media: [
-            { type: "image", src: "/assets/journey/lks-photo.jpg", caption: "[Caption]" },
-            { type: "video", src: "/assets/journey/lks-video.mp4", poster: "/assets/journey/lks-poster.jpg", caption: "[Caption]" }
+            { type: "image", src: "/assets/images/couple/juara-lks.jpeg", caption: "Caption" },
+            { type: "video", src: "/assets/videos/juara-lks-edit.mp4", poster: "/assets/journey/lks-poster.jpg", caption: "[Caption]" }
         ],
         layout: "left",
         decoration: "peony",
@@ -80,8 +80,7 @@ const journeyMilestones = [
     "Sayang, dari pertama aku kenal kamu, kamu emang udah bikin aku kagum. Sampai sekarang pun masih, dan anehnya nggak ada habisnya. Kayaknya aku emang udah ditakdirin buat terus bangga sama kamu.  Kamu tau nggak, tiap kamu cerita soal nilai atau lomba, aku dengerinnya sambil senyum-senyum sendiri. Yang belajar kamu, yang capek kamu, tapi yang paling seneng kayaknya malah aku beuh wkw. Makasih yaa sayanggku udah jadi orang yang bikin aku pengen ikut jadi lebih baik seperti muu untuk kita terus bertumbuh bersama sama. Dan makasih banget udah ngizinin aku untuk jadi partner satu satunya kamu yang nemenin kamu, di hari yang bahagia maupun yang berat. Kamu juara di kelas iyaa, tapi di hidup aku, kamu selalu juara kesatu di hati akuu.  Top of the class, top of my heart. ♡`",
 
  media: [
-            { type: "image", src: "/assets/journey/lks-photo.jpg", caption: "[Caption]" },
-            { type: "video", src: "/assets/journey/lks-video.mp4", poster: "/assets/journey/lks-poster.jpg", caption: "[Caption]" }
+            { type: "image", src: "/assets/journey/lks-photo.jpg", caption: "[Caption]" }
         ],
 
   layout: "right",
@@ -109,13 +108,13 @@ const journeyMilestones = [
   media: [
     {
       type: "video",
-      src: "/assets/journey/dance-video.mp4",
+      src: "/assets/videos/video-tari.mp4",
       poster: "/assets/journey/dance-poster.jpg",
       caption: "Every movement carries a piece of your story."
     },
     {
       type: "image",
-      src: "/assets/journey/dance-backstage.jpg",
+      src: "/assets/images/couple/tari.jpeg",
       caption: "Before the spotlight, there was always your hard work."
     }
   ],

@@ -80,7 +80,7 @@ const journeyMilestones = [
     "Sayang, dari pertama aku kenal kamu, kamu emang udah bikin aku kagum. Sampai sekarang pun masih, dan anehnya nggak ada habisnya. Kayaknya aku emang udah ditakdirin buat terus bangga sama kamu.  Kamu tau nggak, tiap kamu cerita soal nilai atau lomba, aku dengerinnya sambil senyum-senyum sendiri. Yang belajar kamu, yang capek kamu, tapi yang paling seneng kayaknya malah aku beuh wkw. Makasih yaa sayanggku udah jadi orang yang bikin aku pengen ikut jadi lebih baik seperti muu untuk kita terus bertumbuh bersama sama. Dan makasih banget udah ngizinin aku untuk jadi partner satu satunya kamu yang nemenin kamu, di hari yang bahagia maupun yang berat. Kamu juara di kelas iyaa, tapi di hidup aku, kamu selalu juara kesatu di hati akuu.  Top of the class, top of my heart. ♡`",
 
  media: [
-            { type: "image", src: "/assets/journey/lks-photo.jpg", caption: "[Caption]" }
+            { type: "image", src: "/assets/journey/ranking.jpg", caption: "[Caption]" }
         ],
 
   layout: "right",
@@ -107,20 +107,26 @@ const journeyMilestones = [
 
   media: [
     {
+      type: "image",
+      src: "/assets/images/couple/tari.jpeg",
+      caption: "Before the spotlight, there was always your hard work."
+    },
+    {
       type: "video",
       src: "/assets/videos/video-tari.mp4",
       poster: "/assets/journey/dance-poster.jpg",
       caption: "Every movement carries a piece of your story."
     },
     {
-      type: "image",
-      src: "/assets/images/couple/tari.jpeg",
-      caption: "Before the spotlight, there was always your hard work."
+      type: "video",
+      src: "/assets/videos/full-tari.mp4",
+      poster: "/assets/journey/dance-poster.jpg",
+      caption: "Every movement carries a piece of your story."
     }
   ],
 
   layout: "center",
-  decoration: "peony",
+  decoration: "leaf",
   pride: "infinite",
   bloom: "full"
 }

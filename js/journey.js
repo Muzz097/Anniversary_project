@@ -22,7 +22,7 @@ const journeyOpening = {
     subtitle: "Setahun ini dan selamanya, kamu bikin aku bangga berkali-kali.",
     tagline: "Setahun yang penuh nyali, lelah, dan hal-hal kecil yang diam-diam bikin aku makin jatuh cinta.",
     photo: "/assets/images/couple/beginning-journey.jpeg",
-    photoCaption: "di sinilah semuanya bermula"
+    photoCaption: "The Beginning"
 };
 
 /* ---------- Milestone ----------
@@ -42,10 +42,8 @@ const journeyMilestones = [
     {
         id: "lks-pharmacy",
         type: "competition",
-        date: "[12 MEI 2026",
-        category: "COMPETITION",
+        date: "12 MEI 2026",
         title: "LKS FARMASI",
-        kicker: "SECOND PLACE",
         tagline: "The courage to compete",
         achievement: "Juara 2",
         badge: { number: "2", text: "2ND PLACE" },
@@ -58,14 +56,13 @@ const journeyMilestones = [
         ],
         layout: "left",
         decoration: "peony",
-        pride: 5,
+        pride: "infinite",
         bloom: "normal"
     },
     {
   id: "class-ranking",
   type: "ranking",
   date: "From then until now",
-  category: "ACADEMIC",
   title: "ALWAYS AMONG THE BEST",
   tagline: "Consistency looks beautiful on you.",
   achievement: "Consistently outstanding in class",
@@ -77,22 +74,19 @@ const journeyMilestones = [
   description:
     "Jujur ya, aku suka bingung sama kamu. Jadwalmu tuh padet banget kaya udah ma sekolah, latihan tari, lomba, belum lagi hal-hal yang kamu coba karena penasaran dan explore lebih jauh untuk dirimu yang cantik ini. Belum lagi masalah yang kadang dateng tanpa permisi kan. Tapi entah gimana, namamu masih aja nongol di urutan paling atas sayaanggg. Padahal aku tau itu nggak gampang. Aku tau ada hari-hari kamu capek banget tapi kamu tetep pantang mundur. Dan kamu ngelakuinnya tanpa banyak ngeluh, tanpa pamer. Diem-diem aja, tau-tau udah jadi yang terbaik dan bikin hatiku makin kecintaan aja. Rank #1 dan #2 itu emang kerenn bangetttt. Tapi yang bikin aku makin bangga itu cara kamu susah payah untuk dapetinnya. ",
 
-  location: "SMK ICB CTw",
+  location: "SMK ICB CT",
 
   myNote:
-    "Sayang, dari pertama aku kenal kamu, kamu emang udah bikin aku kagum. Sampai sekarang pun masih, dan anehnya nggak ada habisnya. Kayaknya aku emang udah ditakdirin buat terus bangga sama kamu. 😌 Kamu tau nggak, tiap kamu cerita soal nilai atau lomba, aku dengerinnya sambil senyum-senyum sendiri. Yang belajar kamu, yang capek kamu, tapi yang paling seneng kayaknya malah aku beuh wkw. Makasih yaa sayanggku udah jadi orang yang bikin aku pengen ikut jadi lebih baik seperti muu untuk kita terus bertumbuh bersama sama. Dan makasih banget udah ngizinin aku untuk jadi partner satu satunya kamu yang nemenin kamu, di hari yang bahagia maupun yang berat. Kamu juara di kelas iyaa, tapi di hidup aku, kamu selalu juara kesatu di hati akuu. 🤍 Top of the class, top of my heart. ♡`",
+    "Sayang, dari pertama aku kenal kamu, kamu emang udah bikin aku kagum. Sampai sekarang pun masih, dan anehnya nggak ada habisnya. Kayaknya aku emang udah ditakdirin buat terus bangga sama kamu.  Kamu tau nggak, tiap kamu cerita soal nilai atau lomba, aku dengerinnya sambil senyum-senyum sendiri. Yang belajar kamu, yang capek kamu, tapi yang paling seneng kayaknya malah aku beuh wkw. Makasih yaa sayanggku udah jadi orang yang bikin aku pengen ikut jadi lebih baik seperti muu untuk kita terus bertumbuh bersama sama. Dan makasih banget udah ngizinin aku untuk jadi partner satu satunya kamu yang nemenin kamu, di hari yang bahagia maupun yang berat. Kamu juara di kelas iyaa, tapi di hidup aku, kamu selalu juara kesatu di hati akuu.  Top of the class, top of my heart. ♡`",
 
-  media: [
-    {
-      type: "image",
-      src: "/assets/journey/rank-photo.jpg",
-      caption: "Proud of the person you are and everything you continue to become."
-    }
-  ],
+ media: [
+            { type: "image", src: "/assets/journey/lks-photo.jpg", caption: "[Caption]" },
+            { type: "video", src: "/assets/journey/lks-video.mp4", poster: "/assets/journey/lks-poster.jpg", caption: "[Caption]" }
+        ],
 
   layout: "right",
   decoration: "leaf",
-  pride: 5,
+  pride: "infinite",
   bloom: "normal"
 },
 
@@ -100,7 +94,6 @@ const journeyMilestones = [
   id: "dance-performance",
   type: "performance",
   date: "Forever",
-  category: "PERFORMANCE",
   title: "WHEN YOU DANCE, YOU SHINE",
   tagline: "The stage was made for you.",
   achievement: "Penampilan tari",
